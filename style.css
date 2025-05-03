@@ -264,7 +264,92 @@ body.dark .dropdown-menu button:hover {
     cursor: pointer;
 }
 
+/* Sticky Header */
+.sticky-header {
+  display: flex;
+  position: sticky;
+  top: 0;
+  background-color: #f9f9f9;
+  z-index: 10;
+  padding: 15px;
+  border-bottom: 2px solid #ccc;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+.header-item {
+  flex: 1;
+  font-weight: bold;
+  text-align: left;
+  padding: 0 10px;
+}
+
+/* Divider */
+.divider {
+  height: 2px;
+  background-color: #ccc;
+  margin: 10px 0;
+}
+
+/* Mountain Row */
+.mountain-row {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.mountain-col {
+  flex: 1;
+  text-align: left;
+  padding: 0 10px;
+}
+
+/* Mountain Image */
+.mountain-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Mountain Name */
+.mountain-name {
+  font-weight: bold;
+}
+
+/* Ticket Price */
+.ticket-price {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Status Dot */
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.dot.open {
+  background-color: green;
+}
+
+.dot.closed {
+  background-color: red;
+}
+
+/* Quota/Left */
+.quota .green {
+  color: green;
+  font-weight: bold;
+}
+
+.quota .red {
+  color: red;
+  font-weight: bold;
+}
 
 
 

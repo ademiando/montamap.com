@@ -9,8 +9,15 @@ const title = document.getElementById('title');
 const description = document.getElementById('description');
 
 // Toggle Dropdown Menu
-menuToggle.addEventListener('click', () => {
+menuToggle.addEventListener('click', (event) => {
   dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+});
+
+// Close Hamburger Menu when clicking outside
+document.addEventListener('click', (event) => {
+  if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+    dropdownMenu.style.display = 'none'; // Menutup menu
+  }
 });
 
 // Toggle Login Dropdown

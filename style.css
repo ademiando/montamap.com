@@ -251,7 +251,7 @@ body.dark .dropdown-menu button:hover {
 }
 
 /* Styling untuk semua tombol dropdown */
-#Mountain select {
+.mountain select {
     width: 120px; /* Lebar seragam */
     height: 30px; /* Tinggi seragam */
     font-size: 14px; /* Ukuran font */

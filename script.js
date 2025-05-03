@@ -1,6 +1,8 @@
 // Elements
 const menuToggle = document.getElementById('menuToggle');
 const dropdownMenu = document.getElementById('dropdownMenu');
+const loginButton = document.getElementById('loginButton');
+const loginDropdown = document.getElementById('loginDropdown');
 const languageSelect = document.getElementById('language');
 const themeSwitch = document.getElementById('themeSwitch');
 const title = document.getElementById('title');
@@ -9,6 +11,18 @@ const description = document.getElementById('description');
 // Toggle Dropdown Menu
 menuToggle.addEventListener('click', () => {
   dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+});
+
+// Toggle Login Dropdown
+loginButton.addEventListener('click', () => {
+  loginDropdown.style.display = loginDropdown.style.display === 'block' ? 'none' : 'block';
+});
+
+// Close Login Dropdown when clicking outside
+document.addEventListener('click', (event) => {
+  if (!loginButton.contains(event.target) && !loginDropdown.contains(event.target)) {
+    loginDropdown.style.display = 'none';
+  }
 });
 
 // Language Translations

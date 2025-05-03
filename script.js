@@ -42,7 +42,8 @@ languageSelect.addEventListener('change', () => {
   description.textContent = translations[selectedLanguage].description;
 });
 
-// Toggle Theme (Dark/Light)
+// Toggle Theme (Light/Dark)
 themeSwitch.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
+  const isDarkMode = document.body.classList.toggle('dark');
+  themeSwitch.textContent = isDarkMode ? "Theme: Dark Mode" : "Theme: Light Mode";
 });

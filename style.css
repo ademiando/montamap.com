@@ -195,3 +195,44 @@ body.dark .dropdown-menu button:hover {
   color: #555; /* Warna teks abu-abu medium */
   line-height: 1.5; /* Spasi antar baris yang nyaman */
 }
+
+/* Container untuk Tab Horizontal */
+.horizontal-tab-container {
+  display: flex;
+  justify-content: space-around; /* Tab tersebar merata */
+  background-color: #333;
+  padding: 10px;
+}
+
+/* Gaya untuk Tab */
+.tab {
+  background-color: #444;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab:hover {
+  background-color: #555;
+}
+
+.tab.active {
+  background-color: #007bff; /* Warna biru untuk tab aktif */
+  font-weight: bold;
+}
+
+/* Konten Tab */
+.tab-content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  display: none; /* Semua tab disembunyikan secara default */
+}
+
+.tab-content.active {
+  display: block; /* Tampilkan hanya konten tab yang aktif */
+}

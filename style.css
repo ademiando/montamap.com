@@ -186,13 +186,11 @@ body.dark .dropdown-menu button:hover {
 .tagline {
   font-size: 27px; /* Ukuran font besar untuk tagline */
   font-weight: bold; /* Tebalkan tulisan */
-  color: #333; /* Warna teks abu-abu gelap */
   margin-bottom: 10px; /* Jarak antara tagline dan sub-tagline */
 }
 
 .sub-tagline {
   font-size: 14px; /* Ukuran font lebih kecil untuk sub-tagline */
-  color: #555; /* Warna teks abu-abu medium */
   line-height: 1.5; /* Spasi antar baris yang nyaman */
 }
 
@@ -207,7 +205,6 @@ body.dark .dropdown-menu button:hover {
 /* Gaya untuk Tab */
 .tab {
   background-color: #444;
-  color: white;
   padding: 10px 20px;
   border: none;
   font-size: 16px;
@@ -220,7 +217,7 @@ body.dark .dropdown-menu button:hover {
 }
 
 .tab.active {
-  background-color: #007bff; /* Warna biru untuk tab aktif */
+  background-color: white; /* Warna putih untuk tab aktif */
   font-weight: bold;
 }
 

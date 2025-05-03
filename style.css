@@ -230,7 +230,7 @@ body.dark .dropdown-menu button:hover {
   padding: 20px;
   background-color: none;
   border: 1px solid #ccc;
-  margin-top: 10px;
+  margin-top: none; /* tadinya 10px */
   display: none; /* Semua tab disembunyikan secara default */
 }
 

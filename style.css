@@ -74,7 +74,7 @@ header {
   position: absolute;
   top: 40px;
   right: 0;
-  background-color: darkgray;
+  background-color: gray;
   color: #333;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -87,7 +87,7 @@ header {
   display: block;
   width: 100%;
   padding: 10px;
-  border: none;
+  border: white;
   background: none;
   text-align: left;
   cursor: pointer;

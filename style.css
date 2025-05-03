@@ -172,9 +172,9 @@ body.dark .dropdown-menu button:hover {
   font-size: 12px;
   font-weight: bold;
   margin: 10px 0; /* Jarak antara banner dan elemen di atas/bawahnya */
-  width: 80%; /* Membentang dari kiri ke kanan */
+  width: 100%; /* Membentang dari kiri ke kanan */
   margin: 0 auto; /* Posisi horizontal di tengah */
-  border-radius: 10px; /* Sudut melengkung dengan radius 10px */
+  border-radius: none; /* Sudut melengkung dengan radius 10px */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk tampilan lebih profesional */
 }
 

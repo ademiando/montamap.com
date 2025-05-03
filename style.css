@@ -242,7 +242,7 @@ body.dark .dropdown-menu button:hover {
 }
 
 /* Container untuk tombol sortir */
-#Mountain {
+.mountain {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;

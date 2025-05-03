@@ -290,55 +290,33 @@ body.dark .dropdown-menu button:hover {
   margin: 10px 0;
 }
 
-/* Mountain Row Layout */
+/* Gaya Dasar untuk Mountain Row */
 .mountain-row {
   display: flex;
+  flex-wrap: wrap; /* Membungkus konten jika tidak muat */
   padding: 15px;
   border-bottom: 1px solid #ccc;
-  align-items: center; /* Pastikan semua elemen sejajar vertikal */
+  align-items: flex-start; /* Elemen diatur ke atas */
+  gap: 10px; /* Jarak antar elemen */
 }
 
 .mountain-col {
-  flex: 1;
+  flex: 1; /* Semua kolom memiliki lebar yang sama */
+  min-width: 120px; /* Lebar minimum agar tetap terlihat di layar kecil */
   text-align: left;
-  padding: 0 10px;
+}
+
+.mountain-details {
   display: flex;
-  align-items: center; /* Pastikan elemen di dalamnya sejajar vertikal */
+  align-items: center;
+  gap: 10px; /* Jarak antara gambar dan teks */
 }
 
-.mountain-number {
-  font-weight: bold;
-  font-size: 16px;
-  margin-right: 5px;
-  display: inline-block;
-}
-
-/* Mountain Image */
 .mountain-image {
   width: 50px;
   height: 50px;
   border-radius: 5px;
   object-fit: cover;
-  margin-right: 10px;
-}
-
-/* Mountain Details */
-.mountain-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.mountain-name {
-  font-weight: bold;
-  font-size: 18px;
-  margin-left: 5px;
-}
-
-/* Ticket Price */
-.ticket-price {
-  font-size: 12px;
-  color: #888;
-  margin-top: 5px;
 }
 
 /* Status Dot */
@@ -350,15 +328,15 @@ body.dark .dropdown-menu button:hover {
   margin-right: 5px;
 }
 
-.dot.open {
-  background-color: green;
-}
-
 .dot.closed {
   background-color: red;
 }
 
-/* Quota/Left */
+.dot.open {
+  background-color: green;
+}
+
+/* Quota/Left Styling */
 .quota .green {
   color: green;
   font-weight: bold;
@@ -368,6 +346,27 @@ body.dark .dropdown-menu button:hover {
   color: red;
   font-weight: bold;
 }
+
+/* Media Query untuk Layar Kecil */
+@media (max-width: 768px) {
+  .mountain-row {
+    flex-direction: column; /* Susun kolom secara vertikal */
+  }
+
+  .mountain-col {
+    flex: none; /* Setel ulang flex agar tidak memanjang */
+    width: 100%; /* Kolom memanfaatkan seluruh lebar */
+    margin-bottom: 10px; /* Jarak antar kolom */
+  }
+
+  .sticky-header {
+    display: none; /* Sembunyikan sticky header di layar kecil jika tidak diperlukan */
+  }
+}
+
+
+
+
 
 
 

@@ -68,3 +68,31 @@ themeSwitch.addEventListener('click', () => {
   const isDarkMode = document.body.classList.toggle('dark');
   themeSwitch.textContent = isDarkMode ? "Theme: Dark Mode" : "Theme: Light Mode";
 });
+
+  function openTab(event, tabName) {
+  // Sembunyikan semua konten tab
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach((content) => {
+    content.style.display = 'none';
+    content.classList.remove('active');
+  });
+
+  // Nonaktifkan semua tab
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach((tab) => {
+    tab.classList.remove('active');
+  });
+
+  // Tampilkan konten tab yang dipilih
+  const selectedTabContent = document.getElementById(tabName);
+  selectedTabContent.style.display = 'block';
+  selectedTabContent.classList.add('active');
+
+  // Tandai tab yang aktif
+  event.currentTarget.classList.add('active');
+}
+
+// Tampilkan tab pertama secara default
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('.tab').click();
+});

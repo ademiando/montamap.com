@@ -198,13 +198,13 @@ body.dark .dropdown-menu button:hover {
 .horizontal-tab-container {
   display: flex;
   justify-content: space-around; /* Tab tersebar merata */
-  background-color: #333;
+  background-color: none;
   padding: 10px;
 }
 
 /* Gaya untuk Tab */
 .tab {
-  background-color: #444;
+  background-color: none;
   padding: 10px 20px;
   border: none;
   font-size: 16px;
@@ -217,7 +217,7 @@ body.dark .dropdown-menu button:hover {
 }
 
 .tab.active {
-  background-color: white; /* Warna putih untuk tab aktif */
+  background-color: gray; /* Warna putih untuk tab aktif */
   font-weight: bold;
 }
 

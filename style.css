@@ -359,12 +359,6 @@ body.dark .dropdown-menu button:hover {
     margin-bottom: 10px; /* Jarak antar kolom */
   }
 
-  .sticky-header {
-    display: none; /* Sembunyikan sticky header di layar kecil jika tidak diperlukan */
-  }
-}
-
-
 
 
 

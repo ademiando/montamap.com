@@ -370,6 +370,13 @@ body.dark .dropdown-menu button:hover {
 }
 
 
+  
+/* Geser Kolom Konten (Status, Region, Altitude) */
+.mountain-col:nth-child(2), /* Status */
+.mountain-col:nth-child(3), /* Region */
+.mountain-col:nth-child(4)  /* Altitude */ {
+  margin-left: 20px; /* Geser ke kanan 20px */
+}
 
 
 

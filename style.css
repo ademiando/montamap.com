@@ -224,7 +224,7 @@ body.dark .dropdown-menu button:hover {
 /* Konten Tab */
 .tab-content {
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: none;
   border: 1px solid #ccc;
   margin-top: 10px;
   display: none; /* Semua tab disembunyikan secara default */

@@ -184,14 +184,14 @@ body.dark .dropdown-menu button:hover {
 }
 
 .tagline {
-  font-size: 28px; /* Ukuran font besar untuk tagline */
+  font-size: 26px; /* Ukuran font besar untuk tagline */
   font-weight: bold; /* Tebalkan tulisan */
   color: #333; /* Warna teks abu-abu gelap */
   margin-bottom: 10px; /* Jarak antara tagline dan sub-tagline */
 }
 
 .sub-tagline {
-  font-size: 16px; /* Ukuran font lebih kecil untuk sub-tagline */
+  font-size: 12px; /* Ukuran font lebih kecil untuk sub-tagline */
   color: #555; /* Warna teks abu-abu medium */
   line-height: 1.5; /* Spasi antar baris yang nyaman */
 }

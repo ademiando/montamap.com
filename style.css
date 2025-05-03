@@ -162,3 +162,16 @@ body.dark .dropdown-menu button {
 body.dark .dropdown-menu button:hover {
   background-color: #666;
 }
+
+/* Banner Ads Styling */
+.banner-ads {
+  background-color: #007bff; /* Warna biru */
+  color: white;
+  text-align: center;
+  padding: 15px 0; /* Spasi vertikal */
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0; /* Jarak antara banner dan elemen di atas/bawahnya */
+  width: 100%; /* Membentang dari kiri ke kanan */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk tampilan lebih profesional */
+}

@@ -175,3 +175,23 @@ body.dark .dropdown-menu button:hover {
   width: 100%; /* Membentang dari kiri ke kanan */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk tampilan lebih profesional */
 }
+
+/* Tagline Section Styling */
+.tagline-section {
+  text-align: center; /* Pusatkan teks */
+  margin: 20px 0; /* Jarak atas dan bawah */
+  padding: 10px;
+}
+
+.tagline {
+  font-size: 28px; /* Ukuran font besar untuk tagline */
+  font-weight: bold; /* Tebalkan tulisan */
+  color: #333; /* Warna teks abu-abu gelap */
+  margin-bottom: 10px; /* Jarak antara tagline dan sub-tagline */
+}
+
+.sub-tagline {
+  font-size: 16px; /* Ukuran font lebih kecil untuk sub-tagline */
+  color: #555; /* Warna teks abu-abu medium */
+  line-height: 1.5; /* Spasi antar baris yang nyaman */
+}

@@ -34,6 +34,70 @@ header {
   text-shadow: 2px 2px 4px #000;
 }
 
+/* Search Bar Styling */
+.search-bar {
+  flex: 1;
+  max-width: 300px;
+  margin-right: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Login Button Styling */
+.login-menu {
+  position: relative;
+  margin-right: 20px;
+}
+
+.login-menu button {
+  background-color: #007bff; /* Blue color for login */
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-menu button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Login Dropdown Styling */
+.login-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none; /* Initially hidden */
+  z-index: 1000;
+}
+
+.login-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-dropdown button:hover {
+  background-color: #f0f0f0;
+}
+
 /* Hamburger Menu Styling */
 .hamburger-menu {
   font-size: 24px;

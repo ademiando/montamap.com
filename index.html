@@ -9,11 +9,19 @@
 <body>
   <header>
     <div class="logo">Xcapeak</div>
-    <div class="hamburger-menu" id="menuToggle">
-      ☰
-    </div>
+    <div class="hamburger-menu" id="menuToggle">☰</div>
     <div class="dropdown-menu" id="dropdownMenu">
-      <button id="languageSwitch">Switch Language</button>
+      <div class="language-select">
+        <label for="language">Select Language:</label>
+        <select id="language">
+          <option value="en">English</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="zh">中文 (Chinese)</option>
+          <option value="hi">हिन्दी (Hindi)</option>
+          <option value="ru">Русский (Russian)</option>
+        </select>
+      </div>
+      
       <button id="themeSwitch">Toggle Theme</button>
     </div>
   </header>

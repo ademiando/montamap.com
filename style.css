@@ -57,6 +57,7 @@ header {
 
 .dropdown-menu .language-select {
   margin-bottom: 10px;
+  color: #333;
 }
 
 .dropdown-menu button {
@@ -97,17 +98,4 @@ body.dark .dropdown-menu button {
 
 body.dark .dropdown-menu button:hover {
   background-color: #666;
-}
-
-  /* Label for Language in Light Mode */
-.language-select label {
-  font-size: 16px;
-  margin-right: 10px;
-  color: #333; /* Warna teks gelap untuk Light Mode */
-  transition: color 0.3s; /* Smooth transition for theme changes */
-}
-
-/* Label for Language in Dark Mode */
-body.dark .language-select label {
-  color: #f5f5f5; /* Warna teks terang untuk Dark Mode */
 }

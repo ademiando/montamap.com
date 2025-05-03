@@ -1,26 +1,45 @@
 // Elements
 const menuToggle = document.getElementById('menuToggle');
 const dropdownMenu = document.getElementById('dropdownMenu');
-const languageSwitch = document.getElementById('languageSwitch');
+const languageSelect = document.getElementById('language');
 const themeSwitch = document.getElementById('themeSwitch');
+const title = document.getElementById('title');
+const description = document.getElementById('description');
 
 // Toggle Dropdown Menu
 menuToggle.addEventListener('click', () => {
   dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
 });
 
-// Switch Language (English and Indonesian for demonstration)
-let currentLanguage = 'en';
-languageSwitch.addEventListener('click', () => {
-  if (currentLanguage === 'en') {
-    document.body.innerHTML = document.body.innerHTML.replace(/Welcome to Xcapeak/, 'Selamat Datang di Xcapeak')
-                                                      .replace(/This is your mountain tracker and ticket website./, 'Ini adalah situs pelacak gunung dan tiket Anda.');
-    currentLanguage = 'id';
-  } else {
-    document.body.innerHTML = document.body.innerHTML.replace(/Selamat Datang di Xcapeak/, 'Welcome to Xcapeak')
-                                                      .replace(/Ini adalah situs pelacak gunung dan tiket Anda./, 'This is your mountain tracker and ticket website.');
-    currentLanguage = 'en';
+// Language Translations
+const translations = {
+  en: {
+    title: "Welcome to Xcapeak",
+    description: "This is your mountain tracker and ticket website."
+  },
+  id: {
+    title: "Selamat Datang di Xcapeak",
+    description: "Ini adalah situs pelacak gunung dan tiket Anda."
+  },
+  zh: {
+    title: "欢迎来到 Xcapeak",
+    description: "这是您的山地追踪和票务网站。"
+  },
+  hi: {
+    title: "Xcapeak में आपका स्वागत है",
+    description: "यह आपका पर्वत ट्रैकर और टिकट वेबसाइट है।"
+  },
+  ru: {
+    title: "Добро пожаловать в Xcapeak",
+    description: "Это ваш сайт для отслеживания гор и билетов."
   }
+};
+
+// Update Language Content
+languageSelect.addEventListener('change', () => {
+  const selectedLanguage = languageSelect.value;
+  title.textContent = translations[selectedLanguage].title;
+  description.textContent = translations[selectedLanguage].description;
 });
 
 // Toggle Theme (Dark/Light)

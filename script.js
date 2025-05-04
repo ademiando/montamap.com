@@ -96,3 +96,10 @@ themeSwitch.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.tab').click();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const defaultTab = document.querySelector('.tab');
+  if (defaultTab) {
+    defaultTab.click();
+  }
+});

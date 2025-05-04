@@ -224,6 +224,10 @@ body.dark .dropdown-menu button:hover {
   background-color: #555;
 }
 
+.tab-content {
+  display: none; /* Sembunyikan semua tab secara default */
+}
+
 .tab.active {
   background-color: gray; /* Warna putih untuk tab aktif */
   font-weight: bold;

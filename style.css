@@ -229,7 +229,7 @@ body.dark .dropdown-menu button:hover {
 }
 
 .tab.active {
-  background-color: gray; /* Warna putih untuk tab aktif */
+  background-color: 444; /* Warna putih untuk tab aktif */
   font-weight: bold;
 }
 

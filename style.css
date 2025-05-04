@@ -276,7 +276,7 @@ body.dark .dropdown-menu button:hover {
     background-color: #eee;
     justify-content: space-between;
     padding: 10px 20px;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 5px solid #ccc;
     font-weight: bold;
     color: #333;
     text-align: center;

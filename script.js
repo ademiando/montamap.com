@@ -92,11 +92,6 @@ themeSwitch.addEventListener('click', () => {
   event.currentTarget.classList.add('active');
 }
 
-// Tampilkan tab pertama secara default
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('.tab').click();
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   const defaultTab = document.querySelector('.tab');
   if (defaultTab) {

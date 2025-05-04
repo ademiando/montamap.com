@@ -370,10 +370,6 @@ body.dark .dropdown-menu button:hover {
     font-weight: bold;
 }
 
-/* Wrapper utama untuk tabel */
-.mountain-table-wrapper {
-    overflow-x: auto; /* Aktifkan scroll horizontal */
-}
 
 
 

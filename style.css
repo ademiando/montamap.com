@@ -272,7 +272,7 @@ body.dark .dropdown-menu button:hover {
 .sticky-header {
   display: flex;
   position: sticky;
-  top: 0;
+  top: 5px;
   background-color: #f9f9f9;
   z-index: 10;
   padding: 15px;

@@ -270,6 +270,7 @@ body.dark .dropdown-menu button:hover {
 
 /* Styling untuk Sticky Header */
 .sticky-header {
+    margin-top: 10px;
     position: sticky;
     top: 5px;
     display: flex;

@@ -365,7 +365,7 @@ body.dark .dropdown-menu button:hover {
 }
 
 .status .dot.closed {
-    background-color: red;
+    background-color: #c08081;
 }
 
 .quota .green {

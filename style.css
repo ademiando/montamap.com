@@ -374,22 +374,6 @@ body.dark .dropdown-menu button:hover {
 .mountain-table-wrapper {
     overflow-x: auto; /* Aktifkan scroll horizontal */
     white-space: nowrap; /* Pastikan kolom tetap dalam satu baris */
-    margin: 10px 0;
-    border: 1px solid #ddd; /* Tambahkan border jika perlu */
-}
-
-/* Gaya scrollbar (opsional) */
-.mountain-table-wrapper::-webkit-scrollbar {
-    height: 8px;
-}
-
-.mountain-table-wrapper::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 4px;
-}
-
-.mountain-table-wrapper::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
 }
 
 

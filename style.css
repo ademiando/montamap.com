@@ -373,7 +373,6 @@ body.dark .dropdown-menu button:hover {
 /* Wrapper utama untuk tabel */
 .mountain-table-wrapper {
     overflow-x: auto; /* Aktifkan scroll horizontal */
-    white-space: nowrap; /* Pastikan kolom tetap dalam satu baris */
 }
 
 

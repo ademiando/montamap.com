@@ -316,6 +316,9 @@ body.dark .dropdown-menu button:hover {
     border-radius: 5px;
 }
 
+.ticket-price {
+     font-weight: none;
+     color: none;
 
 /* Styling untuk Status */
 .status .dot {

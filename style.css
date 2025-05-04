@@ -300,12 +300,6 @@ body.dark .dropdown-menu button:hover {
     border-bottom: 1px solid #ddd;
 }
 
-/* Media Query untuk Layar Kecil */
-@media (max-width: 768px) {
-  .mountain-row {
-    flex-direction: column; /* Susun kolom secara vertikal */
-  }
-
   .mountain-col {
     flex: none; /* Setel ulang flex agar tidak memanjang */
     width: 100%; /* Kolom memanfaatkan seluruh lebar */

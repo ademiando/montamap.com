@@ -320,6 +320,7 @@ body.dark .dropdown-menu button:hover {
     width: 60px; /* Lebar gambar */
     height: auto;
     border-radius: 5px; /* Sudut gambar melengkung */
+    margin-right: 15px; /* Jarak antara gambar dan nama gunung*/
 }
 
 .mountain-details {

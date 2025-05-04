@@ -300,11 +300,17 @@ body.dark .dropdown-menu button:hover {
     border-bottom: 1px solid #ddd;
 }
 
-.mountain-col {
-    flex: 1;
-    padding: 5px;
-    text-align: center;
-}
+/* Media Query untuk Layar Kecil */
+@media (max-width: 768px) {
+  .mountain-row {
+    flex-direction: column; /* Susun kolom secara vertikal */
+  }
+
+  .mountain-col {
+    flex: none; /* Setel ulang flex agar tidak memanjang */
+    width: 100%; /* Kolom memanfaatkan seluruh lebar */
+    margin-bottom: 10px; /* Jarak antar kolom */
+  }
 
 .mountain-col.wide {
     flex: 2; /* Kolom lebih lebar untuk Gunung */
@@ -370,25 +376,31 @@ body.dark .dropdown-menu button:hover {
     font-weight: bold;
 }
 
+/* Wrapper utama untuk tabel */
+.mountain-table-wrapper {
+    overflow-x: auto; /* Aktifkan scroll horizontal */
+    white-space: nowrap; /* Pastikan kolom tetap dalam satu baris */
+    margin: 10px 0;
+    border: 1px solid #ddd; /* Tambahkan border jika perlu */
+}
+
+/* Gaya scrollbar (opsional) */
+.mountain-table-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.mountain-table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.mountain-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
 
 
 
 
-
-
-
-
-/* Media Query untuk Layar Kecil */
-@media (max-width: 768px) {
-  .mountain-row {
-    flex-direction: column; /* Susun kolom secara vertikal */
-  }
-
-  .mountain-col {
-    flex: none; /* Setel ulang flex agar tidak memanjang */
-    width: 100%; /* Kolom memanfaatkan seluruh lebar */
-    margin-bottom: 10px; /* Jarak antar kolom */
-  }
 
 
 

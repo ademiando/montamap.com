@@ -322,8 +322,8 @@ body.dark .dropdown-menu button:hover {
 .mountain-image {
     width: 60px; /* Lebar gambar */
     height: auto;
-    border-radius: 5px; /* Sudut gambar melengkung */
-    margin-right: 15px; /* Jarak antara gambar dan nama gunung*/
+    border-radius: 7px; /* Sudut gambar melengkung */
+    margin-right: 10px; /* Jarak antara gambar dan nama gunung*/
 }
 
 .mountain-details {
@@ -333,13 +333,13 @@ body.dark .dropdown-menu button:hover {
 }
 
 .mountain-name {
-    font-size: 18px; /* Ukuran font untuk nama gunung */
+    font-size: 14px; /* Ukuran font untuk nama gunung */
     font-weight: bold;
     color: none; /* Warna teks */
 }
 
 .ticket-price {
-    font-size: 14px; /* Ukuran font lebih kecil untuk harga */
+    font-size: 10px; /* Ukuran font lebih kecil untuk harga */
     color: none; /* Warna abu-abu untuk harga */
     margin-top: 5px;
 }

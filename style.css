@@ -268,88 +268,94 @@ body.dark .dropdown-menu button:hover {
     cursor: pointer;
 }
 
-/* Sticky Header */
+/* Styling untuk Sticky Header */
 .sticky-header {
-  display: flex;
-  position: sticky;
-  top: 5px;
-  background-color: #f9f9f9;
-  z-index: 10;
-  padding: 15px;
-  border-bottom: 2px solid #ccc;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+    font-weight: bold;
+    text-align: center;
 }
 
 .header-item {
-  flex: 1;
-  font-weight: bold;
-  text-align: left;
-  padding: 0 10px;
+    flex: 1;
+    padding: 5px;
 }
 
-/* Divider */
-.divider {
-  height: 2px;
-  background-color: #ccc;
-  margin: 10px 0;
+.header-item.wide {
+    flex: 2; /* Kolom Gunung lebih lebar */
+    text-align: left;
 }
 
-/* Gaya Dasar untuk Mountain Row */
+/* Styling untuk Baris Konten */
 .mountain-row {
-  display: flex;
-  flex-wrap: wrap; /* Membungkus konten jika tidak muat */
-  padding: 15px;
-  border-bottom: 1px solid #ccc;
-  align-items: flex-start; /* Elemen diatur ke atas */
-  gap: 10px; /* Jarak antar elemen */
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
 .mountain-col {
-  flex: 1; /* Semua kolom memiliki lebar yang sama */
-  min-width: 120px; /* Lebar minimum agar tetap terlihat di layar kecil */
-  text-align: left;
+    flex: 1;
+    padding: 5px;
+    text-align: center;
 }
 
-.mountain-details {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Jarak antara gambar dan teks */
+.mountain-col.wide {
+    flex: 2; /* Kolom Gunung lebih lebar */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Jarak antara gambar dan teks */
 }
 
 .mountain-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
-  object-fit: cover;
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
 }
 
-/* Status Dot */
-.dot {
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 5px;
+.ticket-price {
+    font-weight: bold;
+    color: #333;
 }
 
-.dot.closed {
-  background-color: red;
+/* Styling untuk Status */
+.status .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
-.dot.open {
-  background-color: green;
+.status .dot.open {
+    background-color: green;
 }
 
-/* Quota/Left Styling */
+.status .dot.closed {
+    background-color: red;
+}
+
+/* Styling untuk Quota */
 .quota .green {
-  color: green;
-  font-weight: bold;
+    color: green;
+    font-weight: bold;
 }
 
 .quota .red {
-  color: red;
-  font-weight: bold;
+    color: red;
+    font-weight: bold;
 }
+
+
+
+
+
+
+
+
 
 /* Media Query untuk Layar Kecil */
 @media (max-width: 768px) {

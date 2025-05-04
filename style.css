@@ -37,7 +37,7 @@ header {
 }
 
 .logo:hover {
-    color: #007bff; /* Beri warna berbeda saat hover (opsional) */
+    color: olive; /* Beri warna berbeda saat hover (opsional) */
 }
 
 /* Search Bar Styling */
@@ -62,7 +62,7 @@ header {
 }
 
 .login-menu button {
-  background-color: #007bff; /* Blue color for login */
+  background-color: olive; /* olive color for login */
   color: white;
   padding: 5px 15px;
   border: none;
@@ -72,7 +72,7 @@ header {
 }
 
 .login-menu button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: green; /* olive on hover */
 }
 
 /* Login Dropdown Styling */

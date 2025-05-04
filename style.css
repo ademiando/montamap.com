@@ -271,7 +271,7 @@ body.dark .dropdown-menu button:hover {
 /* Styling untuk Sticky Header */
 .sticky-header {
     position: sticky;
-    top: 0;
+    top: 5px;
     display: flex;
     background-color: #eee;
     justify-content: space-between;
@@ -310,20 +310,20 @@ body.dark .dropdown-menu button:hover {
     flex: 2; /* Kolom lebih lebar untuk Gunung */
     display: flex;
     align-items: center;
-    gap: 10px; /* Jarak antara elemen (nomor, gambar, dan detail) */
+    gap: 12px; /* Jarak antara elemen (nomor, gambar, dan detail) */
 }
 
 .mountain-number {
     font-weight: bold;
     font-size: 16px; /* Ukuran font untuk nomor */
-    margin-right: 10px; /* Jarak antara nomor dan gambar */
+    margin-right: 8px; /* Jarak antara nomor dan gambar */
 }
 
 .mountain-image {
     width: 60px; /* Lebar gambar */
     height: auto;
     border-radius: 7px; /* Sudut gambar melengkung */
-    margin-right: 10px; /* Jarak antara gambar dan nama gunung*/
+    margin-right: 12px; /* Jarak antara gambar dan nama gunung*/
 }
 
 .mountain-details {

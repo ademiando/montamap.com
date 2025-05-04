@@ -68,79 +68,73 @@
 
     <!-- Tab Content -->
 <div id="Mountain" class="tab-content">
-        <!-- Sort by Currency -->
-            <select id="currency-sort">
-                <option value="usd">USD ($)</option>
-                <option value="btc">BTC (₿)</option>
-                <option value="idr">IDR (Rp)</option>
-                <option value="rub">RUB (₽)</option>
-                <option value="cny">CNY (¥)</option>
-                <option value="inr">INR (₹)</option>
-                <option value="npr">NPR (रू)</option>
-                <option value="aud">AUD (A$)</option>
-                <option value="global">All Currencies</option>
-            </select>
+    <!-- Sort by Currency -->
+    <div class="sort-options">
+        <select id="currency-sort">
+            <option value="usd">USD ($)</option>
+            <option value="btc">BTC (₿)</option>
+            <option value="idr">IDR (Rp)</option>
+            <option value="rub">RUB (₽)</option>
+            <option value="cny">CNY (¥)</option>
+            <option value="inr">INR (₹)</option>
+            <option value="npr">NPR (रू)</option>
+            <option value="aud">AUD (A$)</option>
+            <option value="global">All Currencies</option>
+        </select>
 
-        <!-- Sort by Country -->
-            <select id="country-sort">
-                <option value="global">All Countries</option>
-                <option value="indonesia">Indonesia</option>
-                <option value="india">India</option>
-                <option value="uk">United Kingdom</option>
-                <option value="usa">United States</option>
-                <option value="australia">Australia</option>
-                <option value="nepal">Nepal</option>
-                <option value="all-countries">All Countries</option>
-            </select>
+        <select id="country-sort">
+            <option value="global">All Countries</option>
+            <option value="indonesia">Indonesia</option>
+            <option value="india">India</option>
+            <option value="uk">United Kingdom</option>
+            <option value="usa">United States</option>
+            <option value="australia">Australia</option>
+            <option value="nepal">Nepal</option>
+        </select>
 
-        <!-- Sort by Destination Type -->
-            <select id="destination-sort">
-                <option value="top-global">Top Global</option>
-                <option value="top-7-summit">Top 7 Summit</option>
-                <option value="trending">Trending🔥</option>
-                <option value="most-visited">Most Visited</option>
-                <option value="volcano">Volcano</option>
-                <option value="himalayas">Himalaya's</option>
-                <option value="hidden-gems">Hidden Gems</option>
-                <option value="green-savana">Green Savana</option>
-                <option value="snowy-trails">Snowy Trails</option>
-                <option value="family-friendly">Family Friendly</option>
-                <option value="eco-tourism">Eco-tourism</option>
-                <option value="adventure-trails">Adventure Trails</option>
-            </select>
-        
+        <select id="destination-sort">
+            <option value="top-global">Top Global</option>
+            <option value="top-7-summit">Top 7 Summit</option>
+            <option value="trending">Trending🔥</option>
+            <option value="most-visited">Most Visited</option>
+            <option value="volcano">Volcano</option>
+            <option value="himalayas">Himalaya's</option>
+            <option value="hidden-gems">Hidden Gems</option>
+        </select>
+    </div>
 
-  <div class="sticky-header">
-    <div class="header-item">Gunung</div>
-    <div class="header-item">Status</div>
-    <div class="header-item">Region</div>
-    <div class="header-item">Altitude</div>
-    <div class="header-item">Temperature</div>
-    <div class="header-item">Quota/Left</div>
-  </div>
+    <!-- Sticky Header -->
+    <div class="sticky-header">
+        <div class="header-item wide">Mountain</div>
+        <div class="header-item">Status</div>
+        <div class="header-item">Region</div>
+        <div class="header-item">Altitude</div>
+        <div class="header-item">Temperature</div>
+        <div class="header-item">Quota/Left</div>
+    </div>
 
-  <div class="mountain-row">
-    <div class="mountain-col">
-      <img src="everest.jpg" alt="Everest" class="mountain-image" />
-        <div class="ticket-price">8000 USD</div>
+    <!-- Mountain Row -->
+    <div class="mountain-row">
+        <div class="mountain-col wide">
+            <img src="everest.jpg" alt="Everest" class="mountain-image" />
+            <div class="ticket-price">8000 USD</div>
+        </div>
+        <div class="mountain-col status">
+            <span class="dot open"></span> Open
+        </div>
+        <div class="mountain-col">Nepal/China</div>
+        <div class="mountain-col">8848 meters</div>
+        <div class="mountain-col">
+            -45°C <br />
+            🌤 Sunny
+        </div>
+        <div class="mountain-col quota">
+            <span class="green">300</span>/<span class="red">10</span>
+        </div>
     </div>
-  
-    <div class="mountain-col status">
-      <span class="dot open"></span> Open
-    </div>
-    <div class="mountain-col">Nepal/China</div>
-    <div class="mountain-col">8848 meters</div>
-    <div class="mountain-col">
-      -45°C <br />
-      🌤 Sunny
-    </div>
-    <div class="mountain-col quota">
-      <span class="green">300</span>/<span class="red">10</span>
-    </div>
-  </div>
 </div>
-  </div>
 
+  
 
 
   

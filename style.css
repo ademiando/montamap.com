@@ -304,23 +304,42 @@ body.dark .dropdown-menu button:hover {
 }
 
 .mountain-col.wide {
-    flex: 2; /* Kolom Gunung lebih lebar */
+    flex: 2; /* Kolom lebih lebar untuk Gunung */
     display: flex;
     align-items: center;
-    gap: 10px; /* Jarak antara gambar dan teks */
+    gap: 10px; /* Jarak antara elemen (nomor, gambar, dan detail) */
+}
+
+.mountain-number {
+    font-weight: bold;
+    font-size: 16px; /* Ukuran font untuk nomor */
+    margin-right: 10px; /* Jarak antara nomor dan gambar */
 }
 
 .mountain-image {
-    width: 50px;
+    width: 60px; /* Lebar gambar */
     height: auto;
-    border-radius: 5px;
+    border-radius: 5px; /* Sudut gambar melengkung */
+}
+
+.mountain-details {
+    display: flex;
+    flex-direction: column; /* Susunan vertikal untuk nama dan harga */
+    justify-content: center;
+}
+
+.mountain-name {
+    font-size: 18px; /* Ukuran font untuk nama gunung */
+    font-weight: bold;
+    color: none; /* Warna teks */
 }
 
 .ticket-price {
-     font-weight: none;
-     color: none;
+    font-size: 14px; /* Ukuran font lebih kecil untuk harga */
+    color: none; /* Warna abu-abu untuk harga */
+    margin-top: 5px;
+}
 
-/* Styling untuk Status */
 .status .dot {
     display: inline-block;
     width: 10px;
@@ -337,7 +356,6 @@ body.dark .dropdown-menu button:hover {
     background-color: red;
 }
 
-/* Styling untuk Quota */
 .quota .green {
     color: green;
     font-weight: bold;

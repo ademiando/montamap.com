@@ -300,11 +300,11 @@ body.dark .dropdown-menu button:hover {
     border-bottom: 1px solid #ddd;
 }
 
-  .mountain-col {
-    flex: none; /* Setel ulang flex agar tidak memanjang */
-    width: 100%; /* Kolom memanfaatkan seluruh lebar */
-    margin-bottom: 10px; /* Jarak antar kolom */
-  }
+.mountain-col {
+    flex: 1;
+    padding: 5px;
+    text-align: center;
+}
 
 .mountain-col.wide {
     flex: 2; /* Kolom lebih lebar untuk Gunung */

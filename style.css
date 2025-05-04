@@ -28,17 +28,23 @@ header {
 
 /* Logo Styling */
 .logo {
+  text-decoration: none;
   font-size: 26px;
   font-weight: bold;
   color: silver;
   text-shadow: 2px 2px 4px #000;
+  cursor: pointer;
+}
+
+.logo:hover {
+    color: #007bff; /* Beri warna berbeda saat hover (opsional) */
 }
 
 /* Search Bar Styling */
 .search-bar {
   flex: 1;
-  max-width: 300px;
-  margin-right: 20px;
+  max-width: 250px;
+  margin-right: 15px;
 }
 
 .search-bar input {
@@ -52,7 +58,7 @@ header {
 /* Login Button Styling */
 .login-menu {
   position: relative;
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 .login-menu button {

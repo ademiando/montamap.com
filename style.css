@@ -415,6 +415,7 @@ body.dark .dropdown-menu button:hover {
 
 /* General Reset */
 body, h1, h2, h3, p, ul, ol, li {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

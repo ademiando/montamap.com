@@ -295,7 +295,7 @@ body.dark .dropdown-menu button:hover {
 
 .mountain-overlay {
   position: absolute; /* Memposisikan overlay di atas elemen parent (mountain-container) */
-  top: 0; /* Posisi overlay dimulai dari tepi atas kontainer */
+  top: 10; /* Posisi overlay dimulai dari tepi atas kontainer */
   left: 0; /* Posisi overlay dimulai dari tepi kiri kontainer */
   width: 100%; /* Overlay menutupi seluruh lebar kontainer */
   height: 100%; /* Overlay menutupi seluruh tinggi kontainer */
@@ -318,18 +318,13 @@ body.dark .dropdown-menu button:hover {
 
 .mountain-info-left h1 {
   margin: 0; /* Menghapus margin default pada elemen h1 */
-  font-size: 2rem; /* Ukuran font untuk judul gunung */
   font-weight: bold; /* Membuat teks menjadi tebal */
 }
 
 .mountain-info-left .elevation {
-  font-size: 1.2rem; /* Ukuran font untuk informasi tinggi gunung */
   margin: 5px 0; /* Memberikan jarak vertikal sebesar 5px di atas dan bawah elemen */
 }
 
-.mountain-info-left .price {
-  font-size: 1rem; /* Ukuran font untuk informasi harga */
-}
 
 .weather-info {
   position: absolute; /* Memposisikan elemen relatif terhadap kontainer overlay */
@@ -342,13 +337,9 @@ body.dark .dropdown-menu button:hover {
 }
 
 .weather-info .temperature {
-  font-size: 1.5rem; /* Ukuran font untuk informasi suhu */
   font-weight: bold; /* Membuat teks menjadi tebal */
 }
 
-.weather-info .weather {
-  font-size: 1.2rem; /* Ukuran font untuk informasi kondisi cuaca */
-}
 
 .region-info {
   position: absolute; /* Memposisikan elemen relatif terhadap kontainer overlay */
@@ -364,7 +355,6 @@ body.dark .dropdown-menu button:hover {
 .region-info .duration,
 .region-info .trail-type,
 .region-info .best-season {
-  font-size: 0.9rem; /* Ukuran font untuk informasi tambahan (region, durasi, dll) */
   margin: 3px 0; /* Memberikan jarak vertikal sebesar 3px di atas dan bawah elemen */
 }
 

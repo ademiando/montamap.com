@@ -345,6 +345,13 @@ body.dark .dropdown-menu button:hover {
     margin-top: 5px;
 }
 
+/* Scroll container untuk horizontal scroll */
+.scroll-container {
+    overflow-x: auto; /* Scroll horizontal */
+    overflow-y: hidden; /* Hilangkan scroll vertikal di container utama */
+    white-space: nowrap; /* Jangan bungkus konten */
+}
+
 .status .dot {
     display: inline-block;
     width: 10px;

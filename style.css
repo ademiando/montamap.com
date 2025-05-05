@@ -392,8 +392,7 @@ body, h1, h2, h3, p, ul, ol, li {
 
 /* Body Styling */
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
   padding: 0;
 }
@@ -408,22 +407,22 @@ header {
 /* Section Styling */
 section {
   margin: 20px auto;
-  padding: 20px;
+  padding: 15px;
   max-width: 800px;
 }
 
 /* Section Titles */
 section h2 {
-  font-size: 24px;
+  font-size: 18px;
   margin-bottom: 10px;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 1px solid #ddd;
   padding-bottom: 5px;
 }
 
 /* Paragraph Styling */
 section p {
-  margin-bottom: 15px;
-  line-height: 1.6;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 /* List Styling */
@@ -432,19 +431,21 @@ section ul, section ol {
 }
 
 section ul li, section ol li {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
 }
 
 /* Footer Styling */
 footer {
   text-align: center;
-  padding: 20px;
-  border-top: 1px solid #ddd;
+  padding: 15px;
+  background-color: #333;
+  color: #fff;
 }
 
 footer p {
   margin: 5px 0;
+  font-size: 12px;
 }
-
 
 

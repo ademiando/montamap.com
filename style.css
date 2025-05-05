@@ -292,6 +292,7 @@ body.dark .dropdown-menu button:hover {
     flex: 2; /* Kolom Gunung lebih lebar */
     overflow-x: auto; /* Aktifkan scroll horizontal */
     white-space: nowrap; /* Hindari tab berpindah ke baris baru */
+    justify-content: space-around; /* Tab tersebar merata */
     text-align: left;
 }
 

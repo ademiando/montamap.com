@@ -44,7 +44,7 @@ header {
 .search-bar {
   flex: 1;
   max-width: 250px;
-  margin-right: 15px;
+  margin-right: 25px;
 }
 
 .search-bar input {
@@ -58,7 +58,7 @@ header {
 /* Login Button Styling */
 .login-menu {
   position: relative;
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .login-menu button {

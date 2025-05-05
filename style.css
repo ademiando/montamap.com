@@ -383,38 +383,68 @@ body.dark .dropdown-menu button:hover {
 
 
 
-/* Styling untuk bagian About */
-.about, .vision, .mission, .core-values, .key-features, .how-it-works, .commitment, .cta {
+/* General Reset */
+body, h1, h2, h3, p, ul, ol, li {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styling */
+header {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Section Styling */
+section {
   margin: 20px auto;
   padding: 20px;
   max-width: 800px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.about h2, .vision h2, .mission h2, .core-values h2, .key-features h2, .how-it-works h2, .commitment h2, .cta h2 {
-  color: #333;
+/* Section Titles */
+section h2 {
   font-size: 24px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+/* Paragraph Styling */
+section p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* List Styling */
+section ul, section ol {
+  margin: 10px 0 10px 20px;
+}
+
+section ul li, section ol li {
   margin-bottom: 10px;
 }
 
-.about p, .vision p, .mission p, .core-values ul, .key-features ol, .how-it-works ol, .commitment p, .cta ul {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #555;
-}
-
+/* Footer Styling */
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #333;
-  color: #fff;
+  border-top: 1px solid #ddd;
 }
 
-
-
-
+footer p {
+  margin: 5px 0;
+}
 
 
 

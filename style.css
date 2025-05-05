@@ -272,6 +272,7 @@ body.dark .dropdown-menu button:hover {
     margin-top: 10px;
     position: sticky;
     top: 5px;
+    max-width: 800px; /* Membatasi lebar maksimum elemen hingga 800px */
     display: flex;
     background-color: #eee;
     justify-content: space-between;
@@ -299,6 +300,7 @@ body.dark .dropdown-menu button:hover {
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    max-width: 800px; /* Membatasi lebar maksimum elemen hingga 800px */
 }
 
 .mountain-col {

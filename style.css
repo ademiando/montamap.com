@@ -290,17 +290,11 @@ body.dark .dropdown-menu button:hover {
 
 .header-item.wide {
     flex: 2; /* Kolom Gunung lebih lebar */
-    overflow-x: auto; /* Aktifkan scroll horizontal */
-    white-space: nowrap; /* Hindari tab berpindah ke baris baru */
-    justify-content: space-around; /* Tab tersebar merata */
     text-align: left;
 }
 
 /* Styling untuk Baris Konten */
 .mountain-row {
-    overflow-x: auto; /* Aktifkan scroll horizontal */
-    white-space: nowrap; /* Hindari tab berpindah ke baris baru */
-    justify-content: space-around; /* Tab tersebar merata */
     display: flex;
     align-items: center;
     padding: 10px;

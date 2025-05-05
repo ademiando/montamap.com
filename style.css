@@ -65,7 +65,7 @@ header {
   background-color: #ace1af; /* celadon color for login */
   color: white;
   padding: 5px 15px;
-  border: white;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
@@ -80,7 +80,7 @@ header {
   position: absolute;
   top: 40px;
   right: 0;
-  border: 0px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: none; /* Initially hidden */

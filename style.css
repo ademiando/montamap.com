@@ -382,3 +382,39 @@ body.dark .dropdown-menu button:hover {
 
 
 
+
+/* Styling untuk bagian About */
+.about, .vision, .mission, .core-values, .key-features, .how-it-works, .commitment, .cta {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about h2, .vision h2, .mission h2, .core-values h2, .key-features h2, .how-it-works h2, .commitment h2, .cta h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.about p, .vision p, .mission p, .core-values ul, .key-features ol, .how-it-works ol, .commitment p, .cta ul {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+}
+
+
+
+
+
+
+

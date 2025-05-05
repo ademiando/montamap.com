@@ -281,11 +281,13 @@ body.dark .dropdown-menu button:hover {
     color: #333;
     text-align: center;
     z-index: 100;
+    flex-wrap: wrap; /* Supaya konten tidak meluap di layar kecil */
 }
 
 .header-item {
     flex: 1;
     padding: 5px;
+    text-align: center;
 }
 
 .header-item.wide {
@@ -299,6 +301,7 @@ body.dark .dropdown-menu button:hover {
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    flex-wrap: wrap; /* Supaya konten tidak meluap */
 }
 
 .mountain-col {
@@ -312,6 +315,7 @@ body.dark .dropdown-menu button:hover {
     display: flex;
     align-items: center;
     gap: 12px; /* Jarak antara elemen (nomor, gambar, dan detail) */
+    text-align: left;
 }
 
 .mountain-number {
@@ -324,7 +328,7 @@ body.dark .dropdown-menu button:hover {
     width: 60px; /* Lebar gambar */
     height: auto;
     border-radius: 7px; /* Sudut gambar melengkung */
-    margin-right: 12px; /* Jarak antara gambar dan nama gunung*/
+    margin-right: 12px; /* Jarak antara gambar dan nama gunung */
 }
 
 .mountain-details {
@@ -334,14 +338,12 @@ body.dark .dropdown-menu button:hover {
 }
 
 .mountain-name {
-    font-size: 16px; /* Ukuran font untuk nama gunung */
+    font-size: 14px; /* Ukuran font untuk nama gunung */
     font-weight: bold;
-    color: none; /* Warna teks */
 }
 
 .ticket-price {
-    font-size: 11px; /* Ukuran font lebih kecil untuk harga */
-    color: none; /* Warna abu-abu untuk harga */
+    font-size: 12px; /* Ukuran font lebih kecil untuk harga */
     margin-top: 5px;
 }
 
@@ -371,7 +373,35 @@ body.dark .dropdown-menu button:hover {
     font-weight: bold;
 }
 
+/* Media Query untuk Perangkat Kecil */
+@media (max-width: 600px) {
+    .sticky-header {
+        flex-direction: column; /* Supaya header menumpuk di layar kecil */
+        text-align: center;
+    }
 
+    .mountain-row {
+        flex-direction: column; /* Supaya baris gunung menumpuk di layar kecil */
+        text-align: left;
+    }
+
+    .mountain-col, .mountain-col.wide {
+        flex: 1; /* Semua elemen memiliki ukuran sama di layar kecil */
+        text-align: left;
+    }
+
+    .mountain-image {
+        width: 50px; /* Kecilkan gambar di layar kecil */
+    }
+
+    .mountain-name {
+        font-size: 12px; /* Kecilkan ukuran font nama gunung */
+    }
+
+    .ticket-price {
+        font-size: 10px; /* Kecilkan ukuran font harga */
+    }
+}
 
 
 

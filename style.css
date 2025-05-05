@@ -283,6 +283,7 @@ body.dark .dropdown-menu button:hover {
 .mountain-container {
   position: relative;
   width: 100%;
+  aspect-ratio: 16/9; /* Opsional, mengatur rasio aspek 
   max-width: 800px;
   margin: auto;
   overflow: hidden;

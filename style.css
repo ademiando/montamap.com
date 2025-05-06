@@ -273,7 +273,7 @@ body.dark .dropdown-menu button:hover {
     position: sticky;
     top: 5px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /*     Header sejajar dalam 1 baris */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Header sejajar dalam 1 baris */
     background-color: #eee;
     padding: 10px 20px;
     border-bottom: 2px solid #ccc;
@@ -281,7 +281,7 @@ body.dark .dropdown-menu button:hover {
     color: #333;
     text-align: center;
     z-index: 100;
-    font-size: 10px; /* Ukuran font seragam */
+    font-size: 8px; /* Ukuran font seragam */
 }
 
 .header-item {
@@ -314,6 +314,12 @@ body.dark .dropdown-menu button:hover {
     text-align: left;
 }
 
+.mountain-number {
+    font-weight: bold;
+    font-size: 14px; /* Font seragam dengan konten */
+    margin-right: 5px;
+}
+
 .mountain-image {
     width: 60px;
     height: auto;
@@ -329,12 +335,12 @@ body.dark .dropdown-menu button:hover {
 }
 
 .mountain-name {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
 }
 
 .ticket-price {
-    font-size: 14px; /* Ukuran font lebih kecil untuk harga */
+    font-size: 14px; /* Ukuran font seragam dengan konten lainnya */
     margin-top: 5px;
 }
 
@@ -373,6 +379,12 @@ body.dark .dropdown-menu button:hover {
         gap: 8px; /* Jarak lebih kecil antar elemen */
     }
 
+    .mountain-number {
+        font-size: 10px; /* Sesuaikan ukuran font nomor di layar kecil */
+        margin-right: 10px; /* Geser nomor lebih ke kiri */
+        text-align: left; /* Rata kiri nomor untuk tampilan lebih rapi */
+    }
+
     .mountain-image {
         width: 50px; /* Perkecil gambar di layar kecil */
     }
@@ -385,7 +397,6 @@ body.dark .dropdown-menu button:hover {
         font-size: 8px; /* Perkecil harga di layar kecil */
     }
 }
-
 
 
 

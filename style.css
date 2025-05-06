@@ -297,14 +297,14 @@ body.dark .dropdown-menu button:hover {
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
-    font-size: 10px; /* Ukuran font seragam */
+    font-size: 12px; /* Ukuran font seragam */
 }
 
 .mountain-col {
     padding: 5px;
     text-align: center;
     word-wrap: break-word; /* Membungkus teks panjang */
-    font-size: 14px; /* Ukuran font seragam */
+    font-size: 16px; /* Ukuran font seragam */
 }
 
 .mountain-col.wide {
@@ -316,7 +316,7 @@ body.dark .dropdown-menu button:hover {
 
 .mountain-number {
     font-weight: bold;
-    font-size: 14px; /* Font seragam dengan konten */
+    font-size: 16px; /* Font seragam dengan konten */
     margin-right: 5px;
 }
 
@@ -335,7 +335,7 @@ body.dark .dropdown-menu button:hover {
 }
 
 .mountain-name {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
 }
 

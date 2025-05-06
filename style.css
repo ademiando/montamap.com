@@ -37,7 +37,7 @@ header {
 }
 
 .logo:hover {
-    color: #ace1af; /* Beri warna berbeda saat hover (opsional) */
+    color: #89ae95; /* Beri warna berbeda saat hover (opsional) */
 }
 
 /* Search Bar Styling */
@@ -62,7 +62,7 @@ header {
 }
 
 .login-menu button {
-  background-color: #ace1af; /* celadon color for login */
+  background-color: #89ae95; /* celadon color for login */
   color: white;
   padding: 5px 15px;
   border: none;
@@ -72,7 +72,7 @@ header {
 }
 
 .login-menu button:hover {
-  background-color: #89ae95; /* summer green saat di klik */
+  background-color: #ace1af; /* summer green saat di klik */
 }
 
 /* Login Dropdown Styling */
@@ -164,7 +164,7 @@ body.dark .dropdown-menu button:hover {
 
 /* Banner Ads Styling */
 .banner-ads {
-  background-color: #ace1af;
+  background-color: #89ae95;
   color: white;
   text-align: center;
   padding: 15px 0; /* Spasi vertikal */

@@ -273,7 +273,7 @@ body.dark .dropdown-menu button:hover {
     position: sticky;
     top: 5px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; /* Kolom-kolom sejajar */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Kolom-kolom sejajar */
     background-color: #eee;
     padding: 10px 20px;
     border-bottom: 5px solid #ccc;
@@ -291,7 +291,7 @@ body.dark .dropdown-menu button:hover {
 /* Styling untuk Baris Konten */
 .mountain-row {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; /* Sama dengan header */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Sama dengan header */
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
@@ -355,21 +355,22 @@ body.dark .dropdown-menu button:hover {
     background-color: #c08081;
 }
 
-
 /* Media Query untuk Responsif */
 @media (max-width: 720px) {
     .sticky-header, .mountain-row {
-        grid-template-columns: 1fr 1fr; /* Tumpuk konten secara adaptif */
-        gap: 10px; /* Jarak antar elemen */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Kolom tetap sejajar horizontal */
+        gap: 5px; /* Jarak antar elemen lebih kecil di layar kecil */
     }
 
     .mountain-col.wide {
-        flex-direction: column; /* Gambar dan detail menumpuk di layar kecil */
-        align-items: flex-start;
+        flex-direction: row; /* Pastikan gambar dan detail tetap horizontal */
+        align-items: center;
+        gap: 8px; /* Jarak antar elemen lebih kecil */
     }
 
     .mountain-image {
-        width: 50px; /* Perkecil gambar di layar kecil */
+        width: 40px; /* Perkecil gambar di layar kecil */
     }
 
     .mountain-name {

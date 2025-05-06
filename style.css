@@ -273,7 +273,7 @@ body.dark .dropdown-menu button:hover {
     position: sticky;
     top: 5px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Kolom-kolom sejajar */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; /* Kolom-kolom sejajar */
     background-color: #eee;
     padding: 10px 20px;
     border-bottom: 5px solid #ccc;
@@ -286,14 +286,12 @@ body.dark .dropdown-menu button:hover {
 .header-item {
     padding: 5px;
     text-align: center;
-    word-wrap: break-word; /* Membungkus teks jika terlalu panjang */
-    font-size: 11px; /* Ukuran font untuk header */
 }
 
 /* Styling untuk Baris Konten */
 .mountain-row {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Sama dengan header */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; /* Sama dengan header */
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
@@ -302,8 +300,6 @@ body.dark .dropdown-menu button:hover {
 .mountain-col {
     padding: 5px;
     text-align: center;
-    word-wrap: break-word; /* Membungkus teks jika terlalu panjang */
-    font-size: 12px; /* Ukuran font untuk konten */
 }
 
 .mountain-col.wide {
@@ -359,23 +355,17 @@ body.dark .dropdown-menu button:hover {
     background-color: #c08081;
 }
 
+
 /* Media Query untuk Responsif */
 @media (max-width: 720px) {
     .sticky-header, .mountain-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr; /* Atur kolom menjadi 2 kolom di layar kecil */
-        gap: 10px; /* Jarak antar elemen lebih kecil di layar kecil */
-    }
-
-    .header-item, .mountain-col {
-        font-size: 10px; /* Perkecil ukuran font di layar kecil */
-        text-align: left; /* Rata kiri untuk keterbacaan */
+        grid-template-columns: 1fr 1fr; /* Tumpuk konten secara adaptif */
+        gap: 10px; /* Jarak antar elemen */
     }
 
     .mountain-col.wide {
-        flex-direction: column; /* Susun gambar dan detail secara vertikal di layar kecil */
+        flex-direction: column; /* Gambar dan detail menumpuk di layar kecil */
         align-items: flex-start;
-        gap: 8px; /* Jarak lebih kecil antar elemen */
     }
 
     .mountain-image {
@@ -388,6 +378,10 @@ body.dark .dropdown-menu button:hover {
 
     .ticket-price {
         font-size: 8px; /* Perkecil harga di layar kecil */
+    }
+
+    .header-item {
+        font-size: 10px; /* Perkecil teks header di layar kecil */
     }
 }
 

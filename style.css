@@ -273,53 +273,52 @@ body.dark .dropdown-menu button:hover {
     position: sticky;
     top: 5px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; /* Kolom-kolom sejajar */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Header sejajar dalam 1 baris */
     background-color: #eee;
     padding: 10px 20px;
-    border-bottom: 5px solid #ccc;
+    border-bottom: 2px solid #ccc;
     font-weight: bold;
     color: #333;
     text-align: center;
     z-index: 100;
+    font-size: 14px; /* Ukuran font seragam */
 }
 
 .header-item {
     padding: 5px;
     text-align: center;
+    word-wrap: break-word; /* Membungkus teks panjang */
 }
 
 /* Styling untuk Baris Konten */
 .mountain-row {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; /* Sama dengan header */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Konten sejajar dalam 1 baris */
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
+    font-size: 14px; /* Ukuran font seragam */
 }
 
 .mountain-col {
     padding: 5px;
     text-align: center;
+    word-wrap: break-word; /* Membungkus teks panjang */
+    font-size: 14px; /* Ukuran font seragam */
 }
 
 .mountain-col.wide {
     display: flex;
     align-items: center;
-    gap: 12px; /* Jarak antara elemen (gambar dan detail) */
+    gap: 12px; /* Jarak antara gambar dan detail */
     text-align: left;
-}
-
-.mountain-number {
-    font-weight: bold;
-    font-size: 12px;
-    margin-right: 5px;
 }
 
 .mountain-image {
     width: 60px;
     height: auto;
     border-radius: 7px; /* Sudut gambar melengkung */
-    margin-right: 10px; /* Jarak antara gambar dan nama gunung */
+    margin-right: 12px; /* Jarak antara gambar dan nama gunung */
 }
 
 .mountain-details {
@@ -330,12 +329,12 @@ body.dark .dropdown-menu button:hover {
 }
 
 .mountain-name {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
 
 .ticket-price {
-    font-size: 10px; /* Ukuran font lebih kecil untuk harga */
+    font-size: 12px; /* Ukuran font lebih kecil untuk harga */
     margin-top: 5px;
 }
 
@@ -355,17 +354,23 @@ body.dark .dropdown-menu button:hover {
     background-color: #c08081;
 }
 
-
 /* Media Query untuk Responsif */
 @media (max-width: 720px) {
     .sticky-header, .mountain-row {
-        grid-template-columns: 1fr 1fr; /* Tumpuk konten secara adaptif */
-        gap: 10px; /* Jarak antar elemen */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Header dan konten tetap sejajar */
+        gap: 5px; /* Jarak antar elemen lebih kecil di layar kecil */
+    }
+
+    .header-item, .mountain-col {
+        font-size: 12px; /* Perkecil ukuran font di layar kecil */
+        text-align: center; /* Tetap rata tengah di layar kecil */
     }
 
     .mountain-col.wide {
-        flex-direction: column; /* Gambar dan detail menumpuk di layar kecil */
-        align-items: flex-start;
+        flex-direction: row; /* Pastikan gambar dan detail tetap horizontal */
+        align-items: center;
+        gap: 8px; /* Jarak lebih kecil antar elemen */
     }
 
     .mountain-image {
@@ -373,15 +378,11 @@ body.dark .dropdown-menu button:hover {
     }
 
     .mountain-name {
-        font-size: 10px; /* Perkecil nama gunung di layar kecil */
+        font-size: 12px; /* Perkecil nama gunung di layar kecil */
     }
 
     .ticket-price {
-        font-size: 8px; /* Perkecil harga di layar kecil */
-    }
-
-    .header-item {
-        font-size: 10px; /* Perkecil teks header di layar kecil */
+        font-size: 10px; /* Perkecil harga di layar kecil */
     }
 }
 

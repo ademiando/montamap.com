@@ -353,6 +353,13 @@ body.dark .dropdown-menu button:hover {
     margin-right: 5px;
 }
 
+.status .dot.open {
+    background-color: #ace1af;
+}
+
+.status .dot.closed {
+    background-color: #c08081;
+}
 
 
 

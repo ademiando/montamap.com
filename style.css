@@ -382,7 +382,7 @@ body.dark .dropdown-menu button:hover {
     }
 
     .header-item, .mountain-col {
-        font-size: 10px; /* Perkecil ukuran font di layar kecil */
+        font-size: 8px; /* Perkecil ukuran font di layar kecil */
         text-align: center; /* Tetap rata tengah di layar kecil */
     }
 
@@ -393,8 +393,8 @@ body.dark .dropdown-menu button:hover {
     }
 
     .mountain-number {
-        font-size: 10px; /* Sesuaikan ukuran font nomor di layar kecil */
-        margin-right: 10px; /* Geser nomor lebih ke kiri */
+        font-size: 8px; /* Sesuaikan ukuran font nomor di layar kecil */
+        margin-right: 5px; /* Geser nomor lebih ke kiri */
         text-align: left; /* Rata kiri nomor untuk tampilan lebih rapi */
     }
 

@@ -281,7 +281,7 @@ body.dark .dropdown-menu button:hover {
     color: #333;
     text-align: center;
     z-index: 100;
-    font-size: 12px; /* Ukuran font seragam */
+    font-size: 10px; /* Ukuran font seragam */
 }
 
 .header-item {
@@ -297,14 +297,14 @@ body.dark .dropdown-menu button:hover {
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
-    font-size: 12px; /* Ukuran font seragam */
+    font-size: 10px; /* Ukuran font seragam */
 }
 
 .mountain-col {
     padding: 5px;
     text-align: center;
     word-wrap: break-word; /* Membungkus teks panjang */
-    font-size: 12px; /* Ukuran font seragam */
+    font-size: 14px; /* Ukuran font seragam */
 }
 
 .mountain-col.wide {
@@ -329,12 +329,12 @@ body.dark .dropdown-menu button:hover {
 }
 
 .mountain-name {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
 }
 
 .ticket-price {
-    font-size: 12px; /* Ukuran font lebih kecil untuk harga */
+    font-size: 14px; /* Ukuran font lebih kecil untuk harga */
     margin-top: 5px;
 }
 
@@ -363,7 +363,7 @@ body.dark .dropdown-menu button:hover {
     }
 
     .header-item, .mountain-col {
-        font-size: 12px; /* Perkecil ukuran font di layar kecil */
+        font-size: 10px; /* Perkecil ukuran font di layar kecil */
         text-align: center; /* Tetap rata tengah di layar kecil */
     }
 
@@ -378,11 +378,11 @@ body.dark .dropdown-menu button:hover {
     }
 
     .mountain-name {
-        font-size: 12px; /* Perkecil nama gunung di layar kecil */
+        font-size: 10px; /* Perkecil nama gunung di layar kecil */
     }
 
     .ticket-price {
-        font-size: 10px; /* Perkecil harga di layar kecil */
+        font-size: 8px; /* Perkecil harga di layar kecil */
     }
 }
 

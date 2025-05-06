@@ -44,7 +44,7 @@ header {
 .search-bar {
   flex: 1;
   max-width: 250px;
-  margin-right: 2px;
+  margin-right: 25px;
 }
 
 .search-bar input {
@@ -58,21 +58,21 @@ header {
 /* Login Button Styling */
 .login-menu {
   position: relative;
-  margin-right: 2px;
+  margin-right: 10px;
 }
 
 .login-menu button {
-  background-color: #89ae95; /* celadon color for login */
+  background-color: #ace1af; /* celadon color for login */
   color: white;
   padding: 5px 15px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
 }
 
 .login-menu button:hover {
-  background-color: #ace1af; /* summer green saat di klik */
+  background-color: #89ae95; /* summer green saat di klik */
 }
 
 /* Login Dropdown Styling */

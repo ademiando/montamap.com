@@ -286,6 +286,8 @@ body.dark .dropdown-menu button:hover {
 .header-item {
     padding: 5px;
     text-align: center;
+    word-wrap: break-word; /* Membungkus teks jika terlalu panjang */
+    font-size: 14px; /* Ukuran font untuk header */
 }
 
 /* Styling untuk Baris Konten */
@@ -300,6 +302,8 @@ body.dark .dropdown-menu button:hover {
 .mountain-col {
     padding: 5px;
     text-align: center;
+    word-wrap: break-word; /* Membungkus teks jika terlalu panjang */
+    font-size: 14px; /* Ukuran font untuk konten */
 }
 
 .mountain-col.wide {
@@ -359,18 +363,23 @@ body.dark .dropdown-menu button:hover {
 @media (max-width: 720px) {
     .sticky-header, .mountain-row {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Kolom tetap sejajar horizontal */
-        gap: 5px; /* Jarak antar elemen lebih kecil di layar kecil */
+        grid-template-columns: 1fr 1fr; /* Atur kolom menjadi 2 kolom di layar kecil */
+        gap: 10px; /* Jarak antar elemen lebih kecil di layar kecil */
+    }
+
+    .header-item, .mountain-col {
+        font-size: 12px; /* Perkecil ukuran font di layar kecil */
+        text-align: left; /* Rata kiri untuk keterbacaan */
     }
 
     .mountain-col.wide {
-        flex-direction: row; /* Pastikan gambar dan detail tetap horizontal */
-        align-items: center;
-        gap: 8px; /* Jarak antar elemen lebih kecil */
+        flex-direction: column; /* Susun gambar dan detail secara vertikal di layar kecil */
+        align-items: flex-start;
+        gap: 8px; /* Jarak lebih kecil antar elemen */
     }
 
     .mountain-image {
-        width: 40px; /* Perkecil gambar di layar kecil */
+        width: 50px; /* Perkecil gambar di layar kecil */
     }
 
     .mountain-name {
@@ -379,10 +388,6 @@ body.dark .dropdown-menu button:hover {
 
     .ticket-price {
         font-size: 10px; /* Perkecil harga di layar kecil */
-    }
-
-    .header-item {
-        font-size: 12px; /* Perkecil teks header di layar kecil */
     }
 }
 

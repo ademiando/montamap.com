@@ -272,75 +272,76 @@ body.dark .dropdown-menu button:hover {
     margin-top: 10px;
     position: sticky;
     top: 5px;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Header sejajar dalam 1 baris */
+    display: flex;
     background-color: #eee;
+    justify-content: space-between;
     padding: 10px 20px;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 5px solid #ccc;
     font-weight: bold;
     color: #333;
     text-align: center;
     z-index: 100;
-    font-size: 8px; /* Ukuran font seragam */
 }
 
 .header-item {
+    flex: 1;
     padding: 5px;
-    text-align: center;
-    word-wrap: break-word; /* Membungkus teks panjang */
+}
+
+.header-item.wide {
+    flex: 2; /* Kolom Gunung lebih lebar */
+    text-align: left;
 }
 
 /* Styling untuk Baris Konten */
 .mountain-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Konten sejajar dalam 1 baris */
+    display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px;
     border-bottom: 1px solid #ddd;
-    font-size: 12px; /* Ukuran font seragam */
 }
 
 .mountain-col {
+    flex: 1;
     padding: 5px;
     text-align: center;
-    word-wrap: break-word; /* Membungkus teks panjang */
-    font-size: 16px; /* Ukuran font seragam */
 }
 
 .mountain-col.wide {
+    flex: 2; /* Kolom lebih lebar untuk Gunung */
     display: flex;
     align-items: center;
-    gap: 10px; /* Jarak antara gambar dan detail */
-    text-align: left;
+    gap: 12px; /* Jarak antara elemen (nomor, gambar, dan detail) */
 }
 
 .mountain-number {
     font-weight: bold;
-    font-size: 16px; /* Font seragam dengan konten */
-    margin-right: 5px;
+    font-size: 16px; /* Ukuran font untuk nomor */
+    margin-right: 5px; /* Jarak antara nomor dan gambar */
 }
 
 .mountain-image {
-    width: 60px;
+    width: 60px; /* Lebar gambar */
     height: auto;
     border-radius: 7px; /* Sudut gambar melengkung */
-    margin-right: 10px; /* Jarak antara gambar dan nama gunung */
+    margin-right: 12px; /* Jarak antara gambar dan nama gunung*/
 }
 
 .mountain-details {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Susunan vertikal untuk nama dan harga */
     justify-content: center;
-    text-align: left;
 }
 
 .mountain-name {
-    font-size: 16px;
+    font-size: 16px; /* Ukuran font untuk nama gunung */
     font-weight: bold;
+    color: none; /* Warna teks */
 }
 
 .ticket-price {
-    font-size: 14px; /* Ukuran font seragam dengan konten lainnya */
+    font-size: 11px; /* Ukuran font lebih kecil untuk harga */
+    color: none; /* Warna abu-abu untuk harga */
     margin-top: 5px;
 }
 
@@ -359,6 +360,18 @@ body.dark .dropdown-menu button:hover {
 .status .dot.closed {
     background-color: #c08081;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Media Query untuk Responsif */
 @media (max-width: 720px) {

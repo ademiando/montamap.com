@@ -363,6 +363,15 @@ body.dark .dropdown-menu button:hover {
     background-color: #c08081;
 }
 
+.quota .green {
+    color: #ace1af;
+    font-weight: bold;
+}
+
+.quota .red {
+    color: red;
+    font-weight: bold;
+}
 
 /* Media Query untuk Perangkat Kecil */
 @media (max-width: 600px) {

@@ -273,7 +273,7 @@ body.dark .dropdown-menu button:hover {
     position: sticky;
     top: 5px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Header sejajar dalam 1 baris */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /*     Header sejajar dalam 1 baris */
     background-color: #eee;
     padding: 10px 20px;
     border-bottom: 2px solid #ccc;
@@ -281,7 +281,7 @@ body.dark .dropdown-menu button:hover {
     color: #333;
     text-align: center;
     z-index: 100;
-    font-size: 14px; /* Ukuran font seragam */
+    font-size: 12px; /* Ukuran font seragam */
 }
 
 .header-item {
@@ -297,20 +297,20 @@ body.dark .dropdown-menu button:hover {
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
-    font-size: 14px; /* Ukuran font seragam */
+    font-size: 12px; /* Ukuran font seragam */
 }
 
 .mountain-col {
     padding: 5px;
     text-align: center;
     word-wrap: break-word; /* Membungkus teks panjang */
-    font-size: 14px; /* Ukuran font seragam */
+    font-size: 12px; /* Ukuran font seragam */
 }
 
 .mountain-col.wide {
     display: flex;
     align-items: center;
-    gap: 12px; /* Jarak antara gambar dan detail */
+    gap: 10px; /* Jarak antara gambar dan detail */
     text-align: left;
 }
 
@@ -318,7 +318,7 @@ body.dark .dropdown-menu button:hover {
     width: 60px;
     height: auto;
     border-radius: 7px; /* Sudut gambar melengkung */
-    margin-right: 12px; /* Jarak antara gambar dan nama gunung */
+    margin-right: 10px; /* Jarak antara gambar dan nama gunung */
 }
 
 .mountain-details {

@@ -394,12 +394,16 @@ body.dark .dropdown-menu button:hover {
 
     .mountain-number {
         font-size: 8px; /* Sesuaikan ukuran font nomor di layar kecil */
-        margin-right: 5px; /* Geser nomor lebih ke kiri */
+        margin-right: 4px; /* Geser nomor lebih ke kiri */
         text-align: left; /* Rata kiri nomor untuk tampilan lebih rapi */
     }
 
-    .mountain-image {
-        width: 50px; /* Perkecil gambar di layar kecil */
+     .mountain-image {
+           width: 50px; /* Perkecil gambar di layar kecil */
+           height: auto;
+           border-radius: 7px; /* Sudut gambar melengkung */
+           margin-right: 12px; /* Jarak antara gambar dan nama gunung*/
+}
     }
 
     .mountain-name {

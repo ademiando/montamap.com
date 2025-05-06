@@ -287,7 +287,7 @@ body.dark .dropdown-menu button:hover {
     padding: 5px;
     text-align: center;
     word-wrap: break-word; /* Membungkus teks jika terlalu panjang */
-    font-size: 14px; /* Ukuran font untuk header */
+    font-size: 11px; /* Ukuran font untuk header */
 }
 
 /* Styling untuk Baris Konten */
@@ -303,7 +303,7 @@ body.dark .dropdown-menu button:hover {
     padding: 5px;
     text-align: center;
     word-wrap: break-word; /* Membungkus teks jika terlalu panjang */
-    font-size: 14px; /* Ukuran font untuk konten */
+    font-size: 12px; /* Ukuran font untuk konten */
 }
 
 .mountain-col.wide {
@@ -315,7 +315,7 @@ body.dark .dropdown-menu button:hover {
 
 .mountain-number {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 12px;
     margin-right: 5px;
 }
 
@@ -323,7 +323,7 @@ body.dark .dropdown-menu button:hover {
     width: 60px;
     height: auto;
     border-radius: 7px; /* Sudut gambar melengkung */
-    margin-right: 12px; /* Jarak antara gambar dan nama gunung */
+    margin-right: 10px; /* Jarak antara gambar dan nama gunung */
 }
 
 .mountain-details {
@@ -334,12 +334,12 @@ body.dark .dropdown-menu button:hover {
 }
 
 .mountain-name {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
 }
 
 .ticket-price {
-    font-size: 12px; /* Ukuran font lebih kecil untuk harga */
+    font-size: 10px; /* Ukuran font lebih kecil untuk harga */
     margin-top: 5px;
 }
 
@@ -368,7 +368,7 @@ body.dark .dropdown-menu button:hover {
     }
 
     .header-item, .mountain-col {
-        font-size: 12px; /* Perkecil ukuran font di layar kecil */
+        font-size: 10px; /* Perkecil ukuran font di layar kecil */
         text-align: left; /* Rata kiri untuk keterbacaan */
     }
 
@@ -383,11 +383,11 @@ body.dark .dropdown-menu button:hover {
     }
 
     .mountain-name {
-        font-size: 12px; /* Perkecil nama gunung di layar kecil */
+        font-size: 10px; /* Perkecil nama gunung di layar kecil */
     }
 
     .ticket-price {
-        font-size: 10px; /* Perkecil harga di layar kecil */
+        font-size: 8px; /* Perkecil harga di layar kecil */
     }
 }
 

@@ -256,6 +256,7 @@ body.dark .dropdown-menu button:hover {
 
 /* Container untuk tombol sortir */
 #Mountain {
+    margin-right: 5px;
     display: flex; /* Atur elemen menjadi horizontal */
     flex-direction: row; /* Susun secara horizontal */
     align-items: center; /* Rata tengah secara vertikal */
@@ -383,8 +384,7 @@ body.dark .dropdown-menu button:hover {
         margin-right: 5px;
     }
 
-#Mountain {
-        gap: 5px; /* Jarak antar elemen */
+.horizontal-tab-container {
         display: flex;
         gap: 5px; /* jarak antar anak elemen */
 

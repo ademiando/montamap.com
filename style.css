@@ -331,15 +331,14 @@ body.dark .dropdown-menu button:hover {
     display: flex;
     flex-direction: column; /* Susunan vertikal untuk nama dan harga */
     justify-content: center;
-font-size: 18px; /* Ukuran font untuk nama gunung */
+    font-size: 18px; /* Ukuran font untuk nama gunung */
 }
 
 .mountain-name {
     font-weight: bold;
-font-size: 18px; /* Ukuran font untuk nama gunung */
-    color: none; /* Warna teks */
+    font-size: 18px; /* Ukuran font untuk nama gunung */
+    color: inherit; /* Warna teks tetap mengikuti konteks */
 }
-
 
 .status .dot {
     display: inline-block;
@@ -357,24 +356,13 @@ font-size: 18px; /* Ukuran font untuk nama gunung */
     background-color: #c08081;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 /* Media Query untuk Responsif */
 @media (max-width: 720px) {
 
-/* Logo Styling */
-.logo {
-margin-left: 10px;
-}
+    /* Logo Styling */
+    .logo {
+        margin-left: 10px;
+    }
 
     .sticky-header, .mountain-row {
         display: grid;
@@ -399,22 +387,22 @@ margin-left: 10px;
         text-align: left; /* Rata kiri nomor untuk tampilan lebih rapi */
     }
 
-     .mountain-image {
-           width: 50px; /* Perkecil gambar di layar kecil */
-           height: auto;
-           border-radius: 3px; /* Sudut gambar melengkung */
-           margin-right: 5px; /* Jarak antara gambar dan nama gunung*/
-}
+    .mountain-image {
+        width: 50px; /* Perkecil gambar di layar kecil */
+        height: auto;
+        border-radius: 3px; /* Sudut gambar melengkung */
+        margin-right: 5px; /* Jarak antara gambar dan nama gunung */
     }
 
     .mountain-name {
-        font-size: 8px; /* Perkecil nama gunung di layar kecil */
+        font-size: 10px; /* Ukuran font untuk nama gunung di layar kecil */
     }
 
     .ticket-price {
         font-size: 8px; /* Perkecil harga di layar kecil */
     }
 }
+
 
 
 

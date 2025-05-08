@@ -303,6 +303,7 @@ body.dark .dropdown-menu button:hover {
 .header-item {
     flex: 1;
     padding: 5px;
+    align-items: center;
 }
 
 

@@ -334,7 +334,7 @@ body.dark .dropdown-menu button:hover {
 }
 
 .mountain-name {
-    font-size: 8px; /* Ukuran font untuk nama gunung */
+    font-size: 28px; /* Ukuran font untuk nama gunung */
     font-weight: bold;
     color: none; /* Warna teks */
 }

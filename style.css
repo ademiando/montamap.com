@@ -290,12 +290,8 @@ body.dark .dropdown-menu button:hover {
     border-bottom: 5px solid #ccc;
     font-weight: bold;
     color: #333;
-    text-align: center;
     z-index: 100;
 }
-
-
-
 
 
 

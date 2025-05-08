@@ -1,2 +1,2 @@
-# Montamap
+# Miando
 Mountain tracker and ticket

@@ -300,56 +300,79 @@ body.dark .dropdown-menu button:hover {
 
 
 
+
+
+
+
+
+/* Global Box-Sizing */
+* {
+  box-sizing: border-box;
+}
+
 /* Styling untuk Sticky Header */
 .sticky-header {
-    margin-top: 10px;
-    position: sticky;
-    top: 5px;
-    display: flex;
-    background-color: #eee;
-    padding: 10px 20px;
-    border-bottom: 3px solid #ccc;
-    font-weight: bold;
-    color: #333;
-    z-index: 100;
+  margin-top: 10px;
+  position: sticky;
+  top: 5px;
+  display: flex;
+  background-color: #eee;
+  padding: 10px 20px;
+  border-bottom: 3px solid #ccc;
+  font-weight: bold;
+  color: #333;
+  z-index: 100;
 }
-
-
-
 
 .header-item {
-    flex: 1;
-    padding: 5px;
-    align-items: center;
+  flex: 1;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-
 .header-item.wide {
-    flex: 2; /* Kolom Gunung lebih lebar */
-    text-align: left;
-    margin-right: 10px;
+  flex: 2; /* Kolom Gunung lebih lebar */
+  justify-content: flex-start;
+  text-align: left;
+  /* Hapus margin-right agar sejajar */
 }
 
 /* Styling untuk Baris Konten */
 .mountain-row {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
 }
 
 .mountain-col {
-    flex: 1;
-    padding: 5px;
-    text-align: center;
+  flex: 1;
+  padding: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mountain-col.wide {
-    flex: 2; /* Kolom lebih lebar untuk Gunung */
-    display: flex;
-    align-items: center;
-    gap: 12px; /* Jarak antara elemen (nomor, gambar, dan detail) */
+  flex: 2; /* Kolom lebih lebar untuk Gunung */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 12px; /* Jarak antara elemen (nomor, gambar, dan detail) */
 }
+
+
+
+
+
+
+
+
 
 .mountain-number {
     font-weight: bold;

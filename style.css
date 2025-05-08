@@ -203,11 +203,6 @@ body.dark .dropdown-menu button:hover {
 
 
 
-
-
-
-
-
 /* Container untuk Tab Horizontal */
 .horizontal-tab-container {
   display: flex;
@@ -284,9 +279,8 @@ body.dark .dropdown-menu button:hover {
 
 
 
-
-.header-item {
-
+/* Styling untuk Sticky Header */
+.sticky-header {
     margin-top: 10px;
     position: sticky;
     top: 5px;
@@ -300,12 +294,18 @@ body.dark .dropdown-menu button:hover {
     color: #333;
     text-align: center;
     z-index: 100;
-
-    flex: 1;
-    padding: 5px;
 }
 
 
+
+
+
+
+
+.header-item {
+    flex: 1;
+    padding: 5px;
+}
 
 
 .header-item.wide {

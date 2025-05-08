@@ -369,6 +369,12 @@ body.dark .dropdown-menu button:hover {
 
 /* Media Query untuk Responsif */
 @media (max-width: 720px) {
+
+/* Logo Styling */
+.logo {
+margin-left: 10px;
+}
+
     .sticky-header, .mountain-row {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Header dan konten tetap sejajar */

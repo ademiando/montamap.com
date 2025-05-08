@@ -197,12 +197,6 @@ body.dark .dropdown-menu button:hover {
 
 
 
-
-
-
-
-
-
 /* Container untuk Tab Horizontal */
 .horizontal-tab-container {
   display: flex;
@@ -284,7 +278,8 @@ body.dark .dropdown-menu button:hover {
 /* Container untuk tombol dropdown */
 .sort-options {
     display: flex; /* Susun elemen secara horizontal */
-    justify-content: flex-end; /* Posisi tombol agak ke kanan */
+    justify-content: flex-start; /* Posisi tombol agak ke kanan */
+    margin-right: 5px;
     gap: 15px; /* Jarak antar tombol */
     padding: 10px; /* Padding untuk ruang di sekitar tombol */
 }
@@ -332,6 +327,7 @@ body.dark .dropdown-menu button:hover {
 .header-item.wide {
     flex: 2; /* Kolom Gunung lebih lebar */
     text-align: left;
+    margin-right: 10px;
 }
 
 /* Styling untuk Baris Konten */

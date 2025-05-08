@@ -286,11 +286,11 @@ body.dark .dropdown-menu button:hover {
     position: sticky;
     top: 5px;
     display: flex;
-    background-color: none;
+    background-color: #eee;
     padding: 10px 20px;
     border-bottom: 3px solid #ccc;
     font-weight: bold;
-    color: none;
+    color: #333;
     z-index: 100;
 }
 

@@ -203,8 +203,9 @@ body.dark .dropdown-menu button:hover {
     position: sticky;
     top: 5px;
     display: flex;
+    flex-direction: column; /* Atur elemen menjadi vertikal */
     background-color: #eee;
-    justify-content: space-between;
+    justify-content: flex-start; /* Elemen disusun dari atas ke bawah */
     padding: 10px 20px;
     border-bottom: 5px solid #ccc;
     font-weight: bold;
@@ -212,9 +213,6 @@ body.dark .dropdown-menu button:hover {
     text-align: center;
     z-index: 100;
 }
-
-
-
 
 /* Container untuk Tab Horizontal */
 .horizontal-tab-container {
@@ -236,7 +234,7 @@ body.dark .dropdown-menu button:hover {
   font-size: 16px;
   cursor: pointer;
   border-radius: 10px; /* Sudut melengkung dengan radius 10px */
-  margin: 0 10px
+  margin: 0 10px;
   transition: background-color 0.2s;
 }
 
@@ -266,19 +264,19 @@ body.dark .dropdown-menu button:hover {
   display: block; /* Tampilkan hanya konten tab yang aktif */
 }
 
-
-/* Container untuk tombol sortir */
-#Mountain {
+/* Container untuk Sort Options */
+.sort-options {
     display: flex; /* Atur elemen menjadi horizontal */
-    flex-direction: row; /* Susun secara horizontal */
-    align-items: center; /* Rata tengah secara vertikal */
-    justify-content: flex-start; /* Posisi di sebelah kiri */
+    flex-wrap: wrap; /* Agar responsif jika layar kecil */
     gap: 10px; /* Jarak antar elemen */
-    padding: 10px;
+    padding: 10px 0; /* Padding vertikal untuk jarak */
+    margin-top: 10px; /* Tambahkan jarak dari Tabs */
+    border-bottom: 1px solid #ddd; /* Garis bawah untuk pemisahan */
+    background-color: #f9f9f9; /* Warna latar belakang */
 }
 
 /* Styling untuk semua tombol dropdown */
-#Mountain select {
+.sort-options select {
     width: 120px; /* Lebar seragam */
     height: 30px; /* Tinggi seragam */
     font-size: 14px; /* Ukuran font */
@@ -286,6 +284,17 @@ body.dark .dropdown-menu button:hover {
     border: 1px solid #ccc; /* Border sederhana */
     border-radius: 5px; /* Sudut sedikit melengkung */
     cursor: pointer;
+}
+
+/* Styling untuk Header Row */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #fff;
+    border-top: 1px solid #ddd; /* Garis pemisah atas */
 }
 
 

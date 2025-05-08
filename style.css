@@ -254,31 +254,29 @@ body.dark .dropdown-menu button:hover {
 }
 
 
+
+
 /* Container untuk tombol sortir */
 #Mountain {
-    margin-right: 5px;
     display: flex; /* Atur elemen menjadi horizontal */
     flex-direction: row; /* Susun secara horizontal */
     align-items: center; /* Rata tengah secara vertikal */
     justify-content: flex-start; /* Posisi di sebelah kiri */
-    margin-right: 5px;
-    border radius: 5px;
     gap: 10px; /* Jarak antar elemen */
     padding: 10px;
 }
 
 /* Styling untuk semua tombol dropdown */
 #Mountain select {
-    width: 110px; /* Lebar seragam */
-    height: 40px; /* Tinggi seragam */
-    margin-left: 5px;
+    width: 100px; /* Lebar seragam */
+    height: 30px; /* Tinggi seragam */
     font-size: 14px; /* Ukuran font */
     padding: 5px;
-    color: #ccc;
     border: 1px solid #ccc; /* Border sederhana */
-    border-radius: 8px; /* Sudut sedikit melengkung */
+    border-radius: 7px; /* Sudut sedikit melengkung */
     cursor: pointer;
 }
+
 
 
 

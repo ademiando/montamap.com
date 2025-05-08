@@ -395,7 +395,7 @@ body.dark .dropdown-menu button:hover {
     }
 
     .mountain-name {
-        font-size: 10px; /* Ukuran font untuk nama gunung di layar kecil */
+        font-size: 8px; /* Ukuran font untuk nama gunung di layar kecil */
     }
 
     .ticket-price {

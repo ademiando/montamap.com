@@ -279,16 +279,16 @@ body.dark .dropdown-menu button:hover {
 .sort-options {
     display: flex; /* Susun elemen secara horizontal */
     justify-content: flex-start; /* Posisi tombol agak ke kanan */
-    margin-right: 5px;
-    gap: 15px; /* Jarak antar tombol */
+    margin-right: 10px;
+    gap: 10px; /* Jarak antar tombol */
     padding: 10px; /* Padding untuk ruang di sekitar tombol */
 }
 
 /* Styling untuk semua tombol dropdown */
 .sort-options select {
-    width: 120px; /* Lebar lebih pendek */
-    height: 40px; /* Tombol lebih besar secara vertikal */
-    font-size: 16px; /* Ukuran teks sedikit lebih besar */
+    width: 110px; /* Lebar lebih pendek */
+    height: 30px; /* Tombol lebih besar secara vertikal */
+    font-size: 12px; /* Ukuran teks sedikit lebih besar */
     padding: 5px 10px; /* Jarak dalam tombol */
     border: 1px solid #ccc; /* Border sederhana */
     border-radius: 10px; /* Sudut lebih melengkung */
@@ -327,7 +327,7 @@ body.dark .dropdown-menu button:hover {
 .header-item.wide {
     flex: 2; /* Kolom Gunung lebih lebar */
     text-align: left;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 /* Styling untuk Baris Konten */

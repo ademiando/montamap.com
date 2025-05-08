@@ -262,6 +262,7 @@ body.dark .dropdown-menu button:hover {
     flex-direction: row; /* Susun secara horizontal */
     align-items: center; /* Rata tengah secara vertikal */
     justify-content: flex-start; /* Posisi di sebelah kiri */
+    margin-right: 5px; /* Jarak antara nomor dan gambar */
     gap: 10px; /* Jarak antar elemen */
     padding: 10px;
 }

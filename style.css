@@ -236,7 +236,7 @@ body.dark .dropdown-menu button:hover {
 }
 
 .tab.active {
-  background-color: #f0f0f0; /* Warna putih untuk tab aktif */
+  background-color: #eee; /* Warna putih untuk tab aktif */
   font-weight: bold;
 }
 
@@ -260,6 +260,8 @@ body.dark .dropdown-menu button:hover {
     flex-direction: row; /* Susun secara horizontal */
     align-items: center; /* Rata tengah secara vertikal */
     justify-content: flex-start; /* Posisi di sebelah kiri */
+    margin-right: 5px;
+    border radius: 5px;
     gap: 10px; /* Jarak antar elemen */
     padding: 10px;
 }
@@ -382,6 +384,9 @@ body.dark .dropdown-menu button:hover {
 
 #Mountain {
         gap: 5px; /* Jarak antar elemen */
+        display: flex;
+        gap: 5px; /* jarak antar anak elemen */
+
 }
 
 

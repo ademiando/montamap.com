@@ -425,9 +425,12 @@ body.dark .dropdown-menu button:hover {
         font-size: 8px; /* Ukuran font untuk nama gunung di layar kecil */
     }
 
-    .ticket-price {
-        font-size: 8px; /* Perkecil harga di layar kecil */
-    }
+    .status .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 4px;
 }
 
 

@@ -58,71 +58,70 @@
 
 
 
-<!-- Sticky Header -->
-    <header class="sticky-header">
 
+
+<!-- Sticky Header -->
+<header class="sticky-header">
 
   <!-- Tab Navigation Horizontal -->
-<div class="horizontal-tab-container">
-  <button class="tab active" onclick="openTab(event, 'Mountain')">Mountain</button>
-  <button class="tab" onclick="openTab(event, 'Favorite')">Favorite</button>
-  <button class="tab" onclick="openTab(event, 'Community')">Community</button>
-  <button class="tab" onclick="openTab(event, 'News')">News</button>
-  <button class="tab" onclick="openTab(event, 'Gear')">Gear</button>
-</div>
+  <div class="horizontal-tab-container">
+    <button class="tab active" onclick="openTab(event, 'Mountain')">Mountain</button>
+    <button class="tab" onclick="openTab(event, 'Favorite')">Favorite</button>
+    <button class="tab" onclick="openTab(event, 'Community')">Community</button>
+    <button class="tab" onclick="openTab(event, 'News')">News</button>
+    <button class="tab" onclick="openTab(event, 'Gear')">Gear</button>
+  </div>
 
+  <!-- Sort by Currency -->
+  <div class="sort-options">
+      <select id="currency-sort">
+          <option value="usd">USD ($)</option>
+          <option value="btc">BTC (₿)</option>
+          <option value="idr">IDR (Rp)</option>
+          <option value="rub">RUB (₽)</option>
+          <option value="cny">CNY (¥)</option>
+          <option value="inr">INR (₹)</option>
+          <option value="npr">NPR (रू)</option>
+          <option value="aud">AUD (A$)</option>
+          <option value="global">All Currencies</option>
+      </select>
 
+      <select id="country-sort">
+          <option value="global">All Countries</option>
+          <option value="indonesia">Indonesia</option>
+          <option value="india">India</option>
+          <option value="uk">United Kingdom</option>
+          <option value="usa">United States</option>
+          <option value="australia">Australia</option>
+          <option value="nepal">Nepal</option>
+      </select>
 
+      <select id="destination-sort">
+          <option value="top-global">Top Global</option>
+          <option value="top-7-summit">Top 7 Summit</option>
+          <option value="trending">Trending🔥</option>
+          <option value="most-visited">Most Visited</option>
+          <option value="volcano">Volcano</option>
+          <option value="himalayas">Himalaya's</option>
+          <option value="hidden-gems">Hidden Gems</option>
+      </select>
+  </div>
 
-    <!-- Tab Content -->
-<div class="Mountain">
-    <!-- Sort by Currency -->
-    <div class="sort-options">
-        <select id="currency-sort">
-            <option value="usd">USD ($)</option>
-            <option value="btc">BTC (₿)</option>
-            <option value="idr">IDR (Rp)</option>
-            <option value="rub">RUB (₽)</option>
-            <option value="cny">CNY (¥)</option>
-            <option value="inr">INR (₹)</option>
-            <option value="npr">NPR (रू)</option>
-            <option value="aud">AUD (A$)</option>
-            <option value="global">All Currencies</option>
-        </select>
-
-        <select id="country-sort">
-            <option value="global">All Countries</option>
-            <option value="indonesia">Indonesia</option>
-            <option value="india">India</option>
-            <option value="uk">United Kingdom</option>
-            <option value="usa">United States</option>
-            <option value="australia">Australia</option>
-            <option value="nepal">Nepal</option>
-        </select>
-
-        <select id="destination-sort">
-            <option value="top-global">Top Global</option>
-            <option value="top-7-summit">Top 7 Summit</option>
-            <option value="trending">Trending🔥</option>
-            <option value="most-visited">Most Visited</option>
-            <option value="volcano">Volcano</option>
-            <option value="himalayas">Himalaya's</option>
-            <option value="hidden-gems">Hidden Gems</option>
-        </select>
-    </div>
-
-
-
-
-<div class="header-row">
-        <div class="header-item wide">Mountain</div>
-        <div class="header-item">Status</div>
-        <div class="header-item">Region</div>
-        <div class="header-item">Altitude</div>
-        <div class="header-item">Temperature</div>
-    </div>
-</div>
+  <!-- Tab Content -->
+  <div class="Mountain">
+      <div class="header-row">
+          <div class="header-item wide">Mountain</div>
+          <div class="header-item">Status</div>
+          <div class="header-item">Region</div>
+          <div class="header-item">Altitude</div>
+          <div class="header-item">Temperature</div>
+      </div>
+  </div>
 </header>
+
+
+
+
 
 
 <!-- Mountain Row -->

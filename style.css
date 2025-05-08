@@ -197,15 +197,17 @@ body.dark .dropdown-menu button:hover {
 
 
 
+
+
 /* Styling untuk Sticky Header */
 .sticky-header {
     margin-top: 10px;
     position: sticky;
     top: 5px;
     display: flex;
-    flex-direction: column; /* Atur elemen menjadi vertikal */
+    flex-direction: column; /* Pastikan elemen tersusun vertikal */
     background-color: #eee;
-    justify-content: flex-start; /* Elemen disusun dari atas ke bawah */
+    justify-content: flex-start; /* Fokus pada susunan dari atas ke bawah */
     padding: 10px 20px;
     border-bottom: 5px solid #ccc;
     font-weight: bold;
@@ -267,12 +269,9 @@ body.dark .dropdown-menu button:hover {
 /* Container untuk Sort Options */
 .sort-options {
     display: flex; /* Atur elemen menjadi horizontal */
-    flex-wrap: wrap; /* Agar responsif jika layar kecil */
     gap: 10px; /* Jarak antar elemen */
-    padding: 10px 0; /* Padding vertikal untuk jarak */
+    padding: 0; /* Hapus padding tambahan */
     margin-top: 10px; /* Tambahkan jarak dari Tabs */
-    border-bottom: 1px solid #ddd; /* Garis bawah untuk pemisahan */
-    background-color: #f9f9f9; /* Warna latar belakang */
 }
 
 /* Styling untuk semua tombol dropdown */
@@ -294,8 +293,8 @@ body.dark .dropdown-menu button:hover {
     font-weight: bold;
     text-align: center;
     background-color: #fff;
-    border-top: 1px solid #ddd; /* Garis pemisah atas */
 }
+
 
 
 

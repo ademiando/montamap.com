@@ -268,6 +268,7 @@ body.dark .dropdown-menu button:hover {
 #Mountain select {
     width: 110px; /* Lebar seragam */
     height: 40px; /* Tinggi seragam */
+    margin-left: 5px;
     font-size: 14px; /* Ukuran font */
     padding: 5px;
     color: #ccc;
@@ -376,8 +377,13 @@ body.dark .dropdown-menu button:hover {
 
     /* Logo Styling */
     .logo {
-        margin-left: 10px;
+        margin-right: 5px;
     }
+
+#Mountain {
+        gap: 5px; /* Jarak antar elemen */
+}
+
 
     .sticky-header, .mountain-row {
         display: grid;

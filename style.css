@@ -234,6 +234,10 @@ body.dark .dropdown-menu button:hover {
   font-weight: none;
 }
 
+.tab-content.active {
+  display: block; /* Tampilkan hanya konten tab yang aktif */
+}
+
 /* Konten Tab */
 .tab-content {
   padding: 20px;
@@ -243,9 +247,7 @@ body.dark .dropdown-menu button:hover {
   display: none; /* Semua tab disembunyikan secara default */
 }
 
-.tab-content.active {
-  display: block; /* Tampilkan hanya konten tab yang aktif */
-}
+
 
 
 

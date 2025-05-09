@@ -97,70 +97,101 @@ header {
   font-size: 12px;
 }
 
-/* Hamburger Menu Styling */
-.hamburger-menu {
-  font-size: 24px;
-  cursor: pointer;
-  user-select: none;
-}
 
-/* Dropdown Menu Styling */
-.dropdown-menu {
-  position: absolute;
-  top: 50px;
-  right: 20px;
-  background-color: #444;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: none;
-  z-index: 1000;
-  padding: 10px;
-}
 
-.dropdown-menu .language-select {
-  margin-bottom: 10px;
-}
 
-.dropdown-menu button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 10px;
-  text-align: center;
-}
 
-.dropdown-menu button:hover {
-  background-color: #f0f0f0;
-}
+    
+    .menu-container {
+      position: relative;
+    }
 
-/* Dark Theme */
-body.dark {
-  background-color: #333;
-  color: #f5f5f5;
-}
+    #hamburger {
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
 
-body.dark header {
-  background-color: #444;
-}
+    .menu {
+      position: absolute;
+      right: 0;
+      top: 48px;
+      width: 260px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+      z-index: 999;
 
-body.dark .dropdown-menu {
-  background-color: #444;
-  color: #fff;
-}
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
 
-body.dark .dropdown-menu button {
-  background-color: #555;
-  color: #fff;
-}
+    .menu-visible {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
 
-body.dark .dropdown-menu button:hover {
-  background-color: #666;
-}
+    .menu-button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: none;
+      border-radius: 10px;
+      background-color: #4a90e2;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .menu-button:hover {
+      background-color: #357ABD;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background-color: #fafafa;
+      font-size: 14px;
+    }
+
+    .theme-switch {
+      display: flex;
+      gap: 10px;
+    }
+
+    .theme-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+      border: 1px solid #ccc;
+      background-color: #e0e0e0;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .theme-btn.active {
+      background-color: #4a90e2;
+      color: #fff;
+      border-color: #4a90e2;
+    }
+
+
+
+
+
 
 /* Banner Ads Styling */
 .banner-ads {

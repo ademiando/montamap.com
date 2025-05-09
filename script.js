@@ -1,40 +1,36 @@
 // Elements
-const menuToggle = document.getElementById('hamburger'); // Perbaikan ID
-const dropdownMenu = document.getElementById('menu');
+const menuToggle = document.getElementById('menuToggle');
+const dropdownMenu = document.getElementById('dropdownMenu');
 const loginButton = document.getElementById('loginButton');
 const loginDropdown = document.getElementById('loginDropdown');
 const languageSelect = document.getElementById('language');
-const themeSwitch = document.getElementById('lightBtn'); // Perbaikan ID
+const themeSwitch = document.getElementById('themeSwitch');
 const title = document.getElementById('title');
 const description = document.getElementById('description');
 
 // Toggle Dropdown Menu
-if (menuToggle && dropdownMenu) {
-  menuToggle.addEventListener('click', () => {
-    dropdownMenu.classList.toggle('menu-visible'); // Menggunakan class CSS
-  });
+menuToggle.addEventListener('click', (event) => {
+  dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+});
 
-  // Close Hamburger Menu when clicking outside
-  document.addEventListener('click', (event) => {
-    if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-      dropdownMenu.classList.remove('menu-visible'); // Menggunakan class CSS
-    }
-  });
-}
+// Close Hamburger Menu when clicking outside
+document.addEventListener('click', (event) => {
+  if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+    dropdownMenu.style.display = 'none'; // Menutup menu
+  }
+});
 
 // Toggle Login Dropdown
-if (loginButton && loginDropdown) {
-  loginButton.addEventListener('click', () => {
-    loginDropdown.style.display = loginDropdown.style.display === 'block' ? 'none' : 'block';
-  });
+loginButton.addEventListener('click', () => {
+  loginDropdown.style.display = loginDropdown.style.display === 'block' ? 'none' : 'block';
+});
 
-  // Close Login Dropdown when clicking outside
-  document.addEventListener('click', (event) => {
-    if (!loginButton.contains(event.target) && !loginDropdown.contains(event.target)) {
-      loginDropdown.style.display = 'none';
-    }
-  });
-}
+// Close Login Dropdown when clicking outside
+document.addEventListener('click', (event) => {
+  if (!loginButton.contains(event.target) && !loginDropdown.contains(event.target)) {
+    loginDropdown.style.display = 'none';
+  }
+});
 
 // Language Translations
 const translations = {
@@ -61,24 +57,19 @@ const translations = {
 };
 
 // Update Language Content
-if (languageSelect && title && description) {
-  languageSelect.addEventListener('change', () => {
-    const selectedLanguage = languageSelect.value;
-    title.textContent = translations[selectedLanguage]?.title || "Default Title";
-    description.textContent = translations[selectedLanguage]?.description || "Default Description";
-  });
-}
+languageSelect.addEventListener('change', () => {
+  const selectedLanguage = languageSelect.value;
+  title.textContent = translations[selectedLanguage].title;
+  description.textContent = translations[selectedLanguage].description;
+});
 
 // Toggle Theme (Light/Dark)
-if (themeSwitch) {
-  themeSwitch.addEventListener('click', () => {
-    const isDarkMode = document.body.classList.toggle('dark');
-    themeSwitch.textContent = isDarkMode ? "Theme: Dark Mode" : "Theme: Light Mode";
-  });
-}
+themeSwitch.addEventListener('click', () => {
+  const isDarkMode = document.body.classList.toggle('dark');
+  themeSwitch.textContent = isDarkMode ? "Theme: Dark Mode" : "Theme: Light Mode";
+});
 
-// Tab Navigation
-function openTab(event, tabName) {
+  function openTab(event, tabName) {
   // Sembunyikan semua konten tab
   const tabContents = document.querySelectorAll('.tab-content');
   tabContents.forEach((content) => {
@@ -94,20 +85,15 @@ function openTab(event, tabName) {
 
   // Tampilkan konten tab yang dipilih
   const selectedTabContent = document.getElementById(tabName);
-  if (selectedTabContent) {
-    selectedTabContent.style.display = 'block';
-    selectedTabContent.classList.add('active');
-  }
+  selectedTabContent.style.display = 'block';
+  selectedTabContent.classList.add('active');
 
   // Tandai tab yang aktif
-  if (event.currentTarget) {
-    event.currentTarget.classList.add('active');
-  }
+  event.currentTarget.classList.add('active');
 }
 
-// Default Tab Activation
 document.addEventListener('DOMContentLoaded', () => {
-  const defaultTab = document.querySelector('.tab.active');
+  const defaultTab = document.querySelector('.tab');
   if (defaultTab) {
     defaultTab.click();
   }

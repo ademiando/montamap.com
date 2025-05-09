@@ -320,7 +320,7 @@ body.dark .dropdown-menu button:hover {
   display: flex;
   background-color: #f2f2f2;
   padding: 10px 20px;
-  border-bottom: 1px; solid #ccc;
+  border-bottom: 2px; solid #333;
   font-weight: bold;
   color: #333;
   z-index: 100;

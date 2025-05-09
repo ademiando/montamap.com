@@ -204,7 +204,7 @@ body.dark .dropdown-menu button:hover {
   white-space: nowrap; /* Hindari tab berpindah ke baris baru */
   border-bottom: 1px solid #ccc; /* Tambahkan garis bawah untuk estetika */
   justify-content: space-around; /* Tab tersebar merata */
-  background-color: none;
+  background-color: #eee;
   padding: 10px;
 }
 

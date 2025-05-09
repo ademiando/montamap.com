@@ -281,7 +281,7 @@ body.dark .dropdown-menu button:hover {
 .sort-options {
     display: flex; /* Susun elemen secara horizontal */
     justify-content: flex-start; /* Posisi tombol agak ke kanan */
-    margin-right: 10px;
+    margin-right: 5px;
     gap: 10px; /* Jarak antar tombol */
     padding: 10px; /* Padding untuk ruang di sekitar tombol */
 }

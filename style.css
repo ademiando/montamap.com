@@ -545,6 +545,7 @@ footer p {
 
     .sticky-header, .mountain-row {
         display: grid;
+        font-size: 10px;
         grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* Header dan konten tetap sejajar */
         gap: 5px; /* Jarak antar elemen lebih kecil di layar kecil */
     }

@@ -4,9 +4,15 @@ const dropdownMenu = document.getElementById('menu');
 const loginButton = document.getElementById('loginButton');
 const loginDropdown = document.getElementById('loginDropdown');
 const languageSelect = document.getElementById('language');
-const themeSwitch = document.getElementById('lightBtn'); // Perbaikan ID
+const lightBtn = 
+document.getElementById('lightBtn');
+const darkBtn = 
+document.getElementById('darkBtn');
 const title = document.getElementById('title');
 const description = document.getElementById('description');
+
+
+
 
 // Toggle Dropdown Menu
 if (menuToggle && dropdownMenu) {
@@ -69,11 +75,23 @@ if (languageSelect && title && description) {
   });
 }
 
-// Toggle Theme (Light/Dark)
-if (themeSwitch) {
-  themeSwitch.addEventListener('click', () => {
-    const isDarkMode = document.body.classList.toggle('dark');
-    themeSwitch.textContent = isDarkMode ? "Theme: Dark Mode" : "Theme: Light Mode";
+
+
+// Function to Switch to Light Theme
+if (lightBtn) {
+  lightBtn.addEventListener('click', () => {
+    document.body.classList.remove('dark'); // Hapus tema gelap
+    lightBtn.classList.add('active'); // Tandai tombol Light sebagai aktif
+    darkBtn.classList.remove('active'); // Nonaktifkan tombol Dark
+  });
+}
+
+// Function to Switch to Dark Theme
+if (darkBtn) {
+  darkBtn.addEventListener('click', () => {
+    document.body.classList.add('dark'); // Tambahkan tema gelap
+    darkBtn.classList.add('active'); // Tandai tombol Dark sebagai aktif
+    lightBtn.classList.remove('active'); // Nonaktifkan tombol Light
   });
 }
 

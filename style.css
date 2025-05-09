@@ -198,11 +198,29 @@ select {
   transition: background 0.3s, color 0.3s;
 }
 
+
+/* Light Theme (Default) */
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Dark Theme */
+body.dark {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
+/* Active Theme Buttons */
 .theme-btn.active {
   background-color: #4a90e2;
   color: #fff;
   border-color: #4a90e2;
 }
+
+
+
+
 
 
 

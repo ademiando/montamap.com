@@ -101,6 +101,25 @@ header {
 
 
 
+
+    body {
+      font-family: sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease;
+    }
+
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .menu-container {
+      position: relative;
+    }
     
 
 #hamburger {

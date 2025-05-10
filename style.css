@@ -281,29 +281,36 @@ body.dark {
 
 
 
-
-
-
-
-/* Container untuk tombol dropdown */
+/* Container untuk tombol dropdown dengan scroll horizontal */
 .sort-options-container {
-    display: flex; /* Susun elemen secara horizontal */
-    justify-content: flex-start; /* Posisi tombol agak ke kanan */
+    display: flex;
+    flex-wrap: nowrap;                   /* Jangan pindah ke baris baru */
+    overflow-x: auto;                    /* Scroll horizontal kalau penuh */
+    -webkit-overflow-scrolling: touch;  /* Scroll halus di iOS */
+    scrollbar-width: none;              /* Sembunyikan scrollbar (Firefox) */
+    gap: 8px;
+    padding: 8px;
     margin-right: 0;
-    gap: 8px; /* Jarak antar tombol */
-    padding: 8px; /* Padding untuk ruang di sekitar tombol */
+}
+
+.sort-options-container::-webkit-scrollbar {
+    display: none;                      /* Sembunyikan scrollbar (Chrome/Safari) */
 }
 
 /* Styling untuk semua tombol dropdown */
 .sort-options-container select {
-    width: 110px; /* Lebar lebih pendek */
-    height: 25px; /* Tombol lebih besar secara vertikal */
-    font-size: 10px; /* Ukuran teks sedikit lebih besar */
-    padding: 5px 8px; /* Jarak dalam tombol */
-    border: 1px solid #ccc; /* Border sederhana */
-    border-radius: 7px; /* Sudut lebih melengkung */
-    cursor: pointer; /* Pointer saat hover */
+    width: 110px;
+    height: 25px;
+    font-size: 10px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    cursor: pointer;
+    flex-shrink: 0;                     /* Biar nggak mengecil saat overflow */
 }
+
+
+
 
 
 

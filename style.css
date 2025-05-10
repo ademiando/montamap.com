@@ -296,12 +296,12 @@ body.dark {
 
 /* Styling untuk semua tombol dropdown */
 .sort-options select {
-    width: 100px; /* Lebar lebih pendek */
+    width: 110px; /* Lebar lebih pendek */
     height: 25px; /* Tombol lebih besar secara vertikal */
     font-size: 10px; /* Ukuran teks sedikit lebih besar */
     padding: 5px 8px; /* Jarak dalam tombol */
     border: 1px solid #ccc; /* Border sederhana */
-    border-radius: 10px; /* Sudut lebih melengkung */
+    border-radius: 7px; /* Sudut lebih melengkung */
     cursor: pointer; /* Pointer saat hover */
 }
 

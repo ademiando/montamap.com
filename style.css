@@ -40,6 +40,30 @@ header {
     color: #89ae95; /* Beri warna berbeda saat hover (opsional) */
 }
 
+
+/* Gaya untuk logo */
+.left-logo {
+  width: 40px; /* Atur ukuran logo */
+  height: auto; /* Jaga proporsi logo */
+  margin-right: 10px; /* Jarak antara logo dan teks */
+  vertical-align: middle; /* Sejajarkan logo dengan teks */
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Sejajarkan logo dan teks secara vertikal */
+  text-decoration: none;
+  color: #333; /* Warna teks */
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+
+
+
+
+
 /* Search Bar Styling */
 .search-bar {
   flex: 1;

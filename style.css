@@ -325,7 +325,7 @@ body.dark {
   display: flex;
   background-color: #f2f2f2;
   padding: 10px 20px;
-  border-bottom: 2px solid #333;
+  border-bottom: 1px solid #333;
   font-weight: bold;
   color: #333;
   z-index: 100;
@@ -553,6 +553,24 @@ footer p {
         gap: 5px; /* jarak antar anak elemen */
 
 }
+
+
+
+
+/* Styling untuk Sticky Header */
+.sticky-header {
+  margin-top: 10px;
+  position: sticky;
+  top: 5px;
+  display: flex;
+  background-color: #f2f2f2;
+  padding: 10px 20px;
+  border-bottom: 1px solid #333;
+  font-weight: bold;
+  color: #333;
+  z-index: 100;
+}
+
 
 
     .sticky-header, .mountain-row {

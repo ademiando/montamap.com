@@ -291,7 +291,7 @@ body.dark {
 
 /* Styling untuk semua tombol dropdown */
 #Mountain select {
-    width: 110px; /* Lebar seragam */
+    width: 90px; /* Lebar seragam */
     height: 30px; /* Tinggi seragam */
     font-size: 12px; /* Ukuran font */
     padding: 5px;
@@ -307,7 +307,7 @@ body.dark {
 .sort-options {
     display: flex; /* Susun elemen secara horizontal */
     justify-content: flex-start; /* Posisi tombol agak ke kanan */
-    margin-right: 5px;
+    margin-right: 0;
     gap: 10px; /* Jarak antar tombol */
     padding: 10px; /* Padding untuk ruang di sekitar tombol */
 }
@@ -333,10 +333,7 @@ body.dark {
 
 
 
-/* Global Box-Sizing */
-* {
-  box-sizing: border-box;
-}
+
 
 /* Styling untuk Sticky Header */
 .sticky-header {

@@ -43,7 +43,7 @@ header {
 /* Search Bar Styling */
 .search-bar {
   flex: 1;
-  max-width: 250px;
+  max-width: 350px;
   margin-right: 10px;
 }
 
@@ -278,27 +278,9 @@ body.dark {
 
 
 
-/* Container untuk tombol sortir */
-#Mountain {
-    display: flex; /* Atur elemen menjadi horizontal */
-    flex-direction: row; /* Susun secara horizontal */
-    align-items: center; /* Rata tengah secara vertikal */
-    justify-content: flex-start; /* Posisi di sebelah kiri */
-    margin-right: 5px; /* Jarak */
-    gap: 10px; /* Jarak antar elemen */
-    padding: 10px;
-}
 
-/* Styling untuk semua tombol dropdown */
-#Mountain select {
-    width: 90px; /* Lebar seragam */
-    height: 30px; /* Tinggi seragam */
-    font-size: 12px; /* Ukuran font */
-    padding: 5px;
-    border: 1px solid #ccc; /* Border sederhana */
-    border-radius: 7px; /* Sudut sedikit melengkung */
-    cursor: pointer;
-}
+
+
 
 
 
@@ -314,9 +296,9 @@ body.dark {
 
 /* Styling untuk semua tombol dropdown */
 .sort-options select {
-    width: 90px; /* Lebar lebih pendek */
+    width: 100px; /* Lebar lebih pendek */
     height: 30px; /* Tombol lebih besar secara vertikal */
-    font-size: 10px; /* Ukuran teks sedikit lebih besar */
+    font-size: 12px; /* Ukuran teks sedikit lebih besar */
     padding: 5px 10px; /* Jarak dalam tombol */
     border: 1px solid #ccc; /* Border sederhana */
     border-radius: 10px; /* Sudut lebih melengkung */

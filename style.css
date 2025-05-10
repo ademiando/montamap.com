@@ -296,7 +296,7 @@ body.dark {
 
 /* Styling untuk semua tombol dropdown */
 .sort-options select {
-    width: 100px; /* Lebar lebih pendek */
+    width: 110px; /* Lebar lebih pendek */
     height: 30px; /* Tombol lebih besar secara vertikal */
     font-size: 12px; /* Ukuran teks sedikit lebih besar */
     padding: 5px 10px; /* Jarak dalam tombol */

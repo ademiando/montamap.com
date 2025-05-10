@@ -559,6 +559,13 @@ footer p {
         margin-right: 5px;
     }
 
+.search-bar {
+  flex: 1;
+  max-width: 130px;
+  margin-right: 10px;
+}
+
+
 .horizontal-tab-container {
         display: flex;
         gap: 5px; /* jarak antar anak elemen */

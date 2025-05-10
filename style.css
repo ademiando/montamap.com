@@ -494,7 +494,7 @@ section ul, section ol {
 
 section ul li, section ol li {
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 10px;
 }
 
 /* Footer Styling */
@@ -507,7 +507,7 @@ footer {
 
 footer p {
   margin: 5px 0;
-  font-size: 12px;
+  font-size: 8px;
 }
 
 

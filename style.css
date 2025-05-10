@@ -286,7 +286,7 @@ body.dark {
 
 
 /* Container untuk tombol dropdown */
-.sort-options {
+.sort-options-container {
     display: flex; /* Susun elemen secara horizontal */
     justify-content: flex-start; /* Posisi tombol agak ke kanan */
     margin-right: 0;
@@ -295,7 +295,7 @@ body.dark {
 }
 
 /* Styling untuk semua tombol dropdown */
-.sort-options select {
+.sort-options-container select {
     width: 110px; /* Lebar lebih pendek */
     height: 25px; /* Tombol lebih besar secara vertikal */
     font-size: 10px; /* Ukuran teks sedikit lebih besar */

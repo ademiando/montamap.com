@@ -290,16 +290,16 @@ body.dark {
     display: flex; /* Susun elemen secara horizontal */
     justify-content: flex-start; /* Posisi tombol agak ke kanan */
     margin-right: 0;
-    gap: 10px; /* Jarak antar tombol */
-    padding: 10px; /* Padding untuk ruang di sekitar tombol */
+    gap: 8px; /* Jarak antar tombol */
+    padding: 8px; /* Padding untuk ruang di sekitar tombol */
 }
 
 /* Styling untuk semua tombol dropdown */
 .sort-options select {
-    width: 110px; /* Lebar lebih pendek */
-    height: 30px; /* Tombol lebih besar secara vertikal */
-    font-size: 12px; /* Ukuran teks sedikit lebih besar */
-    padding: 5px 10px; /* Jarak dalam tombol */
+    width: 100px; /* Lebar lebih pendek */
+    height: 25px; /* Tombol lebih besar secara vertikal */
+    font-size: 10px; /* Ukuran teks sedikit lebih besar */
+    padding: 5px 8px; /* Jarak dalam tombol */
     border: 1px solid #ccc; /* Border sederhana */
     border-radius: 10px; /* Sudut lebih melengkung */
     cursor: pointer; /* Pointer saat hover */

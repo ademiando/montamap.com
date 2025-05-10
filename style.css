@@ -31,7 +31,7 @@ header {
 
 /* Gaya untuk logo */
 .left-logo {
-  width: 40px; /* Atur ukuran logo */
+  width: 60px; /* Atur ukuran logo */
   height: auto; /* Jaga proporsi logo */
   margin-right: 10px; /* Jarak antara logo dan teks */
   vertical-align: middle; /* Sejajarkan logo dengan teks */

@@ -52,7 +52,7 @@ header {
   padding: 5px 10px;
   border: 1px solid #ccc;
   border-radius: 15px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 
@@ -291,9 +291,9 @@ body.dark {
 
 /* Styling untuk semua tombol dropdown */
 #Mountain select {
-    width: 100px; /* Lebar seragam */
+    width: 110px; /* Lebar seragam */
     height: 30px; /* Tinggi seragam */
-    font-size: 14px; /* Ukuran font */
+    font-size: 12px; /* Ukuran font */
     padding: 5px;
     border: 1px solid #ccc; /* Border sederhana */
     border-radius: 7px; /* Sudut sedikit melengkung */

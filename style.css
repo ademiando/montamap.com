@@ -26,19 +26,7 @@ header {
   position: relative;
 }
 
-/* Logo Styling */
-.logo {
-  text-decoration: none;
-  font-size: 26px;
-  font-weight: bold;
-  color: silver;
-  text-shadow: 2px 2px 4px #000;
-  cursor: pointer;
-}
 
-.logo:hover {
-    color: #89ae95; /* Beri warna berbeda saat hover (opsional) */
-}
 
 
 /* Gaya untuk logo */
@@ -59,7 +47,14 @@ header {
 }
 
 
-
+.logo {
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+  color: #d9d9d9; /* Putih gelap */
+  text-shadow: 2px 2px 4px #000; /* Bayangan teks */
+  cursor: pointer;
+}
 
 
 

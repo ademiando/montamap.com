@@ -290,7 +290,7 @@ const mountainData = [
   },
   {
     name: "Merapi",
-    city: "Yogyakarta, Indonesia",
+    city: "Sleman, Yogyakarta, Indonesia",
     lat: -7.5407,
     lon: 110.4462,
     status: "Closed",
@@ -299,66 +299,6 @@ const mountainData = [
     icon: "50d",
     image: "mountain-image/merapi.jpg",
     link: "merapi"
-  }
-  {
-    name: "Makalu",
-    city: "Sankhuwasabha, Nepal",
-    lat: 27.8881,
-    lon: 87.0773,
-    status: "Closed",
-    elevation: "8,485 m",
-    weather: "-31°C Foggy",
-    icon: "50d", // Mist Icon
-    image: "mountain-image/makalu.jpg",
-    link: "makalu"
-  },
-  {
-    name: "Cho Oyu",
-    city: "Tingri, Tibet",
-    lat: 28.0944,
-    lon: 86.6600,
-    status: "Open",
-    elevation: "8,188 m",
-    weather: "-25°C Clear",
-    icon: "01d", // Clear Icon
-    image: "mountain-image/cho-oyu.jpg",
-    link: "cho-oyu"
-  },
-  {
-    name: "Dhaulagiri I",
-    city: "Pokhara, Nepal",
-    lat: 28.6961,
-    lon: 83.4875,
-    status: "Open",
-    elevation: "8,167 m",
-    weather: "-23°C Sunny",
-    icon: "01d", // Clear Icon
-    image: "mountain-image/dhaulagiri.jpg",
-    link: "dhaulagiri"
-  },
-  {
-    name: "Manaslu",
-    city: "Gorkha, Nepal",
-    lat: 28.5494,
-    lon: 84.5611,
-    status: "Closed",
-    elevation: "8,163 m",
-    weather: "-26°C Snow",
-    icon: "13d", // Snow Icon
-    image: "mountain-image/manaslu.jpg",
-    link: "manaslu"
-  },
-  {
-    name: "Annapurna I",
-    city: "Pokhara, Nepal",
-    lat: 28.5950,
-    lon: 83.8203,
-    status: "Closed",
-    elevation: "8,091 m",
-    weather: "-29°C Windy",
-    icon: "02d", // Partly Cloudy Icon
-    image: "mountain-image/annapurna.jpg",
-    link: "annapurna"
   }
 ];
 

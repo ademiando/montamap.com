@@ -170,7 +170,7 @@ const mountainData = [
   },
   {
     name: "Rinjani",
-    city: "Lombok, West Nusa Tenggara, Indonesia",
+    city: "West Nusa Tenggara, Indonesia",
     lat: -8.4115,
     lon: 116.4577,
     status: "Open",
@@ -182,7 +182,7 @@ const mountainData = [
   },
   {
     name: "Cartenz Pyramid",
-    city: "Mimika, Papua, Indonesia",
+    city: "Papua, Indonesia",
     lat: -4.0833,
     lon: 137.1833,
     status: "Open",
@@ -194,7 +194,7 @@ const mountainData = [
   },
   {
     name: "Semeru",
-    city: "Lumajang, East Java, Indonesia",
+    city: "East Java, Indonesia",
     lat: -8.1080,
     lon: 112.9220,
     status: "Open",
@@ -206,7 +206,7 @@ const mountainData = [
   },
   {
     name: "Bromo",
-    city: "Probolinggo, East Java, Indonesia",
+    city: "East Java, Indonesia",
     lat: -7.9425,
     lon: 112.9530,
     status: "Open",
@@ -218,7 +218,7 @@ const mountainData = [
   },
   {
     name: "Agung",
-    city: "Karangasem, Bali, Indonesia",
+    city: "Bali, Indonesia",
     lat: -8.3421,
     lon: 115.5085,
     status: "Open",
@@ -230,7 +230,7 @@ const mountainData = [
   },
   {
     name: "Batur",
-    city: "Bangli, Bali, Indonesia",
+    city: "Bali, Indonesia",
     lat: -8.2395,
     lon: 115.3761,
     status: "Open",
@@ -242,7 +242,7 @@ const mountainData = [
   },
   {
     name: "Prau",
-    city: "Wonosobo, Central Java, Indonesia",
+    city: "Central Java, Indonesia",
     lat: -7.2297,
     lon: 109.9229,
     status: "Open",
@@ -254,7 +254,7 @@ const mountainData = [
   },
   {
     name: "Raung",
-    city: "Banyuwangi, East Java, Indonesia",
+    city: "East Java, Indonesia",
     lat: -8.1255,
     lon: 114.0428,
     status: "Open",
@@ -266,7 +266,7 @@ const mountainData = [
   },
   {
     name: "Sindoro",
-    city: "Temanggung, Central Java, Indonesia",
+    city: "Central Java, Indonesia",
     lat: -7.3006,
     lon: 110.0571,
     status: "Open",
@@ -278,7 +278,7 @@ const mountainData = [
   },
   {
     name: "Sumbing",
-    city: "Wonosobo, Central Java, Indonesia",
+    city: "Central Java, Indonesia",
     lat: -7.3844,
     lon: 110.0722,
     status: "Open",
@@ -290,7 +290,7 @@ const mountainData = [
   },
   {
     name: "Merapi",
-    city: "Sleman, Yogyakarta, Indonesia",
+    city: "Yogyakarta, Indonesia",
     lat: -7.5407,
     lon: 110.4462,
     status: "Closed",

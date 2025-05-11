@@ -408,12 +408,14 @@ footer {
   text-align: center;
   padding: 20px 10px;
   font-size: 10px;
+  color: #89ae95;
   border-top: 1px solid #ccc;
   box-sizing: border-box;
 }
 
 .footer-content a {
   text-decoration: none;
+  color: #89ae95;
   display: inline-flex;
   align-items: center;
 }
@@ -422,7 +424,6 @@ footer {
   color: #89ae95;
   text-decoration: underline;
 }
-
 
 
 

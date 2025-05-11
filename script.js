@@ -290,7 +290,7 @@ const mountainData = [
   },
   {
     name: "Merapi",
-    city: "Sleman, Yogyakarta, Indonesia",
+    city: "Yogyakarta, Indonesia",
     lat: -7.5407,
     lon: 110.4462,
     status: "Closed",

@@ -407,14 +407,12 @@ footer {
   width: 100%;
   text-align: center;
   padding: 20px 10px;
-  background-color: none;
-  color: none;
   font-size: 10px;
+  border-top: 1px solid #ccc;
   box-sizing: border-box;
 }
 
 .footer-content a {
-  color: none;
   text-decoration: none;
   margin: 0 5px;
   display: inline-flex;

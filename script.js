@@ -178,6 +178,8 @@ const mountainData = [
     weather: "8°C Cloudy 🌥",
     image: "mountain-image/rinjani.jpg",
     link: "rinjani"
+    lat: -8.4115,
+    lon: 116.4572
   },
   {
     name: "Carstensz Pyramid",
@@ -300,3 +302,61 @@ document.getElementById("loadMoreBtn").addEventListener("click", renderMountains
 
 // Initial load
 renderMountains();
+
+
+
+
+
+
+async function fetchWeather(lat, lon) {
+  const apiKey = '3187c49861f858e524980ea8dd0d43c6';
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Gagal mengambil data cuaca');
+    const data = await response.json();
+    return {
+      temperature: Math.round(data.main.temp),
+      description: data.weather[0].description,
+      icon: data.weather[0].icon
+    };
+  } catch (error) {
+    console.error('Error:', error);
+    return null;
+  }
+}
+
+
+
+async function renderMountains() {
+  const container = document.getElementById("mountainContainer");
+  const slice = mountainData.slice(loaded, loaded + batch);
+
+  for (const m of slice) {
+    const weather = await fetchWeather(m.lat, m.lon);
+    const card = document.createElement("div");
+    card.className = "mountain-card";
+    card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
+    card.innerHTML = `
+      <img src="${m.image}" alt="${m.name}" class="mountain-image" />
+      <div class="gradient-overlay"></div>
+      <div class="mountain-info">
+        <div class="mountain-name">${m.name}</div>
+        <div class="mountain-details">
+          ${m.region}<br />
+          <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
+          Elevation: ${m.elevation}<br />
+          Weather: ${weather ? `${weather.temperature}°C, ${weather.description} <img src="https://openweathermap.org/img/wn/${weather.icon}@2x.png" alt="${weather.description}" class="weather-icon" />` : 'Data tidak tersedia'}
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  }
+
+  loaded += batch;
+
+  if (loaded >= mountainData.length) {
+    document.getElementById("loadMoreBtn").style.display = "none";
+  }
+}

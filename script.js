@@ -1,4 +1,7 @@
-// Elements
+// API Key untuk OpenWeatherMap
+const apiKey = '3187c49861f858e524980ea8dd0d43c6';
+
+// Elemen DOM
 const menuToggle = document.getElementById('hamburger');
 const dropdownMenu = document.getElementById('menu');
 const loginButton = document.getElementById('loginButton');
@@ -8,12 +11,15 @@ const lightBtn = document.getElementById('lightBtn');
 const darkBtn = document.getElementById('darkBtn');
 const title = document.getElementById('title');
 const description = document.getElementById('description');
+const mountainContainer = document.getElementById("mountainContainer");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
 
 // Toggle Dropdown Menu
 if (menuToggle && dropdownMenu) {
   menuToggle.addEventListener('click', () => {
     dropdownMenu.classList.toggle('menu-visible');
   });
+
   document.addEventListener('click', (event) => {
     if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
       dropdownMenu.classList.remove('menu-visible');
@@ -26,6 +32,7 @@ if (loginButton && loginDropdown) {
   loginButton.addEventListener('click', () => {
     loginDropdown.style.display = loginDropdown.style.display === 'block' ? 'none' : 'block';
   });
+
   document.addEventListener('click', (event) => {
     if (!loginButton.contains(event.target) && !loginDropdown.contains(event.target)) {
       loginDropdown.style.display = 'none';
@@ -33,7 +40,7 @@ if (loginButton && loginDropdown) {
   });
 }
 
-// Language Translations
+// Terjemahan Bahasa
 const translations = {
   en: {
     title: "Welcome to Xcapeak",
@@ -57,6 +64,7 @@ const translations = {
   }
 };
 
+// Update Konten Bahasa
 if (languageSelect && title && description) {
   languageSelect.addEventListener('change', () => {
     const selectedLanguage = languageSelect.value;
@@ -65,7 +73,7 @@ if (languageSelect && title && description) {
   });
 }
 
-// Theme Toggle
+// Fungsi untuk Mengubah ke Tema Terang
 if (lightBtn) {
   lightBtn.addEventListener('click', () => {
     document.body.classList.remove('dark');
@@ -73,6 +81,8 @@ if (lightBtn) {
     darkBtn.classList.remove('active');
   });
 }
+
+// Fungsi untuk Mengubah ke Tema Gelap
 if (darkBtn) {
   darkBtn.addEventListener('click', () => {
     document.body.classList.add('dark');
@@ -81,27 +91,31 @@ if (darkBtn) {
   });
 }
 
-// Tab Navigation
+// Navigasi Tab
 function openTab(event, tabName) {
   const tabContents = document.querySelectorAll('.tab-content');
   tabContents.forEach((content) => {
     content.style.display = 'none';
     content.classList.remove('active');
   });
+
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach((tab) => {
     tab.classList.remove('active');
   });
+
   const selectedTabContent = document.getElementById(tabName);
   if (selectedTabContent) {
     selectedTabContent.style.display = 'block';
     selectedTabContent.classList.add('active');
   }
+
   if (event.currentTarget) {
     event.currentTarget.classList.add('active');
   }
 }
 
+// Aktivasi Tab Default
 document.addEventListener('DOMContentLoaded', () => {
   const defaultTab = document.querySelector('.tab.active');
   if (defaultTab) {
@@ -109,14 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Mountain Data
+// Data Gunung
 const mountainData = [
   {
     name: "Everest",
     region: "Nepal / Tibet",
-    status: "Open",
+    status: "Closed",
     elevation: "8,848 m",
-    weather: "-35°C sunny🌤",
     image: "mountain-image/everest.jpg",
     link: "everest"
   },
@@ -125,16 +138,14 @@ const mountainData = [
     region: "Pakistan / China",
     status: "Closed",
     elevation: "8,611 m",
-    weather: "-40°C Snow❄️",
     image: "mountain-image/k2.jpg",
     link: "k2"
   },
   {
     name: "Kangchenjunga",
     region: "Nepal / India",
-    status: "Open",
+    status: "Closed",
     elevation: "8,586 m",
-    weather: "-30°C Cloudy🌥",
     image: "mountain-image/kangchenjunga.jpg",
     link: "kangchenjunga"
   },
@@ -143,112 +154,99 @@ const mountainData = [
     region: "Nepal / Tibet",
     status: "Open",
     elevation: "8,516 m",
-    weather: "-28°C Sunny☀️",
     image: "mountain-image/lhotse.jpg",
     link: "lhotse"
   },
   {
-    name: "Rinjani",
-    region: "Lombok, Indonesia",
-    status: "Open",
-    elevation: "3,726 meters",
-    weather: "8°C Cloudy 🌥",
-    image: "mountain-image/rinjani.jpg",
-    link: "rinjani",
-    lat: -8.4115,
-    lon: 116.4572
-  },
-  {
-    name: "Carstensz Pyramid",
-    region: "Papua, Indonesia",
-    status: "Open",
-    elevation: "4,884 meters",
-    weather: "-2°C Rainy 🌨",
-    image: "mountain-image/carstensz.jpg",
-    link: "carstensz"
-  },
-  {
-    name: "Raung",
-    region: "East Java, Indonesia",
-    status: "Open",
-    elevation: "3,344 meters",
-    weather: "10°C Windy 🌥",
-    image: "mountain-image/raung.jpg",
-    link: "raung"
-  },
-  {
-    name: "Agung",
-    region: "Bali, Indonesia",
+    name: "Makalu",
+    region: "Nepal / Tibet",
     status: "Closed",
-    elevation: "3,031 meters",
-    weather: "12°C Sunny ☀️",
-    image: "mountain-image/agung.jpg",
-    link: "agung"
+    elevation: "8,485 m",
+    image: "mountain-image/makalu.jpg",
+    link: "makalu"
   },
   {
-    name: "Batur",
-    region: "Bali, Indonesia",
+    name: "Cho Oyu",
+    region: "Nepal / Tibet",
     status: "Open",
-    elevation: "1,717 meters",
-    weather: "14°C Partly Cloudy ⛅️",
-    image: "mountain-image/batur.jpg",
-    link: "batur"
+    elevation: "8,188 m",
+    image: "mountain-image/cho-oyu.jpg",
+    link: "cho-oyu"
   },
   {
-    name: "Semeru",
-    region: "East Java, Indonesia",
+    name: "Dhaulagiri I",
+    region: "Nepal",
     status: "Open",
-    elevation: "3,676 meters",
-    weather: "7°C Sunny ☀️",
-    image: "mountain-image/semeru.jpg",
-    link: "semeru"
+    elevation: "8,167 m",
+    image: "mountain-image/dhaulagiri.jpg",
+    link: "dhaulagiri"
   },
   {
-    name: "Slamet",
-    region: "Central Java, Indonesia",
-    status: "Open",
-    elevation: "3,428 meters",
-    weather: "9°C Windy🌥",
-    image: "mountain-image/slamet.jpg",
-    link: "slamet"
+    name: "Manaslu",
+    region: "Nepal",
+    status: "Closed",
+    elevation: "8,163 m",
+    image: "mountain-image/manaslu.jpg",
+    link: "manaslu"
   },
   {
-    name: "Sindoro",
-    region: "Central Java, Indonesia",
+    name: "Nanga Parbat",
+    region: "Pakistan",
     status: "Open",
-    elevation: "3,153 meters",
-    weather: "11°C Clear 🌤",
-    image: "mountain-image/sindoro.jpg",
-    link: "sindoro"
+    elevation: "8,126 m",
+    image: "mountain-image/nanga-parbat.jpg",
+    link: "nanga-parbat"
   },
   {
-    name: "Sumbing",
-    region: "Central Java, Indonesia",
-    status: "Open",
-    elevation: "3,371 meters",
-    weather: "10°C Partly Cloudy ⛅️",
-    image: "mountain-image/sumbing.jpg",
-    link: "sumbing"
-  },
-  {
-    name: "Kerinci",
-    region: "Sumatra, Indonesia",
-    status: "Open",
-    elevation: "3,805 meters",
-    weather: "6°C Cloudy 🌥",
-    image: "mountain-image/kerinci.jpg",
-    link: "kerinci"
+    name: "Annapurna I",
+    region: "Nepal",
+    status: "Closed",
+    elevation: "8,091 m",
+    image: "mountain-image/annapurna.jpg",
+    link: "annapurna"
   }
 ];
 
 let loaded = 0;
-const batch = 5;
+const batch = 4;
 
-function renderMountains() {
-  const container = document.getElementById("mountainContainer");
+// Fungsi untuk Mengambil Data Cuaca
+async function fetchWeather(city) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+    );
+    const data = await response.json();
+    if (data.cod === 200) {
+      return {
+        temp: data.main.temp,
+        description: data.weather[0].description,
+        icon: data.weather[0].icon
+      };
+    } else {
+      return {
+        temp: 'N/A',
+        description: 'Data tidak tersedia',
+        icon: null
+      };
+    }
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+    return {
+      temp: 'N/A',
+      description: 'Data tidak tersedia',
+      icon: null
+    };
+  }
+}
+
+// Fungsi untuk Merender Kartu Gunung
+async function renderMountains() {
   const slice = mountainData.slice(loaded, loaded + batch);
 
-  slice.forEach((m) => {
+  for (const m of slice) {
+    const weather = await fetchWeather(m.name);
+
     const card = document.createElement("div");
     card.className = "mountain-card";
     card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
@@ -256,28 +254,28 @@ function renderMountains() {
       <img src="${m.image}" alt="${m.name}" class="mountain-image" />
       <div class="gradient-overlay"></div>
       <div class="mountain-info">
-        <h3>${m.name}</h3>
-        <p>${m.region}</p>
-        <p><strong>${m.status}</strong> | ${m.elevation} | ${m.weather}</p>
+        <div class="mountain-name">${m.name}</div>
+        <div class="mountain-details">
+          ${m.region}<br />
+          <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
+          Elevation: ${m.elevation}<br />
+          Weather: ${weather.temp}°C, ${weather.description}
+        </div>
+        ${weather.icon ? `<img src="https://openweathermap.org/img/wn/${weather.icon}@2x.png" alt="${weather.description}" class="weather-icon" />` : ''}
       </div>
     `;
-    container.appendChild(card);
-  });
+    mountainContainer.appendChild(card);
+  }
 
   loaded += batch;
+
   if (loaded >= mountainData.length) {
-    const loadMoreBtn = document.getElementById("loadMoreBtn");
-    if (loadMoreBtn) {
-      loadMoreBtn.style.display = "none";
-    }
+    loadMoreBtn.style.display = "none";
   }
 }
 
-// Event for Load More button
-document.addEventListener('DOMContentLoaded', () => {
-  renderMountains();
-  const loadMoreBtn = document.getElementById("loadMoreBtn");
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener("click", renderMountains);
-  }
-});
+// Event Listener untuk Tombol "Load More"
+loadMoreBtn.addEventListener("click", renderMountains);
+
+// Load Awal
+renderMountains();

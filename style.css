@@ -407,7 +407,7 @@ footer {
   width: 100%;
   text-align: center;
   padding: 20px 10px;
-  background-color: #111;
+  background-color: none;
   color: none;
   font-size: 10px;
   box-sizing: border-box;

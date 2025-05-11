@@ -384,7 +384,7 @@ body.dark {
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent 100%);
 }
 
 .mountain-info {
@@ -433,14 +433,14 @@ body.dark {
   font-size: 1rem;
   border-radius: 10px;
   border: none;
-  background-color: #3742fa;
+  background-color: #89ae95;
   color: white;
   cursor: pointer;
   transition: 0.3s;
 }
 
 #loadMoreBtn:hover {
-  background-color: #2f35c7;
+  background-color: #bcd5c4
 }
 
 

@@ -280,8 +280,10 @@ async function renderMountains() {
 
          
 
-          <img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}${weather.temperature}" />
-${weather.weather} <br />
+  
+${`<img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" style="vertical-align:middle; width: 24px; height: 24px;" />`} ${weather.temperature}°C<br />
+${weather.weather}
+
 
 
 

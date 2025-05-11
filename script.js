@@ -128,6 +128,7 @@ const mountainData = [
     status: "Closed",
     elevation: "8,848 m",
     weather: "-35°C Windy",
+    icon: "01d", // OpenWeatherMap Icon ID
     image: "mountain-image/everest.jpg",
     link: "everest"
   },
@@ -139,6 +140,7 @@ const mountainData = [
     status: "Closed",
     elevation: "8,611 m",
     weather: "-40°C Snow",
+    icon: "13d", // Snowy Icon
     image: "mountain-image/k2.jpg",
     link: "k2"
   },
@@ -150,6 +152,7 @@ const mountainData = [
     status: "Closed",
     elevation: "8,586 m",
     weather: "-30°C Cloudy",
+    icon: "04d", // Cloudy Icon
     image: "mountain-image/kangchenjunga.jpg",
     link: "kangchenjunga"
   },
@@ -161,6 +164,7 @@ const mountainData = [
     status: "Open",
     elevation: "8,516 m",
     weather: "-28°C Sunny",
+    icon: "01d", // Clear Icon
     image: "mountain-image/lhotse.jpg",
     link: "lhotse"
   },
@@ -172,6 +176,7 @@ const mountainData = [
     status: "Closed",
     elevation: "8,485 m",
     weather: "-31°C Foggy",
+    icon: "50d", // Mist Icon
     image: "mountain-image/makalu.jpg",
     link: "makalu"
   },
@@ -183,6 +188,7 @@ const mountainData = [
     status: "Open",
     elevation: "8,188 m",
     weather: "-25°C Clear",
+    icon: "01d", // Clear Icon
     image: "mountain-image/cho-oyu.jpg",
     link: "cho-oyu"
   },
@@ -194,6 +200,7 @@ const mountainData = [
     status: "Open",
     elevation: "8,167 m",
     weather: "-23°C Sunny",
+    icon: "01d", // Clear Icon
     image: "mountain-image/dhaulagiri.jpg",
     link: "dhaulagiri"
   },
@@ -205,6 +212,7 @@ const mountainData = [
     status: "Closed",
     elevation: "8,163 m",
     weather: "-26°C Snow",
+    icon: "13d", // Snow Icon
     image: "mountain-image/manaslu.jpg",
     link: "manaslu"
   },
@@ -216,6 +224,7 @@ const mountainData = [
     status: "Closed",
     elevation: "8,091 m",
     weather: "-29°C Windy",
+    icon: "02d", // Partly Cloudy Icon
     image: "mountain-image/annapurna.jpg",
     link: "annapurna"
   }
@@ -233,13 +242,14 @@ async function fetchWeather(lat, lon) {
       return {
         temperature: `${Math.round(data.main.temp)}°C`,
         weather: data.weather[0].main || 'N/A',
+        icon: data.weather[0].icon // Get weather icon code
       };
     } else {
-      return { temperature: 'N/A', weather: 'N/A' };
+      return { temperature: 'N/A', weather: 'N/A', icon: '' };
     }
   } catch (error) {
     console.error('Error fetching weather:', error);
-    return { temperature: 'N/A', weather: 'N/A' };
+    return { temperature: 'N/A', weather: 'N/A', icon: '' };
   }
 }
 
@@ -265,7 +275,8 @@ async function renderMountains() {
           ${m.city}<br />
           <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
           Elevation: ${m.elevation}<br />
-          Weather: ${weather.weather} - ${weather.temperature}
+          Weather: ${weather.weather} - ${weather.temperature} <br />
+          <img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" />
         </div>
       </div>
     `;

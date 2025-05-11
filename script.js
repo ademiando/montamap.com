@@ -135,6 +135,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const mountainData = [
   {
+    name: "Everest",
+    region: "Nepal / Tibet",
+    status: "Open",
+    elevation: "8,848 m",
+    weather: "-35°C sunny🌤",
+    image: "mountain-image/everest.jpg",
+    link: "everest"
+  },
+  {
+    name: "K2",
+    region: "Pakistan / China",
+    status: "Closed",
+    elevation: "8,611 m",
+    weather: "-40°C Snow❄️",
+    image: "mountain-image/k2.jpg",
+    link: "k2"
+  },
+  {
+    name: "Kangchenjunga",
+    region: "Nepal / India",
+    status: "Open",
+    elevation: "8,586 m",
+    weather: "-30°C Cloudy🌥",
+    image: "mountain-image/kangchenjunga.jpg",
+    link: "kangchenjunga"
+  },
+  {
+    name: "Lhotse",
+    region: "Nepal / Tibet",
+    status: "Open",
+    elevation: "8,516 m",
+    weather: "-28°C Sunny☀️",
+    image: "mountain-image/lhotse.jpg",
+    link: "lhotse"
+  },
+  {
     name: "Rinjani",
     region: "Lombok, Indonesia",
     status: "Open",
@@ -196,42 +232,6 @@ const mountainData = [
     weather: "9°C Windy🌥",
     image: "mountain-image/slamet.jpg",
     link: "slamet"
-  },
-  {
-    name: "Everest",
-    region: "Nepal / Tibet",
-    status: "Open",
-    elevation: "8,848 m",
-    weather: "-35°C sunny🌤",
-    image: "mountain-image/everest.jpg",
-    link: "everest"
-  },
-  {
-    name: "K2",
-    region: "Pakistan / China",
-    status: "Closed",
-    elevation: "8,611 m",
-    weather: "-40°C Snow❄️",
-    image: "mountain-image/k2.jpg",
-    link: "k2"
-  },
-  {
-    name: "Kangchenjunga",
-    region: "Nepal / India",
-    status: "Open",
-    elevation: "8,586 m",
-    weather: "-30°C Cloudy🌥",
-    image: "mountain-image/kangchenjunga.jpg",
-    link: "kangchenjunga"
-  },
-  {
-    name: "Lhotse",
-    region: "Nepal / Tibet",
-    status: "Open",
-    elevation: "8,516 m",
-    weather: "-28°C Sunny☀️",
-    image: "mountain-image/lhotse.jpg",
-    link: "lhotse"
   },
   {
     name: "Sindoro",

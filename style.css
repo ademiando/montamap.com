@@ -444,28 +444,12 @@ body.dark {
 }
 
 
-
-/*Footer Reset dan full height */
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-/* Struktur utama body */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Konten utama (isi halaman) */
-main {
-  flex: 1;
-}
-
-/* Footer tetap di bawah dan full width */
+/* Footer Styling */
 footer {
-  width: 100%;
+  width: 100vw; /* pastikan selebar viewport */
+  position: relative; /* atau bisa pakai fixed/absolute jika ingin selalu di bawah */
+  left: 0;
+  bottom: 0;
   text-align: center;
   padding: 15px;
   background-color: #333;
@@ -477,6 +461,7 @@ footer p {
   margin: 5px 0;
   font-size: 8px;
 }
+
 
 
 

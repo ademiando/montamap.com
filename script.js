@@ -135,11 +135,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const mountainData = [
   {
+    name: "Rinjani",
+    region: "Lombok, Indonesia",
+    status: "Open",
+    elevation: "3,726 meters",
+    weather: "8°C Cloudy 🌥",
+    image: "mountain-image/rinjani.jpg",
+    link: "rinjani"
+  },
+  {
+    name: "Carstensz Pyramid",
+    region: "Papua, Indonesia",
+    status: "Open",
+    elevation: "4,884 meters",
+    weather: "-2°C Rainy 🌨",
+    image: "mountain-image/carstensz.jpg",
+    link: "carstensz"
+  },
+  {
+    name: "Raung",
+    region: "East Java, Indonesia",
+    status: "Open",
+    elevation: "3,344 meters",
+    weather: "10°C Windy 🌥",
+    image: "mountain-image/raung.jpg",
+    link: "raung"
+  },
+  {
+    name: "Agung",
+    region: "Bali, Indonesia",
+    status: "Closed",
+    elevation: "3,031 meters",
+    weather: "12°C Sunny ☀️",
+    image: "mountain-image/agung.jpg",
+    link: "agung"
+  },
+  {
+    name: "Batur",
+    region: "Bali, Indonesia",
+    status: "Open",
+    elevation: "1,717 meters",
+    weather: "14°C Partly Cloudy ⛅️",
+    image: "mountain-image/batur.jpg",
+    link: "batur"
+  },
+  {
+    name: "Semeru",
+    region: "East Java, Indonesia",
+    status: "Open",
+    elevation: "3,676 meters",
+    weather: "7°C Sunny ☀️",
+    image: "mountain-image/semeru.jpg",
+    link: "semeru"
+  },
+  {
+    name: "Slamet",
+    region: "Central Java, Indonesia",
+    status: "Open",
+    elevation: "3,428 meters",
+    weather: "9°C Windy🌥",
+    image: "mountain-image/slamet.jpg",
+    link: "slamet"
+  },
+  {
     name: "Everest",
     region: "Nepal / Tibet",
-    status: "Closed",
+    status: "Open",
     elevation: "8,848 m",
-    weather: "-35°C Windy",
+    weather: "-35°C sunny🌤",
     image: "mountain-image/everest.jpg",
     link: "everest"
   },
@@ -148,16 +211,16 @@ const mountainData = [
     region: "Pakistan / China",
     status: "Closed",
     elevation: "8,611 m",
-    weather: "-40°C Snow",
+    weather: "-40°C Snow❄️",
     image: "mountain-image/k2.jpg",
     link: "k2"
   },
   {
     name: "Kangchenjunga",
     region: "Nepal / India",
-    status: "Closed",
+    status: "Open",
     elevation: "8,586 m",
-    weather: "-30°C Cloudy",
+    weather: "-30°C Cloudy🌥",
     image: "mountain-image/kangchenjunga.jpg",
     link: "kangchenjunga"
   },
@@ -166,68 +229,41 @@ const mountainData = [
     region: "Nepal / Tibet",
     status: "Open",
     elevation: "8,516 m",
-    weather: "-28°C Sunny",
+    weather: "-28°C Sunny☀️",
     image: "mountain-image/lhotse.jpg",
     link: "lhotse"
   },
   {
-    name: "Makalu",
-    region: "Nepal / Tibet",
-    status: "Closed",
-    elevation: "8,485 m",
-    weather: "-31°C Foggy",
-    image: "mountain-image/makalu.jpg",
-    link: "makalu"
-  },
-  {
-    name: "Cho Oyu",
-    region: "Nepal / Tibet",
+    name: "Sindoro",
+    region: "Central Java, Indonesia",
     status: "Open",
-    elevation: "8,188 m",
-    weather: "-25°C Clear",
-    image: "mountain-image/cho-oyu.jpg",
-    link: "cho-oyu"
+    elevation: "3,153 meters",
+    weather: "11°C Clear 🌤",
+    image: "mountain-image/sindoro.jpg",
+    link: "sindoro"
   },
   {
-    name: "Dhaulagiri I",
-    region: "Nepal",
+    name: "Sumbing",
+    region: "Central Java, Indonesia",
     status: "Open",
-    elevation: "8,167 m",
-    weather: "-23°C Sunny",
-    image: "mountain-image/dhaulagiri.jpg",
-    link: "dhaulagiri"
+    elevation: "3,371 meters",
+    weather: "10°C Partly Cloudy ⛅️",
+    image: "mountain-image/sumbing.jpg",
+    link: "sumbing"
   },
   {
-    name: "Manaslu",
-    region: "Nepal",
-    status: "Closed",
-    elevation: "8,163 m",
-    weather: "-26°C Snow",
-    image: "mountain-image/manaslu.jpg",
-    link: "manaslu"
-  },
-  {
-    name: "Nanga Parbat",
-    region: "Pakistan",
+    name: "Kerinci",
+    region: "Sumatra, Indonesia",
     status: "Open",
-    elevation: "8,126 m",
-    weather: "-22°C Cloudy",
-    image: "mountain-image/nanga-parbat.jpg",
-    link: "nanga-parbat"
-  },
-  {
-    name: "Annapurna I",
-    region: "Nepal",
-    status: "Closed",
-    elevation: "8,091 m",
-    weather: "-29°C Windy",
-    image: "mountain-image/annapurna.jpg",
-    link: "annapurna"
-  }
+    elevation: "3,805 meters",
+    weather: "6°C Cloudy 🌥",
+    image: "mountain-image/kerinci.jpg",
+    link: "kerinci"
+  }  
 ];
 
 let loaded = 0;
-const batch = 4;
+const batch = 5;
 
 function renderMountains() {
   const container = document.getElementById("mountainContainer");

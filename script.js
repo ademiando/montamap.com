@@ -275,8 +275,17 @@ async function renderMountains() {
           ${m.city}<br />
           <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
           Elevation: ${m.elevation}<br />
-          Weather: ${weather.weather} - ${weather.temperature} <br />
-          <img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" />
+
+
+
+         
+
+          <img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" /> ${weather.temperature} <br />
+${weather.weather} <br />
+
+
+
+
         </div>
       </div>
     `;

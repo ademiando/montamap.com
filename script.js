@@ -1,7 +1,4 @@
-// API Key untuk OpenWeatherMap
-const apiKey = '3187c49861f858e524980ea8dd0d43c6';
-
-// Elemen DOM
+// Elements
 const menuToggle = document.getElementById('hamburger');
 const dropdownMenu = document.getElementById('menu');
 const loginButton = document.getElementById('loginButton');
@@ -11,8 +8,6 @@ const lightBtn = document.getElementById('lightBtn');
 const darkBtn = document.getElementById('darkBtn');
 const title = document.getElementById('title');
 const description = document.getElementById('description');
-const mountainContainer = document.getElementById("mountainContainer");
-const loadMoreBtn = document.getElementById("loadMoreBtn");
 
 // Toggle Dropdown Menu
 if (menuToggle && dropdownMenu) {
@@ -40,7 +35,7 @@ if (loginButton && loginDropdown) {
   });
 }
 
-// Terjemahan Bahasa
+// Language Translations
 const translations = {
   en: {
     title: "Welcome to Xcapeak",
@@ -64,7 +59,7 @@ const translations = {
   }
 };
 
-// Update Konten Bahasa
+// Update Language Content
 if (languageSelect && title && description) {
   languageSelect.addEventListener('change', () => {
     const selectedLanguage = languageSelect.value;
@@ -73,7 +68,7 @@ if (languageSelect && title && description) {
   });
 }
 
-// Fungsi untuk Mengubah ke Tema Terang
+// Function to Switch to Light Theme
 if (lightBtn) {
   lightBtn.addEventListener('click', () => {
     document.body.classList.remove('dark');
@@ -82,7 +77,7 @@ if (lightBtn) {
   });
 }
 
-// Fungsi untuk Mengubah ke Tema Gelap
+// Function to Switch to Dark Theme
 if (darkBtn) {
   darkBtn.addEventListener('click', () => {
     document.body.classList.add('dark');
@@ -91,7 +86,7 @@ if (darkBtn) {
   });
 }
 
-// Navigasi Tab
+// Tab Navigation
 function openTab(event, tabName) {
   const tabContents = document.querySelectorAll('.tab-content');
   tabContents.forEach((content) => {
@@ -115,7 +110,7 @@ function openTab(event, tabName) {
   }
 }
 
-// Aktivasi Tab Default
+// Default Tab Activation
 document.addEventListener('DOMContentLoaded', () => {
   const defaultTab = document.querySelector('.tab.active');
   if (defaultTab) {
@@ -123,130 +118,141 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Data Gunung
+// Mountain Data (Updated with nearest city)
 const mountainData = [
   {
     name: "Everest",
-    region: "Nepal / Tibet",
+    city: "Namche Bazaar, Nepal",
+    lat: 27.9881,
+    lon: 86.9250,
     status: "Closed",
     elevation: "8,848 m",
+    weather: "-35°C Windy",
     image: "mountain-image/everest.jpg",
     link: "everest"
   },
   {
     name: "K2",
-    region: "Pakistan / China",
+    city: "Skardu, Pakistan",
+    lat: 35.3,
+    lon: 75.6,
     status: "Closed",
     elevation: "8,611 m",
+    weather: "-40°C Snow",
     image: "mountain-image/k2.jpg",
     link: "k2"
   },
   {
     name: "Kangchenjunga",
-    region: "Nepal / India",
+    city: "Taplejung, Nepal",
+    lat: 27.7000,
+    lon: 88.2000,
     status: "Closed",
     elevation: "8,586 m",
+    weather: "-30°C Cloudy",
     image: "mountain-image/kangchenjunga.jpg",
     link: "kangchenjunga"
   },
   {
     name: "Lhotse",
-    region: "Nepal / Tibet",
+    city: "Namche Bazaar, Nepal",
+    lat: 27.9617,
+    lon: 86.9333,
     status: "Open",
     elevation: "8,516 m",
+    weather: "-28°C Sunny",
     image: "mountain-image/lhotse.jpg",
     link: "lhotse"
   },
   {
     name: "Makalu",
-    region: "Nepal / Tibet",
+    city: "Sankhuwasabha, Nepal",
+    lat: 27.8881,
+    lon: 87.0773,
     status: "Closed",
     elevation: "8,485 m",
+    weather: "-31°C Foggy",
     image: "mountain-image/makalu.jpg",
     link: "makalu"
   },
   {
     name: "Cho Oyu",
-    region: "Nepal / Tibet",
+    city: "Tingri, Tibet",
+    lat: 28.0944,
+    lon: 86.6600,
     status: "Open",
     elevation: "8,188 m",
+    weather: "-25°C Clear",
     image: "mountain-image/cho-oyu.jpg",
     link: "cho-oyu"
   },
   {
     name: "Dhaulagiri I",
-    region: "Nepal",
+    city: "Pokhara, Nepal",
+    lat: 28.6961,
+    lon: 83.4875,
     status: "Open",
     elevation: "8,167 m",
+    weather: "-23°C Sunny",
     image: "mountain-image/dhaulagiri.jpg",
     link: "dhaulagiri"
   },
   {
     name: "Manaslu",
-    region: "Nepal",
+    city: "Gorkha, Nepal",
+    lat: 28.5494,
+    lon: 84.5611,
     status: "Closed",
     elevation: "8,163 m",
+    weather: "-26°C Snow",
     image: "mountain-image/manaslu.jpg",
     link: "manaslu"
   },
   {
-    name: "Nanga Parbat",
-    region: "Pakistan",
-    status: "Open",
-    elevation: "8,126 m",
-    image: "mountain-image/nanga-parbat.jpg",
-    link: "nanga-parbat"
-  },
-  {
     name: "Annapurna I",
-    region: "Nepal",
+    city: "Pokhara, Nepal",
+    lat: 28.5950,
+    lon: 83.8203,
     status: "Closed",
     elevation: "8,091 m",
+    weather: "-29°C Windy",
     image: "mountain-image/annapurna.jpg",
     link: "annapurna"
   }
 ];
 
-let loaded = 0;
-const batch = 4;
+// Fetch weather data from OpenWeather API
+const apiKey = '3187c49861f858e524980ea8dd0d43c6';
 
-// Fungsi untuk Mengambil Data Cuaca
-async function fetchWeather(city) {
+async function fetchWeather(lat, lon) {
   try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
-    );
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
     const data = await response.json();
-    if (data.cod === 200) {
+    
+    if (data.main) {
       return {
-        temp: data.main.temp,
-        description: data.weather[0].description,
-        icon: data.weather[0].icon
+        temperature: `${Math.round(data.main.temp)}°C`,
+        weather: data.weather[0].main || 'N/A',
       };
     } else {
-      return {
-        temp: 'N/A',
-        description: 'Data tidak tersedia',
-        icon: null
-      };
+      return { temperature: 'N/A', weather: 'N/A' };
     }
   } catch (error) {
-    console.error('Error fetching weather data:', error);
-    return {
-      temp: 'N/A',
-      description: 'Data tidak tersedia',
-      icon: null
-    };
+    console.error('Error fetching weather:', error);
+    return { temperature: 'N/A', weather: 'N/A' };
   }
 }
 
-// Fungsi untuk Merender Kartu Gunung
+let loaded = 0;
+const batch = 4;
+
 async function renderMountains() {
+  const container = document.getElementById("mountainContainer");
   const slice = mountainData.slice(loaded, loaded + batch);
 
-  for (const m of slice) {
-    const weather = await fetchWeather(m.name);
-
+  for (let m of slice) {
+    const weather = await fetchWeather(m.lat, m.lon);
+    
     const card = document.createElement("div");
     card.className = "mountain-card";
     card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
@@ -256,26 +262,24 @@ async function renderMountains() {
       <div class="mountain-info">
         <div class="mountain-name">${m.name}</div>
         <div class="mountain-details">
-          ${m.region}<br />
+          ${m.city}<br />
           <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
           Elevation: ${m.elevation}<br />
-          Weather: ${weather.temp}°C, ${weather.description}
+          Weather: ${weather.weather} - ${weather.temperature}
         </div>
-        ${weather.icon ? `<img src="https://openweathermap.org/img/wn/${weather.icon}@2x.png" alt="${weather.description}" class="weather-icon" />` : ''}
       </div>
     `;
-    mountainContainer.appendChild(card);
+    container.appendChild(card);
   }
 
   loaded += batch;
 
   if (loaded >= mountainData.length) {
-    loadMoreBtn.style.display = "none";
+    document.getElementById("loadMoreBtn").style.display = "none";
   }
 }
 
-// Event Listener untuk Tombol "Load More"
-loadMoreBtn.addEventListener("click", renderMountains);
+document.getElementById("loadMoreBtn").addEventListener("click", renderMountains);
 
-// Load Awal
+// Initial load
 renderMountains();

@@ -449,13 +449,13 @@ footer {
   text-align: center;
   padding: 20px 10px;
   background-color: #111;
-  color: #fff;
+  color: none;
   font-size: 10px;
   box-sizing: border-box;
 }
 
 .footer-content a {
-  color: #f0f0f0;
+  color: none;
   text-decoration: none;
   margin: 0 5px;
   display: inline-flex;

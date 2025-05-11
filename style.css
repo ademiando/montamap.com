@@ -416,6 +416,17 @@ body.dark {
   color: #ff7f7f;
 }
 
+
+
+
+.weather-icon {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+
+
 #loadMoreBtn {
   margin-top: 24px;
   padding: 12px 20px;

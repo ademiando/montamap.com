@@ -1,28 +1,22 @@
 // Elements
-const menuToggle = document.getElementById('hamburger'); // Perbaikan ID
+const menuToggle = document.getElementById('hamburger');
 const dropdownMenu = document.getElementById('menu');
 const loginButton = document.getElementById('loginButton');
 const loginDropdown = document.getElementById('loginDropdown');
 const languageSelect = document.getElementById('language');
-const lightBtn = 
-document.getElementById('lightBtn');
-const darkBtn = 
-document.getElementById('darkBtn');
+const lightBtn = document.getElementById('lightBtn');
+const darkBtn = document.getElementById('darkBtn');
 const title = document.getElementById('title');
 const description = document.getElementById('description');
-
-
 
 // Toggle Dropdown Menu
 if (menuToggle && dropdownMenu) {
   menuToggle.addEventListener('click', () => {
-    dropdownMenu.classList.toggle('menu-visible'); // Menggunakan class CSS
+    dropdownMenu.classList.toggle('menu-visible');
   });
-
-  // Close Hamburger Menu when clicking outside
   document.addEventListener('click', (event) => {
     if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
-      dropdownMenu.classList.remove('menu-visible'); // Menggunakan class CSS
+      dropdownMenu.classList.remove('menu-visible');
     }
   });
 }
@@ -32,8 +26,6 @@ if (loginButton && loginDropdown) {
   loginButton.addEventListener('click', () => {
     loginDropdown.style.display = loginDropdown.style.display === 'block' ? 'none' : 'block';
   });
-
-  // Close Login Dropdown when clicking outside
   document.addEventListener('click', (event) => {
     if (!loginButton.contains(event.target) && !loginDropdown.contains(event.target)) {
       loginDropdown.style.display = 'none';
@@ -65,7 +57,6 @@ const translations = {
   }
 };
 
-// Update Language Content
 if (languageSelect && title && description) {
   languageSelect.addEventListener('change', () => {
     const selectedLanguage = languageSelect.value;
@@ -74,53 +65,43 @@ if (languageSelect && title && description) {
   });
 }
 
-// Function to Switch to Light Theme
+// Theme Toggle
 if (lightBtn) {
   lightBtn.addEventListener('click', () => {
-    document.body.classList.remove('dark'); // Hapus tema gelap
-    lightBtn.classList.add('active'); // Tandai tombol Light sebagai aktif
-    darkBtn.classList.remove('active'); // Nonaktifkan tombol Dark
+    document.body.classList.remove('dark');
+    lightBtn.classList.add('active');
+    darkBtn.classList.remove('active');
   });
 }
-
-// Function to Switch to Dark Theme
 if (darkBtn) {
   darkBtn.addEventListener('click', () => {
-    document.body.classList.add('dark'); // Tambahkan tema gelap
-    darkBtn.classList.add('active'); // Tandai tombol Dark sebagai aktif
-    lightBtn.classList.remove('active'); // Nonaktifkan tombol Light
+    document.body.classList.add('dark');
+    darkBtn.classList.add('active');
+    lightBtn.classList.remove('active');
   });
 }
 
 // Tab Navigation
 function openTab(event, tabName) {
-  // Sembunyikan semua konten tab
   const tabContents = document.querySelectorAll('.tab-content');
   tabContents.forEach((content) => {
     content.style.display = 'none';
     content.classList.remove('active');
   });
-
-  // Nonaktifkan semua tab
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach((tab) => {
     tab.classList.remove('active');
   });
-
-  // Tampilkan konten tab yang dipilih
   const selectedTabContent = document.getElementById(tabName);
   if (selectedTabContent) {
     selectedTabContent.style.display = 'block';
     selectedTabContent.classList.add('active');
   }
-
-  // Tandai tab yang aktif
   if (event.currentTarget) {
     event.currentTarget.classList.add('active');
   }
 }
 
-// Default Tab Activation
 document.addEventListener('DOMContentLoaded', () => {
   const defaultTab = document.querySelector('.tab.active');
   if (defaultTab) {
@@ -128,11 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-
-
-
-
+// Mountain Data
 const mountainData = [
   {
     name: "Everest",
@@ -177,7 +154,7 @@ const mountainData = [
     elevation: "3,726 meters",
     weather: "8°C Cloudy 🌥",
     image: "mountain-image/rinjani.jpg",
-    link: "rinjani"
+    link: "rinjani",
     lat: -8.4115,
     lon: 116.4572
   },
@@ -261,7 +238,7 @@ const mountainData = [
     weather: "6°C Cloudy 🌥",
     image: "mountain-image/kerinci.jpg",
     link: "kerinci"
-  }  
+  }
 ];
 
 let loaded = 0;
@@ -279,84 +256,28 @@ function renderMountains() {
       <img src="${m.image}" alt="${m.name}" class="mountain-image" />
       <div class="gradient-overlay"></div>
       <div class="mountain-info">
-        <div class="mountain-name">${m.name}</div>
-        <div class="mountain-details">
-          ${m.region}<br />
-          <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
-          Elevation: ${m.elevation}<br />
-          Weather: ${m.weather}
-        </div>
+        <h3>${m.name}</h3>
+        <p>${m.region}</p>
+        <p><strong>${m.status}</strong> | ${m.elevation} | ${m.weather}</p>
       </div>
     `;
     container.appendChild(card);
   });
 
   loaded += batch;
-
   if (loaded >= mountainData.length) {
-    document.getElementById("loadMoreBtn").style.display = "none";
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+    if (loadMoreBtn) {
+      loadMoreBtn.style.display = "none";
+    }
   }
 }
 
-document.getElementById("loadMoreBtn").addEventListener("click", renderMountains);
-
-// Initial load
-renderMountains();
-
-
-
-
-
-
-async function fetchWeather(lat, lon) {
-  const apiKey = '3187c49861f858e524980ea8dd0d43c6';
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Gagal mengambil data cuaca');
-    const data = await response.json();
-    return {
-      temperature: Math.round(data.main.temp),
-      description: data.weather[0].description,
-      icon: data.weather[0].icon
-    };
-  } catch (error) {
-    console.error('Error:', error);
-    return null;
+// Event for Load More button
+document.addEventListener('DOMContentLoaded', () => {
+  renderMountains();
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener("click", renderMountains);
   }
-}
-
-
-
-async function renderMountains() {
-  const container = document.getElementById("mountainContainer");
-  const slice = mountainData.slice(loaded, loaded + batch);
-
-  for (const m of slice) {
-    const weather = await fetchWeather(m.lat, m.lon);
-    const card = document.createElement("div");
-    card.className = "mountain-card";
-    card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
-    card.innerHTML = `
-      <img src="${m.image}" alt="${m.name}" class="mountain-image" />
-      <div class="gradient-overlay"></div>
-      <div class="mountain-info">
-        <div class="mountain-name">${m.name}</div>
-        <div class="mountain-details">
-          ${m.region}<br />
-          <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
-          Elevation: ${m.elevation}<br />
-          Weather: ${weather ? `${weather.temperature}°C, ${weather.description} <img src="https://openweathermap.org/img/wn/${weather.icon}@2x.png" alt="${weather.description}" class="weather-icon" />` : 'Data tidak tersedia'}
-        </div>
-      </div>
-    `;
-    container.appendChild(card);
-  }
-
-  loaded += batch;
-
-  if (loaded >= mountainData.length) {
-    document.getElementById("loadMoreBtn").style.display = "none";
-  }
-}
+});

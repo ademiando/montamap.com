@@ -1,82 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Montamap – FAQ</title>
-  <link rel="stylesheet" href="montamap-faq.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Montamap FAQ</title>
+  <style>
+    :root {
+      --primary: #064e3b;
+      --secondary: #10b981;
+      --text-dark: #111827;
+      --text-light: #f9fafb;
+      --bg-light: #f0fdf4;
+    }body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.faq {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.faq-question {
+  background-color: var(--secondary);
+  color: white;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  background-color: #fff;
+  padding: 0 1rem;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding: 1rem;
+}
+
+footer {
+  background-color: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--secondary);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.social {
+  margin-top: 0.5rem;
+}
+
+.social a {
+  color: white;
+  margin: 0 0.5rem;
+}
+
+  </style>
 </head>
 <body>
-  <section class="faq-section">
+  <header>
     <h1>Frequently Asked Questions</h1>
-
-    <div class="faq">
+  </header>  <div class="faq">
+    <div class="faq-item">
       <div class="faq-question">What is Montamap?</div>
-      <div class="faq-answer">Montamap is an outdoor adventure platform connecting explorers with curated hiking routes, local guides, and emergency support tools.</div>
+      <div class="faq-answer">Montamap is a digital platform for nature explorers, offering interactive maps, hiking guides, real-time SOS support, and adventure communities across Indonesia.</div>
     </div>
-
-    <div class="faq">
-      <div class="faq-question">Is Montamap free to use?</div>
-      <div class="faq-answer">Yes, Montamap offers free access to basic features. Premium packages are available for additional tools, offline maps, and advanced safety features.</div>
+    <div class="faq-item">
+      <div class="faq-question">Is Montamap free?</div>
+      <div class="faq-answer">Yes! You can access basic features for free. Premium features like offline maps or pro route planning may be available through a subscription.</div>
     </div>
-
-    <div class="faq">
-      <div class="faq-question">Do I need to share my location?</div>
-      <div class="faq-answer">Only when you activate GPS-based features like SOS or trail navigation. You can always control this in your app settings.</div>
+    <div class="faq-item">
+      <div class="faq-question">How do I contact a local guide?</div>
+      <div class="faq-answer">You can contact guides directly through our platform once you choose a trail or package. Verified guides will have contact buttons and ratings displayed.</div>
     </div>
-
-    <div class="faq">
-      <div class="faq-question">Can I book local guides through Montamap?</div>
-      <div class="faq-answer">Yes! You can explore, compare, and book verified local guides directly through our platform.</div>
+    <div class="faq-item">
+      <div class="faq-question">Is my location data secure?</div>
+      <div class="faq-answer">Absolutely. We only access your GPS data with your permission and encrypt all communications using secure protocols.</div>
     </div>
-
-    <div class="faq">
-      <div class="faq-question">How secure is my data?</div>
-      <div class="faq-answer">We use encrypted communication and secure infrastructure. Your personal data is never sold, and we comply with global privacy standards.</div>
+  </div>  <footer>
+    <div>
+      <a href="/about">About Us</a> |
+      <a href="/contact">Contact</a> |
+      <a href="https://montamap.com/privacy">Privacy Policy</a> |
+      <a href="https://montamap.com/terms">Terms of Service</a> |
+      <a href="/faq">FAQ</a> |
+      <a href="/careers">Careers</a> |
+      <a href="/blog">Blog</a> |
+      <a href="/download">Download App</a>
     </div>
-
-    <div class="faq">
-      <div class="faq-question">What devices support Montamap?</div>
-      <div class="faq-answer">Montamap works on most modern browsers and is available on both Android and iOS.</div>
+    <div class="social">
+      <a href="https://instagram.com/montamap" target="_blank">Instagram</a> |
+      <a href="https://x.com/montamap" target="_blank">X</a> |
+      <a href="mailto:hello@montamap.com">Email</a>
     </div>
-  </section>
-
-
-
-
-<footer class="montamap-footer">
-  <div class="footer-links">
-    <a href="https://montamap.com/about" target="_blank">About Us</a> |
-    <a href="https://montamap.com/contact" target="_blank">Contact</a> |
-    <a href="https://montamap.com/privacy" target="_blank">Privacy Policy</a> |
-    <a href="https://montamap.com/terms" target="_blank">Terms of Service</a> |
-    <a href="https://montamap.com/faq" target="_blank">FAQ</a> |
-    <a href="https://montamap.com/careers" target="_blank">Careers</a> |
-    <a href="https://montamap.com/blog" target="_blank">Blog</a> |
-    <a href="https://montamap.com/app" target="_blank">Download App</a>
-  </div>
-
-  <div class="footer-social">
-    <a href="https://instagram.com/montamap" target="_blank">Instagram</a> |
-    <a href="https://x.com/montamap" target="_blank">X</a> |
-    <a href="mailto:hello@montamap.com">Email</a>
-  </div>
-
-  <p>© 2025 Montamap. All rights reserved.</p>
-</footer>
-
-
-
-
-
-
-  <script>
-    document.querySelectorAll('.faq-question').forEach((question) => {
-      question.addEventListener('click', () => {
-        question.classList.toggle('active');
-        const answer = question.nextElementSibling;
-        answer.style.maxHeight = answer.style.maxHeight ? null : answer.scrollHeight + 'px';
+    <div style="margin-top: 0.5rem;">
+      &copy; 2025 Montamap. All rights reserved.
+    </div>
+  </footer>  <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        item.classList.toggle('active');
       });
     });
-  </script>
-</body>
+  </script></body>
 </html>

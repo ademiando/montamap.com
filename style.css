@@ -402,6 +402,25 @@ body.dark {
   background-color: #bcd5c4
 }
 
+.pre-footer-links {
+  font-size: 8px;
+  text-align: center;
+  margin: 40px 0;
+  color: #89ae95;
+}
+
+.pre-footer-links a {
+  color: #89ae95;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 6px;
+}
+
+.pre-footer-links a:hover {
+  text-decoration: underline;
+}
+
 
 footer {
   width: 100%;

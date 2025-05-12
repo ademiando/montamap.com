@@ -393,13 +393,13 @@ body.dark {
   border-radius: 10px;
   border: none;
   background-color: #89ae95;
-  color: white;
+  color: #333;
   cursor: pointer;
   transition: 0.3s;
 }
 
 #loadMoreBtn:hover {
-  background-color: #bcd5c4
+  background-color: #bcd5c4;
 }
 
 footer {
@@ -409,7 +409,7 @@ footer {
   font-size: 0.75rem;
   border-top: 1px solid #c8d6cc;
   background-color: #f7fdf9;
-  color: #89ae95;
+  color: #333;
   box-sizing: border-box;
 }
 

@@ -429,6 +429,7 @@ footer {
 
 .pre-footer-links a:hover {
   text-decoration: underline;
+  margin-top: 10px;
 }
 
 .footer-content a {

@@ -78,6 +78,7 @@ footer {
 
 .pre-footer-links a:hover {
   text-decoration: underline;
+  margin-top: 10px;
 }
 
 .footer-content a {
@@ -93,6 +94,7 @@ footer {
   color: #6f947c;
   text-decoration: underline;
 }
+
 
 
 /* Responsive */

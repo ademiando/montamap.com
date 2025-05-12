@@ -24,7 +24,7 @@ header {
   font-size: 2rem;
   font-weight: bold;
   text-decoration: none;
-  color: #e3ddcd; /* Warna teks */
+  color: #333;
   display: flex;
   align-items: center;
   gap: 12px;

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticky Footer Layout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+
+ <!-- Tambahkan logo -->
+    <a href="/" class="logo">
+      <img src="logo.jpg" alt="Logo" class="left-logo"> <!-- Pastikan path sesuai lokasi file -->
+      Montamap
+    </a>
+
+        <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search..." id="searchInput">
+    </div>
+
+<!-- ini menu hamburger -->
+    <div class="menu-container" id="menuContainer">
+      <button id="hamburger">&#9776;</button>
+
+  <div id="menu" class="menu">
+    <!-- Menu Button -->
+    <button class="menu-button">Login</button>
+
+    <!-- Language Selector -->
+    <select id="language">
+      <option value="en">English (US)</option>
+      <option value="id">Bahasa (Indonesia)</option>
+      <option value="zh">中文 (Chinese)</option>
+      <option value="hi">हिन्दी (Hindi)</option>
+      <option value="ru">Русский (Russian)</option>
+    </select>
+
+    <!-- Currency Selector -->
+    <select id="currency">
+      <option value="usd">USD ($)</option>
+      <option value="btc">BTC (₿)</option>
+      <option value="idr">IDR (Rp)</option>
+      <option value="rub">RUB (₽)</option>
+      <option value="cny">CNY (¥)</option>
+      <option value="inr">INR (₹)</option>
+      <option value="npr">NPR (रू)</option>
+      <option value="aud">AUD (A$)</option>
+      <option value="global">others</option>
+    </select>
+
+    <!-- Theme Switch -->
+    <div class="theme-switch">
+      <div class="theme-btn active" id="lightBtn">Light</div>
+      <div class="theme-btn" id="darkBtn">Dark</div>
+    </div>
+  </div>
+</header>
+
+<!-- Banner Ads -->
+<div class="banner-ads">
+  <p>Display Ads: hello@montamap.com</p>
+</div>
+
+<!-- Tagline Section -->
+<div class="tagline-section">
+  <h1 class="tagline">Your Gateway to Global Mountain Trails</h1>
+  <p class="sub-tagline">
+    Discover, Connect, Conquer Hiking Trails Worldwide –  Powered by Smart Maps, Live Weather Alert, One-Touch SOS, and Real-Time Support.
+  </p>
+</div>
+  
+  
+  <title>About Montamap</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 2rem;
+      background: #fdfdfd;
+      color: #222;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h2 {
+      color: #005a5a;
+    }
+    ul, ol {
+      padding-left: 1.5rem;
+    }
+    .cta {
+      background: #e0f7f7;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    .cta h2 {
+      color: #008080;
+    }
+    .cta ul {
+      list-style: square;
+    }
+    .cta a {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #008080;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .cta a:hover {
+      background: #006666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>About Montamap</h2>
+    <p>Montamap is a smart adventure ecosystem for today’s explorers.</p>
+    <p>We connect hikers, adventurers, local guides, and eco-conscious travelers through a digital platform that makes every journey more meaningful.</p>
+    <p>From misty forests to snow-covered ridges, Montamap unites smart technology, authentic communities, and transformational travel.</p>
+  </section>
+
+  <!-- Vision Section -->
+  <section class="vision">
+    <h2>Vision</h2>
+    <p>To become the world’s most trusted nature exploration platform—connecting adventurers and local communities through advanced tools, ethical practices, and impactful experiences.</p>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="mission">
+    <h2>Mission</h2>
+    <ol>
+      <li>Provide seamless access to trekking experiences through an integrated platform.</li>
+      <li>Empower local economies by digitizing the services of porters, guides, and micro-tourism providers.</li>
+      <li>Educate explorers on safety, trekking ethics, and nature conservation.</li>
+      <li>Offer smart navigation, offline maps, and real-time SOS systems for maximum safety.</li>
+      <li>Build a global community that supports each other, shares knowledge, and upholds responsible exploration.</li>
+    </ol>
+  </section>
+
+  <!-- Our Values Section -->
+  <section class="core-values">
+    <h2>Our Values</h2>
+    <ul>
+      <li><strong>Meaningful Adventure:</strong> Every step should transform—not just yourself, but also the world around you.</li>
+      <li><strong>Technology for Justice:</strong> Innovation isn’t just about convenience, it’s a tool for access and equality.</li>
+      <li><strong>Trust as Our Compass:</strong> All services are verified, transparent, and designed with safety at their core.</li>
+      <li><strong>Impactful Footprints:</strong> Every journey should leave something constructive, not destructive.</li>
+      <li><strong>Community is Everything:</strong> Adventures go deeper when experienced together with mutual support.</li>
+    </ul>
+  </section>
+
+  <!-- Key Features Section -->
+  <section class="key-features">
+    <h2>Montamap’s Key Features</h2>
+    <ol>
+      <li><strong>Integrated Trekking Booking System:</strong> From Rinjani to Kilimanjaro: permits, guides, transport, and gear—all bookable in one app.</li>
+      <li><strong>Mountain & Trail Directory:</strong> Curated trails and summits with complete data: difficulty levels, best seasons, ethics guides, and hiker reviews.</li>
+      <li><strong>Porter & Guide Marketplace:</strong> View profiles, certifications, transparent pricing, and reviews to choose the best travel companions.</li>
+      <li><strong>Gear Hub & Rental Access:</strong> Gear recommendations by location and season, plus access to trusted rental services.</li>
+      <li><strong>Offline Maps & Smart Navigation:</strong> Detailed trail maps with water points, shelters, elevation—and offline navigation features.</li>
+      <li><strong>Real-Time Trail Updates & SOS Button:</strong> Weather alerts, trail conditions, and emergency features linked directly to local SAR teams.</li>
+      <li><strong>Adventurer Community & Forum:</strong> Share photos, trail discussions, create hiking groups, and swap stories by destination forums.</li>
+      <li><strong>Smart Hike Planner (AI):</strong> Trail and route recommendations based on fitness level, available time, preferences, and hiking season.</li>
+    </ol>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works">
+    <h2>How Montamap Works</h2>
+    <ol>
+      <li><strong>Explore Trails:</strong> Browse thousands of curated treks from around the world.</li>
+      <li><strong>Connect Locally:</strong> Book guides, porters, gear rentals, and transport directly.</li>
+      <li><strong>Prepare Smart:</strong> Use smart checklists, offline maps, and real-time updates.</li>
+      <li><strong>Share the Journey:</strong> Upload photos, reviews, and insights to help other explorers.</li>
+      <li><strong>Support the Community:</strong> Report broken trails, give honest ratings, and support local businesses.</li>
+    </ol>
+  </section>
+
+  <!-- Commitment Section -->
+  <section class="commitment">
+    <h2>Our Commitment</h2>
+    <p>Montamap is more than just a hiking app.</p>
+    <p>We are a movement:</p>
+    <p>A bridge between curiosity and responsibility. Between adrenaline and empathy. Between explorers and guardians of nature.</p>
+    <p>Our mission is not to conquer mountains, but to respect them.</p>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <h2>Ready to Redefine the Way You Explore?</h2>
+    <ul>
+      <li>Discover authentic treks</li>
+      <li>Empower local communities</li>
+      <li>Join the new exploration movement</li>
+    </ul>
+    <a href="https://montamap.com">Back to Montamap Home</a>
+  </section>
+
+
+
+
+  </main>
+
+<div class="pre-footer-links">
+  <a href="/about">About Us</a>
+  &nbsp;|&nbsp;
+  <a href="mailto:hello@montamap.com">Contact</a>
+  &nbsp;|&nbsp;
+  <a href="/privacy">Privacy Policy</a>
+  &nbsp;|&nbsp;
+  <a href="/terms">Terms of Service</a>
+  &nbsp;|&nbsp;
+  <a href="/faq">FAQ</a>
+  &nbsp;|&nbsp;
+  <a href="/careers">Careers</a>
+  &nbsp;|&nbsp;
+  <a href="/blog">Blog</a>
+  &nbsp;|&nbsp;
+  <a href="/download">Download App</a>
+  </a>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <p><strong>Montamap</strong></p>
+    <p>
+      <a href="https://instagram.com/montamap" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;">
+          <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1.1.5 1.6 1 .5.5.8 1 1 1.6.2.5.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.5 1.1-1 1.6-.5.5-1 .8-1.6 1-.5.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1.1-.5-1.6-1-.5-.5-.8-1-.9-1.6-.2-.5-.3-1.2-.4-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.5-1.1 1-1.6.5-.5 1-.8 1.6-1 .5-.2 1.2-.3 2.4-.4 1.3-.1 1.7-.1 4.9-.1m0-2.2c-3.3 0-3.7 0-5 .1-1.3.1-2.2.3-3 .6-.8.3-1.5.7-2.1 1.3-.6.6-1 1.3-1.3 2.1-.3.8-.5 1.7-.6 3-.1 1.3-.1 1.7-.1 5s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.3 2.1.6.6 1.3 1 2.1 1.3.8.3 1.7.5 3 .6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.1-1.3.6-.6 1-1.3 1.3-2.1.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.3-2.1-.6-.6-1.3-1-2.1-1.3-.8-.3-1.7-.5-3-.6-1.3-.1-1.7-.1-5-.1z"/>
+          <path d="M12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/>
+        </svg>
+        Instagram
+      </a>
+&nbsp;|&nbsp;
+<a href="https://x.com/montamap" target="_blank" rel="noopener noreferrer">
+  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 1200 1227" style="vertical-align: middle;">
+    <path d="M714.07 558.06L1154.18 0h-263.8L611.83 395.89 326.61 0H0l470.69 679.52L45.82 1227h263.8l299.29-402.27L873.39 1227H1200L714.07 558.06zM349.93 138.13l543.17 766.9h-109.2L240.72 138.13h109.21z"/>
+  </svg>
+  X
+</a>
+     &nbsp;|&nbsp;
+      <a href="mailto:hello@montamap.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 24 24" style="vertical-align: middle;">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        Email
+      </a>
+    </p>
+    <p>© 2025 Montamap. All rights reserved.</p>
+  </div>
+</footer>
+
+
+  <script src="script.js"></script>
+
+  
+</body>
+      </html>

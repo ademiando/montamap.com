@@ -1,75 +1,83 @@
 body {
   font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f8f6;
+  color: #1e2e24;
   margin: 0;
   padding: 0;
-  background: #f8f9fa;
-  color: #333;
 }
 
 .faq-section {
-  max-width: 900px;
-  margin: 50px auto;
+  max-width: 800px;
+  margin: 60px auto;
   padding: 20px;
 }
 
 .faq-section h1 {
   text-align: center;
-  font-size: 2.5rem;
+  color: #3a5a40;
   margin-bottom: 40px;
-  color: #2a2a2a;
 }
 
-.faq-item {
-  margin-bottom: 30px;
+.faq {
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 50, 30, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-.faq-item h2 {
-  font-size: 1.25rem;
-  color: #005d63;
+.faq-question {
+  padding: 18px 24px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #dce8dd;
+  color: #2d3e2f;
 }
 
-.faq-item p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-top: 8px;
+.faq-question:hover {
+  background-color: #c8dbce;
 }
 
-/* Footer Styling */
-footer {
-  background-color: #101010;
-  color: #ccc;
-  padding: 30px 20px;
+.faq-answer {
+  padding: 0 24px 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background-color: #f9fbfa;
+  color: #4a5f50;
+}
+
+.faq-question.active::after {
+  content: " ▲";
+  float: right;
+}
+
+.faq-question::after {
+  content: " ▼";
+  float: right;
+}
+
+.montamap-footer {
+  background-color: #e8f0ea;
   text-align: center;
-}
-
-.footer-links,
-.footer-social {
-  margin-bottom: 10px;
+  padding: 30px 10px;
+  font-size: 14px;
+  color: #2e4235;
 }
 
 .footer-links a,
 .footer-social a {
-  color: #ccc;
+  color: #1e382c;
+  margin: 0 5px;
   text-decoration: none;
-  margin: 0 8px;
-  font-size: 0.95rem;
 }
 
 .footer-links a:hover,
 .footer-social a:hover {
-  color: #ffffff;
   text-decoration: underline;
 }
 
-.footer-brand {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 5px;
-  color: #fff;
-}
-
-.footer-copy {
-  font-size: 0.85rem;
-  color: #888;
-  margin-top: 15px;
+.footer-social {
+  margin: 10px 0;
 }

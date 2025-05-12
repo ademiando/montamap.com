@@ -1,0 +1,169 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdfdfd;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* LOGO & HEADER */
+header {
+  padding: 1.5rem 2rem;
+  background-color: #e0f7f7;
+  border-bottom: 1px solid #cceeee;
+  text-align: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #005a5a;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.left-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* TAGLINE */
+.tagline-section {
+  margin-top: 1rem;
+  padding: 0 2rem;
+}
+
+.tagline {
+  font-size: 2rem;
+  color: #004747;
+  margin-bottom: 0.5rem;
+}
+
+.sub-tagline {
+  color: #444;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* MAIN CONTENT */
+main {
+  padding: 2rem;
+  max-width: 960px;
+  margin: auto;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #005a5a;
+  margin-bottom: 1rem;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.75rem;
+}
+
+/* CTA SECTION */
+.cta {
+  background: #e0f7f7;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.cta h2 {
+  color: #008080;
+  margin-bottom: 1rem;
+}
+
+.cta ul {
+  list-style: square;
+  margin-bottom: 1rem;
+  text-align: left;
+  display: inline-block;
+}
+
+.cta a {
+  background: #008080;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.cta a:hover {
+  background: #006666;
+}
+
+/* PRE-FOOTER LINKS */
+.pre-footer-links {
+  text-align: center;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  background-color: #f4f4f4;
+  border-top: 1px solid #ccc;
+}
+
+.pre-footer-links a {
+  color: #006666;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.pre-footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+footer {
+  background-color: #e0f7f7;
+  color: #005a5a;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  border-top: 2px solid #cceeee;
+}
+
+.footer-content p {
+  margin-bottom: 0.5rem;
+}
+
+.footer-content svg {
+  vertical-align: middle;
+  margin-right: 6px;
+  fill: #89ae95;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  body {
+    padding: 0 1rem;
+  }
+
+  .tagline {
+    font-size: 1.5rem;
+  }
+
+  .cta ul {
+    text-align: left;
+    padding-left: 1rem;
+  }
+}

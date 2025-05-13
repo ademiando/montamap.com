@@ -76,68 +76,43 @@ if (languageSelect && title && description) {
 // Function to Switch to Light Theme
 if (lightBtn) {
   lightBtn.addEventListener('click', () => {
-    document.body.classList.remove('dark');
-    lightBtn.classList.add('active');
-    darkBtn.classList.remove('active');
+    setTheme('light');  // Gunakan setTheme untuk switch theme
   });
 }
 
 // Function to Switch to Dark Theme
 if (darkBtn) {
   darkBtn.addEventListener('click', () => {
-    document.body.classList.add('dark');
-    darkBtn.classList.add('active');
-    lightBtn.classList.remove('active');
+    setTheme('dark');  // Gunakan setTheme untuk switch theme
   });
 }
-
-
-
-
-
-
 
 // Toggle theme dan simpan ke localStorage
-function toggleTheme() {
+function setTheme(mode) {
   const html = document.documentElement;
-  if (html.classList.contains('dark')) {
-    html.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-  } else {
+
+  if (mode === 'dark') {
     html.classList.add('dark');
     localStorage.setItem('theme', 'dark');
+    darkBtn.classList.add('active');
+    lightBtn.classList.remove('active');
+  } else {
+    html.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+    lightBtn.classList.add('active');
+    darkBtn.classList.remove('active');
   }
 }
 
+// Pas pertama kali halaman load
+window.addEventListener('DOMContentLoaded', () => {
+  const storedTheme = localStorage.getItem('theme') || 'light'; // Default ke light jika tidak ada di localStorage
+  setTheme(storedTheme);
+});
 
 
 
 
- 
-  // Fungsi untuk set theme
-  function setTheme(mode) {
-    if (mode === 'dark') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      darkBtn.classList.add('active');
-      lightBtn.classList.remove('active');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      lightBtn.classList.add('active');
-      darkBtn.classList.remove('active');
-    }
-  }
-
-  // Event listeners
-  lightBtn.addEventListener('click', () => setTheme('light'));
-  darkBtn.addEventListener('click', () => setTheme('dark'));
-
-  // Pas pertama kali halaman load
-  window.addEventListener('DOMContentLoaded', () => {
-    const storedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(storedTheme);
-  });
 
 
 

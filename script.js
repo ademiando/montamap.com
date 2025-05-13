@@ -86,6 +86,31 @@ if (darkBtn) {
   });
 }
 
+
+
+
+
+
+
+// Toggle theme dan simpan ke localStorage
+function toggleTheme() {
+  const html = document.documentElement;
+  if (html.classList.contains('dark')) {
+    html.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+
+
+
+
+
+
+
 // Tab Navigation
 function openTab(event, tabName) {
   const tabContents = document.querySelectorAll('.tab-content');

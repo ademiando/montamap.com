@@ -235,6 +235,7 @@ html.dark body {
   justify-content: space-around; /* Tab tersebar merata */
   background-color: none;
   padding: 10px;
+  margin-left: 20px;
 }
 
 /* Gaya untuk Tab */

@@ -176,7 +176,7 @@ body {
 }
 
 /* Dark Theme */
-body.dark {
+html.dark {
   background-color: #333;
   color: #f5f5f5;
 }

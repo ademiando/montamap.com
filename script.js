@@ -68,41 +68,39 @@ if (languageSelect && title && description) {
   });
 }
 
-// Function to Switch to Light Theme
-if (lightBtn) {
-  lightBtn.addEventListener('click', () => {
-    document.body.classList.remove('dark');
-    lightBtn.classList.add('active');
-    darkBtn.classList.remove('active');
-  });
-}
-
-// Function to Switch to Dark Theme
-if (darkBtn) {
-  darkBtn.addEventListener('click', () => {
-    document.body.classList.add('dark');
-    darkBtn.classList.add('active');
-    lightBtn.classList.remove('active');
-  });
-}
 
 
 
 
+<script>
+  const lightBtn = document.getElementById('lightBtn');
+  const darkBtn = document.getElementById('darkBtn');
 
-
-
-// Toggle theme dan simpan ke localStorage
-function toggleTheme() {
-  const html = document.documentElement;
-  if (html.classList.contains('dark')) {
-    html.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-  } else {
-    html.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
+  // Fungsi untuk set theme
+  function setTheme(mode) {
+    if (mode === 'dark') {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      darkBtn.classList.add('active');
+      lightBtn.classList.remove('active');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      lightBtn.classList.add('active');
+      darkBtn.classList.remove('active');
+    }
   }
-}
+
+  // Event listeners
+  lightBtn.addEventListener('click', () => setTheme('light'));
+  darkBtn.addEventListener('click', () => setTheme('dark'));
+
+  // Pas pertama kali halaman load
+  window.addEventListener('DOMContentLoaded', () => {
+    const storedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(storedTheme);
+  });
+</script>
 
 
 

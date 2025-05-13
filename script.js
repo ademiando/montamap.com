@@ -73,6 +73,42 @@ if (languageSelect && title && description) {
 
 
 
+// Function to Switch to Light Theme
+if (lightBtn) {
+  lightBtn.addEventListener('click', () => {
+    document.body.classList.remove('dark');
+    lightBtn.classList.add('active');
+    darkBtn.classList.remove('active');
+  });
+}
+
+// Function to Switch to Dark Theme
+if (darkBtn) {
+  darkBtn.addEventListener('click', () => {
+    document.body.classList.add('dark');
+    darkBtn.classList.add('active');
+    lightBtn.classList.remove('active');
+  });
+}
+
+
+
+
+
+
+
+// Toggle theme dan simpan ke localStorage
+function toggleTheme() {
+  const html = document.documentElement;
+  if (html.classList.contains('dark')) {
+    html.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  } else {
+    html.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
 
 
 

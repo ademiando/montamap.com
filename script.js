@@ -177,7 +177,7 @@ const mountainData = [
     weather: "-40°C Snow",
     icon: "13d", // Snowy Icon
     image: "mountain-image/k2.jpg",
-    link: "k2"
+    link: "blog"
   },
   {
     name: "Kangchenjunga",
@@ -189,7 +189,7 @@ const mountainData = [
     weather: "-30°C Cloudy",
     icon: "04d", // Cloudy Icon
     image: "mountain-image/kangchenjunga.jpg",
-    link: "kangchenjunga"
+    link: "blog"
   },
   {
     name: "Lhotse",
@@ -201,7 +201,7 @@ const mountainData = [
     weather: "-28°C Sunny",
     icon: "01d", // Clear Icon
     image: "mountain-image/lhotse.jpg",
-    link: "lhotse"
+    link: "blog"
   },
   {
     name: "Rinjani",

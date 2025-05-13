@@ -72,10 +72,12 @@ if (languageSelect && title && description) {
 
 
 
-<script>
-  const lightBtn = document.getElementById('lightBtn');
-  const darkBtn = document.getElementById('darkBtn');
 
+
+
+
+
+ 
   // Fungsi untuk set theme
   function setTheme(mode) {
     if (mode === 'dark') {
@@ -100,7 +102,6 @@ if (languageSelect && title && description) {
     const storedTheme = localStorage.getItem('theme') || 'light';
     setTheme(storedTheme);
   });
-</script>
 
 
 

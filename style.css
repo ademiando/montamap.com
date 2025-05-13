@@ -181,6 +181,11 @@ html.dark {
   color: #f5f5f5;
 }
 
+html.dark body {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
 /* Active Theme Buttons */
 .theme-btn.active {
   background-color: #89ae95;

@@ -5,168 +5,206 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Terms of Service — Montamap</title>
   <style>
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.8;
-  padding: 40px 20px;
-  max-width: 850px;
-  margin: auto;
-}
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      line-height: 1.8;
+      padding: 40px 20px;
+      max-width: 850px;
+      margin: auto;
+    }
 
-/* Typography */
-h1 {
-  font-size: 2.2rem;
-  color: #1f3b4d;
-  margin-bottom: 10px;
-}
+    /* Logo animation */
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
 
-.date {
-  color: #777;
-  font-size: 0.95rem;
-  margin-bottom: 30px;
-}
+    .logo-container img {
+      width: 160px;
+      animation: floatLogo 3s ease-in-out infinite, fadeIn 1.5s ease-out forwards;
+      opacity: 0;
+    }
 
-h2 {
-  font-size: 1.4rem;
-  margin-top: 40px;
-  margin-bottom: 15px;
-  color: #2d5a73;
-  border-left: 4px solid #4db6ac;
-  padding-left: 10px;
-}
+    @keyframes floatLogo {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
 
-p {
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
 
-ul {
-  margin-left: 20px;
-  margin-bottom: 20px;
-  padding-left: 15px;
-}
+    h1 {
+      font-size: 2.2rem;
+      color: #333;
+      margin-bottom: 10px;
+      text-align: center;
+    }
 
-ul li {
-  margin-bottom: 8px;
-  list-style-type: disc;
-}
+    .date {
+      color: #777;
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
 
-/* Links and emphasis */
-a {
-  color: #007acc;
-  text-decoration: none;
-}
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      color: #333;
+      border-left: 4px solid #89ae95;
+      padding-left: 10px;
+    }
 
-a:hover {
-  text-decoration: underline;
-}
+    p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
 
-strong {
-  color: #000;
-}
+    ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      padding-left: 15px;
+    }
 
-/* Divider */
-hr {
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 40px 0;
-}
+    ul li {
+      margin-bottom: 8px;
+      list-style-type: disc;
+    }
 
-.cta a {
-  background: #89ae95;
-  color: white;
-  padding: 1rem 2rem;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
+    a {
+      color: #89ae95;
+      text-decoration: none;
+    }
 
-.cta a:hover {
-  background: #6b957a;
-}
+    a:hover {
+      text-decoration: underline;
+    }
 
-footer {
-  width: 100%;
-  text-align: center;
-  padding: 30px 5vw;
-  font-size: 0.75rem;
-  border-top: 1px solid #c8d6cc;
-  background-color: #f7fdf9;
-  color: #333;
-  box-sizing: border-box;
-}
+    strong {
+      color: #000;
+    }
 
-.pre-footer-links {
-  font-size: 0.625rem;
-  text-align: center;
-  margin: 60px 0 20px;
-  color: #89ae95;
-}
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 40px 0;
+    }
 
-.pre-footer-links a {
-  color: #89ae95;
-  text-decoration: none;
-  margin: 0 4px;
-  transition: all 0.2s ease;
-}
+    .cta a {
+      background: #89ae95;
+      color: white;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
 
-.pre-footer-links a:hover {
-  text-decoration: underline;
-  margin-top: 10px;
-}
+    .cta a:hover {
+      background: #6b957a;
+    }
 
-.footer-content a {
-  color: #89ae95;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-}
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 30px 5vw;
+      font-size: 0.75rem;
+      border-top: 1px solid #c8d6cc;
+      background-color: #f7fdf9;
+      color: #333;
+      box-sizing: border-box;
+    }
 
-.footer-content a:hover {
-  color: #6f947c;
-  text-decoration: underline;
-}
+    .pre-footer-links {
+      font-size: 0.625rem;
+      text-align: center;
+      margin: 60px 0 20px;
+      color: #89ae95;
+    }
 
+    .pre-footer-links a {
+      color: #89ae95;
+      text-decoration: none;
+      margin: 0 4px;
+      transition: all 0.2s ease;
+    }
 
+    .pre-footer-links a:hover {
+      text-decoration: underline;
+      margin-top: 10px;
+    }
 
-/* Responsive */
-@media (max-width: 600px) {
-  body {
-    padding: 20px 15px;
-  }
+    .footer-content a {
+      color: #89ae95;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
 
-  h1 {
-    font-size: 1.8rem;
-  }
+    .footer-content a:hover {
+      color: #6f947c;
+      text-decoration: underline;
+    }
 
-  h2 {
-    font-size: 1.2rem;
-  }
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 15px;
+      }
 
-  p, ul li {
-    font-size: 0.95rem;
-  }
-}
+      h1 {
+        font-size: 1.8rem;
+      }
 
+      h2 {
+        font-size: 1.2rem;
+      }
 
+      p, ul li {
+        font-size: 0.95rem;
+      }
 
-
-
+      .logo-container img {
+        width: 120px;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <div class="logo-container">
+    <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo">
+  </div>
+
+  <h1>Terms of Service — Montamap</h1>
+  <p class="date">Effective Date: May 12, 2025</p>
+
+  <!-- Konten tetap seperti yang diminta -->
+  <!-- Mulai dari paragraf "Welcome to Montamap..." sampai akhir, tidak diubah -->
+
+</body>
+</html>
+
+
 
   <h1>Terms of Service — Montamap</h1>
   <p class="date">Effective Date: May 12, 2025</p>

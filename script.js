@@ -68,11 +68,6 @@ if (languageSelect && title && description) {
   });
 }
 
-
-
-
-
-
 // Function to Switch to Light Theme
 if (lightBtn) {
   lightBtn.addEventListener('click', () => {
@@ -109,17 +104,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const storedTheme = localStorage.getItem('theme') || 'light'; // Default ke light jika tidak ada di localStorage
   setTheme(storedTheme);
 });
-
-
-
-
-
-
-
-
-
-
-
 
 // Tab Navigation
 function openTab(event, tabName) {
@@ -368,12 +352,20 @@ async function renderMountains() {
   const slice = mountainData.slice(loaded, loaded + batch);
 
   for (let m of slice) {
-    const weather = await fetchWeather(m.lat, m.lon);
-    
+    const weather = await fetchWeather(m.lat, m.lon); 
     const card = document.createElement("div");
     card.className = "mountain-card";
     card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
     card.innerHTML = `
+
+
+
+
+ <div class="favorite-icon" data-id="${m.id}">&#9734;</div> <!-- Bintang putih -->
+
+
+
+
       <img src="${m.image}" alt="${m.name}" class="mountain-image" />
       <div class="gradient-overlay"></div>
       <div class="mountain-info">
@@ -383,20 +375,69 @@ async function renderMountains() {
           <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
           Elevation: ${m.elevation}<br />
 
-
-
 <img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" style="vertical-align: middle;" />${weather.temperature} | ${weather.weather}<br />
-
- 
-
-
-
 
         </div>
       </div>
     `;
     container.appendChild(card);
   }
+
+
+
+
+
+
+
+
+const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+const favIcon = card.querySelector(".favorite-icon");
+
+// Cek apakah sudah favorit
+if (favorites.includes(m.id)) {
+  favIcon.classList.add("active");
+  favIcon.innerHTML = "&#9733;"; // Bintang isi
+}
+
+// Toggle saat diklik
+favIcon.onclick = (e) => {
+  e.stopPropagation(); // Biar gak redirect ke halaman gunung
+
+  if (favorites.includes(m.id)) {
+    const index = favorites.indexOf(m.id);
+    favorites.splice(index, 1);
+    favIcon.classList.remove("active");
+    favIcon.innerHTML = "&#9734;";
+  } else {
+    favorites.push(m.id);
+    favIcon.classList.add("active");
+    favIcon.innerHTML = "&#9733;";
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+};
+
+
+
+
+
+function showAll() {
+  renderMountains(Mountains); // Render semua
+}
+
+function showFavorites() {
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const favMountains = Mountains.filter(m => favorites.includes(m.id));
+  renderMountains(favMountains); // Render hanya favorit
+}
+
+
+
+
+
+
+
+
 
   loaded += batch;
 
@@ -409,3 +450,9 @@ document.getElementById("loadMoreBtn").addEventListener("click", renderMountains
 
 // Initial load
 renderMountains();
+
+
+
+
+
+

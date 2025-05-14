@@ -357,22 +357,18 @@ const batch = 4;
 
 
 
-// Ambil daftar favorit dari localStorage
 function getFavorites() {
   return JSON.parse(localStorage.getItem("favorites")) || [];
 }
 
-// Simpan favorit ke localStorage
 function saveFavorites(favorites) {
   localStorage.setItem("favorites", JSON.stringify(favorites));
 }
 
-// Cek apakah gunung sudah difavoritkan
 function isFavorite(id) {
   return getFavorites().includes(id);
 }
 
-// Toggle status favorit
 function toggleFavorite(id) {
   const favorites = getFavorites();
   const index = favorites.indexOf(id);
@@ -388,7 +384,6 @@ function toggleFavorite(id) {
   renderFavorites();
 }
 
-// Buat satu card gunung
 function createMountainCard(m, weather) {
   const card = document.createElement("div");
   card.className = "mountain-card";
@@ -410,14 +405,12 @@ function createMountainCard(m, weather) {
     </div>
   `;
 
-  // Klik bintang = toggle favorit
   const favoriteBtn = card.querySelector(".favorite-icon");
   favoriteBtn.addEventListener("click", function (e) {
     e.stopPropagation();
     toggleFavorite(m.id);
   });
 
-  // Klik seluruh card ke detail
   card.addEventListener("click", function () {
     window.location.href = `https://montamap.com/${m.link}`;
   });
@@ -425,9 +418,7 @@ function createMountainCard(m, weather) {
   return card;
 }
 
-// Fetch cuaca (dummy/fungsi asli sesuai API kamu)
 async function fetchWeather(lat, lon) {
-  // Simulasi data cuaca
   return {
     temperature: "22°C",
     weather: "Cloudy",
@@ -435,27 +426,25 @@ async function fetchWeather(lat, lon) {
   };
 }
 
-// Render semua gunung
 async function renderAllMountains() {
   const container = document.getElementById("AllMountains");
   if (!container) return;
   container.innerHTML = "";
 
-  for (let m of allMountains) {
+  for (let m of mountainData) {
     const weather = await fetchWeather(m.lat, m.lon);
     const card = createMountainCard(m, weather);
     container.appendChild(card);
   }
 }
 
-// Render hanya favorit
 async function renderFavorites() {
   const container = document.getElementById("favorite-container");
   if (!container) return;
   container.innerHTML = "";
 
   const favorites = getFavorites();
-  const favMountains = allMountains.filter(m => favorites.includes(m.id));
+  const favMountains = mountainData.filter(m => favorites.includes(m.id));
 
   for (let m of favMountains) {
     const weather = await fetchWeather(m.lat, m.lon);
@@ -464,7 +453,6 @@ async function renderFavorites() {
   }
 }
 
-// Fungsi ganti tab
 function openTab(tabName) {
   document.querySelectorAll(".tab-content").forEach(tab => {
     tab.style.display = "none";
@@ -478,7 +466,6 @@ function openTab(tabName) {
   }
 }
 
-// Jalankan saat pertama
 document.addEventListener("DOMContentLoaded", () => {
   openTab("AllMountains");
 });

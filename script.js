@@ -358,8 +358,6 @@ const batch = 4;
 
 
 
-const mountainData = allMountains; // sesuaikan ini jika datamu beda
-
 // Ambil daftar favorit dari localStorage
 function getFavorites() {
   return JSON.parse(localStorage.getItem("favorites")) || [];
@@ -387,30 +385,22 @@ function toggleFavorite(id) {
   }
 
   saveFavorites(favorites);
-  renderFavorites();
+  renderAllMountains(); // refresh tampilan
 }
 
-// Fungsi untuk ambil cuaca (dummy kalau ga ada API)
-async function fetchWeather(lat, lon) {
-  return {
-    icon: "01d",
-    temperature: "25°C",
-    weather: "Clear"
-  };
-}
-
-// Render gunung berdasarkan batch (untuk tab Mountain)
 async function renderMountains() {
   const container = document.getElementById("mountainContainer");
   const slice = mountainData.slice(loaded, loaded + batch);
 
   for (let m of slice) {
-    const weather = await fetchWeather(m.lat, m.lon);
+    const weather = await fetchWeather(m.lat, m.lon); 
     const card = document.createElement("div");
     card.className = "mountain-card";
     card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
     card.innerHTML = `
-      <div class="favorite-icon" data-id="${m.id}">${isFavorite(m.id) ? "★" : "☆"}</div>
+
+ <div class="favorite-icon" data-id="${m.id}">&#9734;</div> <!-- Bintang putih -->
+
       <img src="${m.image}" alt="${m.name}" class="mountain-image" />
       <div class="gradient-overlay"></div>
       <div class="mountain-info">
@@ -419,60 +409,39 @@ async function renderMountains() {
           ${m.city}<br />
           <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
           Elevation: ${m.elevation}<br />
-          <img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" style="vertical-align: middle;" />
-          ${weather.temperature} | ${weather.weather}
+
+<img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" style="vertical-align: middle;" />${weather.temperature} | ${weather.weather}<br />
+
         </div>
       </div>
     `;
     container.appendChild(card);
   }
 
-  // Tambahkan event listener ke icon favorit
-  document.querySelectorAll(".favorite-icon").forEach(icon => {
-    icon.onclick = (e) => {
-      e.stopPropagation();
-      toggleFavorite(icon.dataset.id);
-      icon.innerHTML = isFavorite(icon.dataset.id) ? "★" : "☆";
-    };
+
+// Render semua gunung
+function renderAllMountains() {
+  const container = document.getElementById("AllMountains");
+  container.innerHTML = "";
+  allMountains.forEach(m => {
+    const card = createMountainCard(m);
+    container.appendChild(card);
   });
 }
 
-// Render semua gunung (backup method)
-function renderAllMountains() {
-  const container = document.getElementById("mountainContainer");
-  container.innerHTML = "";
-  loaded = 0;
-  renderMountains();
-}
-
-// Render favorit
+// Render hanya favorit
 function renderFavorites() {
   const container = document.getElementById("favorite-container");
   container.innerHTML = "";
   const favorites = getFavorites();
   const favMountains = allMountains.filter(m => favorites.includes(m.id));
   favMountains.forEach(m => {
-    const card = document.createElement("div");
-    card.className = "mountain-card";
-    card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
-    card.innerHTML = `
-      <div class="favorite-icon" data-id="${m.id}">★</div>
-      <img src="${m.image}" alt="${m.name}" class="mountain-image" />
-      <div class="gradient-overlay"></div>
-      <div class="mountain-info">
-        <div class="mountain-name">${m.name}</div>
-        <div class="mountain-details">
-          ${m.city}<br />
-          <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
-          Elevation: ${m.elevation}
-        </div>
-      </div>
-    `;
+    const card = createMountainCard(m);
     container.appendChild(card);
   });
 }
 
-// Tab switching
+// Fungsi tab switching
 function openTab(tabName) {
   document.querySelectorAll(".tab-content").forEach(tab => {
     tab.style.display = "none";
@@ -481,21 +450,18 @@ function openTab(tabName) {
 
   if (tabName === "Favorite") {
     renderFavorites();
-  } else if (tabName === "Mountain") {
+  } else if (tabName === "AllMountains") {
     renderAllMountains();
   }
 }
 
-// Load more handler
-document.getElementById("loadMoreBtn").addEventListener("click", () => {
-  loaded += batch;
-  renderMountains();
+// Jalankan saat awal
+document.addEventListener("DOMContentLoaded", () => {
+  openTab("AllMountains"); // default
 });
 
-// Initial load
-document.addEventListener("DOMContentLoaded", () => {
-  openTab("Mountain"); // default buka tab Mountain
-});
+
+
 
 
 

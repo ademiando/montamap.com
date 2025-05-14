@@ -347,6 +347,48 @@ async function fetchWeather(lat, lon) {
 let loaded = 0;
 const batch = 4;
 
+
+
+
+
+// Ambil daftar favorit dari localStorage
+function getFavorites() {
+  return JSON.parse(localStorage.getItem("favorites")) || [];
+}
+
+// Simpan favorit ke localStorage
+function saveFavorites(favorites) {
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+}
+
+// Cek apakah gunung sudah difavoritkan
+function isFavorite(id) {
+  return getFavorites().includes(id);
+}
+
+// Toggle status favorit
+function toggleFavorite(id) {
+  const favorites = getFavorites();
+  const index = favorites.indexOf(id);
+
+  if (index === -1) {
+    favorites.push(id);
+  } else {
+    favorites.splice(index, 1);
+  }
+
+  saveFavorites(favorites);
+  renderAllMountains(); // refresh tampilan
+}
+
+
+
+
+
+
+
+
+
 async function renderMountains() {
   const container = document.getElementById("mountainContainer");
   const slice = mountainData.slice(loaded, loaded + batch);
@@ -390,46 +432,46 @@ async function renderMountains() {
 
 
 
-const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-const favIcon = card.querySelector(".favorite-icon");
-
-// Cek apakah sudah favorit
-if (favorites.includes(m.id)) {
-  favIcon.classList.add("active");
-  favIcon.innerHTML = "&#9733;"; // Bintang isi
+// Render semua gunung
+function renderAllMountains() {
+  const container = document.getElementById("AllMountains");
+  container.innerHTML = "";
+  allMountains.forEach(m => {
+    const card = createMountainCard(m);
+    container.appendChild(card);
+  });
 }
 
-// Toggle saat diklik
-favIcon.onclick = (e) => {
-  e.stopPropagation(); // Biar gak redirect ke halaman gunung
+// Render hanya favorit
+function renderFavorites() {
+  const container = document.getElementById("favorite-container");
+  container.innerHTML = "";
+  const favorites = getFavorites();
+  const favMountains = allMountains.filter(m => favorites.includes(m.id));
+  favMountains.forEach(m => {
+    const card = createMountainCard(m);
+    container.appendChild(card);
+  });
+}
 
-  if (favorites.includes(m.id)) {
-    const index = favorites.indexOf(m.id);
-    favorites.splice(index, 1);
-    favIcon.classList.remove("active");
-    favIcon.innerHTML = "&#9734;";
-  } else {
-    favorites.push(m.id);
-    favIcon.classList.add("active");
-    favIcon.innerHTML = "&#9733;";
+// Fungsi tab switching
+function openTab(tabName) {
+  document.querySelectorAll(".tab-content").forEach(tab => {
+    tab.style.display = "none";
+  });
+  document.getElementById(tabName).style.display = "block";
+
+  if (tabName === "Favorite") {
+    renderFavorites();
+  } else if (tabName === "AllMountains") {
+    renderAllMountains();
   }
-
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-};
-
-
-
-
-
-function showAll() {
-  renderMountains(Mountains); // Render semua
 }
 
-function showFavorites() {
-  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  const favMountains = Mountains.filter(m => favorites.includes(m.id));
-  renderMountains(favMountains); // Render hanya favorit
-}
+// Jalankan saat awal
+document.addEventListener("DOMContentLoaded", () => {
+  openTab("AllMountains"); // default
+});
 
 
 

@@ -415,7 +415,7 @@ html.dark body {
   right: 10px;
   font-size: 24px;
   color: white;
-  z-index: 10;
+  z-index: 20;
   cursor: pointer;
   transition: color 0.3s;
 }
@@ -424,7 +424,9 @@ html.dark body {
   color: #28a745; /* Hijau */
 }
 
-
+.favorite-icon:hover {
+background-color: #89ae95;
+}
 
 
 

@@ -416,6 +416,7 @@ html.dark body {
   color: white;
   z-index: 5;
   cursor: pointer;
+  z-index: 10;
   transition: color 0.3s;
 }
 

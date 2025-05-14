@@ -419,6 +419,42 @@ async function renderMountains() {
   }
 
 
+
+
+function createMountainCard(m) {
+  const card = document.createElement("div");
+  card.className = "mountain-card";
+  card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
+
+  card.innerHTML = `
+    <div class="favorite-icon" data-id="${m.id}">
+      ${isFavorite(m.id) ? "★" : "☆"}
+    </div>
+    <img src="${m.image}" alt="${m.name}" class="mountain-image" />
+    <div class="gradient-overlay"></div>
+    <div class="mountain-info">
+      <div class="mountain-name">${m.name}</div>
+      <div class="mountain-details">
+        ${m.city}<br />
+        <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">
+          Status: ${m.status}
+        </span><br />
+        Elevation: ${m.elevation}
+      </div>
+    </div>
+  `;
+
+  // Tambahkan event listener untuk ikon bintang
+  card.querySelector(".favorite-icon").addEventListener("click", function (e) {
+    e.stopPropagation(); // agar tidak ikut redirect saat diklik
+    toggleFavorite(m.id);
+  });
+
+  return card;
+}
+
+
+
 // Render semua gunung
 function renderAllMountains() {
   const container = document.getElementById("AllMountains");

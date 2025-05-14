@@ -26,59 +26,52 @@ header {
   position: relative;
 }
 
-
-/* Reset LOGO*/
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: #000;
+/* Gaya untuk logo */
+.left-logo {
+  width: 55px; /* Atur ukuran logo */
+  height: auto; /* Jaga proporsi logo */
+  margin-right: 10px; /* Jarak antara logo dan teks */
+  vertical-align: middle; /* Sejajarkan logo dengan teks */
 }
 
-/* Container untuk partikel dan logo */
-#particles-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+.logo {
+  display: flex;
+  align-items: center; /* Sejajarkan logo dan teks secara vertikal */
+  text-decoration: none;
+  color: #e3ddcd; /* Warna teks */
+  font-size: 24px;
+  font-weight: bold;
 }
 
-/* Canvas partikel */
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+
+.logo {
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: bold;
+  color: #e3ddcd; /* Putih gelap */
+  text-shadow: 2px 2px 4px #000; /* Bayangan teks */
+  cursor: pointer;
 }
 
-/* Logo wrapper */
-.logo-wrapper {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding-top: 30vh;
-}
 
-/* Efek muncul logo */
-.logo-appear {
-  width: 120px;
+
+
+.left-logo {
+  width: 50px;
+  animation: slideIn 1s ease-out forwards;
   opacity: 0;
-  animation: fadeInLogo 2s ease 1.5s forwards;
 }
 
-@keyframes fadeInLogo {
+@keyframes slideIn {
   from {
+    transform: translateX(-50px);
     opacity: 0;
-    transform: scale(0.5);
   }
   to {
+    transform: translateX(0);
     opacity: 1;
-    transform: scale(1);
   }
 }
-
-
-
 
 
 

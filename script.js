@@ -399,11 +399,13 @@ async function renderMountains() {
     card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
     card.innerHTML = `
 
- <div class="favorite-icon" data-id="${m.id}">&#9734;</div> <!-- Bintang putih -->
-
       <img src="${m.image}" alt="${m.name}" class="mountain-image" />
       <div class="gradient-overlay"></div>
       <div class="mountain-info">
+
+<div class="favorite-icon" data-id="${m.id}">&#9734;</div> <!-- Bintang putih -->
+
+
         <div class="mountain-name">${m.name}</div>
         <div class="mountain-details">
           ${m.city}<br />
@@ -427,12 +429,15 @@ function createMountainCard(m) {
   card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
 
   card.innerHTML = `
-    <div class="favorite-icon" data-id="${m.id}">
-      ${isFavorite(m.id) ? "★" : "☆"}
-    </div>
+    
     <img src="${m.image}" alt="${m.name}" class="mountain-image" />
     <div class="gradient-overlay"></div>
     <div class="mountain-info">
+
+<div class="favorite-icon" data-id="${m.id}">
+      ${isFavorite(m.id) ? "★" : "☆"}
+    </div>
+
       <div class="mountain-name">${m.name}</div>
       <div class="mountain-details">
         ${m.city}<br />

@@ -278,8 +278,8 @@ const mountainData = [
   {
     name: "Prau",
     city: "Central Java, Indonesia",
-    lat: 7.1913,
-    lon: 109.9276,
+    lat: -7.2079,
+    lon: 109.9181,
     status: "Open",
     elevation: "2,590 m",
     weather: "1°C Fog",

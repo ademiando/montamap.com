@@ -414,7 +414,7 @@ html.dark body {
   right: 10px;
   font-size: 24px;
   color: white;
-  z-index: 20;
+  z-index: 5;
   cursor: pointer;
   transition: color 0.3s;
 }

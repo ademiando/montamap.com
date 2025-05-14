@@ -32,15 +32,12 @@ header {
   height: auto; /* Jaga proporsi logo */
   margin-right: 10px; /* Jarak antara logo dan teks */
   vertical-align: middle; /* Sejajarkan logo dengan teks */
-}
-
-
-
-.left-logo {
-  width: 50px;
   animation: slideIn 1s ease-out forwards;
   opacity: 0;
 }
+
+
+
 
 @keyframes slideIn {
   from {

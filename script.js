@@ -351,6 +351,12 @@ const batch = 4;
 
 
 
+
+
+
+
+
+
 // Ambil daftar favorit dari localStorage
 function getFavorites() {
   return JSON.parse(localStorage.getItem("favorites")) || [];
@@ -378,83 +384,87 @@ function toggleFavorite(id) {
   }
 
   saveFavorites(favorites);
-  renderAllMountains(); // refresh tampilan
+  renderAllMountains();
+  renderFavorites();
 }
 
+// Buat satu card gunung
+function createMountainCard(m, weather) {
+  const card = document.createElement("div");
+  card.className = "mountain-card";
+  card.style.position = "relative";
 
-
-
-
-
-
-
-
-async function renderMountains() {
-  const container = document.getElementById("mountainContainer");
-  const slice = mountainData.slice(loaded, loaded + batch);
-
-  for (let m of slice) {
-    const weather = await fetchWeather(m.lat, m.lon); 
-    const card = document.createElement("div");
-    card.className = "mountain-card";
-    card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
-    card.innerHTML = `
-
-
-
-
- <div class="favorite-icon" data-id="${m.id}">&#9734;</div> <!-- Bintang putih -->
-
-
-
-
-      <img src="${m.image}" alt="${m.name}" class="mountain-image" />
-      <div class="gradient-overlay"></div>
-      <div class="mountain-info">
-        <div class="mountain-name">${m.name}</div>
-        <div class="mountain-details">
-          ${m.city}<br />
-          <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
-          Elevation: ${m.elevation}<br />
-
-<img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" style="vertical-align: middle;" />${weather.temperature} | ${weather.weather}<br />
-
-        </div>
+  card.innerHTML = `
+    <div class="favorite-icon ${isFavorite(m.id) ? 'active' : ''}" data-id="${m.id}">&#9733;</div>
+    <img src="${m.image}" alt="${m.name}" class="mountain-image" />
+    <div class="gradient-overlay"></div>
+    <div class="mountain-info">
+      <div class="mountain-name">${m.name}</div>
+      <div class="mountain-details">
+        ${m.city}<br />
+        <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
+        Elevation: ${m.elevation}<br />
+        <img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" style="vertical-align: middle;" />
+        ${weather.temperature} | ${weather.weather}<br />
       </div>
-    `;
-    container.appendChild(card);
-  }
+    </div>
+  `;
 
+  // Klik bintang = toggle favorit
+  const favoriteBtn = card.querySelector(".favorite-icon");
+  favoriteBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    toggleFavorite(m.id);
+  });
 
+  // Klik seluruh card ke detail
+  card.addEventListener("click", function () {
+    window.location.href = `https://montamap.com/${m.link}`;
+  });
 
+  return card;
+}
 
-
-
-
+// Fetch cuaca (dummy/fungsi asli sesuai API kamu)
+async function fetchWeather(lat, lon) {
+  // Simulasi data cuaca
+  return {
+    temperature: "22°C",
+    weather: "Cloudy",
+    icon: "04d",
+  };
+}
 
 // Render semua gunung
-function renderAllMountains() {
+async function renderAllMountains() {
   const container = document.getElementById("AllMountains");
+  if (!container) return;
   container.innerHTML = "";
-  allMountains.forEach(m => {
-    const card = createMountainCard(m);
+
+  for (let m of allMountains) {
+    const weather = await fetchWeather(m.lat, m.lon);
+    const card = createMountainCard(m, weather);
     container.appendChild(card);
-  });
+  }
 }
 
 // Render hanya favorit
-function renderFavorites() {
+async function renderFavorites() {
   const container = document.getElementById("favorite-container");
+  if (!container) return;
   container.innerHTML = "";
+
   const favorites = getFavorites();
   const favMountains = allMountains.filter(m => favorites.includes(m.id));
-  favMountains.forEach(m => {
-    const card = createMountainCard(m);
+
+  for (let m of favMountains) {
+    const weather = await fetchWeather(m.lat, m.lon);
+    const card = createMountainCard(m, weather);
     container.appendChild(card);
-  });
+  }
 }
 
-// Fungsi tab switching
+// Fungsi ganti tab
 function openTab(tabName) {
   document.querySelectorAll(".tab-content").forEach(tab => {
     tab.style.display = "none";
@@ -468,10 +478,13 @@ function openTab(tabName) {
   }
 }
 
-// Jalankan saat awal
+// Jalankan saat pertama
 document.addEventListener("DOMContentLoaded", () => {
-  openTab("AllMountains"); // default
+  openTab("AllMountains");
 });
+
+
+
 
 
 

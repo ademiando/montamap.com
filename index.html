@@ -98,79 +98,81 @@
     <button class="tab" onclick="openTab(event, 'Gear')">Gear</button>
   </div>
 
+
+
+
+
+
+
+
+
+<!-- Tab Konten Gunung -->
 <div id="Mountain" class="tab-content active">
-  <!-- Sort Options -->
+  <!-- Filter Options -->
   <div class="sort-options-container">
-      <select id="type-sort">
-          <option value="type">Mountain Type</option>
-          <option value="volcano">Volcano</option>
-          <option value="snowpeak">Snow Peak</option>
-          <option value="jungle/forest">Jungle/Forest</option>
-          <option value="sacred/mystical">Sacred/Mystical</option>
-          <option value="coastal">Coastal Mountain</option>
-          <option value="karst">Karst/Limestone</option>
-          <option value="plateau">Plateau/Mesa</option>
-          <option value="himalaya's">Himalaya's</option>
-      </select>
+    <select id="type-sort">
+      <option value="type">Mountain Type</option>
+      <option value="volcano">Volcano</option>
+      <option value="snowpeak">Snow Peak</option>
+      <option value="jungle/forest">Jungle/Forest</option>
+      <option value="sacred/mystical">Sacred/Mystical</option>
+      <option value="coastal">Coastal Mountain</option>
+      <option value="karst">Karst/Limestone</option>
+      <option value="plateau">Plateau/Mesa</option>
+      <option value="himalaya's">Himalaya's</option>
+    </select>
 
-      <select id="country-sort">
-          <option value="global">All Countries</option>
-          <option value="indonesia">Indonesia</option>
-          <option value="india">India</option>
-          <option value="uk">United Kingdom</option>
-          <option value="usa">United States</option>
-          <option value="australia">Australia</option>
-          <option value="nepal">Nepal</option>
-          <option value="peru">Peru</option>
-      </select>
+    <select id="country-sort">
+      <option value="global">All Countries</option>
+      <option value="indonesia">Indonesia</option>
+      <option value="india">India</option>
+      <option value="uk">United Kingdom</option>
+      <option value="usa">United States</option>
+      <option value="australia">Australia</option>
+      <option value="nepal">Nepal</option>
+      <option value="peru">Peru</option>
+    </select>
 
-      <select id="destination-sort">
-          <option value="trending">Trending🔥</option>
-          <option value="top-7-summit">Top Seven Summit</option>
-          <option value="trending">Trending Now</option>
-          <option value="most-visited">Most Visited</option>
-          <option value="hidden-gems">Hidden Gems</option>
-          <option value="unesco">UNESCO Heritage Sites</option>
-          <option value="bucket">Bucket List Mountain</option>
-      </select>
+    <select id="destination-sort">
+      <option value="trending">Trending🔥</option>
+      <option value="top-7-summit">Top Seven Summit</option>
+      <option value="trending">Trending Now</option>
+      <option value="most-visited">Most Visited</option>
+      <option value="hidden-gems">Hidden Gems</option>
+      <option value="unesco">UNESCO Heritage Sites</option>
+      <option value="bucket">Bucket List Mountain</option>
+    </select>
 
-<select id="difficulty-sort">
-  <option value="level">All Levels</option>
-  <option value="beginner">Beginner (&lt;1D1N, &lt;2.000m)</option>
-  <option value="moderate">Moderate (&lt;3D2N, &lt;3.000m)</option>
-  <option value="hard">Hard (3D2N+, &lt;4.000m)</option>
-  <option value="expedition">Expedition (5D+, &gt;4.000m)</option>
-</select>
+    <select id="difficulty-sort">
+      <option value="level">All Levels</option>
+      <option value="beginner">Beginner (&lt;1D1N, &lt;2.000m)</option>
+      <option value="moderate">Moderate (&lt;3D2N, &lt;3.000m)</option>
+      <option value="hard">Hard (3D2N+, &lt;4.000m)</option>
+      <option value="expedition">Expedition (5D+, &gt;4.000m)</option>
+    </select>
 
-<select id="season-sort">
-  <option value="any">All Seasons</option>
-  <option value="spring">Spring (Mar–May)</option>
-  <option value="summer">Summer (Jun–Aug)</option>
-  <option value="fall">Fall (Sep–Nov)</option>
-  <option value="winter">Winter (Dec–Feb)</option>
-</select>
+    <select id="season-sort">
+      <option value="any">All Seasons</option>
+      <option value="spring">Spring (Mar–May)</option>
+      <option value="summer">Summer (Jun–Aug)</option>
+      <option value="fall">Fall (Sep–Nov)</option>
+      <option value="winter">Winter (Dec–Feb)</option>
+    </select>
+  </div>
+
+  <div class="mountain-wrapper">
+    <div class="mountain-container" id="mountainContainer"></div>
+    <button id="loadMoreBtn">Load More Mountains</button>
+  </div>
 </div>
-
-<div class="mountain-wrapper">
-<div class="mountain-container" id="mountainContainer"></div>
-  <button id="loadMoreBtn">Load More Mountains</button>
- 
 
 <!-- Favorite Tab -->
 <div id="Favorite" class="tab-content" style="display: none;">
-    <h2>My Favorite</h2>
-    <p>Your favorite items will appear here.</p>
-
-
-
-
-
-
- <div id="favorite-container"></div> <!-- Ini tempat render card favorit -->
-
-
-
+  <h2>My Favorite</h2>
+  <p>Your favorite items will appear here.</p>
+  <div id="favorite-container"></div> <!-- Tempat render card favorit -->
 </div>
+
 
 
 

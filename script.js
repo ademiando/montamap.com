@@ -170,8 +170,8 @@ const mountainData = [
   {
     name: "K2",
     city: "Skardu, Pakistan",
-    lat: 35.3,
-    lon: 75.6,
+    lat: 35.8800,
+    lon: 76.5151,
     status: "Closed",
     elevation: "8,611 m",
     weather: "-40°C Snow",
@@ -278,8 +278,8 @@ const mountainData = [
   {
     name: "Prau",
     city: "Central Java, Indonesia",
-    lat: -7.2297,
-    lon: 109.9229,
+    lat: 7.1913,
+    lon: 109.9276,
     status: "Open",
     elevation: "2,590 m",
     weather: "1°C Fog",

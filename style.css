@@ -34,6 +34,28 @@ header {
   vertical-align: middle; /* Sejajarkan logo dengan teks */
 }
 
+
+
+.left-logo {
+  width: 50px;
+  animation: slideIn 1s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+
+
 .logo {
   display: flex;
   align-items: center; /* Sejajarkan logo dan teks secara vertikal */
@@ -56,22 +78,7 @@ header {
 
 
 
-.left-logo {
-  width: 50px;
-  animation: slideIn 1s ease-out forwards;
-  opacity: 0;
-}
 
-@keyframes slideIn {
-  from {
-    transform: translateX(-50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
 
 
 

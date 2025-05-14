@@ -286,7 +286,7 @@ html.dark body {
     scrollbar-width: none;              /* Sembunyikan scrollbar (Firefox) */
     gap: 8px;
     padding: 8px;
-    margin-right: 0;
+    margin-left: 20px;
 }
 
 .sort-options-container::-webkit-scrollbar {

@@ -36,9 +36,6 @@ header {
   opacity: 0;
 }
 
-
-
-
 @keyframes slideIn {
   from {
     transform: translateX(-50px);
@@ -50,9 +47,6 @@ header {
   }
 }
 
-
-
-
 .logo {
   display: flex;
   align-items: center; /* Sejajarkan logo dan teks secara vertikal */
@@ -62,7 +56,6 @@ header {
   font-weight: bold;
 }
 
-
 .logo {
   text-decoration: none;
   font-size: 26px;
@@ -71,15 +64,6 @@ header {
   text-shadow: 2px 2px 4px #000; /* Bayangan teks */
   cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
 
 
 /* Search Bar Styling */
@@ -313,7 +297,7 @@ html.dark body {
     scrollbar-width: none;              /* Sembunyikan scrollbar (Firefox) */
     gap: 8px;
     padding: 8px;
-    margin-left: 20px;
+    margin-left: 0;
 }
 
 .sort-options-container::-webkit-scrollbar {

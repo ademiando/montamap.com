@@ -445,13 +445,22 @@ function createMountainCard(m) {
   `;
 
   // Tambahkan event listener untuk ikon bintang
-  card.querySelector(".favorite-icon").addEventListener("click", function (e) {
+card.querySelector(".favorite-icon").addEventListener("click", function (e) {
     e.stopPropagation(); // agar tidak ikut redirect saat diklik
+    console.log(`Favorite icon clicked for mountain ID: ${m.id}`); // Debugging log
     toggleFavorite(m.id);
-  });
+});
 
-  return card;
+
+return card;
 }
+
+
+
+
+
+
+
 
 
 

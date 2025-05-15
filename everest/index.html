@@ -103,33 +103,36 @@
       margin-top: 1rem;
     }
 
+.pre-footer-links {
+  font-size: 0.625rem; /* Ukuran font lebih kecil */
+  text-align: center; /* Rata tengah */
+  margin: 60px 0 20px; /* Atas 60px, bawah 20px, samping 0 */
+  color: #89ae95; /* Warna teks hijau pastel */
+}
+
+.pre-footer-links a {
+  color: #89ae95; /* Warna link sama dengan teks */
+  text-decoration: none; /* Hilangkan garis bawah */
+  margin: 0 4px; /* Spasi antar link */
+  transition: all 0.2s ease; /* Animasi halus saat hover */
+}
+
+.pre-footer-links a:hover {
+  text-decoration: underline; /* Tambahkan garis bawah saat hover */
+}
+
+
+
+
 footer {
   width: 100%;
   text-align: center;
   padding: 30px 5vw;
-  font-size: 0.65rem;
+  font-size: 0.625rem;
   border-top: 1px solid #c8d6cc;
-  background-color: #f7fdf9;
+  background-color: none;
   color: #333;
   box-sizing: border-box;
-}
-
-.pre-footer-links {
-  font-size: 0.625rem;
-  text-align: center;
-  margin: 60px 0 20px;
-  color: #89ae95;
-}
-
-.pre-footer-links a {
-  color: #89ae95;
-  text-decoration: none;
-  margin: 0 4px;
-  transition: all 0.2s ease;
-}
-
-.pre-footer-links a:hover {
-  text-decoration: underline;
 }
 
 .footer-content a {
@@ -144,6 +147,12 @@ footer {
 .footer-content a:hover {
   color: #6f947c;
   text-decoration: underline;
+}
+
+
+.footer-content, footer p {
+  line-height: 1.2;
+  margin: 0.2rem 0;
 }
 
 
@@ -195,8 +204,16 @@ footer {
 </div>
 
 <footer>
-  <div class="footer-content">
-    <p><strong>Montamap</strong></p>
+  <div class="footer-content">   
+
+<p style="display: flex; align-items: center; justify-content: center;">
+  <a href="https://montamap.com" style="display: inline-block;">
+    <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo" style="height: 30px;" />
+  </a>
+</p>
+
+ <p>© 2025 Montamap. All rights reserved.</p>
+
     <p>
       <a href="https://instagram.com/montamap" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;">
@@ -220,7 +237,6 @@ footer {
         Email
       </a>
     </p>
-    <p>© 2025 Montamap. All rights reserved.</p>
   </div>
 </footer>
 

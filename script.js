@@ -150,7 +150,6 @@ const mountainData = [
     icon: "01d", // OpenWeatherMap Icon ID
     image: "mountain-image/everest.jpg",
     link: "everest"
-    id: "everest",
   },
   {
     name: "K2",
@@ -163,7 +162,6 @@ const mountainData = [
     icon: "13d", // Snowy Icon
     image: "mountain-image/k2.jpg",
     link: "k2"
-    id: "k2",
   },
   {
     name: "Kangchenjunga",

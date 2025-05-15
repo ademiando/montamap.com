@@ -123,48 +123,48 @@
     }
 
     footer {
-      width: 100%;
-      text-align: center;
-      padding: 30px 5vw;
-      font-size: 0.75rem;
-      border-top: 1px solid #c8d6cc;
-      background-color: #f7fdf9;
-      color: #333;
-      box-sizing: border-box;
-    }
+  width: 100%; /* Lebar penuh */
+  text-align: center; /* Teks rata tengah */
+  padding: 20px 5vw; /* Jarak dalam atas-bawah 30px, kiri-kanan 5% lebar viewport */
+  font-size: 0.75rem; /* Ukuran huruf kecil */
+  border-top: 1px solid #c8d6cc; /* Garis atas tipis berwarna abu-abu kehijauan */
+  background-color: #f7fdf9; /* Warna latar belakang hijau sangat muda */
+  color: #333; /* Warna teks abu tua */
+  box-sizing: border-box; /* Hitung padding dan border dalam lebar total */
+  line-height: 1.2;
+}
 
-    .pre-footer-links {
-      font-size: 0.625rem;
-      text-align: center;
-      margin: 60px 0 20px;
-      color: #89ae95;
-    }
+.pre-footer-links {
+  font-size: 0.625rem; /* Ukuran font lebih kecil */
+  text-align: center; /* Rata tengah */
+  margin: 60px 0 20px; /* Atas 60px, bawah 20px, samping 0 */
+  color: #89ae95; /* Warna teks hijau pastel */
+}
 
-    .pre-footer-links a {
-      color: #89ae95;
-      text-decoration: none;
-      margin: 0 4px;
-      transition: all 0.2s ease;
-    }
+.pre-footer-links a {
+  color: #89ae95; /* Warna link sama dengan teks */
+  text-decoration: none; /* Hilangkan garis bawah */
+  margin: 0 4px; /* Spasi antar link */
+  transition: all 0.2s ease; /* Animasi halus saat hover */
+}
 
-    .pre-footer-links a:hover {
-      text-decoration: underline;
-      margin-top: 10px;
-    }
+.pre-footer-links a:hover {
+  text-decoration: underline; /* Tambahkan garis bawah saat hover */
+}
 
-    .footer-content a {
-      color: #89ae95;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
+.footer-content a {
+  color: #89ae95; /* Warna link */
+  text-decoration: none; /* Tidak ada garis bawah */
+  display: inline-flex; /* Flex horizontal untuk ikon + teks */
+  align-items: center; /* Tengah secara vertikal */
+  gap: 4px; /* Jarak antar elemen dalam link */
+  transition: all 0.2s ease; /* Transisi halus */
+}
 
-    .footer-content a:hover {
-      color: #6f947c;
-      text-decoration: underline;
-    }
+.footer-content a:hover {
+  color: #6f947c; /* Warna sedikit lebih gelap saat hover */
+  text-decoration: underline; /* Tambah garis bawah saat hover */
+}
 
     @media (max-width: 600px) {
       body {

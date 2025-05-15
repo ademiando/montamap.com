@@ -464,8 +464,8 @@ footer {
   padding: 30px 5vw;
   font-size: 0.75rem;
   border-top: none;
-  background-color: #ccc;
-  color: none;
+  background-color: white;
+  color: #333;
   box-sizing: border-box;
 }
 

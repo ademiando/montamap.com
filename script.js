@@ -470,7 +470,7 @@ return card;
 
 // Render semua gunung
 function renderAllMountains() {
-  const container = document.getElementById("AllMountains");
+  const container = document.getElementById("mountainContainer");
   container.innerHTML = "";
   allMountains.forEach(m => {
     const card = createMountainCard(m);
@@ -499,16 +499,15 @@ function openTab(tabName) {
 
   if (tabName === "Favorite") {
     renderFavorites();
-  } else if (tabName === "AllMountains") {
+  } else if (tabName === "Mountain") {
     renderAllMountains();
   }
 }
 
 // Jalankan saat awal
 document.addEventListener("DOMContentLoaded", () => {
-  openTab("AllMountains"); // default
+  openTab("Mountain"); // default
 });
-
 
 
 

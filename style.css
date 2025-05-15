@@ -463,9 +463,9 @@ footer {
   text-align: center;
   padding: 30px 5vw;
   font-size: 0.75rem;
-  border-top: 1px solid #c8d6cc;
+  border-top: none;
   background-color: none;
-  color: #333;
+  color: none;
   box-sizing: border-box;
 }
 

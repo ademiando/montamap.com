@@ -345,7 +345,7 @@ async function fetchWeather(lat, lon) {
 }
 
 let loaded = 0;
-const batch = 4;
+const batch = 6;
 
 
 
@@ -470,7 +470,7 @@ return card;
 
 // Render semua gunung
 function renderAllMountains() {
-  const container = document.getElementById("mountainContainer");
+  const container = document.getElementById("AllMountains");
   container.innerHTML = "";
   allMountains.forEach(m => {
     const card = createMountainCard(m);
@@ -508,6 +508,7 @@ function openTab(tabName) {
 document.addEventListener("DOMContentLoaded", () => {
   openTab("Mountain"); // default
 });
+
 
 
 

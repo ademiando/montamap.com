@@ -8,6 +8,10 @@ body {
   line-height: 1.6;
 }
 
+h1, h2, p, li, .pre-footer-links, footer {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
 h1, h2 {
   color: #2a4730;
 }
@@ -45,23 +49,7 @@ em {
   border-radius: 12px;
 }
 
-
-
-
-
 /* Layout dasar */
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  background: #fff;
-  color: #333;
-}
-
-/* Isi utama */
 main {
   flex: 1;
   display: flex;
@@ -74,7 +62,7 @@ main {
 .content {
   max-width: 600px;
   text-align: center;
-  margin-bottom: 120px; /* Jarak tinggi agar pre-footer "turun" */
+  margin-bottom: 120px;
 }
 
 /* Pre-footer */

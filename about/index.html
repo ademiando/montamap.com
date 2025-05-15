@@ -3,79 +3,211 @@
 <head>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sticky Footer Layout</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<main>
-  <header>
+  <title>About Us</title>
 
- <!-- Tambahkan logo -->
-    <a href="/" class="logo">
-      <img src="logo.jpg" alt="Logo" class="left-logo"> <!-- Pastikan path sesuai lokasi file -->
-      Montamap
-    </a>
-
-
-<!-- Tagline Section -->
-<div class="tagline-section">
-  <h1 class="tagline">Your Gateway to Global Mountain Trails</h1>
-  <p class="sub-tagline">
-    Discover, Connect, Conquer Hiking Trails Worldwide –  Powered by Smart Maps, Live Weather Alert, One-Touch SOS, and Real-Time Support.
-  </p>
-</div>
-  
-  
-  <title>About Montamap</title>
   <style>
-    body {
-      font-family: sans-serif;
-      line-height: 1.6;
+    /* Reset & Base */
+    * {
       margin: 0;
-      padding: 2rem;
-      background: #fdfdfd;
-      color: #222;
+      padding: 0;
+      box-sizing: border-box;
     }
-    section {
-      margin-bottom: 3rem;
+
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      line-height: 1.8;
+      padding: 40px 20px;
+      max-width: 850px;
+      margin: auto;
     }
+
+    /* Logo animation */
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .logo-container img {
+      width: 160px;
+      animation: floatLogo 3s ease-in-out infinite, fadeIn 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes floatLogo {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #333;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .date {
+      color: #777;
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
     h2 {
-      color: #005a5a;
+      font-size: 1.4rem;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      color: #333;
+      border-left: 4px solid #89ae95;
+      padding-left: 10px;
     }
-    ul, ol {
-      padding-left: 1.5rem;
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 20px;
     }
-    .cta {
-      background: #e0f7f7;
-      padding: 1.5rem;
-      border-radius: 10px;
+
+    ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+      padding-left: 15px;
     }
-    .cta h2 {
-      color: #008080;
+
+    ul li {
+      margin-bottom: 8px;
+      list-style-type: disc;
     }
-    .cta ul {
-      list-style: square;
-    }
-    .cta a {
-      display: inline-block;
-      margin-top: 1rem;
-      background: #008080;
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
+
+    a {
+      color: #89ae95;
       text-decoration: none;
     }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    strong {
+      color: #000;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 40px 0;
+    }
+
+    .cta a {
+      background: #89ae95;
+      color: white;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
     .cta a:hover {
-      background: #006666;
+      background: #6b957a;
+    }
+
+
+
+.pre-footer-links {
+  font-size: 0.625rem; /* Ukuran font lebih kecil */
+  text-align: center; /* Rata tengah */
+  margin: 60px 0 20px; /* Atas 60px, bawah 20px, samping 0 */
+  color: #89ae95; /* Warna teks hijau pastel */
+}
+
+.pre-footer-links a {
+  color: #89ae95; /* Warna link sama dengan teks */
+  text-decoration: none; /* Hilangkan garis bawah */
+  margin: 0 4px; /* Spasi antar link */
+  transition: all 0.2s ease; /* Animasi halus saat hover */
+}
+
+.pre-footer-links a:hover {
+  text-decoration: underline; /* Tambahkan garis bawah saat hover */
+}
+
+
+
+
+footer {
+  background-color: #f7fdf9;
+  border-top: 1px solid #c8d6cc;
+  padding: 20px 5vw;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #333;
+  box-sizing: border-box;
+  line-height: 1.4;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.footer-content a {
+  color: #89ae95;
+  text-decoration: none;
+  margin: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+.footer-content a:hover {
+  color: #6b957a;
+  text-decoration: underline;
+}
+
+
+
+
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 15px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      p, ul li {
+        font-size: 0.95rem;
+      }
+
+      .logo-container img {
+        width: 120px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- About Section -->
-  <section class="about">
-    <h2>About Montamap</h2>
-    <p>Montamap is a smart adventure ecosystem for today’s explorers.</p>
+  <div class="logo-container">
+    <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo">
+  </div>
+
+  <h1>About Montamap</h1>
+      <p>Montamap is a smart adventure ecosystem for today’s explorers.</p>
     <p>We connect hikers, adventurers, local guides, and eco-conscious travelers through a digital platform that makes every journey more meaningful.</p>
     <p>From misty forests to snow-covered ridges, Montamap unites smart technology, authentic communities, and transformational travel.</p>
   </section>

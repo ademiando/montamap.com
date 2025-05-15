@@ -483,6 +483,15 @@ footer {
   transition: all 0.2s ease;
 }
 
+
+
+.pre-footer-content, footer a {
+  line-height: 1.2;
+  margin: 0.2rem 0;
+}
+
+
+
 .pre-footer-links a:hover {
   text-decoration: underline;
 }

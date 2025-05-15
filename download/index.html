@@ -102,12 +102,67 @@
       color: #888;
       margin-top: 1rem;
     }
+
+.pre-footer-links {
+  font-size: 0.625rem; /* Ukuran font lebih kecil */
+  text-align: center; /* Rata tengah */
+  margin: 60px 0 20px; /* Atas 60px, bawah 20px, samping 0 */
+  color: #89ae95; /* Warna teks hijau pastel */
+}
+
+.pre-footer-links a {
+  color: #89ae95; /* Warna link sama dengan teks */
+  text-decoration: none; /* Hilangkan garis bawah */
+  margin: 0 4px; /* Spasi antar link */
+  transition: all 0.2s ease; /* Animasi halus saat hover */
+}
+
+.pre-footer-links a:hover {
+  text-decoration: underline; /* Tambahkan garis bawah saat hover */
+}
+
+
+
+
+footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 5vw;
+  font-size: 0.625rem;
+  border-top: 1px solid #c8d6cc;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.footer-content a {
+  color: #89ae95;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.footer-content a:hover {
+  color: #6f947c;
+  text-decoration: underline;
+}
+
+
+.footer-content, footer p {
+  line-height: 1.2;
+  margin: 0.2rem 0;
+}
+
+
   </style>
 </head>
 <body>
 
   <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo" class="logo" />
-  
+
   <h1>Still on the Trail…</h1>
   <p>We’re building something exciting for adventurers around the world.</p>
   <p>Montamap is designed to help you explore nature’s most breathtaking places — from the forests of Patagonia to the peaks of the Himalayas — with clarity, confidence, and connection.</p>
@@ -129,5 +184,62 @@
   </form>
 
   <p class="footer-note">We respect your journey — and your inbox.</p>
+
+<div class="pre-footer-links">
+  <a href="/about">About Us</a>
+  &nbsp;|&nbsp;
+  <a href="mailto:hello@montamap.com">Contact</a>
+  &nbsp;|&nbsp;
+  <a href="/privacy">Privacy Policy</a>
+  &nbsp;|&nbsp;
+  <a href="/terms">Terms of Service</a>
+  &nbsp;|&nbsp;
+  <a href="/faq">FAQ</a>
+  &nbsp;|&nbsp;
+  <a href="/careers">Careers</a>
+  &nbsp;|&nbsp;
+  <a href="/blog">Blog</a>
+  &nbsp;|&nbsp;
+  <a href="/download">Download App</a>
+  </a>
+</div>
+
+<footer>
+  <div class="footer-content">   
+
+<p style="display: flex; align-items: center; justify-content: center;">
+  <a href="https://montamap.com" style="display: inline-block;">
+    <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo" style="height: 30px;" />
+  </a>
+</p>
+
+ <p>© 2025 Montamap. All rights reserved.</p>
+
+    <p>
+      <a href="https://instagram.com/montamap" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;">
+          <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1.1.5 1.6 1 .5.5.8 1 1 1.6.2.5.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.5 1.1-1 1.6-.5.5-1 .8-1.6 1-.5.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1.1-.5-1.6-1-.5-.5-.8-1-.9-1.6-.2-.5-.3-1.2-.4-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.5-1.1 1-1.6.5-.5 1-.8 1.6-1 .5-.2 1.2-.3 2.4-.4 1.3-.1 1.7-.1 4.9-.1m0-2.2c-3.3 0-3.7 0-5 .1-1.3.1-2.2.3-3 .6-.8.3-1.5.7-2.1 1.3-.6.6-1 1.3-1.3 2.1-.3.8-.5 1.7-.6 3-.1 1.3-.1 1.7-.1 5s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.3 2.1.6.6 1.3 1 2.1 1.3.8.3 1.7.5 3 .6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.1-1.3.6-.6 1-1.3 1.3-2.1.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.3-2.1-.6-.6-1.3-1-2.1-1.3-.8-.3-1.7-.5-3-.6-1.3-.1-1.7-.1-5-.1z"/>
+          <path d="M12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/>
+        </svg>
+        Instagram
+      </a>
+&nbsp;|&nbsp;
+<a href="https://x.com/montamap" target="_blank" rel="noopener noreferrer">
+  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 1200 1227" style="vertical-align: middle;">
+    <path d="M714.07 558.06L1154.18 0h-263.8L611.83 395.89 326.61 0H0l470.69 679.52L45.82 1227h263.8l299.29-402.27L873.39 1227H1200L714.07 558.06zM349.93 138.13l543.17 766.9h-109.2L240.72 138.13h109.21z"/>
+  </svg>
+  X
+</a>
+     &nbsp;|&nbsp;
+      <a href="mailto:hello@montamap.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 24 24" style="vertical-align: middle;">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        Email
+      </a>
+    </p>
+  </div>
+</footer>
+
 </body>
 </html>

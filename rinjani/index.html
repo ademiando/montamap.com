@@ -35,6 +35,7 @@
   </div>
 
   <div class="info-grid">
+    <!-- Quick Facts -->
     <div class="info-card">
       <h3>Quick Facts</h3>
       <ul>
@@ -46,13 +47,21 @@
       </ul>
     </div>
 
+    <!-- Weather Card -->
     <div class="info-card">
       <h3>Current Weather</h3>
-      <p><strong>Temperature:</strong> <span id="temp">--</span></p>
-      <p><strong>Condition:</strong> <span id="weather">Loading...</span></p>
-      <p><strong>Wind:</strong> <span id="wind">--</span></p>
+      <div class="weather-row">
+        <img id="weather-icon" src="" alt="Weather Icon" class="weather-icon" style="display: none;" />
+        <div>
+          <p><strong>Temperature:</strong> <span id="temp">--</span></p>
+          <p><strong>Condition:</strong> <span id="weather">Loading...</span></p>
+          <p><strong>Wind:</strong> <span id="wind">--</span></p>
+          <p><strong>Humidity:</strong> <span id="humidity">--</span></p>
+        </div>
+      </div>
     </div>
 
+    <!-- Official Links -->
     <div class="info-card">
       <h3>Official Links</h3>
       <ul>
@@ -64,9 +73,12 @@
     </div>
   </div>
 
+  <!-- Description -->
   <div class="description">
     <h3>About Rinjani</h3>
-    <p>Mount Rinjani is Indonesia’s second highest volcano, known for its dramatic views and the sacred Segara Anak crater lake. It's both a natural wonder and a spiritual site, attracting trekkers and pilgrims alike.</p>
+    <p>
+      Mount Rinjani is Indonesia’s second highest volcano, known for its dramatic views and the sacred Segara Anak crater lake. It's both a natural wonder and a spiritual site, attracting trekkers and pilgrims alike.
+    </p>
   </div>
 </section>
 

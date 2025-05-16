@@ -81,20 +81,65 @@
 
 
 
+
+
+
     <section id="community" class="tab-content">
       <h2>Community</h2>
       <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
     </section>
 
-    <section id="maps" class="tab-content">
-      <h2>Maps</h2>
-      <p>Interactive hiking routes and key waypoints on Mount Rinjani.</p>
-    </section>
+
+
+
+
+
+
+
+
+    <!--Map Halaman 1: Fullscreen Map dengan Jalur Pendakian Rinjani -->
+<section id="map" class="tab-content">
+  <div id="rinjani-map" class="fullscreen-map"></div>
+
+  <!-- Toggle Layer Info -->
+  <div class="layer-toggle">
+    <label><input type="checkbox" id="toggle-routes" checked> Jalur Pendakian</label>
+    <label><input type="checkbox" id="toggle-points" checked> Titik Penting</label>
+  </div>
+
+  <!-- Pilih Jalur -->
+  <div class="route-selector">
+    <button data-route="sembalun">Sembalun</button>
+    <button data-route="senaru">Senaru</button>
+    <button data-route="torean">Torean</button>
+  </div>
+
+  <!-- Tombol ke Halaman Offline -->
+  <a href="#offline-map" class="offline-map-btn">
+    <img src="/assets/icons/map-download.svg" alt="Offline Map">
+  </a>
+</section>
+
+
+
+
+
+
+
 
     <section id="services" class="tab-content">
       <h2>Services</h2>
       <p>Book tickets, porters, guides, gear rentals, and more.</p>
     </section>
+
+
+
+
+
+
+
+
+
 
     <section id="news" class="tab-content">
       <h2>News</h2>

@@ -107,7 +107,6 @@ showSlide(currentIndex);
 
 
 
-<!-- JS (map-tab.js) -->
 mapboxgl.accessToken = 'sk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF3bHZxbjA0bzcybHNlamRsOXJzMXgifQ.iwdYXuYOQs7gNxnLE3pu0w';
 
 const map = new mapboxgl.Map({
@@ -119,9 +118,8 @@ const map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
-// Load jalur dan marker dari file atau API
 map.on('load', () => {
-  // Contoh placeholder source dan layer, nanti diganti data jalur asli
+  // Sumber data jalur
   map.addSource('rinjani-routes', {
     type: 'geojson',
     data: '/data/rinjani_routes.geojson'
@@ -130,30 +128,75 @@ map.on('load', () => {
     id: 'routes-layer',
     type: 'line',
     source: 'rinjani-routes',
+    layout: { 'line-join': 'round', 'line-cap': 'round' },
     paint: {
-      'line-color': '#ff7f50',
-      'line-width': 3
+      // warna jalur sesuai nama route
+      'line-color': [
+        'match',
+        ['get', 'route_name'],
+        'Sembalun', '#ff0000',
+        'Senaru', '#0000ff',
+        'Torean', '#00ff00',
+        '#888'
+      ],
+      'line-width': 4
     }
   });
 
+  // Sumber data titik penting
   map.addSource('important-points', {
     type: 'geojson',
     data: '/data/rinjani_points.geojson'
   });
   map.addLayer({
     id: 'points-layer',
-    type: 'symbol',
+    type: 'circle',
     source: 'important-points',
-    layout: {
-      'icon-image': 'mountain-15',
-      'text-field': ['get', 'name'],
-      'text-offset': [0, 1.5],
-      'text-anchor': 'top'
+    paint: {
+      'circle-radius': 7,
+      'circle-color': [
+        'match',
+        ['get', 'type'],
+        'basecamp', '#1E90FF',
+        'pos', '#32CD32',
+        'plawangan', '#FFA500',
+        'lake', '#00CED1',
+        'summit', '#FF4500',
+        'danger', '#FF0000',
+        'water', '#1E90FF',
+        '#ccc'
+      ],
+      'circle-stroke-width': 2,
+      'circle-stroke-color': '#fff'
     }
+  });
+
+  // Popup info titik penting saat hover
+  map.on('mouseenter', 'points-layer', (e) => {
+    map.getCanvas().style.cursor = 'pointer';
+
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const { name, elevation, temperature, note } = e.features[0].properties;
+
+    let description = `<strong>${name}</strong><br>Elevation: ${elevation}<br>Temperature: ${temperature}`;
+    if(note) description += `<br>Note: ${note}`;
+
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+
+    new mapboxgl.Popup()
+      .setLngLat(coordinates)
+      .setHTML(description)
+      .addTo(map);
+  });
+
+  map.on('mouseleave', 'points-layer', () => {
+    map.getCanvas().style.cursor = '';
   });
 });
 
-// Toggle Layer
+// Toggle layer visibility
 const routeCheckbox = document.getElementById('toggle-routes');
 const pointCheckbox = document.getElementById('toggle-points');
 
@@ -165,11 +208,10 @@ pointCheckbox.addEventListener('change', () => {
   map.setLayoutProperty('points-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
 });
 
-// Route selector
+// Tombol route selector
 const buttons = document.querySelectorAll('.route-selector button');
 buttons.forEach(btn => {
   btn.addEventListener('click', () => {
-    // Example action: center map to route start
     if (btn.dataset.route === 'sembalun') map.flyTo({ center: [116.55, -8.41], zoom: 12 });
     if (btn.dataset.route === 'senaru') map.flyTo({ center: [116.45, -8.30], zoom: 12 });
     if (btn.dataset.route === 'torean') map.flyTo({ center: [116.43, -8.38], zoom: 12 });

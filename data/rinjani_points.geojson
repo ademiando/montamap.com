@@ -1,0 +1,70 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Basecamp Sembalun",
+        "elevation": "1,150 m",
+        "temperature": "22°C",
+        "type": "basecamp"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.5500, -8.4100]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 1 Sembalun",
+        "elevation": "1,400 m",
+        "temperature": "18°C",
+        "type": "camp"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.5550, -8.4150]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mata Air Senaru",
+        "elevation": "1,200 m",
+        "temperature": "20°C",
+        "type": "water"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4620, -8.3020]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jalan Buntu Torean",
+        "elevation": "1,500 m",
+        "temperature": "15°C",
+        "type": "danger"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4370, -8.3870]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Puncak Rinjani",
+        "elevation": "3,726 m",
+        "temperature": "-2°C",
+        "type": "peak"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4700, -8.4200]
+      }
+    }
+  ]
+}

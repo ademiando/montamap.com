@@ -62,6 +62,8 @@ body {
   display: block;
 }
 
+
+
 /* ===== Overview Section ===== */
 #overview {
   padding: 20px;
@@ -200,6 +202,64 @@ body {
   border-bottom: 2px solid #93ae98;
   padding-bottom: 6px;
 }
+
+
+
+
+<!-- CSS (map-tab.css) -->
+.fullscreen-map {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+.layer-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 10;
+}
+.route-selector {
+  position: absolute;
+  bottom: 70px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 8px 10px;
+  border-radius: 8px;
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+.route-selector button {
+  background: #93ae98;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.offline-map-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+.offline-map-btn img {
+  width: 36px;
+  height: 36px;
+}
+
+
+
+
+
+
+
 
 /* Responsive */
 @media (max-width: 720px) {

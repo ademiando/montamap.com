@@ -1,0 +1,73 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Basecamp Patak Banteng",
+        "type": "basecamp",
+        "elevation": 1820,
+        "temp": 17,
+        "description": "Main basecamp with check-in and local facilities."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.9220, -7.2475]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 1",
+        "type": "shelter",
+        "elevation": 2000,
+        "temp": 16,
+        "distance": 1.2
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.9200, -7.2420]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Prau Summit",
+        "type": "summit",
+        "elevation": 2565,
+        "temp": 10,
+        "description": "Highest peak of Mount Prau with sunrise view."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.9145, -7.2340]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Danger Zone - Cliffs",
+        "type": "hazard",
+        "description": "Unstable cliff, keep distance.",
+        "elevation": 2400
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.9165, -7.2355]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Spring - Mata Air",
+        "type": "water",
+        "description": "Small freshwater spring, refill possible.",
+        "elevation": 2100
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.9185, -7.2395]
+      }
+    }
+  ]
+}

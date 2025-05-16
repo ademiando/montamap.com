@@ -6,67 +6,116 @@
       "properties": {
         "name": "Basecamp Patak Banteng",
         "type": "basecamp",
-        "elevation": 1820,
-        "temp": 17,
-        "description": "Main basecamp with check-in and local facilities."
+        "elevation": 1800,
+        "info": "Registrasi & start pendakian Patak Banteng"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [109.9220, -7.2475]
+        "coordinates": [109.9218, -7.2155]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Pos 1",
-        "type": "shelter",
+        "name": "Pos 1 Patak",
+        "type": "pos",
         "elevation": 2000,
-        "temp": 16,
-        "distance": 1.2
+        "info": "Shelter kecil di jalur Patak Banteng"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [109.9200, -7.2420]
+        "coordinates": [109.9225, -7.2108]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Prau Summit",
-        "type": "summit",
+        "name": "Camp Area Patak",
+        "type": "camp",
+        "elevation": 2400,
+        "info": "Area tenda utama jalur Patak"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.9302, -7.1970]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sunrise Viewpoint",
+        "type": "viewpoint",
         "elevation": 2565,
-        "temp": 10,
-        "description": "Highest peak of Mount Prau with sunrise view."
+        "info": "Spot terbaik melihat sunrise, arah Sindoro-Sumbing"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [109.9145, -7.2340]
+        "coordinates": [109.9320, -7.1940]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Danger Zone - Cliffs",
-        "type": "hazard",
-        "description": "Unstable cliff, keep distance.",
-        "elevation": 2400
+        "name": "Basecamp Dieng",
+        "type": "basecamp",
+        "elevation": 1950,
+        "info": "Start point alternatif dari Dieng"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [109.9165, -7.2355]
+        "coordinates": [109.9060, -7.2115]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Spring - Mata Air",
+        "name": "Pos 1 Dieng",
+        "type": "pos",
+        "elevation": 2100,
+        "info": "Shelter awal jalur Dieng"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.9092, -7.2080]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Basecamp Kalilembu",
+        "type": "basecamp",
+        "elevation": 1900,
+        "info": "Start pendakian jalur Kalilembu"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.8945, -7.2152]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Danger Zone - Tebing Rawan Longsor",
+        "type": "danger",
+        "elevation": 2300,
+        "info": "Hindari saat hujan, area rawan longsor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.9052, -7.2045]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sumber Air Kalilembu",
         "type": "water",
-        "description": "Small freshwater spring, refill possible.",
-        "elevation": 2100
+        "elevation": 2200,
+        "info": "Sumber air alami dekat jalur Kalilembu"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [109.9185, -7.2395]
+        "coordinates": [109.9070, -7.2020]
       }
     }
   ]

@@ -5,65 +5,167 @@
       "type": "Feature",
       "properties": {
         "name": "Basecamp Sembalun",
+        "type": "basecamp",
         "elevation": "1,150 m",
-        "temperature": "22°C",
-        "type": "basecamp"
+        "temperature": "20°C"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [116.5500, -8.4100]
+        "coordinates": [116.5287, -8.4169]
       }
     },
     {
       "type": "Feature",
       "properties": {
         "name": "Pos 1 Sembalun",
-        "elevation": "1,400 m",
-        "temperature": "18°C",
-        "type": "camp"
+        "type": "pos",
+        "elevation": "1,300 m",
+        "temperature": "18°C"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [116.5550, -8.4150]
+        "coordinates": [116.5321, -8.4053]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Mata Air Senaru",
-        "elevation": "1,200 m",
-        "temperature": "20°C",
-        "type": "water"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [116.4620, -8.3020]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Jalan Buntu Torean",
+        "name": "Pos 2 Sembalun",
+        "type": "pos",
         "elevation": "1,500 m",
-        "temperature": "15°C",
-        "type": "danger"
+        "temperature": "17°C"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [116.4370, -8.3870]
+        "coordinates": [116.5349, -8.3928]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 3 Sembalun",
+        "type": "pos",
+        "elevation": "1,800 m",
+        "temperature": "15°C"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.5406, -8.3835]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Plawangan Sembalun",
+        "type": "plawangan",
+        "elevation": "2,639 m",
+        "temperature": "10°C"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.5372, -8.3724]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Danau Segara Anak",
+        "type": "lake",
+        "elevation": "2,008 m",
+        "temperature": "12°C"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4212, -8.4031]
       }
     },
     {
       "type": "Feature",
       "properties": {
         "name": "Puncak Rinjani",
+        "type": "summit",
         "elevation": "3,726 m",
-        "temperature": "-2°C",
-        "type": "peak"
+        "temperature": "5°C"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [116.4700, -8.4200]
+        "coordinates": [116.4586, -8.4158]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Basecamp Senaru",
+        "type": "basecamp",
+        "elevation": "600 m",
+        "temperature": "23°C"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4075, -8.3288]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 2 Senaru",
+        "type": "pos",
+        "elevation": "1,500 m",
+        "temperature": "17°C"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4182, -8.3670]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Plawangan Senaru",
+        "type": "plawangan",
+        "elevation": "2,641 m",
+        "temperature": "10°C"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4208, -8.3787]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Basecamp Torean",
+        "type": "basecamp",
+        "elevation": "600 m",
+        "temperature": "23°C"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4319, -8.3401]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jalur Ekstrem Torean",
+        "type": "danger",
+        "note": "Jalur sempit dan licin, perlu ekstra hati-hati"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4415, -8.3633]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mata Air Torean",
+        "type": "water",
+        "note": "Air jernih tersedia sepanjang tahun"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4350, -8.3750]
       }
     }
   ]

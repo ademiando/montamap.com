@@ -4,54 +4,55 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Sembalun Route",
-        "distance": "25 km",
-        "description": "Jalur pendakian paling populer dengan pemandangan savana dan hutan."
+        "name": "Sembalun Trail",
+        "distance_km": 16.5,
+        "difficulty": "Moderate",
+        "description": "Popular trail with savannah views, moderately challenging with many basecamps and posts."
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [116.5500, -8.4100],
-          [116.5550, -8.4150],
-          [116.5600, -8.4200],
-          [116.5650, -8.4250],
-          [116.5700, -8.4300]
+          [116.5287, -8.4169],  // Basecamp Sembalun
+          [116.5321, -8.4053],  // Post 1
+          [116.5349, -8.3928],  // Post 2
+          [116.5406, -8.3835],  // Post 3
+          [116.5372, -8.3724],  // Plawangan Sembalun
+          [116.4586, -8.4158]   // Rinjani Summit
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Senaru Route",
-        "distance": "20 km",
-        "description": "Jalur berliku dengan hutan tropis lebat dan air terjun di sepanjang trek."
+        "name": "Senaru Trail",
+        "distance_km": 21.3,
+        "difficulty": "Hard",
+        "description": "Forest trail with steep terrain, longer trek suitable for experienced climbers."
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [116.4600, -8.3000],
-          [116.4650, -8.3050],
-          [116.4700, -8.3100],
-          [116.4750, -8.3150],
-          [116.4800, -8.3200]
+          [116.4075, -8.3288],  // Basecamp Senaru
+          [116.4182, -8.3670],  // Post 2 Senaru
+          [116.4208, -8.3787],  // Plawangan Senaru
+          [116.4586, -8.4158]   // Rinjani Summit
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Torean Route",
-        "distance": "15 km",
-        "description": "Jalur alternatif yang lebih pendek dengan medan curam dan pemandangan kawah."
+        "name": "Torean Trail",
+        "distance_km": 14.2,
+        "difficulty": "Hard",
+        "description": "The most extreme and technical trail, passing slippery and narrow routes, requires solid preparation."
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [116.4300, -8.3800],
-          [116.4350, -8.3850],
-          [116.4400, -8.3900],
-          [116.4450, -8.3950],
-          [116.4500, -8.4000]
+          [116.4319, -8.3401],  // Basecamp Torean
+          [116.4415, -8.3633],  // Extreme section of Torean
+          [116.4586, -8.4158]   // Rinjani Summit
         ]
       }
     }

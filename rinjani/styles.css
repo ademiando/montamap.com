@@ -62,91 +62,148 @@ body {
   display: block;
 }
 
-<!-- =================== CSS: overview.css =================== -->
+/* ===== Overview Section ===== */
 #overview {
-  padding: 1rem;
-  font-family: sans-serif;
-  max-width: 1000px;
-  margin: auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+/* Hero + slider */
 .overview-hero {
   position: relative;
-  overflow: hidden;
-  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
-.slider {
+.image-slider {
   position: relative;
-  width: 100%;
   overflow: hidden;
+  border-radius: 8px;
+  max-height: 350px;
 }
 
 .slides {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease-in-out;
 }
 
 .slides img {
   width: 100%;
   flex-shrink: 0;
   object-fit: cover;
-  border-radius: 12px;
+  max-height: 350px;
+  user-select: none;
+  pointer-events: none;
 }
 
-.slider-btn {
+.image-slider button {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
+  background: rgba(147, 174, 152, 0.7);
   border: none;
-  font-size: 1.5rem;
-  padding: 0.5rem;
+  color: white;
+  font-size: 2rem;
+  padding: 0 12px;
   cursor: pointer;
+  border-radius: 4px;
+  transform: translateY(-50%);
+  user-select: none;
+  transition: background 0.3s;
   z-index: 10;
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
+.image-slider button:hover {
+  background: #93ae98;
+}
 
-.info-section {
+.image-slider .prev {
+  left: 10px;
+}
+
+.image-slider .next {
+  right: 10px;
+}
+
+/* Title below hero */
+.overview-title {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.overview-title h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #93ae98;
+}
+
+.overview-title p {
+  margin: 4px 0 0;
+  font-style: italic;
+  color: #555;
+}
+
+/* Info flex container */
+.info-flex {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.info-block {
-  background: #f4f4f4;
-  padding: 1rem;
-  border-radius: 10px;
+.info-box {
+  background: #f7f9f7;
+  padding: 15px 20px;
+  border-radius: 8px;
+  flex: 1 1 280px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.05);
 }
 
-.info-block a {
+.info-box h3 {
+  margin-top: 0;
+  color: #4c6b49;
+  border-bottom: 2px solid #93ae98;
+  padding-bottom: 6px;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.info-box p {
+  margin: 8px 0;
+  line-height: 1.4;
+  color: #3c3c3c;
+}
+
+.info-box a {
   color: #93ae98;
   text-decoration: none;
 }
 
-.description,
-.routes,
-.best-time,
-.services {
-  margin-top: 2rem;
-  padding: 1rem;
-  background: #f9f9f9;
-  border-left: 5px solid #93ae98;
-  border-radius: 10px;
+.info-box a:hover {
+  text-decoration: underline;
 }
 
-@media(min-width: 768px) {
-  .info-section {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .info-block {
-    flex: 1 1 30%;
-  }
+/* Description full width */
+.description {
+  background: #e8f0e8;
+  padding: 20px;
+  border-radius: 8px;
+  color: #2e4a2e;
+  line-height: 1.6;
+  font-size: 1rem;
 }
+
+.description h3 {
+  margin-top: 0;
+  border-bottom: 2px solid #93ae98;
+  padding-bottom: 6px;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .info-flex {
+    flex-direction: column;
+  }
+}}

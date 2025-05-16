@@ -1,1 +1,192 @@
 
+<!-- =================== HTML: Tab Overview =================== --><section id="overview" class="tab-content active">
+  <div class="overview-hero">
+    <div class="slider">
+      <div class="slides">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Gunung_Rinjani_dari_Gili_Lawa.jpg" alt="Gunung Rinjani">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Segara_Anak_lake.jpg" alt="Danau Segara Anak">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Mount_Rinjani_Summit.jpg" alt="Puncak Rinjani">
+      </div>
+      <button class="slider-btn prev">&#10094;</button>
+      <button class="slider-btn next">&#10095;</button>
+    </div>
+  </div>  <div class="info-section">
+    <div class="info-block">
+      <h3>Quick Facts</h3>
+      <ul>
+        <li><strong>Elevation:</strong> 3,726 m (12,224 ft)</li>
+        <li><strong>Type:</strong> Stratovolcano</li>
+        <li><strong>Location:</strong> Lombok, Indonesia</li>
+        <li><strong>Difficulty:</strong> Medium – Hard</li>
+        <li><strong>Estimated Duration:</strong> 2–4 days</li>
+        <li><strong>UNESCO Status:</strong> Not listed</li>
+        <li><strong>Best Season:</strong> April – November</li>
+      </ul>
+    </div><div class="info-block">
+  <h3>Current Weather</h3>
+  <p><strong>Temperature:</strong> <span id="temp">--</span></p>
+  <p><strong>Condition:</strong> <span id="weather">Loading...</span></p>
+  <p><strong>Wind:</strong> <span id="wind">--</span></p>
+  <p><strong>Humidity:</strong> <span id="humidity">--</span></p>
+</div>
+
+<div class="info-block">
+  <h3>Contact & Links</h3>
+  <ul>
+    <li><a href="https://tnrinjanipark.id" target="_blank">Official Website</a></li>
+    <li><a href="https://instagram.com/rinjaninationalpark" target="_blank">Instagram</a></li>
+    <li>Email: info@tnrinjani.id</li>
+    <li>Phone: +62 370 123456</li>
+  </ul>
+</div>
+
+  </div>  <div class="description">
+    <h3>About Rinjani</h3>
+    <p>Mount Rinjani is Indonesia’s second highest volcano, rising dramatically to 3,726 meters above sea level. Its caldera holds the beautiful Segara Anak lake and the active Barujari cone. The area is sacred to local Sasak and Balinese people and offers spiritual and adventurous experiences alike.</p>
+  </div>  <div class="routes">
+    <h3>Trekking Routes</h3>
+    <ul>
+      <li><strong>Senaru:</strong> Forested, scenic, classic route</li>
+      <li><strong>Sembalun:</strong> Open savannah, faster summit access</li>
+      <li><strong>Timbanuh:</strong> Less crowded, more rugged</li>
+    </ul>
+  </div>  <div class="best-time">
+    <h3>Best Time to Visit</h3>
+    <p>The dry season from April to November is ideal for trekking. July–August is peak season, with the clearest views but also higher crowd levels. Avoid December–March due to heavy rains and closures.</p>
+  </div>  <div class="services">
+    <h3>Available Services</h3>
+    <ul>
+      <li>Local Guides</li>
+      <li>Porters</li>
+      <li>Equipment Rentals</li>
+      <li>Camp Sites</li>
+      <li>Online Booking via official site</li>
+    </ul>
+  </div>
+</section><!-- =================== CSS: overview.css =================== --><style>
+#overview {
+  padding: 1rem;
+  font-family: sans-serif;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.overview-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slides img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.info-block {
+  background: #f4f4f4;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.info-block a {
+  color: #93ae98;
+  text-decoration: none;
+}
+
+.description,
+.routes,
+.best-time,
+.services {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-left: 5px solid #93ae98;
+  border-radius: 10px;
+}
+
+@media(min-width: 768px) {
+  .info-section {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .info-block {
+    flex: 1 1 30%;
+  }
+}
+</style><!-- =================== JavaScript: overview.js =================== --><script>
+const apiKey = '3187c49861f858e524980ea8dd0d43c6';
+const lat = -8.41;
+const lon = 116.46;
+
+fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('temp').textContent = `${data.main.temp} °C`;
+    document.getElementById('weather').textContent = data.weather[0].main;
+    document.getElementById('wind').textContent = `${data.wind.speed} m/s`;
+    document.getElementById('humidity').textContent = `${data.main.humidity}%`;
+  });
+
+// Slider
+const slides = document.querySelector('.slides');
+const images = document.querySelectorAll('.slides img');
+let index = 0;
+
+function showSlide(i) {
+  index = (i + images.length) % images.length;
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}
+
+// Touch swipe
+let startX = 0;
+slides.addEventListener('touchstart', (e) => startX = e.touches[0].clientX);
+slides.addEventListener('touchend', (e) => {
+  const endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) showSlide(index + 1);
+  else if (endX - startX > 50) showSlide(index - 1);
+});
+
+// Buttons
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
+nextBtn.addEventListener('click', () => showSlide(index + 1));
+prevBtn.addEventListener('click', () => showSlide(index - 1));
+</script>

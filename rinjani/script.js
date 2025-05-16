@@ -100,3 +100,78 @@ async function fetchWeather() {
 
 fetchWeather();
 showSlide(currentIndex);
+
+
+
+
+
+
+
+<!-- JS (map-tab.js) -->
+mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+
+const map = new mapboxgl.Map({
+  container: 'rinjani-map',
+  style: 'mapbox://styles/mapbox/outdoors-v12',
+  center: [116.47, -8.41],
+  zoom: 10
+});
+
+map.addControl(new mapboxgl.NavigationControl());
+
+// Load jalur dan marker dari file atau API
+map.on('load', () => {
+  // Contoh placeholder source dan layer, nanti diganti data jalur asli
+  map.addSource('rinjani-routes', {
+    type: 'geojson',
+    data: '/data/rinjani_routes.geojson'
+  });
+  map.addLayer({
+    id: 'routes-layer',
+    type: 'line',
+    source: 'rinjani-routes',
+    paint: {
+      'line-color': '#ff7f50',
+      'line-width': 3
+    }
+  });
+
+  map.addSource('important-points', {
+    type: 'geojson',
+    data: '/data/rinjani_points.geojson'
+  });
+  map.addLayer({
+    id: 'points-layer',
+    type: 'symbol',
+    source: 'important-points',
+    layout: {
+      'icon-image': 'mountain-15',
+      'text-field': ['get', 'name'],
+      'text-offset': [0, 1.5],
+      'text-anchor': 'top'
+    }
+  });
+});
+
+// Toggle Layer
+const routeCheckbox = document.getElementById('toggle-routes');
+const pointCheckbox = document.getElementById('toggle-points');
+
+routeCheckbox.addEventListener('change', () => {
+  map.setLayoutProperty('routes-layer', 'visibility', routeCheckbox.checked ? 'visible' : 'none');
+});
+
+pointCheckbox.addEventListener('change', () => {
+  map.setLayoutProperty('points-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
+});
+
+// Route selector
+const buttons = document.querySelectorAll('.route-selector button');
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Example action: center map to route start
+    if (btn.dataset.route === 'sembalun') map.flyTo({ center: [116.55, -8.41], zoom: 12 });
+    if (btn.dataset.route === 'senaru') map.flyTo({ center: [116.45, -8.30], zoom: 12 });
+    if (btn.dataset.route === 'torean') map.flyTo({ center: [116.43, -8.38], zoom: 12 });
+  });
+});

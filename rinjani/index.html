@@ -4,7 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Montamap - Rinjani</title>
+  
   <link rel="stylesheet" href="styles.css" />
+  
+  <!-- Mapbox CSS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  
+  <style>
+    /* Pastikan map punya tinggi dan lebar */
+    #rinjani-map {
+      width: 100%;
+      height: 500px;
+    }
+  </style>
 </head>
 <body>
   <header class="sticky-header">
@@ -20,126 +32,94 @@
     <button class="tab" data-tab="news">News</button>
   </nav>
 
-
-
-
   <main>
-
-<section id="overview" class="tab-content active">
-  <div class="overview-hero">
-    <div class="image-slider">
-      <div class="slides">
-        <img src="https://montamap.com/mountain-image/rinjani.jpg" alt="Mount Rinjani 1">
-        <img src="https://montamap.com/rinjani/photo/rinjani1.png" alt="Mount Rinjani 2">
-        <img src="https://montamap.com/rinjani/photo/rinjani2.png" alt="Mount Rinjani 3">
+    <section id="overview" class="tab-content active">
+      <div class="overview-hero">
+        <div class="image-slider">
+          <div class="slides">
+            <img src="https://montamap.com/mountain-image/rinjani.jpg" alt="Mount Rinjani 1">
+            <img src="https://montamap.com/rinjani/photo/rinjani1.png" alt="Mount Rinjani 2">
+            <img src="https://montamap.com/rinjani/photo/rinjani2.png" alt="Mount Rinjani 3">
+          </div>
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <div class="overview-title">
+          <h2>Mount Rinjani</h2>
+          <p>Lombok, West Nusa Tenggara, Indonesia | Stratovolcano | 3,726 m</p>
+        </div>
       </div>
-      <button class="prev">&#10094;</button>
-      <button class="next">&#10095;</button>
-    </div>
-    <div class="overview-title">
-      <h2>Mount Rinjani</h2>
-      <p>Lombok, West Nusa Tenggara, Indonesia | Stratovolcano | 3,726 m</p>
-    </div>
-  </div>  <div class="info-flex">
-    <div class="info-box">
-      <h3>Quick Facts</h3>
-      <p><strong>Elevation:</strong> 3,726 m (12,224 ft)</p>
-      <p><strong>Type:</strong> Stratovolcano</p>
-      <p><strong>Location:</strong> Lombok, West Nusa Tenggara, Indonesia</p>
-      <p><strong>Difficulty:</strong> Medium – Hard</p>
-      <p><strong>Estimated Duration:</strong> 2–4 days</p>
-      <p><strong>UNESCO Status:</strong> Not listed</p>
-      <p><strong>Best Season:</strong> April – November</p>
-    </div><div class="info-box">
-  <h3>Current Weather</h3>
-  <p><strong>Temperature:</strong> <span id="temp">--</span></p>
-  <p><strong>Condition:</strong> <span id="weather">Loading...</span></p>
-  <p><strong>Wind:</strong> <span id="wind">--</span></p>
-  <p><strong>Humidity:</strong> <span id="humidity">--</span></p>
-</div>
-
-<div class="info-box">
-  <h3>Official & Contact</h3>
-  <p><a href="https://tnrinjanipark.id" target="_blank">Official Website</a></p>
-  <p><a href="https://instagram.com/rinjaninationalpark" target="_blank">@rinjaninationalpark</a></p>
-  <p>Email: info@tnrinjani.id</p>
-  <p>Phone: +62 370 123456</p>
-</div>
-
-  </div>  <div class="info-box">
-    <h3>Trekking Routes</h3>
-    <p><strong>Sembalun Route:</strong> Approx. 25 km round trip. Gradual ascent, panoramic savannahs, and best sunrise view from the summit.</p>
-    <p><strong>Senaru Route:</strong> Approx. 22 km round trip. Dense tropical forest, scenic waterfalls, and great access to Segara Anak Lake.</p>
-    <p><strong>Torean Route:</strong> Alternative wild route with rivers, hot springs, and canyon-like terrain. Not recommended during rainy season.</p>
-  </div>  <div class="description">
-    <h3>About Rinjani</h3>
-    <p>Mount Rinjani is the second highest volcano in Indonesia and one of the most iconic trekking destinations in Southeast Asia. It features a stunning crater lake, Segara Anak, believed to be sacred by the Sasak people. The climb rewards trekkers with dramatic ridge views, rich biodiversity, and unforgettable sunrises.</p>
-    <p>The mountain is a part of the Mount Rinjani National Park, which spans 41,000 hectares. Rinjani is a top choice for seasoned hikers looking for both adventure and spiritual experience.</p>
-  </div>
-</section>
-
-
-
-
-
-
+      <div class="info-flex">
+        <div class="info-box">
+          <h3>Quick Facts</h3>
+          <p><strong>Elevation:</strong> 3,726 m (12,224 ft)</p>
+          <p><strong>Type:</strong> Stratovolcano</p>
+          <p><strong>Location:</strong> Lombok, West Nusa Tenggara, Indonesia</p>
+          <p><strong>Difficulty:</strong> Medium – Hard</p>
+          <p><strong>Estimated Duration:</strong> 2–4 days</p>
+          <p><strong>UNESCO Status:</strong> Not listed</p>
+          <p><strong>Best Season:</strong> April – November</p>
+        </div>
+        <div class="info-box">
+          <h3>Current Weather</h3>
+          <p><strong>Temperature:</strong> <span id="temp">--</span></p>
+          <p><strong>Condition:</strong> <span id="weather">Loading...</span></p>
+          <p><strong>Wind:</strong> <span id="wind">--</span></p>
+          <p><strong>Humidity:</strong> <span id="humidity">--</span></p>
+        </div>
+        <div class="info-box">
+          <h3>Official & Contact</h3>
+          <p><a href="https://tnrinjanipark.id" target="_blank">Official Website</a></p>
+          <p><a href="https://instagram.com/rinjaninationalpark" target="_blank">@rinjaninationalpark</a></p>
+          <p>Email: info@tnrinjani.id</p>
+          <p>Phone: +62 370 123456</p>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3>Trekking Routes</h3>
+        <p><strong>Sembalun Route:</strong> Approx. 25 km round trip. Gradual ascent, panoramic savannahs, and best sunrise view from the summit.</p>
+        <p><strong>Senaru Route:</strong> Approx. 22 km round trip. Dense tropical forest, scenic waterfalls, and great access to Segara Anak Lake.</p>
+        <p><strong>Torean Route:</strong> Alternative wild route with rivers, hot springs, and canyon-like terrain. Not recommended during rainy season.</p>
+      </div>
+      <div class="description">
+        <h3>About Rinjani</h3>
+        <p>Mount Rinjani is the second highest volcano in Indonesia and one of the most iconic trekking destinations in Southeast Asia. It features a stunning crater lake, Segara Anak, believed to be sacred by the Sasak people. The climb rewards trekkers with dramatic ridge views, rich biodiversity, and unforgettable sunrises.</p>
+        <p>The mountain is a part of the Mount Rinjani National Park, which spans 41,000 hectares. Rinjani is a top choice for seasoned hikers looking for both adventure and spiritual experience.</p>
+      </div>
+    </section>
 
     <section id="community" class="tab-content">
       <h2>Community</h2>
       <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
     </section>
 
+    <!-- Map Section -->
+    <section id="map" class="tab-content">
+      <div id="rinjani-map"></div>
 
+      <!-- Toggle Layer Info -->
+      <div class="layer-toggle">
+        <label><input type="checkbox" id="toggle-routes" checked> Jalur Pendakian</label>
+        <label><input type="checkbox" id="toggle-points" checked> Titik Penting</label>
+      </div>
 
+      <!-- Pilih Jalur -->
+      <div class="route-selector">
+        <button data-route="sembalun">Sembalun</button>
+        <button data-route="senaru">Senaru</button>
+        <button data-route="torean">Torean</button>
+      </div>
 
-
-
-
-
-
-    <!--Map Halaman 1: Fullscreen Map dengan Jalur Pendakian Rinjani -->
-<section id="map" class="tab-content">
-  <div id="rinjani-map" class="fullscreen-map"></div>
-
-  <!-- Toggle Layer Info -->
-  <div class="layer-toggle">
-    <label><input type="checkbox" id="toggle-routes" checked> Jalur Pendakian</label>
-    <label><input type="checkbox" id="toggle-points" checked> Titik Penting</label>
-  </div>
-
-  <!-- Pilih Jalur -->
-  <div class="route-selector">
-    <button data-route="sembalun">Sembalun</button>
-    <button data-route="senaru">Senaru</button>
-    <button data-route="torean">Torean</button>
-  </div>
-
-  <!-- Tombol ke Halaman Offline -->
-  <a href="#offline-map" class="offline-map-btn">
-    <img src="https://montamap.com/assets/map-icon.png" alt="Offline Map">
-  </a>
-</section>
-
-
-
-
-
-
-
+      <!-- Tombol ke Halaman Offline -->
+      <a href="#offline-map" class="offline-map-btn">
+        <img src="https://montamap.com/assets/map-icon.png" alt="Offline Map">
+      </a>
+    </section>
 
     <section id="services" class="tab-content">
       <h2>Services</h2>
       <p>Book tickets, porters, guides, gear rentals, and more.</p>
     </section>
-
-
-
-
-
-
-
-
-
 
     <section id="news" class="tab-content">
       <h2>News</h2>
@@ -147,6 +127,10 @@
     </section>
   </main>
 
-<script src="script.js"></script>
+  <!-- Mapbox JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+  <!-- Your main JS -->
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,59 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sembalun Route",
+        "distance": "25 km",
+        "description": "Jalur pendakian paling populer dengan pemandangan savana dan hutan."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.5500, -8.4100],
+          [116.5550, -8.4150],
+          [116.5600, -8.4200],
+          [116.5650, -8.4250],
+          [116.5700, -8.4300]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Senaru Route",
+        "distance": "20 km",
+        "description": "Jalur berliku dengan hutan tropis lebat dan air terjun di sepanjang trek."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.4600, -8.3000],
+          [116.4650, -8.3050],
+          [116.4700, -8.3100],
+          [116.4750, -8.3150],
+          [116.4800, -8.3200]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Torean Route",
+        "distance": "15 km",
+        "description": "Jalur alternatif yang lebih pendek dengan medan curam dan pemandangan kawah."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.4300, -8.3800],
+          [116.4350, -8.3850],
+          [116.4400, -8.3900],
+          [116.4450, -8.3950],
+          [116.4500, -8.4000]
+        ]
+      }
+    }
+  ]
+}

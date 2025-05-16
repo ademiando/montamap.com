@@ -25,98 +25,82 @@
 
   <main>
 
+<!-- =================== HTML: Tab Overview =================== -->
 <section id="overview" class="tab-content active">
-
-  <!-- Hero slider with title & labels -->
-  <div class="overview-hero slider">
-    <div class="slide active">
-      <img src="https://montamap.com/mountain-image/rinjani.jpg" alt="Mount Rinjani 1" class="hero-image">
-    </div>
-    <div class="slide">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mount_Rinjani_Indonesia.jpg" alt="Mount Rinjani 2" class="hero-image">
-    </div>
-    <div class="slide">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Sunset_Rinjani_Lake.jpg" alt="Mount Rinjani 3" class="hero-image">
-    </div>
-
-    <button class="slider-btn prev">&#10094;</button>
-    <button class="slider-btn next">&#10095;</button>
-
-    <div class="overview-title">
-      <h2>Mount Rinjani</h2>
-      <p>Lombok, Indonesia | Stratovolcano | 3,726 m</p>
-      <div class="labels">
-        <span class="label unesco">UNESCO Global Geopark</span>
-        <span class="label best-season">Best Season: April - September</span>
+  <div class="overview-hero">
+    <div class="slider">
+      <div class="slides">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Gunung_Rinjani_dari_Gili_Lawa.jpg" alt="Gunung Rinjani">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Segara_Anak_lake.jpg" alt="Danau Segara Anak">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Mount_Rinjani_Summit.jpg" alt="Puncak Rinjani">
       </div>
+      <button class="slider-btn prev">&#10094;</button>
+      <button class="slider-btn next">&#10095;</button>
     </div>
   </div>
 
-  <!-- Info Grid: Facts, Weather, Trails, Contact -->
-  <div class="info-grid">
-
-    <!-- Quick Facts -->
-    <div class="info-card">
+  <div class="info-section">
+    <div class="info-block">
       <h3>Quick Facts</h3>
       <ul>
         <li><strong>Elevation:</strong> 3,726 m (12,224 ft)</li>
         <li><strong>Type:</strong> Stratovolcano</li>
-        <li><strong>Location:</strong> Lombok, West Nusa Tenggara, Indonesia</li>
-        <li><strong>Coordinates:</strong> -8.41°S, 116.46°E</li>
+        <li><strong>Location:</strong> Lombok, Indonesia</li>
         <li><strong>Difficulty:</strong> Medium – Hard</li>
-        <li><strong>Estimated Trek Duration:</strong> 3-4 days</li>
-        <li><strong>UNESCO Status:</strong> Global Geopark since 2018</li>
+        <li><strong>Estimated Duration:</strong> 2–4 days</li>
+        <li><strong>UNESCO Status:</strong> Not listed</li>
+        <li><strong>Best Season:</strong> April – November</li>
       </ul>
     </div>
 
-    <!-- Current Weather -->
-    <div class="info-card">
+    <div class="info-block">
       <h3>Current Weather</h3>
-      <div class="weather-row">
-        <img id="weather-icon" src="" alt="Weather Icon" class="weather-icon" style="display: none;" />
-        <div>
-          <p><strong>Temperature:</strong> <span id="temp">--</span></p>
-          <p><strong>Condition:</strong> <span id="weather">Loading...</span></p>
-          <p><strong>Wind:</strong> <span id="wind">--</span></p>
-          <p><strong>Humidity:</strong> <span id="humidity">--</span></p>
-        </div>
-      </div>
+      <p><strong>Temperature:</strong> <span id="temp">--</span></p>
+      <p><strong>Condition:</strong> <span id="weather">Loading...</span></p>
+      <p><strong>Wind:</strong> <span id="wind">--</span></p>
+      <p><strong>Humidity:</strong> <span id="humidity">--</span></p>
     </div>
 
-    <!-- Trekking Routes -->
-    <div class="info-card">
-      <h3>Popular Trekking Routes</h3>
+    <div class="info-block">
+      <h3>Contact & Links</h3>
       <ul>
-        <li>Senaru Route – Most popular, scenic waterfalls</li>
-        <li>Sembalun Route – More challenging, stunning sunrise views</li>
-        <li>Torean Route – Less crowded, longer trek</li>
-        <li>Timbanuh Route – Remote, adventurous</li>
+        <li><a href="https://tnrinjanipark.id" target="_blank">Official Website</a></li>
+        <li><a href="https://instagram.com/rinjaninationalpark" target="_blank">Instagram</a></li>
+        <li>Email: info@tnrinjani.id</li>
+        <li>Phone: +62 370 123456</li>
       </ul>
     </div>
-
-    <!-- Official Links & Contact -->
-    <div class="info-card">
-      <h3>Official Links & Contact</h3>
-      <ul>
-        <li><a href="https://tnrinjanipark.id" target="_blank" rel="noopener">Official Website</a></li>
-        <li><a href="https://instagram.com/rinjaninationalpark" target="_blank" rel="noopener">Instagram</a></li>
-        <li>Email: <a href="mailto:info@tnrinjani.id">info@tnrinjani.id</a></li>
-        <li>Phone: <a href="tel:+62370123456">+62 370 123456</a></li>
-        <li><a href="https://mountainguide.example.com" target="_blank" rel="noopener">Local Guides & Porters</a></li>
-        <li><a href="https://ticketbooking.example.com" target="_blank" rel="noopener">Trekking Permits & Tickets</a></li>
-      </ul>
-    </div>
-
   </div>
 
-  <!-- Description -->
   <div class="description">
-    <h3>About Mount Rinjani</h3>
-    <p>
-      Mount Rinjani is Indonesia’s second highest volcano, famed for its spectacular views and the sacred Segara Anak crater lake. It is a UNESCO Global Geopark since 2018 and attracts adventurers, nature lovers, and spiritual pilgrims alike. The trek challenges hikers with diverse terrain, rewarding them with breathtaking sunrises and pristine landscapes.
-    </p>
+    <h3>About Rinjani</h3>
+    <p>Mount Rinjani is Indonesia’s second highest volcano, rising dramatically to 3,726 meters above sea level. Its caldera holds the beautiful Segara Anak lake and the active Barujari cone. The area is sacred to local Sasak and Balinese people and offers spiritual and adventurous experiences alike.</p>
   </div>
-  
+
+  <div class="routes">
+    <h3>Trekking Routes</h3>
+    <ul>
+      <li><strong>Senaru:</strong> Forested, scenic, classic route</li>
+      <li><strong>Sembalun:</strong> Open savannah, faster summit access</li>
+      <li><strong>Timbanuh:</strong> Less crowded, more rugged</li>
+    </ul>
+  </div>
+
+  <div class="best-time">
+    <h3>Best Time to Visit</h3>
+    <p>The dry season from April to November is ideal for trekking. July–August is peak season, with the clearest views but also higher crowd levels. Avoid December–March due to heavy rains and closures.</p>
+  </div>
+
+  <div class="services">
+    <h3>Available Services</h3>
+    <ul>
+      <li>Local Guides</li>
+      <li>Porters</li>
+      <li>Equipment Rentals</li>
+      <li>Camp Sites</li>
+      <li>Online Booking via official site</li>
+    </ul>
+  </div>
 </section>
 
 

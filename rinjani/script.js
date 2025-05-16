@@ -108,7 +108,7 @@ showSlide(currentIndex);
 
 
 <!-- JS (map-tab.js) -->
-mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
 const map = new mapboxgl.Map({
   container: 'rinjani-map',

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Montamap - SOS Rinjani</title>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: sans-serif;
+    }
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+    .menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .menu-button {
+      background-color: #333;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .menu-content {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background-color: white;
+      min-width: 200px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .menu-content button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .menu-content button:hover {
+      background-color: #f1f1f1;
+    }
+    .dialog {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .dialog-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+    .dialog-box button {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .confirm {
+      background-color: green;
+      color: white;
+    }
+    .cancel {
+      background-color: red;
+      color: white;
+    }
+    #status {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: white;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <div class="menu">
+    <button class="menu-button" onclick="toggleMenu()">☰</button>
+    <div class="menu-content" id="menuContent">
+      <button onclick="showDialog()">Send SOS</button>
+    </div>
+  </div>
+
+  <div id="dialog" class="dialog">
+    <div class="dialog-box">
+      <p>Send SOS message?</p>
+      <button class="confirm" onclick="sendSOS()">Send</button>
+      <button class="cancel" onclick="hideDialog()">Cancel</button>
+    </div>
+  </div>
+
+  <div id="status"></div>
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGVtb3VzZXJzdWJzIiwiYSI6ImNsam1yZWRzYzAwOG0zb3FrZ3djM3JubzYifQ.MZkavFQqg0YFbAozbAk5sQ';
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/outdoors-v12',
+      center: [116.457, -8.411],
+      zoom: 11
+    });
+
+    navigator.geolocation.getCurrentPosition(pos => {
+      new mapboxgl.Marker({ color: 'blue' })
+        .setLngLat([pos.coords.longitude, pos.coords.latitude])
+        .addTo(map);
+    });
+
+    const statusDiv = document.getElementById('status');
+    const dialog = document.getElementById('dialog');
+
+    function toggleMenu() {
+      const menu = document.getElementById("menuContent");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    function showDialog() {
+      dialog.style.display = 'flex';
+    }
+
+    function hideDialog() {
+      dialog.style.display = 'none';
+    }
+
+    async function sendSOS() {
+      hideDialog();
+      try {
+        const location = await getLocation();
+        const sosData = {
+          time: new Date().toISOString(),
+          location,
+          mountain: "Rinjani",
+          userId: "user123"
+        };
+
+        if (navigator.onLine) {
+          sendToServer(sosData);
+        } else {
+          localStorage.setItem("pendingSOS", JSON.stringify(sosData));
+          statusDiv.innerText = "[OFFLINE] SOS saved locally. Will send when online.";
+        }
+      } catch (err) {
+        statusDiv.innerText = "Location error: " + err.message;
+      }
+    }
+
+    window.addEventListener("online", () => {
+      const pending = localStorage.getItem("pendingSOS");
+      if (pending) {
+        sendToServer(JSON.parse(pending));
+        localStorage.removeItem("pendingSOS");
+        statusDiv.innerText = "[ONLINE] Pending SOS has been sent.";
+      }
+    });
+
+    function getLocation() {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          pos => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+          err => reject(err)
+        );
+      });
+    }
+
+    function sendToServer(data) {
+      fetch("https://your-backend-url/sos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => {
+        if (res.ok) {
+          statusDiv.innerText = "SOS successfully sent.";
+        } else {
+          throw new Error("Failed to reach server.");
+        }
+      })
+      .catch(err => {
+        statusDiv.innerText = "Error: " + err.message;
+      });
+    }
+  </script>
+</body>
+</html>

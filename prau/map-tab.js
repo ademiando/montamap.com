@@ -1,4 +1,6 @@
-// map-tab.js untuk halaman Gunung Prau mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN'; // sudah kamu tanam sebelumnya
+mapboxgl.accessToken = 'sk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF3bHZxbjA0bzcybHNlamRsOXJzMXgifQ.iwdYXuYOQs7gNxnLE3pu0w';
+
+
 
 const map = new mapboxgl.Map({ container: 'prau-map', style: 'mapbox://styles/mapbox/outdoors-v12', center: [109.9195, -7.2032], // Koordinat Gunung Prau zoom: 12 });
 

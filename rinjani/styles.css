@@ -206,10 +206,29 @@ body {
 
 
 
+
+
+
 <!-- CSS (map-tab.css) -->
+
+.map-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.style-selector select {
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+
 .fullscreen-map {
   width: 100vw;
-  height: 100vh;
+  height: 1000vh;
   position: relative;
   z-index: 1;
 }

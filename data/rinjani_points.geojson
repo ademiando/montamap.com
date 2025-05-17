@@ -122,7 +122,7 @@
       "type": "Feature",
       "properties": {
         "name": "Puncak Rinjani",
-        "type": "summit",
+        "type": "peak",
         "elevation_m": 3726,
         "average_temp_c": 5
       },

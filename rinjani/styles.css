@@ -235,15 +235,18 @@ body {
   gap: 10px;
   flex-wrap: wrap;
 }
+
 .fullscreen-map {
   width: 100%;
-  height: calc(100vh - 180px); /* menyesuaikan tinggi layar minus header & kontrol */
-  max-height: 1000px;
+  height: calc(100vh - 160px);
+  min-height: 400px;
+  max-height: none;
   position: relative;
   z-index: 1;
   border-radius: 12px;
   overflow: hidden;
 }
+
 .layer-toggle {
   position: absolute;
   top: 10px;

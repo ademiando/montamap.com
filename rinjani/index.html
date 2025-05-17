@@ -33,6 +33,10 @@
   </nav>
 
   <main>
+
+
+
+
     <section id="overview" class="tab-content active">
       <div class="overview-hero">
         <div class="image-slider">
@@ -88,55 +92,85 @@
       </div>
     </section>
 
+
+
+
+
+
+
     <section id="community" class="tab-content">
       <h2>Community</h2>
       <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
     </section>
 
+
+
+
+
+
+
+
     <!-- Map Section -->
-    <section id="map" class="tab-content">
-      <div id="rinjani-map"></div>
+<section id="map" class="tab-content">
+
+  <!-- Kontrol Atas Peta -->
+  <div class="map-controls">
+    <div class="style-selector">
+      <label for="mapStyle"><strong>Peta:</strong></label>
+      <select id="mapStyle">
+        <option value="mapbox://styles/mapbox/outdoors-v12">Outdoors</option>
+        <option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
+        <option value="mapbox://styles/mapbox/satellite-streets-v12">Hybrid</option>
+      </select>
+    </div>
+
+    <div class="layer-toggle">
+      <label><input type="checkbox" id="toggle-routes" checked> Jalur Pendakian</label>
+      <label><input type="checkbox" id="toggle-points" checked> Titik Penting</label>
+    </div>
+  </div>
+
+  <!-- Peta -->
+  <div id="rinjani-map"></div>
+
+  <!-- Pilih Jalur -->
+  <div class="route-selector">
+    <button data-route="sembalun">Sembalun</button>
+    <button data-route="senaru">Senaru</button>
+    <button data-route="torean">Torean</button>
+  </div>
+
+  <!-- Tombol Offline -->
+  <a href="#offline-map" class="offline-map-btn">
+    <img src="https://montamap.com/assets/map-icon.png" alt="Offline Map">
+  </a>
+</section>
 
 
 
-<select id="mapStyle">
-  <option value="mapbox://styles/mapbox/outdoors-v12">Outdoors</option>
-  <option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
-  <option value="mapbox://styles/mapbox/satellite-streets-v12">Hybrid</option>
-</select>
 
-
-
-
-      <!-- Toggle Layer Info -->
-      <div class="layer-toggle">
-        <label><input type="checkbox" id="toggle-routes" checked> Jalur Pendakian</label>
-        <label><input type="checkbox" id="toggle-points" checked> Titik Penting</label>
-      </div>
-
-      <!-- Pilih Jalur -->
-      <div class="route-selector">
-        <button data-route="sembalun">Sembalun</button>
-        <button data-route="senaru">Senaru</button>
-        <button data-route="torean">Torean</button>
-      </div>
-
-      <!-- Tombol ke Halaman Offline -->
-      <a href="#offline-map" class="offline-map-btn">
-        <img src="https://montamap.com/assets/map-icon.png" alt="Offline Map">
-      </a>
-    </section>
 
     <section id="services" class="tab-content">
       <h2>Services</h2>
       <p>Book tickets, porters, guides, gear rentals, and more.</p>
     </section>
 
+
+
+
+
+
     <section id="news" class="tab-content">
       <h2>News</h2>
       <p>Latest updates, weather alerts, route closures, and official announcements.</p>
     </section>
   </main>
+
+
+
+
+
+
 
   <!-- Mapbox JS -->
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>

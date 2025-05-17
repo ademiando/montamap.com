@@ -211,21 +211,29 @@ body {
 
 <!-- CSS (map-tab.css) -->
 
+.style-selector select {
+  background-color: #93ae98;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.style-selector select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(147, 174, 152, 0.5);
+}
+
 .map-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
   gap: 10px;
-  background: #93ae98;
-  color: white;
-  border: none;
-  margin-bottom: 20px;
   flex-wrap: wrap;
-}
-
-.style-selector select {
-  padding: 4px 8px;
-  font-size: 14px;
 }
 
 .fullscreen-map {

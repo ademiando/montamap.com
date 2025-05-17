@@ -1,3 +1,6 @@
+document.addEventListener('DOMContentLoaded', () => {
+  
+
 // === script.js untuk halaman Gunung Prau ===
 
 // TAB SWITCHING const tabs = document.querySelectorAll('.tab'); const contents = document.querySelectorAll('.tab-content');
@@ -21,4 +24,6 @@ nextBtn.addEventListener('click', nextSlide); prevBtn.addEventListener('click', 
 // LOAD GEOJSON ROUTES fetch('/data/prau_routes.geojson') .then(res => res.json()) .then(data => { map.addSource('routes', { type: 'geojson', data: data }); map.addLayer({ id: 'routes-line', type: 'line', source: 'routes', paint: { 'line-color': '#f97316', 'line-width': 3 } }); });
 
 // LOAD GEOJSON POINTS fetch('/data/prau_points.geojson') .then(res => res.json()) .then(data => { map.addSource('points', { type: 'geojson', data: data }); map.addLayer({ id: 'points-layer', type: 'symbol', source: 'points', layout: { 'icon-image': 'marker-15', 'icon-size': 1.5, 'text-field': ['get', 'name'], 'text-offset': [0, 1.5], 'text-anchor': 'top' } }); });
+
+});
 

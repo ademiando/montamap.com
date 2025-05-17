@@ -1,0 +1,39 @@
+
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Basecamp Sembalun",
+        "type": "basecamp",
+        "altitude": 1165,
+        "description": "Pintu masuk utama Sembalun",
+        "weather": {
+          "avg_temp_c": 22,
+          "rain_risk": "sedang"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.6103, -8.3195]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Puncak Rinjani",
+        "type": "peak",
+        "altitude": 3726,
+        "weather": {
+          "avg_temp_c": 5,
+          "rain_risk": "rendah"
+        }
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4576, -8.4114]
+      }
+    }
+  ]
+}

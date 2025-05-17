@@ -1,0 +1,327 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Puncak Rinjani",
+        "type": "summit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4667,
+          -8.4167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gunung Barujari",
+        "type": "volcano"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.421,
+          -8.419
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Danau Segara Anak",
+        "type": "lake"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4241,
+          -8.4194
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Basecamp Sembalun",
+        "type": "basecamp"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.5281,
+          -8.4143
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Basecamp Senaru",
+        "type": "basecamp"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4039,
+          -8.3302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Basecamp Torean",
+        "type": "basecamp"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4228,
+          -8.3482
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 1 Pemantuan",
+        "type": "pos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.5174,
+          -8.4029
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 2 Tengengean",
+        "type": "pos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.51,
+          -8.4
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 3 Pada Balong",
+        "type": "pos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.5,
+          -8.395
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Plawangan Sembalun",
+        "type": "plawangan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4754,
+          -8.4205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 1 Senaru",
+        "type": "pos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4,
+          -8.34
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 2 Montong Satas",
+        "type": "pos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.395,
+          -8.35
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 3 Mondokon Lolak",
+        "type": "pos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.39,
+          -8.36
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Plawangan Senaru",
+        "type": "plawangan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4061,
+          -8.419
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 1 Torean",
+        "type": "pos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.43,
+          -8.36
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 2 Torean",
+        "type": "pos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.435,
+          -8.37
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 3 Torean",
+        "type": "pos"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.44,
+          -8.38
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Air Panas Aik Kalak",
+        "type": "hot_spring"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4198,
+          -8.4235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mata Air Pos 2 Sembalun",
+        "type": "water"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.5174,
+          -8.4029
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mata Air Pos 3 Senaru",
+        "type": "water"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.39,
+          -8.36
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mata Air Pos 2 Torean",
+        "type": "water"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.435,
+          -8.37
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Helipad Darurat",
+        "type": "helipad"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4705,
+          -8.4199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Camp Area Danau Segara Anak",
+        "type": "camp"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4245,
+          -8.42
+        ]
+      }
+    }
+  ]
+}

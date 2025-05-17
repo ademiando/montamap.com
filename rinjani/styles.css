@@ -217,6 +217,7 @@ body {
   align-items: center;
   gap: 10px;
   background: #93ae98;
+  color: white;
   border: none;
   margin-bottom: 20px;
   flex-wrap: wrap;

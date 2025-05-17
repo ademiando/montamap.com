@@ -307,13 +307,17 @@ html, body {
 
 /* Responsive */
 @media (max-width: 720px) {
+
   .info-flex {
     flex-direction: column;
   }
-}}
 
   .fullscreen-map {
-    height: calc(100vh - 100px); /* kurangi kompensasi header biar lebih tinggi */
+    height: calc(100vh - 100px); /* lebih tinggi untuk HP */
     min-height: 300px;
   }
+
+
+
+
 }

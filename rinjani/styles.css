@@ -283,16 +283,36 @@ body {
   cursor: pointer;
 }
 
-/* Offline Map Button */
+/* Offline Map Button - Hijau Style */
 .offline-map-btn {
   position: absolute;
   bottom: 20px;
   right: 20px;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #93ae98;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
 }
+
+.offline-map-btn:hover {
+  background-color: #7d9984;
+}
+
 .offline-map-btn img {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
+}
+
+.offline-map-btn .map-label {
+  font-size: 14px;
+  color: white;
 }
 
 

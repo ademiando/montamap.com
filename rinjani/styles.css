@@ -298,16 +298,29 @@ body {
 
 
 
-/* Responsive Adjustments */
 @media (max-width: 720px) {
-  .info-flex {
-    flex-direction: column;
+  #map.fullscreen-map {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    min-height: 300px;
+    margin-bottom: 0 !important;
   }
 
-  .fullscreen-map {
-    height: calc(100dvh - 90px);   /* kurangi sedikit untuk header/tab */
-    max-height: 100dvh;
-    min-height: 300px;
+  body, html {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .route-selector {
+    position: absolute;
+    bottom: 80px;
+    left: 10px;
+    z-index: 10;
+  }
+
+  footer, .extra-space, .after-map {
+    display: none !important;
   }
 }
 

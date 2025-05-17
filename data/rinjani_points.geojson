@@ -1,0 +1,151 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4666,
+          -8.4113
+        ]
+      },
+      "properties": {
+        "name": "Puncak Rinjani",
+        "type": "summit",
+        "elevation": "3,726 m",
+        "temperature": "-5\u00b0C",
+        "note": "Puncak tertinggi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.5283,
+          -8.4185
+        ]
+      },
+      "properties": {
+        "name": "Basecamp Sembalun",
+        "type": "basecamp",
+        "elevation": "1,100 m",
+        "temperature": "18\u00b0C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4046,
+          -8.3279
+        ]
+      },
+      "properties": {
+        "name": "Basecamp Senaru",
+        "type": "basecamp",
+        "elevation": "600 m",
+        "temperature": "22\u00b0C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4268,
+          -8.3565
+        ]
+      },
+      "properties": {
+        "name": "Basecamp Torean",
+        "type": "basecamp",
+        "elevation": "700 m",
+        "temperature": "21\u00b0C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.5243,
+          -8.4132
+        ]
+      },
+      "properties": {
+        "name": "Pos 2 Sembalun",
+        "type": "pos",
+        "elevation": "1,500 m",
+        "temperature": "16\u00b0C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4718,
+          -8.414
+        ]
+      },
+      "properties": {
+        "name": "Plawangan Sembalun",
+        "type": "plawangan",
+        "elevation": "2,639 m",
+        "temperature": "10\u00b0C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4208,
+          -8.4197
+        ]
+      },
+      "properties": {
+        "name": "Danau Segara Anak",
+        "type": "lake",
+        "elevation": "2,000 m",
+        "temperature": "12\u00b0C"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4149,
+          -8.422
+        ]
+      },
+      "properties": {
+        "name": "Air Panas Aik Kalak",
+        "type": "water",
+        "elevation": "2,000 m",
+        "temperature": "32\u00b0C",
+        "note": "Sumber air panas alami"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4197,
+          -8.4013
+        ]
+      },
+      "properties": {
+        "name": "Plawangan Senaru",
+        "type": "plawangan",
+        "elevation": "2,641 m",
+        "temperature": "10\u00b0C"
+      }
+    }
+  ]
+}

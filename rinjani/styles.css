@@ -283,38 +283,34 @@ body {
   cursor: pointer;
 }
 
-/* Wrapper: logo + tombol */
-.offline-map-wrapper {
+/* Offline Map Button - Gabungan Icon + Teks */
+.offline-map-btn {
   position: absolute;
   bottom: 20px;
   right: 20px;
+  z-index: 10;
   display: flex;
   align-items: center;
-  gap: 8px;
-  z-index: 10;
+  gap: 6px;
+  background-color: #93ae98;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
 }
 
-/* Logo Map */
-.offline-map-wrapper img {
+/* Logo Map di dalam tombol */
+.offline-map-btn img {
   width: 36px;
   height: 36px;
   display: block;
 }
 
-/* Teks sebagai tombol */
-.offline-map-wrapper a {
-  background-color: #93ae98;
-  color: white;
-  padding: 6px 10px;
-  font-size: 13px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
-  white-space: nowrap;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.offline-map-wrapper a:hover {
+.offline-map-btn:hover {
   background-color: #7d9984;
 }
 

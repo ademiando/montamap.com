@@ -211,19 +211,19 @@ body {
 
 <!-- CSS (map-tab.css) -->
 
-.fullscreen-map {
+#rinjani-map.fullscreen-map {
   width: 100%;
-  height: calc(100dvh - 170px); /* Kurangi navbar, tab, margin (adjust sesuai real tinggi) */
+  height: 70vh;                  /* buat tinggi map proporsional di layar */
   min-height: 400px;
-  position: relative;
-  z-index: 1;
+  margin-top: 10px;
+  margin-bottom: 24px;
   border-radius: 12px;
   overflow: hidden;
-  margin-top: 15px;
-  margin-bottom: 15px;
 }
 
-
+.map-controls {
+  padding-top: 8px;
+}
 
 /* Style Dropdown */
 .style-selector select {

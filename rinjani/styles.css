@@ -283,7 +283,8 @@ body {
   cursor: pointer;
 }
 
-.offline-map-display {
+/* Offline Map Button - Gabungan Icon + Teks */
+.offline-map-btn {
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -291,19 +292,26 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
+  background-color: none;
+  color: #93ae98;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
 }
 
-.map-text {
-  font-size: 13px;
-  color: #4e6c50; /* hijau Montamap */
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.map-icon {
+/* Logo Map di dalam tombol */
+.offline-map-btn img {
   width: 36px;
   height: 36px;
   display: block;
+}
+
+.offline-map-btn:hover {
+  background-color: #f1f1f1;
 }
 
 

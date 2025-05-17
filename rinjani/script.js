@@ -110,181 +110,53 @@ showSlide(currentIndex);
 
 
 
+// File: map-tab.js
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
-const map = new mapboxgl.Map({
-  container: 'rinjani-map',
-  style: 'mapbox://styles/mapbox/outdoors-v12',
-  center: [116.47, -8.41],
-  zoom: 10,
-  pitch: 60,
-  bearing: -20,
-  antialias: true
-});
+const map = new mapboxgl.Map({ container: 'rinjani-map', style: 'mapbox://styles/mapbox/outdoors-v12', center: [116.47, -8.41], zoom: 10, pitch: 60, bearing: -20, antialias: true });
 
 map.addControl(new mapboxgl.NavigationControl());
 
-// Layer & terrain
-function setupTerrainAndSky() {
-  map.addSource('mapbox-dem', {
-    type: 'raster-dem',
-    url: 'mapbox://mapbox.terrain-rgb',
-    tileSize: 512,
-    maxzoom: 14
-  });
+function setupTerrainAndSky() { map.addSource('mapbox-dem', { type: 'raster-dem', url: 'mapbox://mapbox.terrain-rgb', tileSize: 512, maxzoom: 14 });
 
-  map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.8 });
+map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.8 });
 
-  map.setFog({
-    color: 'rgb(186, 210, 235)',
-    'high-color': 'rgb(36, 92, 223)',
-    'horizon-blend': 0.5,
-    'space-color': 'rgb(11, 11, 25)',
-    'star-intensity': 0.15
-  });
+map.setFog({ color: 'rgb(186, 210, 235)', 'high-color': 'rgb(36, 92, 223)', 'horizon-blend': 0.5, 'space-color': 'rgb(11, 11, 25)', 'star-intensity': 0.15 });
 
-  map.addLayer({
-    id: 'sky',
-    type: 'sky',
-    paint: {
-      'sky-type': 'atmosphere',
-      'sky-atmosphere-sun': [0.0, 90.0],
-      'sky-atmosphere-sun-intensity': 10
-    }
-  });
-}
+map.addLayer({ id: 'sky', type: 'sky', paint: { 'sky-type': 'atmosphere', 'sky-atmosphere-sun': [0.0, 90.0], 'sky-atmosphere-sun-intensity': 10 } }); }
 
-// Layer data
-function addMapLayers() {
-  map.addSource('rinjani-routes', {
-    type: 'geojson',
-    data: '/data/rinjani_routes.geojson'
-  });
+function addMapLayers() { map.addSource('rinjani-routes', { type: 'geojson', data: '/data/rinjani_routes.geojson' });
 
-  map.addLayer({
-    id: 'routes-layer',
-    type: 'line',
-    source: 'rinjani-routes',
-    layout: { 'line-join': 'round', 'line-cap': 'round' },
-    paint: {
-      'line-color': [
-        'match',
-        ['get', 'route_name'],
-        'Sembalun', '#ff0000',
-        'Senaru', '#0000ff',
-        'Torean', '#00ff00',
-        '#888'
-      ],
-      'line-width': 4
-    }
-  });
+map.addLayer({ id: 'routes-layer', type: 'line', source: 'rinjani-routes', layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: { 'line-color': [ 'match', ['get', 'route_name'], 'Sembalun', '#ff0000', 'Senaru', '#0000ff', 'Torean', '#00ff00', '#888' ], 'line-width': 4 } });
 
-  map.addSource('important-points', {
-    type: 'geojson',
-    data: '/data/rinjani_points.geojson'
-  });
+map.addSource('important-points', { type: 'geojson', data: '/data/rinjani_points.geojson' });
 
-  map.addLayer({
-    id: 'points-layer',
-    type: 'circle',
-    source: 'important-points',
-    paint: {
-      'circle-radius': 7,
-      'circle-color': [
-        'match',
-        ['get', 'type'],
-        'basecamp', '#1E90FF',
-        'pos', '#32CD32',
-        'plawangan', '#FFA500',
-        'lake', '#00CED1',
-        'summit', '#FF4500',
-        'danger', '#FF0000',
-        'water', '#1E90FF',
-        '#ccc'
-      ],
-      'circle-stroke-width': 2,
-      'circle-stroke-color': '#fff'
-    }
-  });
+map.addLayer({ id: 'points-layer', type: 'circle', source: 'important-points', paint: { 'circle-radius': 7, 'circle-color': [ 'match', ['get', 'type'], 'basecamp', '#1E90FF', 'pos', '#32CD32', 'plawangan', '#FFA500', 'lake', '#00CED1', 'summit', '#FF4500', 'danger', '#FF0000', 'water', '#1E90FF', '#ccc' ], 'circle-stroke-width': 2, 'circle-stroke-color': '#fff' } });
 
-  map.on('mouseenter', 'points-layer', (e) => {
-    map.getCanvas().style.cursor = 'pointer';
-    const coordinates = e.features[0].geometry.coordinates.slice();
-    const { name, elevation, temperature, note } = e.features[0].properties;
+map.on('mouseenter', 'points-layer', (e) => { map.getCanvas().style.cursor = 'pointer'; const coordinates = e.features[0].geometry.coordinates.slice(); const { name, elevation, temperature, note } = e.features[0].properties;
 
-    let description = `<strong>${name}</strong><br>Elevation: ${elevation}<br>Temperature: ${temperature}`;
-    if (note) description += `<br>Note: ${note}`;
+let description = `<strong>${name}</strong><br>Elevation: ${elevation}<br>Temperature: ${temperature}`;
+if (note) description += `<br>Note: ${note}`;
 
-    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    }
+new mapboxgl.Popup()
+  .setLngLat(coordinates)
+  .setHTML(description)
+  .addTo(map);
 
-    new mapboxgl.Popup()
-      .setLngLat(coordinates)
-      .setHTML(description)
-      .addTo(map);
-  });
-
-  map.on('mouseleave', 'points-layer', () => {
-    map.getCanvas().style.cursor = '';
-  });
-}
-
-// Tombol selector jalur
-function bindRouteButtons() {
-  const routes = {
-    sembalun: [116.55, -8.41],
-    senaru: [116.45, -8.30],
-    torean: [116.43, -8.38]
-  };
-
-  document.querySelectorAll('.route-selector button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const coords = routes[btn.dataset.route];
-      if (coords) {
-        map.flyTo({
-          center: coords,
-          zoom: 13,
-          pitch: 65,
-          bearing: -20
-        });
-      }
-    });
-  });
-}
-
-// Initial load
-map.on('load', () => {
-  setupTerrainAndSky();
-  addMapLayers();
-  bindRouteButtons();
 });
 
-// Ganti style
-const styleSelector = document.getElementById('mapStyle');
-if (styleSelector) {
-  styleSelector.addEventListener('change', (e) => {
-    const newStyle = e.target.value;
-    map.setStyle(newStyle);
-    map.once('style.load', () => {
-      setupTerrainAndSky();
-      addMapLayers();
-      bindRouteButtons();
-    });
-  });
-}
+map.on('mouseleave', 'points-layer', () => { map.getCanvas().style.cursor = ''; }); }
 
-// Layer toggle
-const routeCheckbox = document.getElementById('toggle-routes');
-const pointCheckbox = document.getElementById('toggle-points');
+function bindRouteButtons() { const routes = { sembalun: [116.55, -8.41], senaru: [116.45, -8.30], torean: [116.43, -8.38] };
 
-if (routeCheckbox) {
-  routeCheckbox.addEventListener('change', () => {
-    map.setLayoutProperty('routes-layer', 'visibility', routeCheckbox.checked ? 'visible' : 'none');
-  });
-}
-if (pointCheckbox) {
-  pointCheckbox.addEventListener('change', () => {
-    map.setLayoutProperty('points-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
-  });
-});
+const buttons = document.querySelectorAll('.route-selector button'); buttons.forEach(btn => { btn.addEventListener('click', () => { const coords = routes[btn.dataset.route]; if (coords) { map.flyTo({ center: coords, zoom: 13, pitch: 65, bearing: -20 }); } }); }); }
+
+map.on('load', () => { setupTerrainAndSky(); addMapLayers(); bindRouteButtons(); });
+
+const styleSelector = document.getElementById('mapStyle'); if (styleSelector) { styleSelector.addEventListener('change', (e) => { const newStyle = e.target.value; map.setStyle(newStyle); map.once('style.load', () => { setupTerrainAndSky(); addMapLayers(); bindRouteButtons(); }); }); }
+
+const routeCheckbox = document.getElementById('toggle-routes'); const pointCheckbox = document.getElementById('toggle-points');
+
+if (routeCheckbox) { routeCheckbox.addEventListener('change', () => { map.setLayoutProperty('routes-layer', 'visibility', routeCheckbox.checked ? 'visible' : 'none'); }); } if (pointCheckbox) { pointCheckbox.addEventListener('change', () => { map.setLayoutProperty('points-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none'); }); }
+

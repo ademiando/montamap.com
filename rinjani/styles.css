@@ -283,7 +283,15 @@ body {
   cursor: pointer;
 }
 
-/* Offline Map Button - Gabungan Icon + Teks */
+
+/* Logo Map di dalam tombol */
+.offline-map-btn img {
+  width: 36px;
+  height: 36px;
+  display: block;
+}
+
+/* Offline Map Button - Teks */
 .offline-map-btn {
   position: absolute;
   bottom: 20px;
@@ -301,13 +309,6 @@ body {
   font-weight: 500;
   font-size: 12px;
   line-height: 1;
-}
-
-/* Logo Map di dalam tombol */
-.offline-map-btn img {
-  width: 36px;
-  height: 36px;
-  display: block;
 }
 
 .offline-map-btn:hover {

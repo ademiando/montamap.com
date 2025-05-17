@@ -248,7 +248,7 @@ function bindRouteButtons() {
       if (coords) {
         map.flyTo({
           center: coords,
-          zoom: 18,
+          zoom: 16,
           pitch: 65,
           bearing: -20
         });
@@ -280,7 +280,7 @@ map.on('load', () => {
       filter: ['==', 'type', 'trailhead'],
       layout: {
         'icon-image': 'basecamp-icon',
-        'icon-size': 0.01,
+        'icon-size': 0.015,
         'icon-allow-overlap': true,
         'text-field': ['get', 'name'],
         'text-offset': [0, 0.6],

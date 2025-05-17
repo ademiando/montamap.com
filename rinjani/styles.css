@@ -298,32 +298,32 @@ body {
 
 
 
+
+/* Responsive for Mobile */
 @media (max-width: 720px) {
-  #map.fullscreen-map {
+  #map.fullscreen-map,
+  .fullscreen-map {
     height: 100dvh !important;
     max-height: 100dvh !important;
     min-height: 300px;
     margin-bottom: 0 !important;
   }
 
-  body, html {
+  html, body {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
   }
 
   .route-selector {
-    position: absolute;
     bottom: 80px;
     left: 10px;
     z-index: 10;
   }
 
-  footer, .extra-space, .after-map {
+  footer,
+  .extra-space,
+  .after-map {
     display: none !important;
   }
 }
-
-
-
-

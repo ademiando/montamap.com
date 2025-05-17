@@ -111,7 +111,7 @@ showSlide(currentIndex);
 
 
 
-// Map Tab File: script.js
+// Map-Tab.js
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
@@ -157,6 +157,7 @@ function setupTerrainAndSky() {
 }
 
 function addMapLayers() {
+  // Jalur pendakian
   map.addSource('rinjani-routes', {
     type: 'geojson',
     data: '/data/rinjani_routes.geojson'
@@ -183,21 +184,61 @@ function addMapLayers() {
     }
   });
 
-  map.addSource('rinjani-points', {
+  // Titik-titik penting versi lingkaran
+  map.addSource('important-points', {
     type: 'geojson',
     data: '/data/rinjani_points.geojson'
   });
 
-  // Note: circle points layer dihapus supaya nggak bentrok dengan simbol ikon
+  map.addLayer({
+    id: 'points-layer',
+    type: 'circle',
+    source: 'important-points',
+    paint: {
+      'circle-radius': 7,
+      'circle-color': [
+        'match',
+        ['get', 'type'],
+        'basecamp', '#1E90FF',
+        'pos', '#32CD32',
+        'plawangan', '#FFA500',
+        'lake', '#00CED1',
+        'summit', '#FF4500',
+        'danger', '#FF0000',
+        'water', '#1E90FF',
+        '#ccc'
+      ],
+      'circle-stroke-width': 2,
+      'circle-stroke-color': '#fff'
+    }
+  });
+
+  map.on('mouseenter', 'points-layer', (e) => {
+    map.getCanvas().style.cursor = 'pointer';
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const { name, elevation, temperature, note } = e.features[0].properties;
+
+    let description = `<strong>${name}</strong><br>Elevation: ${elevation}<br>Temperature: ${temperature}`;
+    if (note) description += `<br>Note: ${note}`;
+
+    new mapboxgl.Popup()
+      .setLngLat(coordinates)
+      .setHTML(description)
+      .addTo(map);
+  });
+
+  map.on('mouseleave', 'points-layer', () => {
+    map.getCanvas().style.cursor = '';
+  });
 }
 
 function bindRouteButtons() {
   const routes = {
-    sembalun: [116.525, -8.414],       // Basecamp Sembalun
-    senaru: [116.416, -8.304],         // Basecamp Senaru
-    torean: [116.408, -8.342],         // Basecamp Torean
-    timbanuh: [116.489, -8.547],       // Basecamp Timbanuh
-    aik-berik: [116.358, -8.582],    // Basecamp Aik Berik
+    sembalun: [116.525, -8.414],
+    senaru: [116.416, -8.304],
+    torean: [116.408, -8.342],
+    timbanuh: [116.489, -8.547],
+    "aik-berik": [116.358, -8.582]
   };
 
   const buttons = document.querySelectorAll('.route-selector button');
@@ -205,70 +246,56 @@ function bindRouteButtons() {
     btn.addEventListener('click', () => {
       const coords = routes[btn.dataset.route];
       if (coords) {
-        map.flyTo({ center: coords, zoom: 18, pitch: 65, bearing: -20 });
+        map.flyTo({
+          center: coords,
+          zoom: 13,
+          pitch: 65,
+          bearing: -20
+        });
       }
     });
   });
 }
 
+// MAIN EXECUTION
 map.on('load', () => {
   setupTerrainAndSky();
   addMapLayers();
   bindRouteButtons();
 
-  // Load custom icons
-  map.loadImage('https://montamap.com/assets/logo.png', (error, basecampIcon) => {
+  // Tambahkan ikon untuk basecamp saja
+  map.loadImage('https://montamap.com/assets/logo.png', (error, icon) => {
     if (error) throw error;
-    map.addImage('basecamp-icon', basecampIcon);
+    map.addImage('basecamp-icon', icon);
 
-    map.loadImage('https://montamap.com/assets/icon-peak.png', (error2, peakIcon) => {
-      if (error2) throw error2;
-      map.addImage('peak-icon', peakIcon);
+    map.addSource('rinjani-points', {
+      type: 'geojson',
+      data: '/data/rinjani_points.geojson'
+    });
 
-      // Add layers for points with symbol icons
-      map.addLayer({
-        id: 'basecamp-layer',
-        type: 'symbol',
-        source: 'rinjani-points',
-        filter: ['==', 'type', 'trailhead'],
-        layout: {
-          'icon-image': 'basecamp-icon',
-          'icon-size': 0.06,
-          'icon-allow-overlap': true,
-          'text-field': ['get', 'name'],
-          'text-offset': [0, 1.2],
-          'text-anchor': 'top'
-        },
-        paint: {
-          'text-color': '#333',
-          'text-halo-color': '#fff',
-          'text-halo-width': 1
-        }
-      });
-
-      map.addLayer({
-        id: 'peak-layer',
-        type: 'symbol',
-        source: 'rinjani-points',
-        filter: ['in', 'type', 'peak', 'lake'],
-        layout: {
-          'icon-image': 'peak-icon',
-          'icon-size': 0.06,
-          'icon-allow-overlap': true,
-          'text-field': ['get', 'name'],
-          'text-offset': [0, 1.2],
-          'text-anchor': 'top'
-        },
-        paint: {
-          'text-color': '#333',
-          'text-halo-color': '#fff',
-          'text-halo-width': 1
-        }
-      });
+    map.addLayer({
+      id: 'basecamp-layer',
+      type: 'symbol',
+      source: 'rinjani-points',
+      filter: ['==', 'type', 'trailhead'],
+      layout: {
+        'icon-image': 'basecamp-icon',
+        'icon-size': 0.06,
+        'icon-allow-overlap': true,
+        'text-field': ['get', 'name'],
+        'text-offset': [0, 1.2],
+        'text-anchor': 'top'
+      },
+      paint: {
+        'text-color': '#333',
+        'text-halo-color': '#fff',
+        'text-halo-width': 1
+      }
     });
   });
 });
 
+// Toggle style
 const styleSelector = document.getElementById('mapStyle');
 if (styleSelector) {
   styleSelector.addEventListener('change', (e) => {
@@ -282,6 +309,7 @@ if (styleSelector) {
   });
 }
 
+// Layer visibility toggles
 const routeCheckbox = document.getElementById('toggle-routes');
 const pointCheckbox = document.getElementById('toggle-points');
 
@@ -290,11 +318,9 @@ if (routeCheckbox) {
     map.setLayoutProperty('routes-layer', 'visibility', routeCheckbox.checked ? 'visible' : 'none');
   });
 }
+
 if (pointCheckbox) {
   pointCheckbox.addEventListener('change', () => {
-    map.setLayoutProperty('basecamp-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
-    map.setLayoutProperty('peak-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
+    map.setLayoutProperty('points-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
   });
 }
-
-

@@ -148,7 +148,16 @@ new mapboxgl.Popup()
 
 map.on('mouseleave', 'points-layer', () => { map.getCanvas().style.cursor = ''; }); }
 
-function bindRouteButtons() { const routes = { sembalun: [116.55, -8.41], senaru: [116.45, -8.30], torean: [116.43, -8.38] };
+function bindRouteButtons() { const routes = {
+  sembalun: [116.525, -8.414],       // Basecamp Sembalun
+  senaru: [116.416, -8.304],         // Basecamp Senaru
+  torean: [116.408, -8.342],         // Basecamp Torean
+  timbanuh: [116.489, -8.547],       // Basecamp Timbanuh
+  "aik-berik": [116.358, -8.582],    // Basecamp Aik Berik
+  tetebatu: [116.479, -8.548],       // Basecamp Tetebatu
+  sajang: [116.558, -8.428],         // Titik awal Sajang (penghubung ke Sembalun)
+  "torean-lama": [116.405, -8.338],  // Titik awal Torean Lama (varian lama)
+};
 
 const buttons = document.querySelectorAll('.route-selector button'); buttons.forEach(btn => { btn.addEventListener('click', () => { const coords = routes[btn.dataset.route]; if (coords) { map.flyTo({ center: coords, zoom: 13, pitch: 65, bearing: -20 }); } }); }); }
 

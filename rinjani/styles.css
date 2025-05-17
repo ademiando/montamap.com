@@ -117,7 +117,7 @@ body {
 }
 
 .image-slider button:hover {
-  background: #93ae98;
+  background: none;
 }
 
 .image-slider .prev {

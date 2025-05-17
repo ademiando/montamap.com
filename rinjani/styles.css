@@ -283,7 +283,7 @@ body {
   cursor: pointer;
 }
 
-/* Offline Map Button - Wrapper */
+/* Wrapper: logo + tombol */
 .offline-map-wrapper {
   position: absolute;
   bottom: 20px;
@@ -295,16 +295,17 @@ body {
 }
 
 /* Logo Map */
-.map-logo {
+.offline-map-wrapper img {
   width: 36px;
   height: 36px;
+  display: block;
 }
 
-/* Teks Download */
-.map-download-label {
+/* Teks sebagai tombol */
+.offline-map-wrapper a {
   background-color: #93ae98;
   color: white;
-  padding: 5px 10px;
+  padding: 6px 10px;
   font-size: 13px;
   border-radius: 6px;
   text-decoration: none;
@@ -313,7 +314,7 @@ body {
   transition: background-color 0.2s ease-in-out;
 }
 
-.map-download-label:hover {
+.offline-map-wrapper a:hover {
   background-color: #7d9984;
 }
 

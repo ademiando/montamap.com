@@ -211,26 +211,15 @@ body {
 
 <!-- CSS (map-tab.css) -->
 
-/* Map Container Styling */
 .fullscreen-map {
   width: 100%;
-  height: 100dvh;                            /* isi penuh layar */
-  max-height: calc(100dvh - 100px);         /* kurangi untuk header/nav */
-  min-height: 320px;                        /* aman untuk device kecil */
+  min-height: 480px;
+  height: min(100dvh, 600px);   /* Maksimum 600px atau 100vh */
   position: relative;
   z-index: 1;
   border-radius: 12px;
   overflow: hidden;
-}
-
-/* Layout Control Buttons */
-.map-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  gap: 10px;
-  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 /* Style Dropdown */

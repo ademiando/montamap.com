@@ -197,7 +197,7 @@ function bindRouteButtons() {
     senaru: [116.416, -8.304],         // Basecamp Senaru
     torean: [116.408, -8.342],         // Basecamp Torean
     timbanuh: [116.489, -8.547],       // Basecamp Timbanuh
-    "aik-berik": [116.358, -8.582],    // Basecamp Aik Berik
+    aik-berik: [116.358, -8.582],    // Basecamp Aik Berik
   };
 
   const buttons = document.querySelectorAll('.route-selector button');
@@ -205,7 +205,7 @@ function bindRouteButtons() {
     btn.addEventListener('click', () => {
       const coords = routes[btn.dataset.route];
       if (coords) {
-        map.flyTo({ center: coords, zoom: 13, pitch: 65, bearing: -20 });
+        map.flyTo({ center: coords, zoom: 18, pitch: 65, bearing: -20 });
       }
     });
   });
@@ -230,7 +230,7 @@ map.on('load', () => {
         id: 'basecamp-layer',
         type: 'symbol',
         source: 'rinjani-points',
-        filter: ['==', ['get', 'type'], 'trailhead'],
+        filter: ['==', 'type', 'trailhead'],
         layout: {
           'icon-image': 'basecamp-icon',
           'icon-size': 0.06,
@@ -250,7 +250,7 @@ map.on('load', () => {
         id: 'peak-layer',
         type: 'symbol',
         source: 'rinjani-points',
-        filter: ['in', ['get', 'type'], 'peak', 'lake'],
+        filter: ['in', 'type', 'peak', 'lake'],
         layout: {
           'icon-image': 'peak-icon',
           'icon-size': 0.06,
@@ -296,3 +296,14 @@ if (pointCheckbox) {
     map.setLayoutProperty('peak-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
   });
 }
+
+
+map.addLayer({
+  id: 'debug-point-layer',
+  type: 'circle',
+  source: 'rinjani-points',
+  paint: {
+    'circle-radius': 6,
+    'circle-color': '#00ffcc'
+  }
+});

@@ -1,0 +1,237 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "route": "Sembalun to Segara Anak",
+        "difficulty": "moderate"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.495605,
+            -8.34413
+          ],
+          [
+            116.478,
+            -8.347
+          ],
+          [
+            116.46094,
+            -8.34839
+          ],
+          [
+            116.46031,
+            -8.36942
+          ],
+          [
+            116.452,
+            -8.385
+          ],
+          [
+            116.44067,
+            -8.39336
+          ],
+          [
+            116.419,
+            -8.392
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route": "Segara Anak to Puncak",
+        "difficulty": "hard"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.419,
+            -8.392
+          ],
+          [
+            116.457,
+            -8.415
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route": "Senaru to Segara Anak",
+        "difficulty": "moderate"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.40028,
+            -8.31639
+          ],
+          [
+            116.39,
+            -8.325
+          ],
+          [
+            116.38928,
+            -8.34806
+          ],
+          [
+            116.39833,
+            -8.37083
+          ],
+          [
+            116.397,
+            -8.386
+          ],
+          [
+            116.419,
+            -8.392
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route": "Segara Anak to Puncak",
+        "difficulty": "hard"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.419,
+            -8.392
+          ],
+          [
+            116.457,
+            -8.415
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route": "Torean to Segara Anak",
+        "difficulty": "moderate"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.376,
+            -8.316
+          ],
+          [
+            116.366,
+            -8.325
+          ],
+          [
+            116.37,
+            -8.33
+          ],
+          [
+            116.419,
+            -8.392
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route": "Segara Anak to Puncak",
+        "difficulty": "hard"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.419,
+            -8.392
+          ],
+          [
+            116.457,
+            -8.415
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route": "Timbanuh to Segara Anak",
+        "difficulty": "moderate"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.495,
+            -8.54
+          ],
+          [
+            116.48,
+            -8.54
+          ],
+          [
+            116.47,
+            -8.55
+          ],
+          [
+            116.419,
+            -8.392
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route": "Segara Anak to Puncak",
+        "difficulty": "hard"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.419,
+            -8.392
+          ],
+          [
+            116.457,
+            -8.415
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route": "Aik Berik to Segara Anak",
+        "difficulty": "moderate"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.372,
+            -8.597
+          ],
+          [
+            116.419,
+            -8.392
+          ]
+        ]
+      }
+    }
+  ]
+}

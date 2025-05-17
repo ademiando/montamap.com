@@ -216,7 +216,9 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
+  background: #93ae98;
+  border: none;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 

@@ -116,13 +116,50 @@ const map = new mapboxgl.Map({
   container: 'rinjani-map',
   style: 'mapbox://styles/mapbox/outdoors-v12',
   center: [116.47, -8.41],
-  zoom: 10
+  zoom: 12,
+  pitch: 60,         // kemiringan kamera
+  bearing: -10,      // arah kamera
+  antialias: true
 });
 
 map.addControl(new mapboxgl.NavigationControl());
 
+// Saat map ready
+map.on('load', () => {
+  // Tambah Terrain 3D
+  map.addSource('mapbox-dem', {
+    type: 'raster-dem',
+    url: 'mapbox://mapbox.terrain-rgb',
+    tileSize: 512,
+    maxzoom: 14
+  });
+  map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.8 });
+
+  // Langit & atmosfer
+  map.setFog({
+    color: 'rgb(186, 210, 235)',
+    'high-color': 'rgb(36, 92, 223)',
+    'horizon-blend': 0.5,
+    'space-color': 'rgb(11, 11, 25)',
+    'star-intensity': 0.15
+  });
+
+  map.addLayer({
+    id: 'sky',
+    type: 'sky',
+    paint: {
+      'sky-type': 'atmosphere',
+      'sky-atmosphere-sun': [0.0, 90.0],
+      'sky-atmosphere-sun-intensity': 10
+    }
+  });
+
+  // Tambah layer GeoJSON
+  addMapLayers();
+});
+
+// Tambah jalur dan titik penting
 function addMapLayers() {
-  // Sumber data jalur
   map.addSource('rinjani-routes', {
     type: 'geojson',
     data: '/data/rinjani_routes.geojson'
@@ -134,8 +171,7 @@ function addMapLayers() {
     layout: { 'line-join': 'round', 'line-cap': 'round' },
     paint: {
       'line-color': [
-        'match',
-        ['get', 'route_name'],
+        'match', ['get', 'route_name'],
         'Sembalun', '#ff0000',
         'Senaru', '#0000ff',
         'Torean', '#00ff00',
@@ -145,7 +181,6 @@ function addMapLayers() {
     }
   });
 
-  // Sumber data titik penting
   map.addSource('important-points', {
     type: 'geojson',
     data: '/data/rinjani_points.geojson'
@@ -157,8 +192,7 @@ function addMapLayers() {
     paint: {
       'circle-radius': 7,
       'circle-color': [
-        'match',
-        ['get', 'type'],
+        'match', ['get', 'type'],
         'basecamp', '#1E90FF',
         'pos', '#32CD32',
         'plawangan', '#FFA500',
@@ -173,7 +207,6 @@ function addMapLayers() {
     }
   });
 
-  // Popup info titik penting saat hover
   map.on('mouseenter', 'points-layer', (e) => {
     map.getCanvas().style.cursor = 'pointer';
     const coordinates = e.features[0].geometry.coordinates.slice();
@@ -186,10 +219,7 @@ function addMapLayers() {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
 
-    new mapboxgl.Popup()
-      .setLngLat(coordinates)
-      .setHTML(description)
-      .addTo(map);
+    new mapboxgl.Popup().setLngLat(coordinates).setHTML(description).addTo(map);
   });
 
   map.on('mouseleave', 'points-layer', () => {
@@ -197,44 +227,50 @@ function addMapLayers() {
   });
 }
 
-map.on('load', () => {
-  addMapLayers();
-});
-
-// --- Tambahan dropdown style ---
+// Ganti style (dropdown)
 const styleSelector = document.getElementById('mapStyle');
 if (styleSelector) {
   styleSelector.addEventListener('change', (e) => {
     const newStyle = e.target.value;
     map.setStyle(newStyle);
-
     map.once('style.load', () => {
+      map.addSource('mapbox-dem', {
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.terrain-rgb',
+        tileSize: 512,
+        maxzoom: 14
+      });
+      map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.8 });
       addMapLayers();
     });
   });
 }
 
-// Toggle layer visibility
-const routeCheckbox = document.getElementById('toggle-routes');
-const pointCheckbox = document.getElementById('toggle-points');
+// Toggle visibilitas layer
+document.getElementById('toggle-routes').addEventListener('change', e => {
+  map.setLayoutProperty('routes-layer', 'visibility', e.target.checked ? 'visible' : 'none');
+});
+document.getElementById('toggle-points').addEventListener('change', e => {
+  map.setLayoutProperty('points-layer', 'visibility', e.target.checked ? 'visible' : 'none');
+});
 
-if (routeCheckbox) {
-  routeCheckbox.addEventListener('change', () => {
-    map.setLayoutProperty('routes-layer', 'visibility', routeCheckbox.checked ? 'visible' : 'none');
-  });
-}
-if (pointCheckbox) {
-  pointCheckbox.addEventListener('change', () => {
-    map.setLayoutProperty('points-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
-  });
-}
-
-// Tombol route selector
-const buttons = document.querySelectorAll('.route-selector button');
-buttons.forEach(btn => {
+// Selector tombol jalur
+document.querySelectorAll('.route-selector button').forEach(btn => {
   btn.addEventListener('click', () => {
-    if (btn.dataset.route === 'sembalun') map.flyTo({ center: [116.55, -8.41], zoom: 12 });
-    if (btn.dataset.route === 'senaru') map.flyTo({ center: [116.45, -8.30], zoom: 12 });
-    if (btn.dataset.route === 'torean') map.flyTo({ center: [116.43, -8.38], zoom: 12 });
+    const target = {
+      sembalun: [116.55, -8.41],
+      senaru: [116.45, -8.30],
+      torean: [116.43, -8.38]
+    }[btn.dataset.route];
+    map.flyTo({ center: target, zoom: 13, pitch: 65, bearing: -20 });
   });
 });
+
+// Rotasi kamera otomatis
+let angle = 0;
+function rotateCamera(timestamp) {
+  angle = (timestamp / 100) % 360;
+  map.rotateTo(angle, { duration: 0 });
+  requestAnimationFrame(rotateCamera);
+}
+rotateCamera(0);

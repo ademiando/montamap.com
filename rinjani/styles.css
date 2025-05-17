@@ -289,7 +289,17 @@ body {
 }
 
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
+#map {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
 
 
@@ -301,3 +311,9 @@ body {
     flex-direction: column;
   }
 }}
+
+  .fullscreen-map {
+    height: calc(100vh - 100px); /* kurangi kompensasi header biar lebih tinggi */
+    min-height: 300px;
+  }
+}

@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => console.error('Weather fetch error:', error));
 
   // === MAPBOX ===
-  mapboxgl.accessToken = 'sk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXJ0NXh2djA5NXEybHMyZmhkN3J5eDAifQ.WIHOfh7VpnMSq4vIb290Xg';
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
   const mapContainer = document.getElementById('prau-map');
   if (mapContainer) {

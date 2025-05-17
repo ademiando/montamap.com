@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "features": [
     {
-      "type": "Feature",
+       "type": "Feature",
       "properties": {
         "name": "Basecamp Sembalun",
         "type": "trailhead",
@@ -10,10 +10,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          116.495605,
-          -8.34413
-        ]
+        "coordinates": [116.525, -8.414]
       }
     },
     {
@@ -25,10 +22,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          116.40028,
-          -8.31639
-        ]
+        "coordinates": [116.416, -8.304]
       }
     },
     {
@@ -40,10 +34,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          116.495,
-          -8.54
-        ]
+        "coordinates": [116.489, -8.547]
       }
     },
     {
@@ -55,10 +46,7 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          116.376,
-          -8.316
-        ]
+        "coordinates": [116.408, -8.342]
       }
     },
     {
@@ -70,12 +58,9 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [
-          116.372,
-          -8.597
-        ]
+        "coordinates": [116.358, -8.582]
       }
-    },
+    }
     {
       "type": "Feature",
       "properties": {
@@ -86,8 +71,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          116.457,
-          -8.415
+          116.4624,
+          -8.4189
         ]
       }
     },

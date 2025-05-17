@@ -211,6 +211,7 @@ body {
 
 <!-- CSS (map-tab.css) -->
 
+/* Dropdown Style */
 .style-selector select {
   background-color: #93ae98;
   color: white;
@@ -227,6 +228,7 @@ body {
   box-shadow: 0 0 0 2px rgba(147, 174, 152, 0.5);
 }
 
+/* Kontrol Map (atas dropdown, toggle) */
 .map-controls {
   display: flex;
   justify-content: space-between;
@@ -236,17 +238,19 @@ body {
   flex-wrap: wrap;
 }
 
+/* MAP AREA */
 .fullscreen-map {
   width: 100%;
-  height: calc(100vh - 160px);
-  min-height: 300px;
-  max-height: none;
+  height: 100dvh;
+  max-height: calc(100dvh - 140px); /* Dynamic tinggi: nyaman untuk semua device */
+  min-height: 320px;
   position: relative;
   z-index: 1;
   border-radius: 12px;
   overflow: hidden;
 }
 
+/* TOGGLE LAYER */
 .layer-toggle {
   position: absolute;
   top: 10px;
@@ -257,6 +261,8 @@ body {
   font-size: 14px;
   z-index: 10;
 }
+
+/* TOMBOL JALUR */
 .route-selector {
   position: absolute;
   bottom: 70px;
@@ -268,6 +274,7 @@ body {
   gap: 6px;
   z-index: 10;
 }
+
 .route-selector button {
   background: #93ae98;
   border: none;
@@ -277,12 +284,15 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+
+/* OFFLINE MAP ICON */
 .offline-map-btn {
   position: absolute;
   bottom: 20px;
   right: 20px;
   z-index: 10;
 }
+
 .offline-map-btn img {
   width: 36px;
   height: 36px;
@@ -292,23 +302,33 @@ body {
 
 
 
-
-
-
-
-/* Responsive */
-@media (max-width: 720px) {
-
-  .info-flex {
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .map-controls {
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .fullscreen-map {
-    height: calc(100vh - 100px); /* lebih tinggi untuk HP */
+    height: 100dvh;
+    max-height: calc(100dvh - 100px);
     min-height: 300px;
+    border-radius: 8px;
   }
 
+  .route-selector {
+    bottom: 90px;
+    left: 10px;
+    flex-wrap: wrap;
+  }
 
-
-
+  .offline-map-btn img {
+    width: 32px;
+    height: 32px;
+  }
 }
+
+
+
+
+

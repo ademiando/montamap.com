@@ -213,14 +213,21 @@ body {
 
 .fullscreen-map {
   width: 100%;
-  min-height: 480px;
-  height: min(100dvh, 600px);   /* Maksimum 600px atau 100vh */
+  min-height: 480px;            /* atau 500px jika perlu */
+  height: auto;
   position: relative;
   z-index: 1;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 20px;
 }
+
+.route-buttons {
+  margin-top: 15px;
+}
+
+
+
 
 /* Style Dropdown */
 .style-selector select {

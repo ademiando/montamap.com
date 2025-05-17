@@ -213,19 +213,15 @@ body {
 
 .fullscreen-map {
   width: 100%;
-  min-height: 480px;            /* atau 500px jika perlu */
-  height: auto;
+  height: calc(100dvh - 170px); /* Kurangi navbar, tab, margin (adjust sesuai real tinggi) */
+  min-height: 400px;
   position: relative;
   z-index: 1;
   border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.route-buttons {
   margin-top: 15px;
+  margin-bottom: 15px;
 }
-
 
 
 

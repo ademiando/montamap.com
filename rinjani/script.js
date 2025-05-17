@@ -298,12 +298,3 @@ if (pointCheckbox) {
 }
 
 
-map.addLayer({
-  id: 'debug-point-layer',
-  type: 'circle',
-  source: 'rinjani-points',
-  paint: {
-    'circle-radius': 6,
-    'circle-color': '#00ffcc'
-  }
-});

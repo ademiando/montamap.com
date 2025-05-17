@@ -103,10 +103,10 @@ body {
 .image-slider button {
   position: absolute;
   top: 50%;
-  background: rgba(147, 174, 152, 0.7);
+  background:none;
   border: none;
   color: white;
-  font-size: 2rem;
+  font-size: 1rem;
   padding: 0 12px;
   cursor: pointer;
   border-radius: 4px;

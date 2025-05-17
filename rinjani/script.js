@@ -166,3 +166,66 @@ const routeCheckbox = document.getElementById('toggle-routes'); const pointCheck
 
 if (routeCheckbox) { routeCheckbox.addEventListener('change', () => { map.setLayoutProperty('routes-layer', 'visibility', routeCheckbox.checked ? 'visible' : 'none'); }); } if (pointCheckbox) { pointCheckbox.addEventListener('change', () => { map.setLayoutProperty('points-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none'); }); }
 
+
+
+
+map.on('load', () => {
+  // Load custom icons
+  map.loadImage('https://montamap.com/assets/logo.png', (error, basecampIcon) => {
+    if (error) throw error;
+    map.addImage('basecamp-icon', basecampIcon);
+
+    map.loadImage('https://montamap.com/assets/icon-peak.png', (error2, peakIcon) => {
+      if (error2) throw error2;
+      map.addImage('peak-icon', peakIcon);
+
+      // Add GeoJSON source
+      map.addSource('rinjani-points', {
+        type: 'geojson',
+        data: 'rinjani_points.geojson'
+      });
+
+      // Layer for basecamps
+      map.addLayer({
+        id: 'basecamp-layer',
+        type: 'symbol',
+        source: 'rinjani-points',
+        filter: ['==', ['get', 'type'], 'trailhead'],
+        layout: {
+          'icon-image': 'basecamp-icon',
+          'icon-size': 0.06,
+          'icon-allow-overlap': true,
+          'text-field': ['get', 'name'],
+          'text-offset': [0, 1.2],
+          'text-anchor': 'top'
+        },
+        paint: {
+          'text-color': '#333',
+          'text-halo-color': '#fff',
+          'text-halo-width': 1
+        }
+      });
+
+      // Layer for peak & lake
+      map.addLayer({
+        id: 'peak-layer',
+        type: 'symbol',
+        source: 'rinjani-points',
+        filter: ['in', ['get', 'type'], 'peak', 'lake'],
+        layout: {
+          'icon-image': 'peak-icon',
+          'icon-size': 0.06,
+          'icon-allow-overlap': true,
+          'text-field': ['get', 'name'],
+          'text-offset': [0, 1.2],
+          'text-anchor': 'top'
+        },
+        paint: {
+          'text-color': '#333',
+          'text-halo-color': '#fff',
+          'text-halo-width': 1
+        }
+      });
+    });
+  });
+});

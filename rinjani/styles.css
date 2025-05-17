@@ -239,7 +239,7 @@ body {
 .fullscreen-map {
   width: 100%;
   height: calc(100vh - 160px);
-  min-height: 400px;
+  min-height: 300px;
   max-height: none;
   position: relative;
   z-index: 1;
@@ -287,6 +287,13 @@ body {
   width: 36px;
   height: 36px;
 }
+
+#map {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 
 
 

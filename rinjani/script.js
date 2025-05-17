@@ -107,6 +107,9 @@ showSlide(currentIndex);
 
 
 
+
+
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
 const map = new mapboxgl.Map({
@@ -118,7 +121,7 @@ const map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
-map.on('load', () => {
+function addMapLayers() {
   // Sumber data jalur
   map.addSource('rinjani-routes', {
     type: 'geojson',
@@ -130,7 +133,6 @@ map.on('load', () => {
     source: 'rinjani-routes',
     layout: { 'line-join': 'round', 'line-cap': 'round' },
     paint: {
-      // warna jalur sesuai nama route
       'line-color': [
         'match',
         ['get', 'route_name'],
@@ -174,7 +176,6 @@ map.on('load', () => {
   // Popup info titik penting saat hover
   map.on('mouseenter', 'points-layer', (e) => {
     map.getCanvas().style.cursor = 'pointer';
-
     const coordinates = e.features[0].geometry.coordinates.slice();
     const { name, elevation, temperature, note } = e.features[0].properties;
 
@@ -194,19 +195,39 @@ map.on('load', () => {
   map.on('mouseleave', 'points-layer', () => {
     map.getCanvas().style.cursor = '';
   });
+}
+
+map.on('load', () => {
+  addMapLayers();
 });
+
+// --- Tambahan dropdown style ---
+const styleSelector = document.getElementById('mapStyle');
+if (styleSelector) {
+  styleSelector.addEventListener('change', (e) => {
+    const newStyle = e.target.value;
+    map.setStyle(newStyle);
+
+    map.once('style.load', () => {
+      addMapLayers();
+    });
+  });
+}
 
 // Toggle layer visibility
 const routeCheckbox = document.getElementById('toggle-routes');
 const pointCheckbox = document.getElementById('toggle-points');
 
-routeCheckbox.addEventListener('change', () => {
-  map.setLayoutProperty('routes-layer', 'visibility', routeCheckbox.checked ? 'visible' : 'none');
-});
-
-pointCheckbox.addEventListener('change', () => {
-  map.setLayoutProperty('points-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
-});
+if (routeCheckbox) {
+  routeCheckbox.addEventListener('change', () => {
+    map.setLayoutProperty('routes-layer', 'visibility', routeCheckbox.checked ? 'visible' : 'none');
+  });
+}
+if (pointCheckbox) {
+  pointCheckbox.addEventListener('change', () => {
+    map.setLayoutProperty('points-layer', 'visibility', pointCheckbox.checked ? 'visible' : 'none');
+  });
+}
 
 // Tombol route selector
 const buttons = document.querySelectorAll('.route-selector button');

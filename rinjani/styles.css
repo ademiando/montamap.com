@@ -213,16 +213,12 @@ body {
 
 #rinjani-map.fullscreen-map {
   width: 100%;
-  height: 70vh;                  /* buat tinggi map proporsional di layar */
+  height: 60vh;                  /* buat tinggi map proporsional di layar */
   min-height: 400px;
   margin-top: 10px;
   margin-bottom: 24px;
   border-radius: 12px;
   overflow: hidden;
-}
-
-.map-controls {
-  padding-top: 8px;
 }
 
 /* Style Dropdown */

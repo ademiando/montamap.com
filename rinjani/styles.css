@@ -283,38 +283,39 @@ body {
   cursor: pointer;
 }
 
-/* Offline Map Button - Hijau Style */
-.offline-map-btn {
+/* Offline Map Button - Wrapper */
+.offline-map-wrapper {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  z-index: 10;
   display: flex;
   align-items: center;
   gap: 8px;
+  z-index: 10;
+}
+
+/* Logo Map */
+.map-logo {
+  width: 36px;
+  height: 36px;
+}
+
+/* Teks Download */
+.map-download-label {
   background-color: #93ae98;
   color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 6px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
-  font-weight: 600;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.offline-map-btn:hover {
+.map-download-label:hover {
   background-color: #7d9984;
 }
-
-.offline-map-btn img {
-  width: 24px;
-  height: 24px;
-}
-
-.offline-map-btn .map-label {
-  font-size: 14px;
-  color: white;
-}
-
 
 
 

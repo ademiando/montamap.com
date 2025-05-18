@@ -186,20 +186,20 @@ body {
 }
 
 /* Map Section */
-#rinjani-map.fullscreen-map {
+#prau-map.fullscreen-map {
   width: 100%;
   height: 50vh;
   min-height: 300px;
   border-radius: 12px;
   overflow: hidden;
-  margin: 80px 0 24px; /* jarak dari dropdown dan ke bawah */
+  margin: 80px 0 24px;
   position: relative;
 }
 
 /* Dropdown Style Selector */
 .style-selector {
   position: absolute;
-  top: 20px;
+  top: -60px;
   left: 20px;
   z-index: 10;
 }
@@ -220,7 +220,7 @@ body {
 /* Layer Toggle */
 .layer-toggle {
   position: absolute;
-  top: 70px;
+  top: -10px;
   left: 20px;
   background: rgba(255, 255, 255, 0.85);
   padding: 8px 12px;
@@ -286,7 +286,7 @@ body {
 
 /* Mobile Responsive */
 @media (max-width: 720px) {
-  #rinjani-map.fullscreen-map {
+  #prau-map.fullscreen-map {
     height: 50vh !important;
     min-height: 50vh !important;
     margin-top: 80px;

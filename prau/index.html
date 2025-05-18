@@ -11,9 +11,26 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
 
   <style>
-    #rinjani-map {
+    #prau-map {
       width: 100%;
       height: 1000px;
+    }
+
+    .route-selector {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .route-selector button {
+      flex: 0 0 auto;
+      padding: 0.5rem 1rem;
+      background-color: #eee;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -32,6 +49,7 @@
   </nav>
 
   <main>
+
     <section id="overview" class="tab-content active">
       <div class="overview-hero">
         <div class="image-slider">
@@ -45,18 +63,18 @@
         </div>
         <div class="overview-title">
           <h2>Mount Prau</h2>
-          <p>Dieng Plateau, Central Java, Indonesia | Stratovolcano | 2,565 m</p>
+          <p>Dieng Plateau, Central Java, Indonesia | Hill Ridge | 2,565 m</p>
         </div>
       </div>
       <div class="info-flex">
         <div class="info-box">
           <h3>Quick Facts</h3>
           <p><strong>Elevation:</strong> 2,565 m (8,415 ft)</p>
-          <p><strong>Type:</strong> Stratovolcano</p>
-          <p><strong>Location:</strong> Dieng Plateau, Central Java, Indonesia</p>
+          <p><strong>Type:</strong> Hill Ridge</p>
+          <p><strong>Location:</strong> Dieng, Central Java, Indonesia</p>
           <p><strong>Difficulty:</strong> Easy – Medium</p>
           <p><strong>Estimated Duration:</strong> 1–2 days</p>
-          <p><strong>Best Season:</strong> May – October</p>
+          <p><strong>Best Season:</strong> April – October</p>
         </div>
         <div class="info-box">
           <h3>Current Weather</h3>
@@ -67,24 +85,24 @@
         </div>
         <div class="info-box">
           <h3>Official & Contact</h3>
-          <p><a href="https://www.instagram.com/basecamppraupatok/" target="_blank">@basecamppraupatok</a></p>
-          <p><a href="https://www.instagram.com/basecampigirmranak/" target="_blank">@basecampigirmranak</a></p>
-          <p>Email: info@prau-trail.id</p>
-          <p>Phone: +62 812 3456 7890</p>
+          <p><a href="https://praupedia.com" target="_blank">Official Website</a></p>
+          <p><a href="https://instagram.com/gunungprau" target="_blank">@gunungprau</a></p>
+          <p>Email: info@praupedia.com</p>
+          <p>Phone: +62 813 1234 5678</p>
         </div>
       </div>
       <div class="info-box">
         <h3>Trekking Routes</h3>
-        <p><strong>Patak Banteng:</strong> Popular and short route with direct access to the summit ridgeline. Great for sunrise views.</p>
-        <p><strong>Dwarawati:</strong> Offers a forested trail with moderate incline. Less crowded than Patak Banteng.</p>
-        <p><strong>Igirmranak:</strong> Scenic route with peaceful atmosphere. Slightly longer, suitable for campers.</p>
-        <p><strong>Kalilembu:</strong> Moderate difficulty, beautiful pine forest trail, connects with Dieng route.</p>
-        <p><strong>Via Dieng:</strong> Longer route with panoramic views of Dieng Plateau. Ideal for nature lovers.</p>
+        <p><strong>Patak Banteng:</strong> Most popular route. Short and steep. Suitable for sunrise hikers.</p>
+        <p><strong>Dieng:</strong> Longer but more gradual. Offers scenic views along the way.</p>
+        <p><strong>Kalilembu:</strong> Less crowded, moderate difficulty, good for beginners.</p>
+        <p><strong>Igirmranak:</strong> Forested path with fewer crowds. Natural atmosphere.</p>
+        <p><strong>Wates:</strong> Newer route with gradual ascent. Peaceful and clean.</p>
       </div>
       <div class="description">
         <h3>About Prau</h3>
-        <p>Mount Prau is a favorite hiking destination in Central Java, famous for its wide summit ridge that offers stunning views of other peaks like Sindoro, Sumbing, and Merbabu. It’s known for being beginner-friendly with relatively short trails.</p>
-        <p>Camping at the summit is popular to witness the “golden sunrise,” especially during dry season. The mountain is managed by several local basecamps and communities who help maintain the environment and guide hikers safely.</p>
+        <p>Mount Prau is known for its spectacular sunrise views, golden hills, and rolling grassy peaks. It's one of the most accessible mountains in Java for beginner hikers and a favorite for weekend trekking.</p>
+        <p>Its summit provides panoramic views of nearby volcanoes such as Sumbing, Sindoro, and Merbabu. The route is short but rewarding, making it a perfect introduction to hiking in Indonesia.</p>
       </div>
     </section>
 
@@ -93,7 +111,6 @@
       <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
     </section>
 
-    <!-- Map Section -->
     <section id="map" class="tab-content">
       <div class="map-controls">
         <div class="style-selector">
@@ -113,14 +130,15 @@
         </div>
       </div>
 
-      <div id="rinjani-map" class="fullscreen-map"></div>  
+      <div id="prau-map" class="fullscreen-map"></div>
 
+      <!-- Scrollable Route Buttons -->
       <div class="route-selector">
-        <button data-route="patakbanteng">Patak Banteng</button>
-        <button data-route="dwarawati">Dwarawati</button>
-        <button data-route="igirmranak">Igirmranak</button>
-        <button data-route="kalilembu">Kalilembu</button>
+        <button data-route="patak-banteng">Patak Banteng</button>
         <button data-route="dieng">Dieng</button>
+        <button data-route="kalilembu">Kalilembu</button>
+        <button data-route="igirmranak">Igirmranak</button>
+        <button data-route="wates">Wates</button>
       </div>
 
       <a href="#offline-map" class="offline-map-btn" title="Download Offline Map & SOS">
@@ -142,8 +160,6 @@
 
   <!-- Mapbox JS -->
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-
-  <!-- Your main JS -->
   <script src="script.js"></script>
 </body>
 </html>

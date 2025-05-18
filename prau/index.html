@@ -6,33 +6,7 @@
   <title>Montamap - Prau</title>
 
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Mapbox CSS -->
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
-
-  <style>
-    #prau-map {
-      width: 100%;
-      height: 1000px;
-    }
-
-    .route-selector {
-      overflow-x: auto;
-      white-space: nowrap;
-      padding: 1rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .route-selector button {
-      flex: 0 0 auto;
-      padding: 0.5rem 1rem;
-      background-color: #eee;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
 </head>
 <body>
   <header class="sticky-header">
@@ -132,7 +106,6 @@
 
       <div id="prau-map" class="fullscreen-map"></div>
 
-      <!-- Scrollable Route Buttons -->
       <div class="route-selector">
         <button data-route="patak-banteng">Patak Banteng</button>
         <button data-route="dieng">Dieng</button>
@@ -158,7 +131,6 @@
     </section>
   </main>
 
-  <!-- Mapbox JS -->
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
   <script src="script.js"></script>
 </body>

@@ -79,12 +79,10 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0M
 const map = new mapboxgl.Map({
   container: 'prau-map',
   style: 'mapbox://styles/mapbox/outdoors-v12',
-  center: [109.92, -7.21],
+  center: [109.9196, -7.2457], // Titik tengah Gunung Prau
   zoom: 12,
-  pitch: 55,
-  bearing: -10,
-  antialias: true,
-  attributionControl: false
+  pitch: 0,
+  bearing: 0
 });
 
 map.addControl(new mapboxgl.NavigationControl());

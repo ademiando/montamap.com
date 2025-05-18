@@ -1,21 +1,29 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Montamap - Prau</title>  <link rel="stylesheet" href="styles.css" />
+  <title>Montamap - Prau</title>
+
+  <link rel="stylesheet" href="styles.css" />
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
 </head>
 <body>
   <header class="sticky-header">
     <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo" class="logo" />
     <h1 class="title">Prau</h1>
-  </header>  <nav class="tab-container">
+  </header>
+
+  <nav class="tab-container">
     <button class="tab active" data-tab="overview">Overview</button>
     <button class="tab" data-tab="community">Community</button>
     <button class="tab" data-tab="map">Map</button>
     <button class="tab" data-tab="services">Services</button>
     <button class="tab" data-tab="news">News</button>
-  </nav>  <main>
+  </nav>
+
+  <main>
+
     <section id="overview" class="tab-content active">
       <div class="overview-hero">
         <div class="image-slider">
@@ -70,49 +78,56 @@
         <p>Mount Prau is known for its spectacular sunrise views, golden hills, and rolling grassy peaks. It's one of the most accessible mountains in Java for beginner hikers and a favorite for weekend trekking.</p>
         <p>Its summit provides panoramic views of nearby volcanoes such as Sumbing, Sindoro, and Merbabu. The route is short but rewarding, making it a perfect introduction to hiking in Indonesia.</p>
       </div>
-    </section><section id="community" class="tab-content">
-  <h2>Community</h2>
-  <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
-</section>
+    </section>
 
-<section id="map" class="tab-content">
-  <div class="map-controls">
-    <div class="style-selector">
-      <label for="mapStyle"><strong>Map:</strong></label>
-      <select id="mapStyle">
-        <option value="mapbox://styles/mapbox/outdoors-v12">Outdoors</option>
-        <option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
-        <option value="mapbox://styles/mapbox/streets-v12">Streets</option>
-        <option value="mapbox://styles/mapbox/dark-v11">Dark</option>
-        <option value="mapbox://styles/mapbox/satellite-streets-v12">Hybrid</option>
-      </select>
-    </div>
-    <div id="prau-map" class="fullscreen-map"></div>
-  </div>
+    <section id="community" class="tab-content">
+      <h2>Community</h2>
+      <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
+    </section>
 
-  <div class="route-selector">
-    <button data-route="patak-banteng">Patak Banteng</button>
-    <button data-route="dieng">Dieng</button>
-    <button data-route="kalilembu">Kalilembu</button>
-    <button data-route="igirmranak">Igirmranak</button>
-    <button data-route="wates">Wates</button>
-  </div>
+    <section id="map" class="tab-content">
+      <div class="map-controls">
+        <div class="style-selector">
+          <label for="mapStyle"><strong>Map Style:</strong></label>
+          <select id="mapStyle">
+            <option value="mapbox://styles/mapbox/outdoors-v12">Outdoors</option>
+            <option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
+            <option value="mapbox://styles/mapbox/streets-v12">Streets</option>
+            <option value="mapbox://styles/mapbox/dark-v11">Dark</option>
+            <option value="mapbox://styles/mapbox/satellite-streets-v12">Hybrid</option>
+          </select>
+        </div>
+      </div>
 
-  <a href="#offline-map" class="offline-map-btn" title="Download Offline Map & SOS">
-    <img src="https://montamap.com/assets/map-icon.png" alt="Offline Map">
-    <span>Offline Map + SOS</span>
-  </a>
-</section>
+      <div id="prau-map" class="fullscreen-map"></div>
 
-<section id="services" class="tab-content">
-  <h2>Services</h2>
-  <p>Book tickets, porters, guides, gear rentals, and more.</p>
-</section>
+      <div class="route-selector">
+        <button data-route="patak-banteng">Patak Banteng</button>
+        <button data-route="dieng">Dieng</button>
+        <button data-route="kalilembu">Kalilembu</button>
+        <button data-route="igirmranak">Igirmranak</button>
+        <button data-route="wates">Wates</button>
+      </div>
 
-<section id="news" class="tab-content">
-  <h2>News</h2>
-  <p>Latest updates, weather alerts, route closures, and official announcements.</p>
-</section>
+      <a href="#offline-map" class="offline-map-btn" title="Download Offline Map & SOS">
+        <span class="map-label">Offline Map + SOS</span>
+        <img src="https://montamap.com/assets/map-icon.png" alt="Offline Map">
+      </a>
+    </section>
 
-  </main>  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>  <script src="script.js"></script></body>
+    <section id="services" class="tab-content">
+      <h2>Services</h2>
+      <p>Book tickets, porters, guides, gear rentals, and more.</p>
+    </section>
+
+    <section id="news" class="tab-content">
+      <h2>News</h2>
+      <p>Latest updates, weather alerts, route closures, and official announcements.</p>
+    </section>
+
+  </main>
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>

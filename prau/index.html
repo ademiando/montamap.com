@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Montamap - Prau</title>
+
   <link rel="stylesheet" href="styles.css" />
-  <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+
+  <!-- Mapbox CSS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+
+  <style>
+    #rinjani-map {
+      width: 100%;
+      height: 1000px;
+    }
+  </style>
 </head>
 <body>
   <header class="sticky-header">
@@ -27,9 +36,9 @@
       <div class="overview-hero">
         <div class="image-slider">
           <div class="slides">
-            <img src="https://montamap.com/prau/photo/prau1.jpg" alt="Mount Prau 1">
-            <img src="https://montamap.com/prau/photo/prau2.jpg" alt="Mount Prau 2">
-            <img src="https://montamap.com/prau/photo/prau3.jpg" alt="Mount Prau 3">
+            <img src="https://montamap.com/mountain-image/prau.jpg" alt="Mount Prau 1">
+            <img src="https://montamap.com/prau/photo/prau1.png" alt="Mount Prau 2">
+            <img src="https://montamap.com/prau/photo/prau2.png" alt="Mount Prau 3">
           </div>
           <button class="prev">&#10094;</button>
           <button class="next">&#10095;</button>
@@ -39,16 +48,14 @@
           <p>Dieng Plateau, Central Java, Indonesia | Stratovolcano | 2,565 m</p>
         </div>
       </div>
-
       <div class="info-flex">
         <div class="info-box">
           <h3>Quick Facts</h3>
           <p><strong>Elevation:</strong> 2,565 m (8,415 ft)</p>
           <p><strong>Type:</strong> Stratovolcano</p>
-          <p><strong>Location:</strong> Central Java, Indonesia</p>
-          <p><strong>Difficulty:</strong> Easy – Moderate</p>
+          <p><strong>Location:</strong> Dieng Plateau, Central Java, Indonesia</p>
+          <p><strong>Difficulty:</strong> Easy – Medium</p>
           <p><strong>Estimated Duration:</strong> 1–2 days</p>
-          <p><strong>UNESCO Status:</strong> Not listed</p>
           <p><strong>Best Season:</strong> May – October</p>
         </div>
         <div class="info-box">
@@ -60,23 +67,24 @@
         </div>
         <div class="info-box">
           <h3>Official & Contact</h3>
-          <p><a href="https://www.instagram.com/gunungprau/" target="_blank">@gunungprau</a></p>
-          <p>Email: info@prau.id</p>
+          <p><a href="https://www.instagram.com/basecamppraupatok/" target="_blank">@basecamppraupatok</a></p>
+          <p><a href="https://www.instagram.com/basecampigirmranak/" target="_blank">@basecampigirmranak</a></p>
+          <p>Email: info@prau-trail.id</p>
           <p>Phone: +62 812 3456 7890</p>
         </div>
       </div>
-
       <div class="info-box">
         <h3>Trekking Routes</h3>
-        <p><strong>Dieng Route:</strong> Easy access and popular for beginners. Rolling hills and pine forests.</p>
-        <p><strong>Patak Banteng Route:</strong> Steep but short route with rewarding sunrise views.</p>
-        <p><strong>Kalilembu Route:</strong> Longer but less crowded trail through lush terrain.</p>
+        <p><strong>Patak Banteng:</strong> Popular and short route with direct access to the summit ridgeline. Great for sunrise views.</p>
+        <p><strong>Dwarawati:</strong> Offers a forested trail with moderate incline. Less crowded than Patak Banteng.</p>
+        <p><strong>Igirmranak:</strong> Scenic route with peaceful atmosphere. Slightly longer, suitable for campers.</p>
+        <p><strong>Kalilembu:</strong> Moderate difficulty, beautiful pine forest trail, connects with Dieng route.</p>
+        <p><strong>Via Dieng:</strong> Longer route with panoramic views of Dieng Plateau. Ideal for nature lovers.</p>
       </div>
-
       <div class="description">
         <h3>About Prau</h3>
-        <p>Mount Prau is known for its breathtaking sunrise above the clouds and panoramic views of surrounding peaks like Sumbing, Sindoro, and Merapi. Ideal for beginner hikers and weekend adventures, Prau is a popular choice for local and international trekkers.</p>
-        <p>Located in the Dieng Plateau, it's a biodiverse highland ecosystem filled with volcanic landscapes, geothermal fields, and Javanese culture.</p>
+        <p>Mount Prau is a favorite hiking destination in Central Java, famous for its wide summit ridge that offers stunning views of other peaks like Sindoro, Sumbing, and Merbabu. It’s known for being beginner-friendly with relatively short trails.</p>
+        <p>Camping at the summit is popular to witness the “golden sunrise,” especially during dry season. The mountain is managed by several local basecamps and communities who help maintain the environment and guide hikers safely.</p>
       </div>
     </section>
 
@@ -85,21 +93,38 @@
       <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
     </section>
 
+    <!-- Map Section -->
     <section id="map" class="tab-content">
-      <div id="prau-map" class="fullscreen-map"></div>
-
-      <div class="layer-toggle">
-        <label><input type="checkbox" id="toggle-routes" checked> Jalur Pendakian</label>
-        <label><input type="checkbox" id="toggle-points" checked> Titik Penting</label>
+      <div class="map-controls">
+        <div class="style-selector">
+          <label for="mapStyle"><strong>Map:</strong></label>
+          <select id="mapStyle">
+            <option value="mapbox://styles/mapbox/outdoors-v12">Outdoors</option>
+            <option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
+            <option value="mapbox://styles/mapbox/outdoors-v12">Topographic (Outdoors)</option>
+            <option value="mapbox://styles/mapbox/streets-v12">3D Terrain Base</option>
+            <option value="mapbox://styles/mapbox/dark-v11">Dark Mode</option>
+            <option value="mapbox://styles/mapbox/satellite-streets-v12">Hybrid</option>
+          </select>
+        </div>
+        <div class="layer-toggle">
+          <label><input type="checkbox" id="toggle-routes" checked> Jalur Pendakian</label>
+          <label><input type="checkbox" id="toggle-points" checked> Titik Penting</label>
+        </div>
       </div>
+
+      <div id="rinjani-map" class="fullscreen-map"></div>  
 
       <div class="route-selector">
-        <button data-route="dieng">Dieng</button>
-        <button data-route="patak">Patak Banteng</button>
+        <button data-route="patakbanteng">Patak Banteng</button>
+        <button data-route="dwarawati">Dwarawati</button>
+        <button data-route="igirmranak">Igirmranak</button>
         <button data-route="kalilembu">Kalilembu</button>
+        <button data-route="dieng">Dieng</button>
       </div>
 
-      <a href="#offline-map" class="offline-map-btn">
+      <a href="#offline-map" class="offline-map-btn" title="Download Offline Map & SOS">
+        <span class="map-label">Offline Map + SOS</span>
         <img src="https://montamap.com/assets/map-icon.png" alt="Offline Map">
       </a>
     </section>
@@ -115,14 +140,10 @@
     </section>
   </main>
 
+  <!-- Mapbox JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 
-<script>
-  console.log('JS Loaded');
-</script>
-
-
+  <!-- Your main JS -->
   <script src="script.js"></script>
-<script src="js/script.js"></script>
-<script src="prau/script.js"></script>
 </body>
 </html>

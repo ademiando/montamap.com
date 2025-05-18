@@ -3,119 +3,54 @@
   "features": [
     {
       "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.912345, -7.178950]
+      },
       "properties": {
         "name": "Basecamp Patak Banteng",
         "type": "basecamp",
-        "elevation": 1800,
-        "info": "Registrasi & start pendakian Patak Banteng"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [109.9218, -7.2155]
+        "elevation": "1.980 MDPL",
+        "note": "Jalur pendakian favorit dengan akses mudah dan fasilitas lengkap."
       }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Pos 1 Patak",
-        "type": "pos",
-        "elevation": 2000,
-        "info": "Shelter kecil di jalur Patak Banteng"
-      },
       "geometry": {
         "type": "Point",
-        "coordinates": [109.9225, -7.2108]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Camp Area Patak",
-        "type": "camp",
-        "elevation": 2400,
-        "info": "Area tenda utama jalur Patak"
+        "coordinates": [109.920000, -7.220000]
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [109.9302, -7.1970]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Sunrise Viewpoint",
-        "type": "viewpoint",
-        "elevation": 2565,
-        "info": "Spot terbaik melihat sunrise, arah Sindoro-Sumbing"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [109.9320, -7.1940]
-      }
-    },
-    {
-      "type": "Feature",
       "properties": {
         "name": "Basecamp Dieng",
         "type": "basecamp",
-        "elevation": 1950,
-        "info": "Start point alternatif dari Dieng"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [109.9060, -7.2115]
+        "elevation": "2.123 MDPL",
+        "note": "Pusat registrasi resmi dengan pemandangan indah ke Telaga Warna."
       }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Pos 1 Dieng",
-        "type": "pos",
-        "elevation": 2100,
-        "info": "Shelter awal jalur Dieng"
-      },
       "geometry": {
         "type": "Point",
-        "coordinates": [109.9092, -7.2080]
-      }
-    },
-    {
-      "type": "Feature",
+        "coordinates": [109.930000, -7.210000]
+      },
       "properties": {
         "name": "Basecamp Kalilembu",
         "type": "basecamp",
-        "elevation": 1900,
-        "info": "Start pendakian jalur Kalilembu"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [109.8945, -7.2152]
+        "elevation": "2.100 MDPL",
+        "note": "Jalur pendakian dengan pemandangan alam yang asri."
       }
     },
     {
       "type": "Feature",
-      "properties": {
-        "name": "Danger Zone - Tebing Rawan Longsor",
-        "type": "danger",
-        "elevation": 2300,
-        "info": "Hindari saat hujan, area rawan longsor"
-      },
       "geometry": {
         "type": "Point",
-        "coordinates": [109.9052, -7.2045]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Sumber Air Kalilembu",
-        "type": "water",
-        "elevation": 2200,
-        "info": "Sumber air alami dekat jalur Kalilembu"
+        "coordinates": [109.940000, -7.200000]
       },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [109.9070, -7.2020]
+      "properties": {
+        "name": "Basecamp Wates",
+        "type": "basecamp",
+        "elevation": "1.683 MDPL",
+        "note": "Jalur pendakian dengan akses kendaraan mudah dan pemandangan ladang."
       }
     }
   ]

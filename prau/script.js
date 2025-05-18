@@ -83,7 +83,8 @@ const map = new mapboxgl.Map({
   zoom: 12,
   pitch: 55,
   bearing: -10,
-  antialias: true
+  antialias: true,
+  attributionControl: false
 });
 
 map.addControl(new mapboxgl.NavigationControl());

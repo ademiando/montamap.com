@@ -179,32 +179,37 @@ function bindRouteButtons() {
   });
 }
 
-map.on('load', () => {
-  addMapLayers();
-  bindRouteButtons();
+document.getElementById('map-style').addEventListener('change', (e) => {
+  map.setStyle(e.target.value);
 
-  map.loadImage('https://montamap.com/assets/logo.png', (error, icon) => {
-    if (error) throw error;
-    map.addImage('basecamp-icon', icon);
+  // Tunggu sampai style baru dimuat, lalu tambahkan ulang layers dan events
+  map.once('style.load', () => {
+    addMapLayers();
+    bindRouteButtons();
 
-    map.addLayer({
-      id: 'prau-basecamp-layer',
-      type: 'symbol',
-      source: 'prau-points',
-      filter: ['==', 'type', 'basecamp'],
-      layout: {
-        'icon-image': 'basecamp-icon',
-        'icon-size': 0.015,
-        'icon-allow-overlap': true,
-        'text-field': ['get', 'name'],
-        'text-offset': [0, 0.6],
-        'text-anchor': 'top'
-      },
-      paint: {
-        'text-color': '#333',
-        'text-halo-color': '#fff',
-        'text-halo-width': 1
-      }
+    map.loadImage('https://montamap.com/assets/logo.png', (error, icon) => {
+      if (error) throw error;
+      if (!map.hasImage('basecamp-icon')) map.addImage('basecamp-icon', icon);
+
+      map.addLayer({
+        id: 'prau-basecamp-layer',
+        type: 'symbol',
+        source: 'prau-points',
+        filter: ['==', 'type', 'basecamp'],
+        layout: {
+          'icon-image': 'basecamp-icon',
+          'icon-size': 0.015,
+          'icon-allow-overlap': true,
+          'text-field': ['get', 'name'],
+          'text-offset': [0, 0.6],
+          'text-anchor': 'top'
+        },
+        paint: {
+          'text-color': '#333',
+          'text-halo-color': '#fff',
+          'text-halo-width': 1
+        }
+      });
     });
   });
 });

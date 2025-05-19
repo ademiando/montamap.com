@@ -1,4 +1,3 @@
-<script>
   // Tabs
   const tabs = document.querySelectorAll('.tab');
   const contents = document.querySelectorAll('.tab-content');
@@ -233,4 +232,3 @@
       map.setLayoutProperty('points-layer', 'visibility', pointToggle.checked ? 'visible' : 'none');
     });
   }
-</script>

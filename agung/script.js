@@ -180,8 +180,8 @@ function addMapLayers() {
 
 function bindRouteButtons() {
   const coords = {
-    besakih: [115.465, -8.374],
-    pasar_agung: [115.542, -8.390]
+    besakih: [115.4655267, -8.3674473],
+    pasar_agung: [115.5028336, -8.3692421]
   };
 
   const buttons = document.querySelectorAll('.route-selector button');

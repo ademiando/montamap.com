@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #333;
+  background: #f1f1f1;
 }
 
 .sticky-header {
@@ -134,6 +134,7 @@ body {
 .overview-title h2 {
   margin: 0;
   font-size: 2rem;
+  color: #93ae98;
 }
 
 .overview-title p {

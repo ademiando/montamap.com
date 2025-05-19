@@ -1,57 +1,32 @@
 {
   "type": "FeatureCollection",
-  "name": "agung_points",
   "features": [
     {
       "type": "Feature",
       "properties": {
-        "name": "Pura Besakih",
-        "type": "Basecamp",
-        "elevation_m": 1100,
-        "description": "Basecamp utama jalur pendakian Gunung Agung dari sisi barat daya."
+        "name": "Basecamp Besakih",
+        "type": "basecamp",
+        "elevation": "860 m",
+        "temperature": "20°C",
+        "note": "Pintu masuk utama dari sisi timur."
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [115.4505, -8.3754]
+        "coordinates": [115.465, -8.374]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "name": "Pura Pasar Agung",
-        "type": "Basecamp",
-        "elevation_m": 1600,
-        "description": "Basecamp jalur pendakian Pasar Agung, pendek tapi lebih curam."
+        "name": "Basecamp Pasar Agung",
+        "type": "basecamp",
+        "elevation": "850 m",
+        "temperature": "19°C",
+        "note": "Pintu masuk alternatif dari sisi selatan."
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [115.4748, -8.3934]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Junggul",
-        "type": "Basecamp",
-        "elevation_m": 1125,
-        "description": "Jalur alternatif via desa Junggul, jarang digunakan."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [115.4523, -8.3475]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Redung",
-        "type": "Basecamp",
-        "elevation_m": 1100,
-        "description": "Titik awal alternatif yang lebih dekat ke sisi timur."
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [115.4892, -8.3718]
+        "coordinates": [115.542, -8.390]
       }
     }
   ]

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Montamap - Agung</title>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Mapbox CSS -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="sticky-header">
+    <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo" class="logo" />
+    <h1 class="title">Agung</h1>
+  </header>
+
+  <nav class="tab-container">
+    <button class="tab active" data-tab="overview">Overview</button>
+    <button class="tab" data-tab="community">Community</button>
+    <button class="tab" data-tab="map">Map</button>
+    <button class="tab" data-tab="services">Services</button>
+    <button class="tab" data-tab="news">News</button>
+  </nav>
+
+  <main>
+
+    <section id="overview" class="tab-content active">
+      <div class="overview-hero">
+        <div class="image-slider">
+          <div class="slides">
+            <img src="https://montamap.com/mountain-image/agung.jpg" alt="Mount Agung 1">
+            <img src="https://montamap.com/agung/photo/agung1.png" alt="Mount Agung 2">
+            <img src="https://montamap.com/agung/photo/agung2.png" alt="Mount Agung 3">
+          </div>
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <div class="overview-title">
+          <h2>Mount Agung</h2>
+          <p>Bali, Indonesia | Stratovolcano | 3,031 m</p>
+        </div>
+      </div>
+      <div class="info-flex">
+        <div class="info-box">
+          <h3>Quick Facts</h3>
+          <p><strong>Elevation:</strong> 3,031 m (9,944 ft)</p>
+          <p><strong>Type:</strong> Stratovolcano</p>
+          <p><strong>Location:</strong> Bali, Indonesia</p>
+          <p><strong>Difficulty:</strong> Hard</p>
+          <p><strong>Estimated Duration:</strong> 6–10 hours (round trip)</p>
+          <p><strong>Best Season:</strong> April – October</p>
+        </div>
+        <div class="info-box">
+          <h3>Current Weather</h3>
+          <p><strong>Temperature:</strong> <span id="temp">--</span></p>
+          <p><strong>Condition:</strong> <span id="weather">Loading...</span></p>
+          <p><strong>Wind:</strong> <span id="wind">--</span></p>
+          <p><strong>Humidity:</strong> <span id="humidity">--</span></p>
+        </div>
+        <div class="info-box">
+          <h3>Official & Contact</h3>
+          <p><a href="https://balisafe.com" target="_blank">Mount Agung Safety Info</a></p>
+          <p><a href="https://instagram.com/balitrekking" target="_blank">@balitrekking</a></p>
+          <p>Email: info@balisafe.com</p>
+          <p>Phone: +62 361 123456</p>
+        </div>
+      </div>
+      <div class="info-box">
+        <h3>Trekking Routes</h3>
+        <p><strong>Pura Besakih Route:</strong> Longest and most scenic route. Approx. 7–8 hours to summit. Starts from west and offers sunrise view.</p>
+        <p><strong>Pura Pasar Agung Route:</strong> Shorter but steeper route. Approx. 4–5 hours to crater ridge, not summit.</p>
+        <p><strong>Junggul / Redung Route:</strong> Lesser-known eastern routes. Usually requires guide support. Steep terrain and remote access.</p>
+      </div>
+      <div class="description">
+        <h3>About Mount Agung</h3>
+        <p>Mount Agung is the highest peak in Bali and considered a sacred mountain by the Balinese. It dominates the surrounding landscape and offers one of the most rewarding sunrise treks in Indonesia. </p>
+        <p>Due to its volcanic activity, hikers must check the latest updates and follow safety protocols. The mountain provides dramatic views of Lombok and Rinjani on clear days.</p>
+      </div>
+    </section>
+
+    <section id="community" class="tab-content">
+      <h2>Community</h2>
+      <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="tab-content">
+      <div class="map-controls">
+        <div class="style-selector">
+          <label for="mapStyle"><strong>Map Style:</strong></label>
+          <select id="mapStyle">
+            <option value="mapbox://styles/mapbox/outdoors-v12">Outdoors</option>
+            <option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
+            <option value="mapbox://styles/mapbox/streets-v12">3D Terrain Base</option>
+            <option value="mapbox://styles/mapbox/dark-v11">Dark Mode</option>
+            <option value="mapbox://styles/mapbox/satellite-streets-v12">Hybrid</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Peta -->
+      <div id="agung-map" class="fullscreen-map"></div>
+
+      <!-- Pilih Jalur -->
+      <div class="route-selector">
+        <button data-route="besakih">Besakih</button>
+        <button data-route="pasar-agung">Pasar Agung</button>
+        <button data-route="junggul">Junggul</button>
+        <button data-route="redung">Redung</button>
+      </div>
+
+      <!-- Tombol Offline -->
+      <a href="#offline-map" class="offline-map-btn" title="Download Offline Map & SOS">
+        <span class="map-label">Offline Map + SOS</span>
+        <img src="https://montamap.com/assets/map-icon.png" alt="Offline Map">
+      </a>
+    </section>
+
+    <section id="services" class="tab-content">
+      <h2>Services</h2>
+      <p>Book tickets, porters, guides, gear rentals, and more.</p>
+    </section>
+
+    <section id="news" class="tab-content">
+      <h2>News</h2>
+      <p>Latest updates, weather alerts, route closures, and official announcements.</p>
+    </section>
+  </main>
+
+  <!-- Mapbox JS -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+  <!-- Your main JS -->
+  <script src="script.js"></script>
+</body>
+</html>

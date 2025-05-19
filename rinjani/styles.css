@@ -305,8 +305,7 @@ body {
   #map.fullscreen-map,
   .fullscreen-map {
     height: 100dvh !important;
-    max-height: 100dvh !important;
-    min-height: 300px;
+    max-height: 60dvh !important;
     margin-bottom: 0 !important;
   }
 

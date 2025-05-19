@@ -91,7 +91,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
   font-size: 24px;
-  background: rgba(0,0,0,0.3);
+  background: none;
   color: white;
   border: none;
   padding: 10px;

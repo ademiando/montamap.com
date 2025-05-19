@@ -129,7 +129,7 @@ function addMapLayers() {
     });
   }
 
-  map.loadImage('https://montamap.com/assets/logo.png', (err, img) => {
+  map.loadImage('https://montamap.com/assets/icon.png', (err, img) => {
     if (err) throw err;
     if (!map.hasImage('basecamp-icon')) map.addImage('basecamp-icon', img);
 

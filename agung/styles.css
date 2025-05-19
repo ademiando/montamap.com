@@ -294,8 +294,8 @@ body {
 
 @media (max-width: 720px) {
   #agung-map.fullscreen-map {
-    height: 60dvh !important;
-    max-height: 60dvh !important;
+    height: 50dvh !important;
+    max-height: 50dvh !important;
     margin-top: 10px !important;
     margin-bottom: 10px !important;
   }

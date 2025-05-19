@@ -64,10 +64,17 @@ async function fetchWeather() {
 fetchWeather();
 showSlide(currentIndex);
 
+
+
+
+
+
+
+
 // MAPBOX
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
-let map = new mapboxgl.Map({
+const map = new mapboxgl.Map({
   container: 'agung-map',
   style: 'mapbox://styles/mapbox/outdoors-v12',
   center: [115.508, -8.342],
@@ -77,7 +84,14 @@ let map = new mapboxgl.Map({
   antialias: true
 });
 
-map.addControl(new mapboxgl.NavigationControl());
+map.addControl(new mapboxgl.NavigationControl({ showCompass: true }), 'top-right');
+map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
+
+map.addControl(new mapboxgl.GeolocateControl({
+  positionOptions: { enableHighAccuracy: true },
+  trackUserLocation: true,
+  showUserHeading: true
+}), 'bottom-right');
 
 function addMapLayers() {
   if (!map.getSource('agung-routes')) {
@@ -115,76 +129,54 @@ function addMapLayers() {
     });
   }
 
-  if (!map.getLayer('points-layer')) {
-    map.addLayer({
-      id: 'points-layer',
-      type: 'circle',
-      source: 'agung-points',
-      paint: {
-        'circle-radius': 7,
-        'circle-color': [
-          'match', ['get', 'type'],
-          'basecamp', '#1E90FF',
-          'pos', '#32CD32',
-          'plawangan', '#FFA500',
-          'lake', '#00CED1',
-          'summit', '#FF4500',
-          'danger', '#FF0000',
-          'water', '#1E90FF',
-          '#ccc'
-        ],
-        'circle-stroke-width': 2,
-        'circle-stroke-color': '#fff'
-      }
-    });
+  map.loadImage('https://montamap.com/assets/logo.png', (err, img) => {
+    if (err) throw err;
+    if (!map.hasImage('basecamp-icon')) map.addImage('basecamp-icon', img);
 
-    map.on('mouseenter', 'points-layer', (e) => {
-      map.getCanvas().style.cursor = 'pointer';
-      const coordinates = e.features[0].geometry.coordinates.slice();
-      const { name, elevation, temperature, note } = e.features[0].properties;
+    if (!map.getLayer('basecamp-layer')) {
+      map.addLayer({
+        id: 'basecamp-layer',
+        type: 'symbol',
+        source: 'agung-points',
+        filter: ['==', 'type', 'basecamp'],
+        layout: {
+          'icon-image': 'basecamp-icon',
+          'icon-size': 0.05,
+          'icon-allow-overlap': true,
+          'text-field': ['get', 'name'],
+          'text-offset': [0, 0.6],
+          'text-anchor': 'top'
+        },
+        paint: {
+          'text-color': '#333',
+          'text-halo-color': '#fff',
+          'text-halo-width': 1
+        }
+      });
 
-      let popupHTML = `<strong>${name}</strong><br>Elevation: ${elevation}<br>Temperature: ${temperature}`;
-      if (note) popupHTML += `<br>Note: ${note}`;
+      map.on('click', 'basecamp-layer', (e) => {
+        const { name, elevation, temperature, note } = e.features[0].properties;
+        const coordinates = e.features[0].geometry.coordinates.slice();
 
-      new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(popupHTML)
-        .addTo(map);
-    });
+        let html = `<strong>${name}</strong>`;
+        if (elevation) html += `<br>Elevation: ${elevation}`;
+        if (temperature) html += `<br>Temperature: ${temperature}`;
+        if (note) html += `<br>${note}`;
 
-    map.on('mouseleave', 'points-layer', () => {
-      map.getCanvas().style.cursor = '';
-    });
-  }
+        new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(html)
+          .addTo(map);
+      });
 
-  if (!map.hasImage('basecamp-icon')) {
-    map.loadImage('https://montamap.com/assets/logo.png', (err, img) => {
-      if (err) throw err;
-      if (!map.hasImage('basecamp-icon')) map.addImage('basecamp-icon', img);
-
-      if (!map.getLayer('basecamp-layer')) {
-        map.addLayer({
-          id: 'basecamp-layer',
-          type: 'symbol',
-          source: 'agung-points',
-          filter: ['==', 'type', 'trailhead'],
-          layout: {
-            'icon-image': 'basecamp-icon',
-            'icon-size': 0.015,
-            'icon-allow-overlap': true,
-            'text-field': ['get', 'name'],
-            'text-offset': [0, 0.6],
-            'text-anchor': 'top'
-          },
-          paint: {
-            'text-color': '#333',
-            'text-halo-color': '#fff',
-            'text-halo-width': 1
-          }
-        });
-      }
-    });
-  }
+      map.on('mouseenter', 'basecamp-layer', () => {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+      map.on('mouseleave', 'basecamp-layer', () => {
+        map.getCanvas().style.cursor = '';
+      });
+    }
+  });
 }
 
 function bindRouteButtons() {
@@ -216,7 +208,6 @@ map.on('load', () => {
   bindRouteButtons();
 });
 
-// Dropdown Style Toggle
 const styleSelector = document.getElementById('mapStyle');
 if (styleSelector) {
   styleSelector.addEventListener('change', (e) => {
@@ -237,7 +228,6 @@ if (styleSelector) {
     }
 
     map.setStyle(styleURL);
-
     map.once('style.load', () => {
       addMapLayers();
       bindRouteButtons();
@@ -259,6 +249,15 @@ if (styleSelector) {
     });
   });
 }
+
+
+
+
+
+
+
+
+
 
 // Layer visibility toggle
 const routeToggle = document.getElementById('toggle-routes');

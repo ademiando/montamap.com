@@ -141,10 +141,10 @@ function addMapLayers() {
         filter: ['==', 'type', 'basecamp'],
         layout: {
           'icon-image': 'basecamp-icon',
-          'icon-size': 0.02,
+          'icon-size': 0.015,
           'icon-allow-overlap': true,
           'text-field': ['get', 'name'],
-          'text-offset': [0, 0.4],
+          'text-offset': [0, 0.3],
           'text-anchor': 'top'
         },
         paint: {

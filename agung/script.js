@@ -1,4 +1,4 @@
-  // Tabs
+// Tabs
   const tabs = document.querySelectorAll('.tab');
   const contents = document.querySelectorAll('.tab-content');
 
@@ -93,7 +93,18 @@
         type: 'line',
         source: 'agung-routes',
         layout: { 'line-join': 'round', 'line-cap': 'round' },
-        paint: { 'line-color': '#ff4500', 'line-width': 4 }
+        paint: {
+          'line-color': '#ff4500',
+          'line-width': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            10, 2,
+            14, 4,
+            16, 6
+          ],
+          'line-opacity': 0.9
+        }
       });
     }
 
@@ -192,7 +203,9 @@
             center: target,
             zoom: 15.5,
             pitch: 65,
-            bearing: -20
+            bearing: -20,
+            speed: 1.2,
+            curve: 1.42
           });
         }
       });

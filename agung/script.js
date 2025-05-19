@@ -148,7 +148,6 @@ function addMapLayers() {
           'text-anchor': 'top'
         },
         paint: {
-          'text-color': 'none;',
           'text-halo-color': '#fff',
           'text-halo-width': 1
         }

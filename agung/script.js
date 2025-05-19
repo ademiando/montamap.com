@@ -193,7 +193,7 @@ function bindRouteButtons() {
           center: target,
           zoom: 15.5,
           pitch: 65,
-          bearing: -20,
+          bearing: 25,
           speed: 1.2,
           curve: 1.42
         });

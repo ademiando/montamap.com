@@ -91,19 +91,25 @@
 
   <!-- Tab Navigation Horizontal -->
   <div class="horizontal-tab-container">
+   <button class="tab" onclick="openTab(event, 'Favorite')">Favorite</button>
     <button class="tab active" onclick="openTab(event, 'Mountain')">Mountain</button>
-    <button class="tab" onclick="openTab(event, 'Favorite')">Favorite</button>
+    <button class="tab" onclick="openTab(event, 'Maps')">Maps</button>
     <button class="tab" onclick="openTab(event, 'Community')">Community</button>
-    <button class="tab" onclick="openTab(event, 'News')">News</button>
     <button class="tab" onclick="openTab(event, 'Gear')">Gear</button>
-  </div>
+    <button class="tab" onclick="openTab(event, 'News')">News</button>
+ </div>
 
 
 
 
 
 
-
+<!-- Favorite Tab -->
+<div id="Favorite" class="tab-content" style="display: none;">
+  <h2>My Favorite</h2>
+  <p>Your favorite items will appear here.</p>
+  <div id="favorite-container"></div> <!-- Tempat render card favorit -->
+</div>
 
 
 <!-- Tab Konten Gunung -->
@@ -166,14 +172,13 @@
   </div>
 </div>
 
-<!-- Favorite Tab -->
-<div id="Favorite" class="tab-content" style="display: none;">
-  <h2>My Favorite</h2>
-  <p>Your favorite items will appear here.</p>
-  <div id="favorite-container"></div> <!-- Tempat render card favorit -->
+
+
+<!-- Maps Tab -->
+<div id="Maps" class="tab-content" style="display: none;">
+  <h2>Maps</h2>
+  <p>Maps will be appear here.</p>
 </div>
-
-
 
 
 
@@ -227,6 +232,43 @@
 
 
 
+<!-- Gear Tab -->
+<div id="Gear" class="tab-content" style="display: none;">
+
+
+
+<h1>Gear Up with Confidence</h1>
+<p>We’re curating the tools and tech to elevate every step of your expedition.</p>
+<p>Montamap’s upcoming gear features are designed to connect adventurers with field-tested equipment, smart recommendations, and real-world reviews — all in one place.</p>
+<p><strong>Soon, you’ll be able to:</strong></p>
+<ul>
+  <li>Discover recommended gear lists for specific trails and climates</li>
+  <li>Compare outdoor equipment based on expert and community reviews</li>
+  <li>Sync your inventory with your planned expeditions</li>
+  <li>Track gear usage, weight, and performance over time</li>
+  <li>Access packing checklists based on trip duration and terrain</li>
+  <li>Read field reports on gear durability and failures</li>
+  <li>Connect with outfitters and gear rental services</li>
+  <li>Get alerts for essential upgrades or gear recalls</li>
+</ul>
+<p><strong>Whether you travel light or go full alpine, we’ve got you covered.</strong></p>
+<p><strong>Want first access to gear features?</strong><br>Leave your email below and we’ll keep you in the loop.</p>
+<form action="https://formspree.io/f/xovdpjez" method="POST">
+  <input type="email" name="email" placeholder="Enter your email" required />
+  <input type="hidden" name="_redirect" value="https://montamap.com/thankyou.html">
+  <button type="submit">Notify Me</button>
+</form>
+<p class="footer-note">Only the essentials. No spam, ever.</p>
+  
+
+
+</div>
+
+
+
+
+
+
 
 
 <!-- News Tab -->
@@ -266,39 +308,6 @@
 
 
 
-
-
-<!-- Gear Tab -->
-<div id="Gear" class="tab-content" style="display: none;">
-
-
-
-<h1>Gear Up with Confidence</h1>
-<p>We’re curating the tools and tech to elevate every step of your expedition.</p>
-<p>Montamap’s upcoming gear features are designed to connect adventurers with field-tested equipment, smart recommendations, and real-world reviews — all in one place.</p>
-<p><strong>Soon, you’ll be able to:</strong></p>
-<ul>
-  <li>Discover recommended gear lists for specific trails and climates</li>
-  <li>Compare outdoor equipment based on expert and community reviews</li>
-  <li>Sync your inventory with your planned expeditions</li>
-  <li>Track gear usage, weight, and performance over time</li>
-  <li>Access packing checklists based on trip duration and terrain</li>
-  <li>Read field reports on gear durability and failures</li>
-  <li>Connect with outfitters and gear rental services</li>
-  <li>Get alerts for essential upgrades or gear recalls</li>
-</ul>
-<p><strong>Whether you travel light or go full alpine, we’ve got you covered.</strong></p>
-<p><strong>Want first access to gear features?</strong><br>Leave your email below and we’ll keep you in the loop.</p>
-<form action="https://formspree.io/f/xovdpjez" method="POST">
-  <input type="email" name="email" placeholder="Enter your email" required />
-  <input type="hidden" name="_redirect" value="https://montamap.com/thankyou.html">
-  <button type="submit">Notify Me</button>
-</form>
-<p class="footer-note">Only the essentials. No spam, ever.</p>
-  
-
-
-</div>
 
 
 

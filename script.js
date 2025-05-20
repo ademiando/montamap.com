@@ -394,7 +394,7 @@ function toggleFavorite(id) {
 
 
 
-async function render AllMountains() {
+async function render Mountains() {
   const container = document.getElementById("mountainContainer");
   const slice = mountainData.slice(loaded, loaded + batch);
 

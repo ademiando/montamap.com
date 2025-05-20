@@ -473,8 +473,18 @@ card.querySelector(".favorite-icon").addEventListener("click", function (e) {
     toggleFavorite(m.id);
 });
 
+
 return card;
 }
+
+
+
+
+
+
+
+
+
 
 // Render semua gunung
 function renderAllMountains() {
@@ -516,8 +526,6 @@ function openTab(tabName) {
 document.addEventListener("DOMContentLoaded", () => {
   openTab("Mountain"); // default
 });
-
-
 
 
 

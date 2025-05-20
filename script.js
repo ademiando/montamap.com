@@ -372,6 +372,37 @@ const batch = 6;
 
 
 
+  loaded += batch;
+
+  if (loaded >= mountainData.length) {
+    document.getElementById("loadMoreBtn").style.display = "none";
+  }
+}
+
+document.getElementById("loadMoreBtn").addEventListener("click", renderMountains);
+
+// Initial load
+renderMountains();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -548,21 +579,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
-
-  loaded += batch;
-
-  if (loaded >= mountainData.length) {
-    document.getElementById("loadMoreBtn").style.display = "none";
-  }
-}
-
-document.getElementById("loadMoreBtn").addEventListener("click", renderMountains);
-
-// Initial load
-renderMountains();
 
 
 

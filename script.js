@@ -360,6 +360,9 @@ const batch = 6;
 
 
 
+
+
+
 // Ambil daftar favorit dari localStorage
 function getFavorites() {
   return JSON.parse(localStorage.getItem("favorites")) || [];
@@ -389,10 +392,6 @@ function toggleFavorite(id) {
   saveFavorites(favorites);
   renderAllMountains(); // refresh tampilan
 }
-
-
-
-
 
 async function renderMountains() {
   const container = document.getElementById("mountainContainer");
@@ -514,6 +513,11 @@ function openTab(tabName) {
 document.addEventListener("DOMContentLoaded", () => {
   openTab("Mountain"); // default
 });
+
+
+
+
+
 
 
 

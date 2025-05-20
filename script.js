@@ -78,22 +78,77 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Mountain data (unchanged)
-let mountainData = [];
+const mountainData = [
+  {
+    name: "Everest",
+    city: "Namche Bazaar, Nepal",
+    lat: 27.9881,
+    lon: 86.9250,
+    status: "Open",
+    elevation: "8,848 m",
+    image: "mountain-image/everest.jpg",
+    link: "everest"
+  },
+  {
+    name: "K2",
+    city: "Skardu, Pakistan",
+    lat: 35.8800,
+    lon: 76.5151,
+    status: "Closed",
+    elevation: "8,611 m",
+    image: "mountain-image/k2.jpg",
+    link: "k2"
+  },
+  {
+    name: "Kangchenjunga",
+    city: "Taplejung, Nepal",
+    lat: 27.7000,
+    lon: 88.2000,
+    status: "Open",
+    elevation: "8,586 m",
+    image: "mountain-image/kangchenjunga.jpg",
+    link: "kangchenjunga"
+  },
+  {
+    name: "Lhotse",
+    city: "Namche Bazaar, Nepal",
+    lat: 27.9617,
+    lon: 86.9333,
+    status: "Open",
+    elevation: "8,516 m",
+    image: "mountain-image/lhotse.jpg",
+    link: "lhotse"
+  },
+  {
+    name: "Rinjani",
+    city: "West Nusa Tenggara, Indonesia",
+    lat: -8.4115,
+    lon: 116.4577,
+    status: "Open",
+    elevation: "3,726 m",
+    image: "mountain-image/rinjani.jpg",
+    link: "rinjani"
+  },
+  {
+    name: "Cartenz Pyramid",
+    city: "Papua, Indonesia",
+    lat: -4.0833,
+    lon: 137.1833,
+    status: "Open",
+    elevation: "4,884 m",
+    image: "mountain-image/cartenz.jpg",
+    link: "cartenz"
+  }
+  // ...tambahkan sisanya kalau mau
+];
 
-fetch('/data/mountains.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    mountainData = data;
-    renderAllMountains();
-  })
-  .catch(error => {
-    console.error('Error loading mountains.json:', error);
-  });
+// Setelah itu, panggil langsung render-nya:
+renderAllMountains();
+
+
+
+
+
 
 // Weather fetch
 const apiKey = '3187c49861f858e524980ea8dd0d43c6';

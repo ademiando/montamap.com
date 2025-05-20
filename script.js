@@ -360,7 +360,6 @@ const batch = 6;
 
 
 
-
 // Ambil daftar favorit dari localStorage
 function getFavorites() {
   return JSON.parse(localStorage.getItem("favorites")) || [];
@@ -394,7 +393,8 @@ function toggleFavorite(id) {
 
 
 
-async function render Mountains() {
+
+async function renderAllMountains() {
   const container = document.getElementById("mountainContainer");
   const slice = mountainData.slice(loaded, loaded + batch);
 

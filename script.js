@@ -380,7 +380,7 @@ function isFavorite(id) {
   return getFavorites().includes(id);
 }
 
-// Toggle status favorit
+// Tambah atau hapus dari favorit
 function toggleFavorite(id) {
   const favorites = getFavorites();
   const index = favorites.indexOf(id);
@@ -392,56 +392,20 @@ function toggleFavorite(id) {
   }
 
   saveFavorites(favorites);
-  renderAllMountains(); // refresh tampilan
 }
 
-async function renderMountains() {
-  const container = document.getElementById("mountainContainer");
-  const slice = mountainData.slice(loaded, loaded + batch);
-
-  for (let m of slice) {
-    const weather = await fetchWeather(m.lat, m.lon); 
-    const card = document.createElement("div");
-    card.className = "mountain-card";
-    card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
-    card.innerHTML = `
-
-
-      <img src="${m.image}" alt="${m.name}" class="mountain-image" />
-
-<div class="favorite-icon" data-id="${m.id}">&#9734;</div> <!-- Bintang putih -->
-
-
-      <div class="gradient-overlay"></div>
-      <div class="mountain-info">
-        <div class="mountain-name">${m.name}</div>
-        <div class="mountain-details">
-          ${m.city}<br />
-          <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br />
-          Elevation: ${m.elevation}<br />
-
-<img src="https://openweathermap.org/img/wn/${weather.icon}.png" alt="${weather.weather}" style="vertical-align: middle;" />${weather.temperature} | ${weather.weather}<br />
-
-        </div>
-      </div>
-    `;
-    container.appendChild(card);
-  }
-
+// Buat kartu gunung
 function createMountainCard(m) {
   const card = document.createElement("div");
   card.className = "mountain-card";
   card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
+
+  const isFav = isFavorite(m.id);
   card.innerHTML = `
-    
-
     <img src="${m.image}" alt="${m.name}" class="mountain-image" />
-
-<div class="favorite-icon" data-id="${m.id}">
-      ${isFavorite(m.id) ? "★" : "☆"}
+    <div class="favorite-icon ${isFav ? 'active' : ''}" data-id="${m.id}">
+      ${isFav ? "★" : "☆"}
     </div>
-
-
     <div class="gradient-overlay"></div>
     <div class="mountain-info">
       <div class="mountain-name">${m.name}</div>
@@ -455,14 +419,23 @@ function createMountainCard(m) {
     </div>
   `;
 
-  // Tambahkan event listener untuk ikon bintang
-card.querySelector(".favorite-icon").addEventListener("click", function (e) {
-    e.stopPropagation(); // agar tidak ikut redirect saat diklik
-    console.log(`Favorite icon clicked for mountain ID: ${m.id}`); // Debugging log
+  const favIcon = card.querySelector(".favorite-icon");
+  favIcon.addEventListener("click", function (e) {
+    e.stopPropagation(); // agar tidak redirect
     toggleFavorite(m.id);
-});
 
-return card;
+    const isNowFav = isFavorite(m.id);
+    favIcon.classList.toggle("active", isNowFav);
+    favIcon.innerHTML = isNowFav ? "★" : "☆";
+
+    // Jika sedang di tab Favorite, render ulang
+    const favTab = document.getElementById("Favorite");
+    if (favTab && favTab.style.display !== "none") {
+      renderFavorites();
+    }
+  });
+
+  return card;
 }
 
 // Render semua gunung
@@ -475,7 +448,7 @@ function renderAllMountains() {
   });
 }
 
-// Render hanya favorit
+// Render favorit saja
 function renderFavorites() {
   const container = document.getElementById("favorite-container");
   container.innerHTML = "";
@@ -487,12 +460,18 @@ function renderFavorites() {
   });
 }
 
-// Fungsi tab switching
-function openTab(tabName) {
+// Ganti tab
+function openTab(evt, tabName) {
   document.querySelectorAll(".tab-content").forEach(tab => {
     tab.style.display = "none";
   });
+
+  document.querySelectorAll(".horizontal-tab-container .tab").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
   document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.classList.add("active");
 
   if (tabName === "Favorite") {
     renderFavorites();
@@ -503,7 +482,7 @@ function openTab(tabName) {
 
 // Jalankan saat awal
 document.addEventListener("DOMContentLoaded", () => {
-  openTab("Mountain"); // default
+  openTab({ currentTarget: document.querySelector('.tab.active') }, "Mountain");
 });
 
 

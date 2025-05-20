@@ -393,7 +393,7 @@ function toggleFavorite(id) {
   renderAllMountains(); // refresh tampilan
 }
 
-async function renderMountains() {
+async function renderAllMountains() {
   const container = document.getElementById("mountainContainer");
   const slice = mountainData.slice(loaded, loaded + batch);
 
@@ -460,18 +460,8 @@ card.querySelector(".favorite-icon").addEventListener("click", function (e) {
     toggleFavorite(m.id);
 });
 
-
 return card;
 }
-
-
-
-
-
-
-
-
-
 
 // Render semua gunung
 function renderAllMountains() {

@@ -393,7 +393,7 @@ function toggleFavorite(id) {
   renderAllMountains(); // refresh tampilan
 }
 
-async function renderAllMountains() {
+async function renderMountains() {
   const container = document.getElementById("mountainContainer");
   const slice = mountainData.slice(loaded, loaded + batch);
 

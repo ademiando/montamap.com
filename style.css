@@ -288,6 +288,36 @@ html.dark body {
   display: none; /* Semua tab disembunyikan secara default */
 }
 
+
+
+
+
+.favorite-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+  color: white;
+  z-index: 20;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.favorite-icon.active {
+  color: #28a745; /* Hijau */
+}
+
+.favorite-icon:hover {
+background-color: #89ae95;
+}
+
+
+
+
+
+
+
+
 /* Container untuk tombol dropdown dengan scroll horizontal */
 .sort-options-container {
     display: flex;
@@ -415,26 +445,6 @@ html.dark body {
 
 
 
-
-
-.favorite-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 25px;
-  color: white;
-  z-index: 20;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.favorite-icon.active {
-  color: #28a745; /* Hijau */
-}
-
-.favorite-icon:hover {
-background-color: #89ae95;
-}
 
 
 

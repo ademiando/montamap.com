@@ -366,22 +366,6 @@ const batch = 6;
 
 
 
-  loaded += batch;
-
-  if (loaded >= mountainData.length) {
-    document.getElementById("loadMoreBtn").style.display = "none";
-  }
-}
-
-document.getElementById("loadMoreBtn").addEventListener("click", renderMountains);
-
-// Initial load
-renderMountains();
-
-
-
-
-
 
 
 
@@ -438,3 +422,34 @@ async function renderMountains() {
     document.getElementById("loadMoreBtn").style.display = "none";
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  loaded += batch;
+
+  if (loaded >= mountainData.length) {
+    document.getElementById("loadMoreBtn").style.display = "none";
+  }
+}
+
+document.getElementById("loadMoreBtn").addEventListener("click", renderMountains);
+
+// Initial load
+renderMountains();
+
+
+

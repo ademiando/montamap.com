@@ -365,6 +365,33 @@ const batch = 6;
 
 
 
+
+  loaded += batch;
+
+  if (loaded >= mountainData.length) {
+    document.getElementById("loadMoreBtn").style.display = "none";
+  }
+}
+
+document.getElementById("loadMoreBtn").addEventListener("click", renderMountains);
+
+// Initial load
+renderMountains();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Favorit: simpan dan ambil dari localStorage
 function getFavorites() {
   return JSON.parse(localStorage.getItem("favorites")) || [];
@@ -462,21 +489,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
-
-
-  loaded += batch;
-
-  if (loaded >= mountainData.length) {
-    document.getElementById("loadMoreBtn").style.display = "none";
-  }
-}
-
-document.getElementById("loadMoreBtn").addEventListener("click", renderMountains);
-
-// Initial load
-renderMountains();
 
 
 

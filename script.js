@@ -7,11 +7,10 @@ themeToggle.addEventListener('click', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark');
-  }
+  if (savedTheme === 'dark') document.body.classList.add('dark');
   loadMountains();
   applyTranslations();
+  if (document.getElementById('weather-tab')) loadWeatherData();
 });
 
 // === Tab Navigation ===
@@ -48,7 +47,7 @@ function applyTranslations() {
     });
 }
 
-// === Load Mountain Data ===
+// === Mountain Data ===
 const mountainContainer = document.getElementById('mountain-list');
 const filterSelect = document.getElementById('mountain-filter');
 const searchInput = document.getElementById('search-bar');
@@ -69,21 +68,22 @@ function renderMountains() {
   const filter = filterSelect.value;
   const search = searchInput.value.toLowerCase();
   const start = (currentPage - 1) * mountainsPerPage;
-  const filtered = mountains.filter(m => 
+
+  const filtered = mountains.filter(m =>
     (filter === 'all' || m.island === filter) &&
     m.name.toLowerCase().includes(search)
   );
   const paginated = filtered.slice(start, start + mountainsPerPage);
 
   mountainContainer.innerHTML = '';
-  paginated.forEach(mountain => {
+  paginated.forEach(m => {
     const card = document.createElement('div');
     card.className = 'mountain-card';
     card.innerHTML = `
-      <img src="${mountain.image}" alt="${mountain.name}">
-      <h3>${mountain.name}</h3>
-      <p>${mountain.location}</p>
-      <button class="favorite-btn ${isFavorited(mountain.id) ? 'favorited' : ''}" data-id="${mountain.id}">★</button>
+      <img src="${m.image}" alt="${m.name}">
+      <h3>${m.name}</h3>
+      <p>${m.location}</p>
+      <button class="favorite-btn ${isFavorited(m.id) ? 'favorited' : ''}" data-id="${m.id}">★</button>
     `;
     mountainContainer.appendChild(card);
   });
@@ -110,6 +110,7 @@ filterSelect.addEventListener('change', () => {
   currentPage = 1;
   renderMountains();
 });
+
 searchInput.addEventListener('input', () => {
   currentPage = 1;
   renderMountains();
@@ -131,7 +132,7 @@ function isFavorited(id) {
   return favs.includes(id);
 }
 
-// === Weather Tab ===
+// === Weather Data ===
 const weatherContainer = document.getElementById('weather-tab');
 const weatherAPI = 'https://api.openweathermap.org/data/2.5/weather';
 const apiKey = '3187c49861f858e524980ea8dd0d43c6';
@@ -145,17 +146,16 @@ function loadWeatherData() {
         fetch(`${weatherAPI}?lat=${m.lat}&lon=${m.lon}&units=metric&appid=${apiKey}`)
           .then(res => res.json())
           .then(data => {
+            const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
             const div = document.createElement('div');
             div.className = 'weather-card';
             div.innerHTML = `
               <h3>${m.name}</h3>
               <p>${data.weather[0].main}, ${data.main.temp.toFixed(1)}°C</p>
-              <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="">
+              <img src="${iconUrl}" alt="weather icon">
             `;
             weatherContainer.appendChild(div);
           });
       });
     });
 }
-
-if (document.getElementById('weather-tab')) loadWeatherData();

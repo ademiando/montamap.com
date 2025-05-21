@@ -202,18 +202,3 @@ async function renderFavorites() {
 
   favoriteContainer.appendChild(grid);
 }
- 
-// Load More Buttom
-loaded += batch;
-
-  if (loaded >= mountainData.length) {
-    document.getElementById("loadMoreBtn").style.display = "none";
-  }
-}
-
-document.getElementById("loadMoreBtn").addEventListener("click", renderMountains);
-
-// Initial load
-renderMountains();
-
-

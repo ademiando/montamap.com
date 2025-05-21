@@ -323,25 +323,7 @@ html.dark body {
 
 
 
-// Favorite icon mountain card
-.favorite-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 25px;
-  color: white;
-  z-index: 20;
-  cursor: pointer;
-  transition: color 0.3s;
-}
 
-.favorite-icon.active {
-  color: #28a745; /* Hijau */
-}
-
-.favorite-icon:hover {
-background-color: #89ae95;
-}
 
 /* Container untuk tombol dropdown dengan scroll horizontal */
 .sort-options-container {
@@ -427,6 +409,28 @@ background-color: #89ae95;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent 100%);
 }
 
+
+
+
+// Favorite icon mountain card
+.favorite-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+  color: white;
+  z-index: 20;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.favorite-icon.active {
+  color: #28a745; /* Hijau */
+}
+
+.favorite-icon:hover {
+background-color: #89ae95;
+}
 
 
 

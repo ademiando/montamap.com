@@ -1,3 +1,5 @@
+let isEditMode = false;
+
 // Elements
 const menuToggle        = document.getElementById('hamburger');
 const dropdownMenu      = document.getElementById('menu');
@@ -129,28 +131,46 @@ async function renderMountains() {
 }
 
 // Create single card
-function createMountainCard(m, w) {
+function createMountainCard(m, w, isEditMode = false) {
   const card = document.createElement('div');
   card.className = 'mountain-card';
-  card.onclick   = () => window.location.href = `https://montamap.com/${m.link}`;
+
+  if (!isEditMode) {
+    card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
+  }
+
   card.innerHTML = `
-    <img src="${m.image}" alt="${m.name}" class="mountain-image"/>
-    <div class="favorite-icon" data-id="${m.id}">${isFavorite(m.id)?'★':'☆'}</div>
+    <img src="${m.image}" alt="${m.name}" class="mountain-image" />
+    <div class="favorite-icon" data-id="${m.id}" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}">
+      ${isFavorite(m.id) ? '★' : '☆'}
+    </div>
     <div class="gradient-overlay"></div>
     <div class="mountain-info">
       <div class="mountain-name">${m.name}</div>
       <div class="mountain-details">
         ${m.city}<br/>
-        <span class="${m.status==='Open'?'status-open':'status-closed'}">Status: ${m.status}</span><br/>
+        <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br/>
         Elevation: ${m.elevation}<br/>
-        <img src="https://openweathermap.org/img/wn/${w.icon}.png" alt="${w.weather}" class="weather-icon"/> ${w.temperature} | ${w.weather}
+        <img src="https://openweathermap.org/img/wn/${w.icon}.png" alt="${w.weather}" class="weather-icon"/>
+        ${w.temperature} | ${w.weather}
       </div>
     </div>`;
-  card.querySelector('.favorite-icon')
-      .addEventListener('click', e => { e.stopPropagation(); toggleFavorite(m.id); });
+
+  const favIcon = card.querySelector('.favorite-icon');
+  favIcon.addEventListener('click', e => {
+    e.stopPropagation();
+    toggleFavorite(m.id);
+
+    if (isEditMode) {
+      card.remove();
+      if (getFavorites().length === 0) {
+        favoriteContainer.innerHTML = '<p>No favorites yet.</p>';
+      }
+    }
+  });
+
   return card;
 }
-
 
 // Render Favorite Card
 async function renderFavorites() {
@@ -159,15 +179,17 @@ async function renderFavorites() {
 
   // Tombol Edit Favorites
   editFavoritesBtn.className = 'edit-fav-btn';
-  editFavoritesBtn.textContent = '✏️ Edit Favorites';
+  editFavoritesBtn.textContent = isEditMode ? '❌ Cancel Edit' : '🖌 Edit Favorites';
   editFavoritesBtn.onclick = () => {
-    alert('Edit mode activated! Klik ikon ★ untuk menghapus dari favorit.');
+    isEditMode = !isEditMode;
+    alert(isEditMode ? 'Edit mode activated! Klik ikon ★ untuk menghapus dari favorit.' : 'Edit mode dinonaktifkan.');
+    renderFavorites();
   };
   favoriteContainer.appendChild(editFavoritesBtn);
 
   // Container grid kartu
   const grid = document.createElement('div');
-  grid.className = 'favorite-grid'; // Pastikan ada CSS untuk ini (lihat bawah)
+  grid.className = 'favorite-grid';
 
   if (favorites.length === 0) {
     const msg = document.createElement('p');
@@ -180,7 +202,7 @@ async function renderFavorites() {
     const m = mountainData.find(m => m.id === id);
     if (!m) continue;
     const w = await fetchWeather(m.lat, m.lon);
-    const card = createMountainCard(m, w); // Gunakan ulang fungsi utama
+    const card = createMountainCard(m, w, isEditMode);
     grid.appendChild(card);
   }
 

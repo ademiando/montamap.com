@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sticky Footer Layout</title>
   <link rel="stylesheet" href="style.css">
+
+
+<link rel="stylesheet" href="maps.css">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet" />
+
+
+
 </head>
 
 <body>
@@ -183,16 +190,28 @@
 
 
 
-<!-- Maps Tab -->
+
+
+
+
+
+
+
+
+
+
 <div id="Maps" class="tab-content" style="display: none;">
   <h2>Maps</h2>
-  <p>Maps will be appear here.</p>
+  <label for="styleSelector">Map Style:</label>
+  <select id="styleSelector">
+    <option value="outdoors">Outdoors</option>
+    <option value="satellite">Satellite</option>
+    <option value="outdoors3d">Outdoors 3D</option>
+    <option value="satellite3d">Satellite 3D</option>
+    <option value="dark">Dark</option>
+  </select>
+<div id="map"></div>
 </div>
-
-
-
-
-
 
 
 
@@ -383,5 +402,12 @@
  
 
   <script src="script.js"></script>
+
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+<script src="maps.js" defer></script>
+
+
+
 </body>
 </html>

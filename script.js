@@ -180,24 +180,3 @@ async function renderFavorites() {
   }
 }
 
-  // Edit button
-  editFavoritesBtn.className = 'edit-fav-btn';
-  editFavoritesBtn.textContent = '✏️ Edit';
-  editFavoritesBtn.onclick   = () => alert('Feature to manage favorites coming soon.');
-
-  const list = document.createElement('div');
-  list.className = 'favorite-list';
-  favs.forEach(id => {
-    const m = mountainData.find(m => m.id === id);
-    if (!m) return;
-    const item = document.createElement('div');
-    item.className = 'favorite-item';
-    item.innerHTML = `
-      <img src="${m.image}" alt="${m.name}" class="favorite-thumb"/>
-      <span class="favorite-name">${m.name}</span>`;
-    list.appendChild(item);
-  });
-
-  favoriteContainer.appendChild(editFavoritesBtn);
-  favoriteContainer.appendChild(list);
-}

@@ -153,22 +153,24 @@ function createMountainCard(m, w) {
 
 
 
-document.querySelectorAll(".tab").forEach(tab => {
-  tab.addEventListener("click", () => {
-    // Remove active class dari semua tab
-    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-    tab.classList.add("active");
 
-    // Ambil target tab
-    const target = tab.getAttribute("data-tab");
 
-    // Sembunyikan semua konten tab
-    document.querySelectorAll(".tab-content").forEach(content => {
-      content.style.display = "none";
-    });
 
-    // Tampilkan konten sesuai tab yang diklik
-    const activeContent = document.getElementById(`${target}-content`);
-    if (activeContent) activeContent.style.display = "block";
-  });
-});
+function openTab(evt, tabName) {
+  // Sembunyikan semua konten tab
+  const tabContents = document.querySelectorAll(".tab-content");
+  tabContents.forEach(content => content.style.display = "none");
+
+  // Hapus class 'active' dari semua tab
+  const tabs = document.querySelectorAll(".tab");
+  tabs.forEach(tab => tab.classList.remove("active"));
+
+  // Tampilkan konten tab yang diklik
+  const activeTab = document.getElementById(tabName);
+  if (activeTab) {
+    activeTab.style.display = "block";
+  }
+
+  // Tandai tombol tab yang aktif
+  evt.currentTarget.classList.add("active");
+}

@@ -308,11 +308,9 @@ html.dark body {
 }
 
 .wishlist-actions button {
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: bold;
   cursor: pointer;
-  color: none;
-  background: none;
   border: none;
   padding: 4px 8px;
 }
@@ -320,8 +318,8 @@ html.dark body {
 /* Container untuk tombol dropdown dengan scroll horizontal */
 .sort-options-container {
     display: flex;
-    flex-wrap: nowrap;                   /* Jangan pindah ke baris baru */
-    overflow-x: auto;                    /* Scroll horizontal kalau penuh */
+    flex-wrap: nowrap;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;  /* Scroll halus di iOS */
     scrollbar-width: none;              /* Sembunyikan scrollbar (Firefox) */
     gap: 8px;
@@ -342,18 +340,8 @@ html.dark body {
     border: 1px solid #ccc;
     border-radius: 7px;
     cursor: pointer;
-    flex-shrink: 0;                     /* Biar nggak mengecil saat overflow */
+    flex-shrink: 0;
 }
-
-
-
-
-
-
-
-
-
-
 
 .mountain-wrapper {
   display: flex;
@@ -468,16 +456,6 @@ html.dark body {
   height: 40px;
   vertical-align: middle;
 }
-
-
-
-
-
-
-
-
-
-
 
 #loadMoreBtn {
   margin-top: 24px;

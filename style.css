@@ -321,7 +321,29 @@ html.dark body {
   padding: 4px 8px;
 }
 
+.edit-favorites-button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 14px;
+  padding: 6px 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+.edit-favorites-button:hover {
+  background-color: #ddd;
+}
+
+
+.favorite-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
 
 
 // Favorite icon mountain card

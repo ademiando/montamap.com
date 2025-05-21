@@ -153,11 +153,12 @@ function createMountainCard(m, w, isEditMode = false) {
         <img src="https://openweathermap.org/img/wn/${w.icon}.png" alt="${w.weather}" class="weather-icon"/>
         ${w.temperature} | ${w.weather}
       </div>
-    </div>`;
+    </div>
 
    <div class="favorite-icon" data-id="${m.id}" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}">
       ${isFavorite(m.id) ? '★' : '☆'}
     </div>
+';
 
 
 // Favorite Icon Tab Favorite

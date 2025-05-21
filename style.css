@@ -378,6 +378,7 @@ html.dark body {
   cursor: pointer;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 300px; /* Ukuran seragam untuk semua kartu */
 }
 
 .mountain-card:hover {
@@ -471,7 +472,6 @@ html.dark body {
   height: 40px;
   vertical-align: middle;
 }
-
 
 
 

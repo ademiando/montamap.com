@@ -151,14 +151,34 @@ function createMountainCard(m, w) {
   return card;
 }
 
-// Render Favorite Tab
-function renderFavorites() {
+
+// Render Favorite Tab (perbaikan)
+async function renderFavorites() {
   const favs = getFavorites();
   favoriteContainer.innerHTML = '';
+
+  // Tombol Edit
+  editFavoritesBtn.className = 'edit-fav-btn';
+  editFavoritesBtn.textContent = '✏️ Edit Favorites';
+  editFavoritesBtn.onclick = () => {
+    alert('Feature to manage favorites coming soon.');
+  };
+  favoriteContainer.appendChild(editFavoritesBtn);
+
   if (favs.length === 0) {
-    favoriteContainer.innerHTML = '<p>No favorites yet.</p>';
+    favoriteContainer.insertAdjacentHTML('beforeend', '<p>No favorites yet.</p>');
     return;
   }
+
+  // Render kartu full untuk tiap favorit
+  for (let id of favs) {
+    const m = mountainData.find(m => m.id === id);
+    if (!m) continue;
+    const w = await fetchWeather(m.lat, m.lon);
+    const card = createMountainCard(m, w);
+    favoriteContainer.appendChild(card);
+  }
+}
 
   // Edit button
   editFavoritesBtn.className = 'edit-fav-btn';

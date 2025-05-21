@@ -378,7 +378,7 @@ html.dark body {
   cursor: pointer;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 300px; /* Ukuran seragam untuk semua kartu */
+  height: 240px; /* Ukuran seragam untuk semua kartu */
 }
 
 .mountain-card:hover {
@@ -422,10 +422,6 @@ html.dark body {
 
 .favorite-icon.active {
   color: #28a745; /* Hijau */
-}
-
-.favorite-icon:hover {
-  background-color: #89ae95;
 }
 
 .gradient-overlay {

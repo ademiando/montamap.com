@@ -141,9 +141,8 @@ function createMountainCard(m, w, isEditMode = false) {
 
   card.innerHTML = `
     <img src="${m.image}" alt="${m.name}" class="mountain-image" />
-    <div class="favorite-icon" data-id="${m.id}" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}">
-      ${isFavorite(m.id) ? '★' : '☆'}
-    </div>
+ 
+
     <div class="gradient-overlay"></div>
     <div class="mountain-info">
       <div class="mountain-name">${m.name}</div>
@@ -155,6 +154,11 @@ function createMountainCard(m, w, isEditMode = false) {
         ${w.temperature} | ${w.weather}
       </div>
     </div>`;
+
+   <div class="favorite-icon" data-id="${m.id}" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}">
+      ${isFavorite(m.id) ? '★' : '☆'}
+    </div>
+
 
 // Favorite Icon Tab Favorite
   const favIcon = card.querySelector('.favorite-icon');

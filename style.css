@@ -306,7 +306,12 @@ html.dark body {
   background-color: #ddd;
 }
 
-
+.favorite-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
 
 
 

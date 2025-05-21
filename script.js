@@ -158,7 +158,7 @@ function createMountainCard(m, w, isEditMode = false) {
    <div class="favorite-icon" data-id="${m.id}" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}">
       ${isFavorite(m.id) ? '★' : '☆'}
     </div>
-';
+`;
 
 
 // Favorite Icon Tab Favorite

@@ -288,10 +288,6 @@ html.dark body {
   display: none; /* Semua tab disembunyikan secara default */
 }
 
-
-
-
-
 .wishlist-header {
   position: relative;
   padding-right: 80px; /* beri ruang untuk tombol kanan */
@@ -320,10 +316,6 @@ html.dark body {
   border: none;
   padding: 4px 8px;
 }
-
-
-
-
 
 /* Container untuk tombol dropdown dengan scroll horizontal */
 .sort-options-container {
@@ -364,12 +356,13 @@ html.dark body {
 
 
 
-
-
-
-
-
-
+.mountain-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* Tengah horizontal */
+  padding: 40px 16px;
+  box-sizing: border-box;
+}
 
 .mountain-container {
   display: flex;
@@ -393,20 +386,7 @@ html.dark body {
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
 }
 
-.mountain-image {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
-  transition: filter 0.3s ease;
-}
-
-.mountain-card:hover .mountain-image {
-  filter: brightness(0.85);
-}
-
-
-
+/* Wrapper for image and absolute elements */
 .mountain-image-wrapper {
   position: relative;
   width: 100%;
@@ -416,9 +396,19 @@ html.dark body {
   border-top-right-radius: 16px;
 }
 
+.mountain-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s ease;
+}
 
+.mountain-card:hover .mountain-image {
+  filter: brightness(0.85);
+}
 
-// Favorite icon mountain card
+/* Favorite icon mountain card in top-right corner of image wrapper */
 .favorite-icon {
   position: absolute;
   top: 10px;
@@ -435,14 +425,8 @@ html.dark body {
 }
 
 .favorite-icon:hover {
-background-color: #89ae95;
+  background-color: #89ae95;
 }
-
-
-
-
-
-
 
 .gradient-overlay {
   position: absolute;
@@ -454,42 +438,10 @@ background-color: #89ae95;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent 100%);
 }
 
-
-
 .mountain-info {
   position: absolute;
-  bottom: 16px;
-  left: 20px;
-  color: white;
-  z-index: 2;
-}
 
-.mountain-name {
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin-bottom: 4px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-}
 
-.mountain-details {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-.status-open {
-  color: #8cffb3;
-}
-
-.status-closed {
-  color: #ff7f7f;
-}
-
-.weather-icon {
-  width: 40px;
-  height: 40px;
-  vertical-align: middle;
-}
 
 
 

@@ -399,18 +399,6 @@ html.dark body {
 
 
 
-.gradient-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 70%;   /* misalnya cuma separuh kiri */
-  height: 100%;
-  z-index: 1;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent 100%);
-}
-
-
-
 
 // Favorite icon mountain card
 .favorite-icon {
@@ -433,6 +421,20 @@ background-color: #89ae95;
 }
 
 
+
+
+
+
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;   /* misalnya cuma separuh kiri */
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent 100%);
+}
 
 
 

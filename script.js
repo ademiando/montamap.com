@@ -149,3 +149,26 @@ function createMountainCard(m, w) {
   });
   return card;
 }
+
+
+
+
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    // Remove active class dari semua tab
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    // Ambil target tab
+    const target = tab.getAttribute("data-tab");
+
+    // Sembunyikan semua konten tab
+    document.querySelectorAll(".tab-content").forEach(content => {
+      content.style.display = "none";
+    });
+
+    // Tampilkan konten sesuai tab yang diklik
+    const activeContent = document.getElementById(`${target}-content`);
+    if (activeContent) activeContent.style.display = "block";
+  });
+});

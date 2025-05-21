@@ -290,6 +290,24 @@ html.dark body {
 
 
 
+.edit-favorites-button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 14px;
+  padding: 6px 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-favorites-button:hover {
+  background-color: #ddd;
+}
+
+
+
 
 
 .favorite-icon {
@@ -310,13 +328,6 @@ html.dark body {
 .favorite-icon:hover {
 background-color: #89ae95;
 }
-
-
-
-
-
-
-
 
 /* Container untuk tombol dropdown dengan scroll horizontal */
 .sort-options-container {

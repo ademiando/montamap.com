@@ -157,14 +157,15 @@ function createMountainCard(m, w, isEditMode = false) {
     </div>`;
 
 // Favorite Icon Tab Favorite
-favIcon.addEventListener('click', e => {
+  const favIcon = card.querySelector('.favorite-icon');
+  favIcon.addEventListener('click', e => {
   e.stopPropagation();
   toggleFavorite(m.id);
 
   if (isEditMode) {
     renderFavorites();
   } else {
-    favIcon.innerHTML = isFavorite(m.id) ? '★' : '☆';
+  favIcon.innerHTML = isFavorite(m.id) ? '★' : '☆';
     favIcon.title = isFavorite(m.id) ? 'Unfavorite' : 'Favorite';
   }
 });

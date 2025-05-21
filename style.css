@@ -291,21 +291,37 @@ html.dark body {
 
 
 
-.edit-favorites-button {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  color: #333;
-  font-size: 14px;
-  padding: 6px 12px;
-  margin: 10px 0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+
+.wishlist-header {
+  position: relative;
+  padding-right: 80px; /* beri ruang untuk tombol kanan */
+  margin-bottom: 10px;
 }
 
-.edit-favorites-button:hover {
-  background-color: #ddd;
+.wishlist-header h2 {
+  margin: 0;
+  font-size: 1.5em;
 }
+
+.wishlist-actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.wishlist-actions button {
+  font-size: 1.2em;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px 8px;
+}
+
+
+
+
 
 .favorite-grid {
   display: grid;
@@ -314,9 +330,7 @@ html.dark body {
   margin-top: 16px;
 }
 
-
-
-
+// Favorite icon mountain card
 .favorite-icon {
   position: absolute;
   top: 10px;

@@ -152,31 +152,37 @@ function createMountainCard(m, w) {
 }
 
 
-// Render Favorite Tab (perbaikan)
+// Render Favorite Card
 async function renderFavorites() {
-  const favs = getFavorites();
+  const favorites = getFavorites();
   favoriteContainer.innerHTML = '';
 
-  // Tombol Edit
+  // Tombol Edit Favorites
   editFavoritesBtn.className = 'edit-fav-btn';
   editFavoritesBtn.textContent = '✏️ Edit Favorites';
   editFavoritesBtn.onclick = () => {
-    alert('Feature to manage favorites coming soon.');
+    alert('Edit mode activated! Klik ikon ★ untuk menghapus dari favorit.');
   };
   favoriteContainer.appendChild(editFavoritesBtn);
 
-  if (favs.length === 0) {
-    favoriteContainer.insertAdjacentHTML('beforeend', '<p>No favorites yet.</p>');
+  // Container grid kartu
+  const grid = document.createElement('div');
+  grid.className = 'favorite-grid'; // Pastikan ada CSS untuk ini (lihat bawah)
+
+  if (favorites.length === 0) {
+    const msg = document.createElement('p');
+    msg.textContent = 'No favorites yet.';
+    favoriteContainer.appendChild(msg);
     return;
   }
 
-  // Render kartu full untuk tiap favorit
-  for (let id of favs) {
+  for (let id of favorites) {
     const m = mountainData.find(m => m.id === id);
     if (!m) continue;
     const w = await fetchWeather(m.lat, m.lon);
-    const card = createMountainCard(m, w);
-    favoriteContainer.appendChild(card);
+    const card = createMountainCard(m, w); // Gunakan ulang fungsi utama
+    grid.appendChild(card);
   }
-}
 
+  favoriteContainer.appendChild(grid);
+}

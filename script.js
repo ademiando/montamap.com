@@ -156,18 +156,19 @@ function createMountainCard(m, w, isEditMode = false) {
       </div>
     </div>`;
 
-  const favIcon = card.querySelector('.favorite-icon');
-  favIcon.addEventListener('click', e => {
-    e.stopPropagation();
-    toggleFavorite(m.id);
+// Favorite Icon Tab Favorite
+favIcon.addEventListener('click', e => {
+  e.stopPropagation();
+  toggleFavorite(m.id);
 
-    if (isEditMode) {
-      card.remove();
-      if (getFavorites().length === 0) {
-        favoriteContainer.innerHTML = '<p>No favorites yet.</p>';
-      }
-    }
-  });
+  if (isEditMode) {
+    renderFavorites();
+  } else {
+    favIcon.innerHTML = isFavorite(m.id) ? '★' : '☆';
+    favIcon.title = isFavorite(m.id) ? 'Unfavorite' : 'Favorite';
+  }
+});
+
 
   return card;
 }

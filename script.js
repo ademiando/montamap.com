@@ -141,9 +141,10 @@ function createMountainCard(m, w, isEditMode = false) {
 
   card.innerHTML = `
     <img src="${m.image}" alt="${m.name}" class="mountain-image" />
- 
-
-    <div class="gradient-overlay"></div>
+<div class="favorite-icon" data-id="${m.id}" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}">
+      ${isFavorite(m.id) ? '★' : '☆'}
+    </div>
+<div class="gradient-overlay"></div>
     <div class="mountain-info">
       <div class="mountain-name">${m.name}</div>
       <div class="mountain-details">
@@ -153,12 +154,7 @@ function createMountainCard(m, w, isEditMode = false) {
         <img src="https://openweathermap.org/img/wn/${w.icon}.png" alt="${w.weather}" class="weather-icon"/>
         ${w.temperature} | ${w.weather}
       </div>
-    </div>
-
-   <div class="favorite-icon" data-id="${m.id}" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}">
-      ${isFavorite(m.id) ? '★' : '☆'}
-    </div>
-`;
+    </div> `;
 
 
 // Favorite Icon Tab Favorite

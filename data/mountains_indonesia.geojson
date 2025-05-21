@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "name": "mountains_hiking_indonesia_full",
   "features": [
-    // SUMATERA
+    
     {"type":"Feature","properties":{"name":"Kerinci","type":"kerinci","elevation_m":3805,"link":"https://montamap.com/kerinci","island":"Sumatra","province":"Jambi","region":"Sumatra"},"geometry":{"type":"Point","coordinates":[101.264,-1.697]}},
     {"type":"Feature","properties":{"name":"Marapi","type":"marapi","elevation_m":2891,"link":"https://montamap.com/marapi","island":"Sumatra","province":"Sumatera Barat","region":"Sumatra"},"geometry":{"type":"Point","coordinates":[100.473,-0.381]}},
     {"type":"Feature","properties":{"name":"Talang","type":"talang","elevation_m":2597,"link":"https://montamap.com/talang","island":"Sumatra","province":"Sumatera Barat","region":"Sumatra"},"geometry":{"type":"Point","coordinates":[100.679,-0.979]}},
@@ -21,7 +21,7 @@
     {"type":"Feature","properties":{"name":"Bukit Raya","type":"bukit-raya","elevation_m":2278,"link":"https://montamap.com/bukit-raya","island":"Kalimantan","province":"Kalimantan Barat","region":"Kalimantan"},"geometry":{"type":"Point","coordinates":[112.488,-0.596]}},
     {"type":"Feature","properties":{"name":"Bukit Baka","type":"bukit-baka","elevation_m":1622,"link":"https://montamap.com/bukit-baka","island":"Kalimantan","province":"Kalimantan Barat","region":"Kalimantan"},"geometry":{"type":"Point","coordinates":[112.495,-0.85]}},
 
-    // JAWA BARAT
+    
     {"type":"Feature","properties":{"name":"Ciremai","type":"ciremai","elevation_m":3078,"link":"https://montamap.com/ciremai","island":"Jawa","province":"Jawa Barat","region":"Jawa Barat"},"geometry":{"type":"Point","coordinates":[108.406,-6.892]}},
     {"type":"Feature","properties":{"name":"Pangrango","type":"pangrango","elevation_m":3019,"link":"https://montamap.com/pangrango","island":"Jawa","province":"Jawa Barat","region":"Jawa Barat"},"geometry":{"type":"Point","coordinates":[106.985,-6.744]}},
     {"type":"Feature","properties":{"name":"Gede","type":"gede","elevation_m":2958,"link":"https://montamap.com/gede","island":"Jawa","province":"Jawa Barat","region":"Jawa Barat"},"geometry":{"type":"Point","coordinates":[107.737,-6.778]}},
@@ -34,7 +34,7 @@
     {"type":"Feature","properties":{"name":"Manglayang","type":"manglayang","elevation_m":1818,"link":"https://montamap.com/manglayang","island":"Jawa","province":"Jawa Barat","region":"Jawa Barat"},"geometry":{"type":"Point","coordinates":[107.751,-6.863]}},
     {"type":"Feature","properties":{"name":"Burangrang","type":"burangrang","elevation_m":2050,"link":"https://montamap.com/burangrang","island":"Jawa","province":"Jawa Barat","region":"Jawa Barat"},"geometry":{"type":"Point","coordinates":[107.541,-6.718]}},
 
-    // JAWA TENGAH
+    
     {"type":"Feature","properties":{"name":"Slamet","type":"slamet","elevation_m":3428,"link":"https://montamap.com/slamet","island":"Jawa","province":"Jawa Tengah","region":"Jawa Tengah"},"geometry":{"type":"Point","coordinates":[109.208,-7.242]}},
     {"type":"Feature","properties":{"name":"Sumbing","type":"sumbing","elevation_m":3371,"link":"https://montamap.com/sumbing","island":"Jawa","province":"Jawa Tengah","region":"Jawa Tengah"},"geometry":{"type":"Point","coordinates":[109.904,-7.386]}},
     {"type":"Feature","properties":{"name":"Sindoro","type":"sindoro","elevation_m":3136,"link":"https://montamap.com/sindoro","island":"Jawa","province":"Jawa Tengah","region":"Jawa Tengah"},"geometry":{"type":"Point","coordinates":[109.995,-7.307]}},
@@ -47,7 +47,7 @@
     {"type":"Feature","properties":{"name":"Telomoyo","type":"telomoyo","elevation_m":1894,"link":"https://montamap.com/telomoyo","island":"Jawa","province":"Jawa Tengah","region":"Jawa Tengah"},"geometry":{"type":"Point","coordinates":[110.382,-7.272]}},
     {"type":"Feature","properties":{"name":"Lanang","type":"lanang","elevation_m":1351,"link":"https://montamap.com/lanang","island":"Jawa","province":"Jawa Tengah","region":"Jawa Tengah"},"geometry":{"type":"Point","coordinates":[109.945,-7.422]}},
 
-    // JAWA TIMUR
+    
     {"type":"Feature","properties":{"name":"Semeru","type":"semeru","elevation_m":3676,"link":"https://montamap.com/semeru","island":"Jawa","province":"Jawa Timur","region":"Jawa Timur"},"geometry":{"type":"Point","coordinates":[112.922,-8.108]}},
     {"type":"Feature","properties":{"name":"Arjuno","type":"arjuno","elevation_m":3339,"link":"https://montamap.com/arjuno","island":"Jawa","province":"Jawa Timur","region":"Jawa Timur"},"geometry":{"type":"Point","coordinates":[112.578,-7.744]}},
     {"type":"Feature","properties":{"name":"Welirang","type":"welirang","elevation_m":3156,"link":"https://montamap.com/welirang","island":"Jawa","province":"Jawa Timur","region":"Jawa Timur"},"geometry":{"type":"Point","coordinates":[112.566,-7.776]}},
@@ -62,7 +62,7 @@
     {"type":"Feature","properties":{"name":"Panderman","type":"panderman","elevation_m":2045,"link":"https://montamap.com/panderman","island":"Jawa","province":"Jawa Timur","region":"Jawa Timur"},"geometry":{"type":"Point","coordinates":[112.516,-7.859]}},
     {"type":"Feature","properties":{"name":"Beser","type":"beser","elevation_m":1363,"link":"https://montamap.com/beser","island":"Jawa","province":"Jawa Timur","region":"Jawa Timur"},"geometry":{"type":"Point","coordinates":[112.248,-7.716]}},
 
-    // BALI
+    
     {"type":"Feature","properties":{"name":"Agung","type":"agung","elevation_m":3031,"link":"https://montamap.com/agung","island":"Bali","province":"Bali","region":"Bali"},"geometry":{"type":"Point","coordinates":[115.508,-8.342]}},
     {"type":"Feature","properties":{"name":"Abang","type":"abang","elevation_m":2152,"link":"https://montamap.com/abang","island":"Bali","province":"Bali","region":"Bali"},"geometry":{"type":"Point","coordinates":[115.439,-8.282]}},
     {"type":"Feature","properties":{"name":"Batukaru","type":"batukaru","elevation_m":2276,"link":"https://montamap.com/batukaru","island":"Bali","province":"Bali","region":"Bali"},"geometry":{"type":"Point","coordinates":[115.102,-8.374]}},
@@ -70,13 +70,13 @@
     {"type":"Feature","properties":{"name":"Lesung","type":"lesung","elevation_m":1865,"link":"https://montamap.com/lesung","island":"Bali","province":"Bali","region":"Bali"},"geometry":{"type":"Point","coordinates":[115.121,-8.289]}},
     {"type":"Feature","properties":{"name":"Pohen","type":"pohen","elevation_m":2063,"link":"https://montamap.com/pohen","island":"Bali","province":"Bali","region":"Bali"},"geometry":{"type":"Point","coordinates":[115.098,-8.25]}},
 
-    // NTB
+    
     {"type":"Feature","properties":{"name":"Rinjani","type":"rinjani","elevation_m":3726,"link":"https://montamap.com/rinjani","island":"Lombok","province":"Nusa Tenggara Barat","region":"Lombok"},"geometry":{"type":"Point","coordinates":[116.457,-8.411]}},
     {"type":"Feature","properties":{"name":"Sanggara","type":"sanggara","elevation_m":2800,"link":"https://montamap.com/sanggara","island":"Lombok","province":"Nusa Tenggara Barat","region":"Lombok"},"geometry":{"type":"Point","coordinates":[116.367,-8.247]}},
     {"type":"Feature","properties":{"name":"Pengsong","type":"pengsong","elevation_m":360,"link":"https://montamap.com/pengsong","island":"Lombok","province":"Nusa Tenggara Barat","region":"Lombok"},"geometry":{"type":"Point","coordinates":[116.135,-8.653]}},
     {"type":"Feature","properties":{"name":"Tambora","type":"tambora","elevation_m":2850,"link":"https://montamap.com/tambora","island":"Sumbawa","province":"Nusa Tenggara Barat","region":"Sumbawa"},"geometry":{"type":"Point","coordinates":[117.97,-8.237]}},
 
-    // PAPUA
+    
     {"type":"Feature","properties":{"name":"Carstensz Pyramid","type":"carstensz-pyramid","elevation_m":4884,"link":"https://montamap.com/carstensz-pyramid","island":"Papua","province":"Papua Tengah","region":"Papua"},"geometry":{"type":"Point","coordinates":[137.185,-4.085]}},
     {"type":"Feature","properties":{"name":"Trikora","type":"trikora","elevation_m":4730,"link":"https://montamap.com/trikora","island":"Papua","province":"Papua Pegunungan","region":"Papua"},"geometry":{"type":"Point","coordinates":[138.482,-4.218]}},
     {"type":"Feature","properties":{"name":"Mandala","type":"mandala","elevation_m":4700,"link":"https://montamap.com/mandala","island":"Papua","province":"Papua Pegunungan","region":"Papua"},"geometry":{"type":"Point","coordinates":[139.833,-4.783]}},

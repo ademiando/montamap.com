@@ -170,7 +170,6 @@ function createMountainCard(m, w, isEditMode = false) {
   }
 });
 
-
   return card;
 }
 
@@ -179,17 +178,9 @@ async function renderFavorites() {
   const favorites = getFavorites();
   favoriteContainer.innerHTML = '';
 
-  // Tombol Edit Favorites
-  editFavoritesBtn.className = 'edit-fav-btn';
-  editFavoritesBtn.textContent = isEditMode ? '❌ Cancel Edit' : '🖌 Edit Favorites';
-  editFavoritesBtn.onclick = () => {
-    isEditMode = !isEditMode;
-    alert(isEditMode ? 'Edit mode activated! Klik ikon ★ untuk menghapus dari favorit.' : 'Edit mode dinonaktifkan.');
-    renderFavorites();
-  };
-  favoriteContainer.appendChild(editFavoritesBtn);
+  // Tombol Edit Favorites Disini Nanti...
 
-  // Container grid kartu
+   // Container grid kartu
   const grid = document.createElement('div');
   grid.className = 'favorite-grid';
 

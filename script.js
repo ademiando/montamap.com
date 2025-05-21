@@ -10,8 +10,10 @@ const darkBtn         = document.getElementById('darkBtn');
 const searchInput     = document.getElementById('searchInput');
 const mountainContainer = document.getElementById('mountainContainer');
 const loadMoreBtn     = document.getElementById('loadMoreBtn');
+const favoriteContainer = document.getElementById('favorite-container');
+const editFavoritesBtn = document.createElement('button');
 
-// 1) Dropdown menu
+// Menu Toggle
 if (menuToggle && dropdownMenu) {
   menuToggle.addEventListener('click', () => dropdownMenu.classList.toggle('menu-visible'));
   document.addEventListener('click', e => {
@@ -20,7 +22,7 @@ if (menuToggle && dropdownMenu) {
   });
 }
 
-// 2) Login dropdown
+// Login Dropdown
 if (loginButton && loginDropdown) {
   loginButton.addEventListener('click', () => {
     loginDropdown.style.display = loginDropdown.style.display === 'block' ? 'none' : 'block';
@@ -31,13 +33,13 @@ if (loginButton && loginDropdown) {
   });
 }
 
-// 3) Language & currency persistence
+// Language & Currency
 languageSelect.value = localStorage.getItem('language') || 'en';
 currencySelect.value = localStorage.getItem('currency') || 'usd';
 languageSelect.addEventListener('change', () => localStorage.setItem('language', languageSelect.value));
 currencySelect.addEventListener('change', () => localStorage.setItem('currency', currencySelect.value));
 
-// 4) Theme toggle
+// Theme Toggle
 function setTheme(mode) {
   document.documentElement.classList.toggle('dark', mode === 'dark');
   localStorage.setItem('theme', mode);
@@ -47,91 +49,56 @@ function setTheme(mode) {
 lightBtn.addEventListener('click', () => setTheme('light'));
 darkBtn.addEventListener('click', () => setTheme('dark'));
 
-// Data & render logic only after DOM loaded
-window.addEventListener('DOMContentLoaded', () => {
-  setTheme(localStorage.getItem('theme') || 'light');
-  initMountainRendering();
-});
-
-
-
-
-
 // Tab Navigation
 function openTab(event, tabName) {
   const tabContents = document.querySelectorAll('.tab-content');
-  tabContents.forEach((content) => {
-    content.style.display = 'none';
-    content.classList.remove('active');
-  });
+  tabContents.forEach(content => content.style.display = 'none');
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
 
-  const tabs = document.querySelectorAll('.tab');
-  tabs.forEach((tab) => {
-    tab.classList.remove('active');
-  });
+  const selected = document.getElementById(tabName);
+  if (selected) selected.style.display = 'block';
+  if (event.currentTarget) event.currentTarget.classList.add('active');
 
-  const selectedTabContent = document.getElementById(tabName);
-  if (selectedTabContent) {
-    selectedTabContent.style.display = 'block';
-    selectedTabContent.classList.add('active');
-  }
-
-  if (event.currentTarget) {
-    event.currentTarget.classList.add('active');
-  }
+  if (tabName === 'Favorite') renderFavorites();
 }
-
-// Default Tab Activation
 document.addEventListener('DOMContentLoaded', () => {
   const defaultTab = document.querySelector('.tab.active');
-  if (defaultTab) {
-    defaultTab.click();
-  }
+  if (defaultTab) defaultTab.click();
 });
 
-
-
-
-
-
-// --- MOUNTAIN SECTION ---
+// Mountain Data
 const mountainData = [
-  { id: 'everest', name:"Everest", city:"Namche Bazaar, Nepal", lat:27.9881, lon:86.9250, status:"Open", elevation:"8,848 m", image:"mountain-image/everest.jpg", link:"everest" },
-  { id: 'k2',     name:"K2",     city:"Skardu, Pakistan",   lat:35.8800, lon:76.5151, status:"Closed", elevation:"8,611 m", image:"mountain-image/k2.jpg",     link:"k2" },
-  { id: 'kangchenjunga', name:"Kangchenjunga", city:"Taplejung, Nepal", lat:27.7000, lon:88.2000, status:"Open", elevation:"8,586 m", image:"mountain-image/kangchenjunga.jpg", link:"kangchenjunga" },
-  { id: 'lhotse', name:"Lhotse", city:"Namche Bazaar, Nepal", lat:27.9617, lon:86.9333, status:"Open", elevation:"8,516 m", image:"mountain-image/lhotse.jpg", link:"lhotse" },
-  { id: 'rinjani', name:"Rinjani", city:"West Nusa Tenggara, Indonesia", lat:-8.4115, lon:116.4577, status:"Open", elevation:"3,726 m", image:"mountain-image/rinjani.jpg", link:"rinjani" },
-  { id: 'cartenz', name:"Cartenz Pyramid", city:"Papua, Indonesia", lat:-4.0833, lon:137.1833, status:"Open", elevation:"4,884 m", image:"mountain-image/cartenz.jpg", link:"cartenz" },
-  { id: 'semeru', name:"Semeru", city:"East Java, Indonesia", lat:-8.1080, lon:112.9220, status:"Open", elevation:"3,676 m", image:"mountain-image/semeru.jpg", link:"semeru" },
-  { id: 'bromo', name:"Bromo", city:"East Java, Indonesia", lat:-7.9425, lon:112.9530, status:"Open", elevation:"2,329 m", image:"mountain-image/bromo.jpg", link:"bromo" },
-  { id: 'agung', name:"Agung", city:"Bali, Indonesia", lat:-8.3421, lon:115.5085, status:"Open", elevation:"3,031 m", image:"mountain-image/agung.jpg", link:"agung" },
-  { id: 'batur', name:"Batur", city:"Bali, Indonesia", lat:-8.2395, lon:115.3761, status:"Open", elevation:"1,717 m", image:"mountain-image/batur.jpg", link:"batur" },
-  { id: 'pra','name':"Prau", city:"Central Java, Indonesia", lat:-7.2079, lon:109.9181, status:"Open", elevation:"2,590 m", image:"mountain-image/prau.jpg", link:"prau" },
-  // …tambah lagi sesuai data lengkap
+  { id: 'rinjani', name:"Rinjani", city:"NTB, Indonesia", lat:-8.41, lon:116.45, status:"Open", elevation:"3,726 m", image:"mountain-image/rinjani.jpg", link:"rinjani" },
+  { id: 'prau', name:"Prau", city:"Central Java", lat:-7.20, lon:109.91, status:"Open", elevation:"2,590 m", image:"mountain-image/prau.jpg", link:"prau" },
+  // Tambah lainnya sesuai kebutuhan
 ];
 
 let loaded = 0;
 const batch = 6;
 const apiKey = '3187c49861f858e524980ea8dd0d43c6';
 
-function initMountainRendering() {
-  // initial load & load more
-  renderMountains();
-  loadMoreBtn.addEventListener('click', renderMountains);
-}
+// Theme on Load
+window.addEventListener('DOMContentLoaded', () => {
+  setTheme(localStorage.getItem('theme') || 'light');
+  initMountainRendering();
+});
 
+// Cuaca API
 async function fetchWeather(lat, lon) {
   try {
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
     const d = await res.json();
-    return d.main
-      ? { temperature:`${Math.round(d.main.temp)}°C`, weather:d.weather[0].main, icon:d.weather[0].icon }
-      : { temperature:'N/A', weather:'N/A', icon:'' };
+    return d.main ? {
+      temperature: `${Math.round(d.main.temp)}°C`,
+      weather: d.weather[0].main,
+      icon: d.weather[0].icon
+    } : { temperature: 'N/A', weather: 'N/A', icon: '' };
   } catch {
-    return { temperature:'N/A', weather:'N/A', icon:'' };
+    return { temperature: 'N/A', weather: 'N/A', icon: '' };
   }
 }
 
+// Favorites
 function getFavorites() {
   return JSON.parse(localStorage.getItem('favorites')) || [];
 }
@@ -143,15 +110,18 @@ function isFavorite(id) {
 }
 function toggleFavorite(id) {
   let f = getFavorites();
-  f.includes(id) ? f = f.filter(x=>x!==id) : f.push(id);
+  f.includes(id) ? f = f.filter(x => x !== id) : f.push(id);
   saveFavorites(f);
-  // refresh from beginning
   loaded = 0;
   mountainContainer.innerHTML = '';
   renderMountains();
 }
 
-// render batch
+// Render Gunung
+function initMountainRendering() {
+  renderMountains();
+  loadMoreBtn.addEventListener('click', renderMountains);
+}
 async function renderMountains() {
   const slice = mountainData.slice(loaded, loaded + batch);
   for (let m of slice) {
@@ -162,7 +132,6 @@ async function renderMountains() {
   loaded += batch;
   if (loaded >= mountainData.length) loadMoreBtn.style.display = 'none';
 }
-
 function createMountainCard(m, w) {
   const card = document.createElement('div');
   card.className = 'mountain-card';
@@ -170,20 +139,19 @@ function createMountainCard(m, w) {
   card.innerHTML = `
     <img src="${m.image}" alt="${m.name}" class="mountain-image" />
     <div class="favorite-icon" data-id="${m.id}">
-      ${isFavorite(m.id)? '★':'☆'}
+      ${isFavorite(m.id) ? '★' : '☆'}
     </div>
     <div class="gradient-overlay"></div>
     <div class="mountain-info">
       <div class="mountain-name">${m.name}</div>
       <div class="mountain-details">
         ${m.city}<br/>
-        <span class="${m.status==='Open'?'status-open':'status-closed'}">Status: ${m.status}</span><br/>
+        <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br/>
         Elevation: ${m.elevation}<br/>
         <img src="https://openweathermap.org/img/wn/${w.icon}.png" alt="${w.weather}" class="weather-icon"/>
         ${w.temperature} | ${w.weather}
       </div>
     </div>`;
-  // favorite toggle
   card.querySelector('.favorite-icon').addEventListener('click', e => {
     e.stopPropagation();
     toggleFavorite(m.id);
@@ -191,9 +159,36 @@ function createMountainCard(m, w) {
   return card;
 }
 
+// Favorite Tab
+function renderFavorites() {
+  const favorites = getFavorites();
+  favoriteContainer.innerHTML = '';
+  if (favorites.length === 0) {
+    favoriteContainer.innerHTML = '<p>No favorites yet.</p>';
+    return;
+  }
 
+  const list = document.createElement('div');
+  list.className = 'favorite-list';
 
+  favorites.forEach(id => {
+    const m = mountainData.find(m => m.id === id);
+    if (!m) return;
+    const item = document.createElement('div');
+    item.className = 'favorite-item';
+    item.innerHTML = `
+      <img src="${m.image}" alt="${m.name}" class="favorite-thumb" />
+      <span class="favorite-name">${m.name}</span>`;
+    list.appendChild(item);
+  });
 
+  // Edit Button
+  editFavoritesBtn.className = 'edit-fav-btn';
+  editFavoritesBtn.innerHTML = '✏️ Edit';
+  editFavoritesBtn.onclick = () => {
+    alert('Feature to manage favorites will come soon.');
+  };
 
-
-
+  favoriteContainer.appendChild(editFavoritesBtn);
+  favoriteContainer.appendChild(list);
+}

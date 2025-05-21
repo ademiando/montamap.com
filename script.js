@@ -53,6 +53,47 @@ window.addEventListener('DOMContentLoaded', () => {
   initMountainRendering();
 });
 
+
+
+
+
+// Tab Navigation
+function openTab(event, tabName) {
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach((content) => {
+    content.style.display = 'none';
+    content.classList.remove('active');
+  });
+
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach((tab) => {
+    tab.classList.remove('active');
+  });
+
+  const selectedTabContent = document.getElementById(tabName);
+  if (selectedTabContent) {
+    selectedTabContent.style.display = 'block';
+    selectedTabContent.classList.add('active');
+  }
+
+  if (event.currentTarget) {
+    event.currentTarget.classList.add('active');
+  }
+}
+
+// Default Tab Activation
+document.addEventListener('DOMContentLoaded', () => {
+  const defaultTab = document.querySelector('.tab.active');
+  if (defaultTab) {
+    defaultTab.click();
+  }
+});
+
+
+
+
+
+
 // --- MOUNTAIN SECTION ---
 const mountainData = [
   { id: 'everest', name:"Everest", city:"Namche Bazaar, Nepal", lat:27.9881, lon:86.9250, status:"Open", elevation:"8,848 m", image:"mountain-image/everest.jpg", link:"everest" },
@@ -156,21 +197,3 @@ function createMountainCard(m, w) {
 
 
 
-function openTab(evt, tabName) {
-  // Sembunyikan semua konten tab
-  const tabContents = document.querySelectorAll(".tab-content");
-  tabContents.forEach(content => content.style.display = "none");
-
-  // Hapus class 'active' dari semua tab
-  const tabs = document.querySelectorAll(".tab");
-  tabs.forEach(tab => tab.classList.remove("active"));
-
-  // Tampilkan konten tab yang diklik
-  const activeTab = document.getElementById(tabName);
-  if (activeTab) {
-    activeTab.style.display = "block";
-  }
-
-  // Tandai tombol tab yang aktif
-  evt.currentTarget.classList.add("active");
-}

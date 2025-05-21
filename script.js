@@ -87,6 +87,16 @@ let loaded = 0;
 const batch  = 6;
 const apiKey = '3187c49861f858e524980ea8dd0d43c6';
 
+
+
+// Load More Buttom 1
+const mountainContainer = document.getElementById("mountainContainer");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+
+
+
+
 function initMountainRendering() {
   renderMountains();
   loadMoreBtn.addEventListener('click', renderMountains);
@@ -202,3 +212,8 @@ async function renderFavorites() {
 
   favoriteContainer.appendChild(grid);
 }
+
+
+
+// Load More Buttom 2
+document.addEventListener("DOMContentLoaded", initMountainRendering);

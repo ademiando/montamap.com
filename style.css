@@ -212,7 +212,6 @@ html.dark body {
   padding: 15px 0; /* Spasi vertikal */
   font-size: 12px;
   font-weight: bold;
-  background-color: #89ae95;
   margin: 10px 0; /* Jarak antara banner dan elemen di atas/bawahnya */
   width: 100%; /* Membentang dari kiri ke kanan */
   margin: 0 auto; /* Posisi horizontal di tengah */
@@ -277,7 +276,7 @@ html.dark body {
 }
 
 .tab.active {
-  background-color: #333; /* transparent; */
+  background-color: #ccc; /* transparent; */
   font-weight: normal; /* 'none' bukan nilai valid */
 }
 
@@ -285,18 +284,6 @@ html.dark body {
   display: block;
 }
 
-
-
-
-
-/* Konten Tab */
-.tab-content {
-  padding: 10px;
-  background-color: none;
-  border: 1px solid #ccc;
-  margin-top: none; /* tadinya 10px */
-  display: none; /* Semua tab disembunyikan secara default */
-}
 
 
 
@@ -309,6 +296,19 @@ body.dark {
   color: #fff;
   background-color: #111;
 }
+
+/* Konten Tab */
+.tab-content {
+  padding: 10px;
+  background-color: none;
+  border: 1px solid #ccc;
+  margin-top: none; /* tadinya 10px */
+  display: none; /* Semua tab disembunyikan secara default */
+}
+
+
+
+
 
 
 

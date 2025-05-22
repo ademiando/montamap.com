@@ -297,6 +297,7 @@ html.dark body {
 .wishlist-header {
   position: relative;
   padding-right: 80px; /* beri ruang untuk tombol kanan */
+  margin-left: 10px;
   margin-bottom: 10px;
 }
 
@@ -486,7 +487,7 @@ footer {
   text-align: center;
   padding: 30px 5vw;
   font-size: 0.75rem;
-  border-top: none;
+  border-top: 1px;
   background-color: #f5f5f5;
   color: #333;
   box-sizing: border-box;

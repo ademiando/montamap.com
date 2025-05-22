@@ -212,6 +212,7 @@ html.dark body {
   padding: 15px 0; /* Spasi vertikal */
   font-size: 12px;
   font-weight: bold;
+  background-color: #89ae95;
   margin: 10px 0; /* Jarak antara banner dan elemen di atas/bawahnya */
   width: 100%; /* Membentang dari kiri ke kanan */
   margin: 0 auto; /* Posisi horizontal di tengah */
@@ -249,8 +250,8 @@ html.dark body {
   white-space: nowrap;
   border-top: none; /* 1px solid #ccc; */
   justify-content: space-around;
-  background-color: transparent; /* fix */
-  padding: 10px; /* atas kanan bawah kiri */
+  background-color: #89ae95; /*transparent; fix */
+  padding: 10px 10px 0px 10px; /* atas kanan bawah kiri */
   margin-left: 10px;
 }
 
@@ -276,7 +277,7 @@ html.dark body {
 }
 
 .tab.active {
-  background-color: #f1f1f1;
+  background-color: transparent;
   font-weight: normal; /* 'none' bukan nilai valid */
 }
 

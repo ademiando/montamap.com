@@ -1,26 +1,24 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
+const styles = {
+  outdoors: 'mapbox://styles/mapbox/outdoors-v11',
+  satellite: 'mapbox://styles/mapbox/satellite-v9',
+  outdoors3d: 'mapbox://styles/mapbox/outdoors-v11',
+  satellite3d: 'mapbox://styles/mapbox/satellite-v9',
+  dark: 'mapbox://styles/mapbox/dark-v10'
+};
+
 let map;
-let mapInitialized = false;
 
-function initMap() {
-  if (mapInitialized) return;
-  mapInitialized = true;
-
-  const styles = {
-    outdoors: 'mapbox://styles/mapbox/outdoors-v11',
-    satellite: 'mapbox://styles/mapbox/satellite-v9',
-    outdoors3d: 'mapbox://styles/mapbox/outdoors-v11',
-    satellite3d: 'mapbox://styles/mapbox/satellite-v9',
-    dark: 'mapbox://styles/mapbox/dark-v10'
-  };
+function initMap(style = 'outdoors') {
+  if (map) return;
 
   map = new mapboxgl.Map({
     container: 'map',
-    style: styles.outdoors,
+    style: styles[style],
     center: [116.2420, -8.3405],
     zoom: 5,
-    pitch: 0
+    pitch: style.includes('3d') ? 60 : 0
   });
 
   map.addControl(new mapboxgl.NavigationControl({ showCompass: true }), 'top-right');
@@ -32,60 +30,39 @@ function initMap() {
   }), 'bottom-right');
 
   map.on('load', () => {
+    if (style.includes('3d')) add3DBuildings();
     addMountainData();
-
-    const add3DBuildings = () => {
-      const layers = map.getStyle().layers;
-      const labelLayer = layers.find(l => l.type === 'symbol' && l.layout?.['text-field']);
-      if (!labelLayer) return;
-
-      if (!map.getLayer('3d-buildings')) {
-        map.addLayer({
-          id: '3d-buildings',
-          source: 'composite',
-          'source-layer': 'building',
-          filter: ['==', 'extrude', 'true'],
-          type: 'fill-extrusion',
-          minzoom: 15,
-          paint: {
-            'fill-extrusion-color': '#aaa',
-            'fill-extrusion-height': ['get', 'height'],
-            'fill-extrusion-base': ['get', 'min_height'],
-            'fill-extrusion-opacity': 0.6
-          }
-        }, labelLayer.id);
-      }
-    };
-
-    // Style switcher
-    const styleSelector = document.getElementById('styleSelector');
-    if (styleSelector) {
-      styleSelector.addEventListener('change', (e) => {
-        const choice = e.target.value;
-        map.setStyle(styles[choice]);
-
-        map.once('styledata', () => {
-          if (choice.includes('3d')) {
-            map.setPitch(60);
-            add3DBuildings();
-          } else {
-            map.setPitch(0);
-          }
-          addMountainData();
-        });
-      });
-    }
   });
 }
 
+function add3DBuildings() {
+  const layers = map.getStyle().layers;
+  const labelLayer = layers.find(l => l.type === 'symbol' && l.layout?.['text-field']);
+  if (!labelLayer || map.getLayer('3d-buildings')) return;
+
+  map.addLayer({
+    id: '3d-buildings',
+    source: 'composite',
+    'source-layer': 'building',
+    filter: ['==', 'extrude', 'true'],
+    type: 'fill-extrusion',
+    minzoom: 15,
+    paint: {
+      'fill-extrusion-color': '#aaa',
+      'fill-extrusion-height': ['get', 'height'],
+      'fill-extrusion-base': ['get', 'min_height'],
+      'fill-extrusion-opacity': 0.6
+    }
+  }, labelLayer.id);
+}
+
 function addMountainData() {
-  // Load custom marker icon jika belum ada
   if (!map.hasImage('custom-marker')) {
     map.loadImage('https://montamap.com/assets/icon.png', (err, img) => {
-      if (err) throw err;
+      if (err) return console.error(err);
       if (!map.hasImage('custom-marker')) {
         map.addImage('custom-marker', img);
-        addPointLayer(); // Panggil saat image sudah siap
+        addPointLayer();
       }
     });
   } else {
@@ -126,7 +103,6 @@ function addPointLayer() {
       let html = `<strong>${props.name}</strong>`;
       if (props.elevation) html += `<br>Elevation: ${props.elevation}`;
       if (props.note) html += `<br>${props.note}`;
-
       new mapboxgl.Popup().setLngLat(coords).setHTML(html).addTo(map);
     });
 
@@ -139,13 +115,29 @@ function addPointLayer() {
   }
 }
 
-// Inisialisasi saat tab Maps ditampilkan
 document.addEventListener('DOMContentLoaded', () => {
+  initMap();
+
+  // Ganti style dari dropdown
+  const styleSelector = document.getElementById('styleSelector');
+  if (styleSelector) {
+    styleSelector.addEventListener('change', (e) => {
+      const selected = e.target.value;
+      map.setStyle(styles[selected]);
+
+      map.once('styledata', () => {
+        map.setPitch(selected.includes('3d') ? 60 : 0);
+        if (selected.includes('3d')) add3DBuildings();
+        addMountainData();
+      });
+    });
+  }
+
+  // Pastikan map resize saat tab dibuka
   const mapsTab = document.getElementById('Maps');
   const observer = new MutationObserver(() => {
     if (mapsTab.style.display !== 'none') {
-      initMap();
-      setTimeout(() => map.resize(), 200);
+      map.resize();
     }
   });
   observer.observe(mapsTab, { attributes: true, attributeFilter: ['style'] });

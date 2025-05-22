@@ -240,6 +240,8 @@ html.dark body {
 
 
 
+
+
 /* Container untuk Tab Horizontal */
 .horizontal-tab-container {
   display: flex;
@@ -294,6 +296,21 @@ html.dark body {
   margin-top: none; /* tadinya 10px */
   display: none; /* Semua tab disembunyikan secara default */
 }
+
+
+
+body.light {
+  color: #000;
+  background-color: #fff;
+}
+
+body.dark {
+  color: #fff;
+  background-color: #111;
+}
+
+
+
 
 .wishlist-header {
   position: relative;

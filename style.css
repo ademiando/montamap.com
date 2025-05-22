@@ -237,47 +237,54 @@ html.dark body {
   line-height: 1.5; /* Spasi antar baris yang nyaman */
 }
 
+
+
+
 /* Container untuk Tab Horizontal */
 .horizontal-tab-container {
   display: flex;
-  overflow-x: auto; /* Aktifkan scroll horizontal */
-  white-space: nowrap; /* Hindari tab berpindah ke baris baru */
-  border-top: 1px solid #ccc; /* Tambahkan garis bawah untuk estetika */
-  justify-content: space-around; /* Tab tersebar merata */
-  background-color: none;
-  padding: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-top: 1px solid #ccc;
+  justify-content: space-around;
+  background-color: #ccc; /* fix */
+  padding: 10px 10px 0 10px; /* atas kanan bawah kiri */
   margin-left: 20px;
 }
 
 /* Gaya untuk Tab */
 .tab {
-  display: inline-block; /* Pastikan tab tetap sejajar horizontal */
-  background-color: none;
-  padding: 10px 20px;
+  display: inline-block;
+  background-color: transparent; /* fix */
+  padding: 10px 10px 0 10px; /* atas kanan bawah 0 kiri */
   border: none;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 10px; /* Sudut melengkung dengan radius 10px */
-  margin: 0 10px
+  border-radius: 10px;
+  margin: 0 10px; /* fix: */
   transition: background-color 0.2s;
 }
 
 .tab:hover {
-  background-color: #333;
+  background-color: #ccc;
 }
 
 .tab-content {
-  display: none; /* Sembunyikan semua tab secara default */
+  display: none;
 }
 
 .tab.active {
   background-color: transparent;
-  font-weight: none;
+  font-weight: normal; /* 'none' bukan nilai valid */
 }
 
 .tab-content.active {
-  display: block; /* Tampilkan hanya konten tab yang aktif */
+  display: block;
 }
+
+
+
+
 
 /* Konten Tab */
 .tab-content {

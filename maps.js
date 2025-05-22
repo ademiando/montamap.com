@@ -80,3 +80,23 @@ map.on('load', () => {
     }
   });
 });
+
+
+
+
+
+
+
+
+
+const observer = new MutationObserver(() => {
+  const mapsTab = document.getElementById('Maps');
+  if (mapsTab && mapsTab.style.display !== 'none') {
+    map.resize();
+  }
+});
+
+observer.observe(document.getElementById('Maps'), {
+  attributes: true,
+  attributeFilter: ['style']
+});

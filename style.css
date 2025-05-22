@@ -250,7 +250,7 @@ html.dark body {
   white-space: nowrap;
   border-top: none; /* 1px solid #ccc; */
   justify-content: space-around;
-  background-color: #333; /*transparent; fix */
+  background-color: transparent; */ fix */
   padding: 0px 10px 0px 10px; /* atas kanan bawah kiri */
   margin-left: 0px;
 }

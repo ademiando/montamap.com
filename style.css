@@ -277,7 +277,7 @@ html.dark body {
 }
 
 .tab.active {
-  background-color: transparent;
+  background-color: #333; /* transparent; */
   font-weight: normal; /* 'none' bukan nilai valid */
 }
 

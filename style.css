@@ -250,7 +250,7 @@ html.dark body {
   border-top: 1px solid #ccc;
   justify-content: space-around;
   background-color: transparent; /* fix */
-  padding: 10px 10px; /* atas kanan bawah kiri */
+  padding: 10px; /* atas kanan bawah kiri */
   margin-left: 20px;
 }
 
@@ -258,7 +258,7 @@ html.dark body {
 .tab {
   display: inline-block;
   background-color: #ccc; /* fix */
-  padding: 10px 10px; /* atas kanan bawah 0 kiri */
+  padding: 10px 20px;
   border: none;
   font-size: 16px;
   cursor: pointer;
@@ -374,6 +374,7 @@ body.dark {
   align-items: center;      /* Tengah horizontal */
   padding: 40px 16px;
   box-sizing: border-box;
+  border: none;
 }
 
 .mountain-container {

@@ -276,7 +276,7 @@ html.dark body {
 }
 
 .tab.active {
-  background-color: #89ae95;
+  background-color: #f1f1f1;
   font-weight: normal; /* 'none' bukan nilai valid */
 }
 

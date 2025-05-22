@@ -249,7 +249,7 @@ html.dark body {
   white-space: nowrap;
   border-top: 1px solid #ccc;
   justify-content: space-around;
-  background-color: #ccc; /* fix */
+  background-color: transparent; /* fix */
   padding: 10px 10px 0 10px; /* atas kanan bawah kiri */
   margin-left: 20px;
 }
@@ -257,7 +257,7 @@ html.dark body {
 /* Gaya untuk Tab */
 .tab {
   display: inline-block;
-  background-color: transparent; /* fix */
+  background-color: #ccc; /* fix */
   padding: 10px 10px 0 10px; /* atas kanan bawah 0 kiri */
   border: none;
   font-size: 16px;

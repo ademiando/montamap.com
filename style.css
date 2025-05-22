@@ -271,7 +271,7 @@ html.dark body {
 }
 
 .tab.active {
-  background-color: #ccc; /* Warna putih untuk tab aktif */
+  background-color: transparent;
   font-weight: none;
 }
 

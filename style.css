@@ -245,25 +245,25 @@ html.dark body {
 /* Container untuk Tab Horizontal */
 .horizontal-tab-container {
   display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  border-top: none; /* 1px solid #ccc; */
-  justify-content: space-around;
-  background-color: transparent; */ fix */
-  padding: 0px 10px 0px 10px; /* atas kanan bawah kiri */
-  margin-left: 0px;
+  overflow-x: auto; /* Aktifkan scroll horizontal */
+  white-space: nowrap; /* Hindari tab berpindah ke baris baru */
+  border-top: 1px solid #ccc; /* Tambahkan garis bawah untuk estetika */
+  justify-content: space-around; /* Tab tersebar merata */
+  background-color: none;
+  padding: 10px;
+  margin-left: 20px;
 }
 
 /* Gaya untuk Tab */
 .tab {
-  display: inline-block;
-  background-color: #ccc; /* fix */
-  padding: 10px 10px;
+  display: inline-block; /* Pastikan tab tetap sejajar horizontal */
+  background-color: none;
+  padding: 10px 20px;
   border: none;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 10px;
-  margin: 0 10px; /* fix: */
+  border-radius: 10px; /* Sudut melengkung dengan radius 10px */
+  margin: 0 10px
   transition: background-color 0.2s;
 }
 
@@ -272,38 +272,16 @@ html.dark body {
 }
 
 .tab-content {
-  display: none;
+  display: none; /* Sembunyikan semua tab secara default */
 }
 
 .tab.active {
-  background-color: #ccc; /* transparent; */
-  font-weight: normal; /* 'none' bukan nilai valid */
+  background-color: transparent;
+  font-weight: none;
 }
 
 .tab-content.active {
-  display: block;
-}
-
-
-
-
-body.light {
-  color: #000;
-  background-color: #fff;
-}
-
-body.dark {
-  color: #fff;
-  background-color: #111;
-}
-
-/* Konten Tab */
-.tab-content {
-  padding: 10px;
-  background-color: none;
-  border: 1px solid #ccc;
-  margin-top: none; /* tadinya 10px */
-  display: none; /* Semua tab disembunyikan secara default */
+  display: block; /* Tampilkan hanya konten tab yang aktif */
 }
 
 

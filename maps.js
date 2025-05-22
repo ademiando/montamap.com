@@ -28,7 +28,7 @@ map.on('load', () => {
 
       map.addSource('mountains', {
         type: 'geojson',
-        data: 'https://montamap.com/data/mountains_indonesia.gejson'
+        data: 'https://montamap.com/data/mountains_indonesia.geojson'
       });
 
       map.addLayer({

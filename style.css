@@ -242,7 +242,7 @@ html.dark body {
   display: flex;
   overflow-x: auto; /* Aktifkan scroll horizontal */
   white-space: nowrap; /* Hindari tab berpindah ke baris baru */
-  border-bottom: 1px solid #ccc; /* Tambahkan garis bawah untuk estetika */
+  border-top: 1px solid #ccc; /* Tambahkan garis bawah untuk estetika */
   justify-content: space-around; /* Tab tersebar merata */
   background-color: none;
   padding: 10px;
@@ -263,7 +263,7 @@ html.dark body {
 }
 
 .tab:hover {
-  background-color: #ccc;
+  background-color: #333;
 }
 
 .tab-content {

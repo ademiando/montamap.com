@@ -1,24 +1,26 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
-const styles = {
-  outdoors: 'mapbox://styles/mapbox/outdoors-v11',
-  satellite: 'mapbox://styles/mapbox/satellite-v9',
-  outdoors3d: 'mapbox://styles/mapbox/outdoors-v11',
-  satellite3d: 'mapbox://styles/mapbox/satellite-v9',
-  dark: 'mapbox://styles/mapbox/dark-v10'
-};
-
 let map;
+let mapInitialized = false;
 
-function initMap(style = 'outdoors') {
-  if (map) return;
+function initMap() {
+  if (mapInitialized) return;
+  mapInitialized = true;
+
+  const styles = {
+    outdoors: 'mapbox://styles/mapbox/outdoors-v11',
+    satellite: 'mapbox://styles/mapbox/satellite-v9',
+    outdoors3d: 'mapbox://styles/mapbox/outdoors-v11',
+    satellite3d: 'mapbox://styles/mapbox/satellite-v9',
+    dark: 'mapbox://styles/mapbox/dark-v10'
+  };
 
   map = new mapboxgl.Map({
     container: 'map',
-    style: styles[style],
+    style: styles.outdoors,
     center: [116.2420, -8.3405],
     zoom: 5,
-    pitch: style.includes('3d') ? 60 : 0
+    pitch: 0
   });
 
   map.addControl(new mapboxgl.NavigationControl({ showCompass: true }), 'top-right');
@@ -30,40 +32,34 @@ function initMap(style = 'outdoors') {
   }), 'bottom-right');
 
   map.on('load', () => {
-    if (style.includes('3d')) add3DBuildings();
     addMountainData();
-  });
-}
 
-function add3DBuildings() {
-  const layers = map.getStyle().layers;
-  const labelLayer = layers.find(l => l.type === 'symbol' && l.layout?.['text-field']);
-  if (!labelLayer || map.getLayer('3d-buildings')) return;
+    const styleSelector = document.getElementById('styleSelector');
+    if (styleSelector) {
+      styleSelector.addEventListener('change', (e) => {
+        const choice = e.target.value;
+        map.setStyle(styles[choice]);
 
-  map.addLayer({
-    id: '3d-buildings',
-    source: 'composite',
-    'source-layer': 'building',
-    filter: ['==', 'extrude', 'true'],
-    type: 'fill-extrusion',
-    minzoom: 15,
-    paint: {
-      'fill-extrusion-color': '#aaa',
-      'fill-extrusion-height': ['get', 'height'],
-      'fill-extrusion-base': ['get', 'min_height'],
-      'fill-extrusion-opacity': 0.6
+        map.once('styledata', () => {
+          if (choice.includes('3d')) {
+            map.setPitch(60);
+            add3DBuildings();
+          } else {
+            map.setPitch(0);
+          }
+          addMountainData();
+        });
+      });
     }
-  }, labelLayer.id);
+  });
 }
 
 function addMountainData() {
   if (!map.hasImage('custom-marker')) {
     map.loadImage('https://montamap.com/assets/icon.png', (err, img) => {
       if (err) return console.error(err);
-      if (!map.hasImage('custom-marker')) {
-        map.addImage('custom-marker', img);
-        addPointLayer();
-      }
+      map.addImage('custom-marker', img);
+      addPointLayer();
     });
   } else {
     addPointLayer();
@@ -115,30 +111,38 @@ function addPointLayer() {
   }
 }
 
+function add3DBuildings() {
+  const layers = map.getStyle().layers;
+  const labelLayer = layers.find(l => l.type === 'symbol' && l.layout?.['text-field']);
+  if (!labelLayer) return;
+
+  if (!map.getLayer('3d-buildings')) {
+    map.addLayer({
+      id: '3d-buildings',
+      source: 'composite',
+      'source-layer': 'building',
+      filter: ['==', 'extrude', 'true'],
+      type: 'fill-extrusion',
+      minzoom: 15,
+      paint: {
+        'fill-extrusion-color': '#aaa',
+        'fill-extrusion-height': ['get', 'height'],
+        'fill-extrusion-base': ['get', 'min_height'],
+        'fill-extrusion-opacity': 0.6
+      }
+    }, labelLayer.id);
+  }
+}
+
+// Paksa inisialisasi saat tab Maps diklik
 document.addEventListener('DOMContentLoaded', () => {
-  initMap();
-
-  // Ganti style dari dropdown
-  const styleSelector = document.getElementById('styleSelector');
-  if (styleSelector) {
-    styleSelector.addEventListener('change', (e) => {
-      const selected = e.target.value;
-      map.setStyle(styles[selected]);
-
-      map.once('styledata', () => {
-        map.setPitch(selected.includes('3d') ? 60 : 0);
-        if (selected.includes('3d')) add3DBuildings();
-        addMountainData();
-      });
+  const tabButton = document.querySelector('[data-tab="Maps"]');
+  if (tabButton) {
+    tabButton.addEventListener('click', () => {
+      setTimeout(() => {
+        initMap();
+        if (map) map.resize();
+      }, 200);
     });
   }
-
-  // Pastikan map resize saat tab dibuka
-  const mapsTab = document.getElementById('Maps');
-  const observer = new MutationObserver(() => {
-    if (mapsTab.style.display !== 'none') {
-      map.resize();
-    }
-  });
-  observer.observe(mapsTab, { attributes: true, attributeFilter: ['style'] });
 });

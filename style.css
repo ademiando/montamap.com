@@ -281,6 +281,7 @@ html.dark body {
 .tab.active {
   background-color: transparent;
   font-weight: bold;
+  color: #89ae95;
 }
 
 .light-theme .tab.active {

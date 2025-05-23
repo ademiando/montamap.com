@@ -106,9 +106,16 @@ function openTab(event, tabName) {
     renderFavorites();
   }
   if (tabName === 'Maps') {
-    // Delay agar <div id="map"> sudah terlihat
-    setTimeout(initMap, 100);
-  }
+  // Delay agar <div id="map"> sudah terlihat
+  setTimeout(() => {
+    if (typeof initMap === 'function') {
+      initMap();
+    }
+    if (typeof map !== 'undefined') {
+      map.resize();
+    }
+  }, 100);
+}
 }
 
 document.addEventListener('DOMContentLoaded', () => {

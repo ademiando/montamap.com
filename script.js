@@ -10,7 +10,7 @@ function initMap() {
   mapboxgl.accessToken = 'pk.eyJ1IjoibW9udGFtYXBwIiwiYSI6ImNsamM0aGNkZDAxM3Mza3FuZzhid2plcHAifQ.nZ_xTAcBW0sNHi0Utyh9Kg';
 
   map = new mapboxgl.Map({
-    container: 'map',
+    container: 'map',                 // pastikan ada <div id="map"></div> di tab Maps
     style: 'mapbox://styles/mapbox/outdoors-v12',
     center: [116.4575, -8.4111],
     zoom: 9
@@ -34,6 +34,7 @@ function initMap() {
 
   mapInitialized = true;
 }
+
 
 // =================================================================
 // MAIN SCRIPT.JS
@@ -105,6 +106,7 @@ function openTab(event, tabName) {
     renderFavorites();
   }
   if (tabName === 'Maps') {
+    // Delay agar <div id="map"> sudah terlihat
     setTimeout(initMap, 100);
   }
 }
@@ -198,9 +200,12 @@ async function renderMountains() {
 function createMountainCard(m, w, editMode = false) {
   const card = document.createElement('div');
   card.className = 'mountain-card';
-  if (!editMode) {
-    card.onclick = () => window.location.href = `https://montamap.com/${m.link}`;
-  }
+
+  // tambahkan agar link berfungsi juga pada favorite tab
+  card.addEventListener('click', () => {
+    window.location.href = `https://montamap.com/${m.link}`;
+  });
+
   card.innerHTML = `
     <img src="${m.image}" alt="${m.name}" class="mountain-image" />
     <div class="favorite-icon" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}">
@@ -217,6 +222,7 @@ function createMountainCard(m, w, editMode = false) {
              alt="${w.weather}" class="weather-icon"/> ${w.temperature} | ${w.weather}
       </div>
     </div>`;
+
   const fav = card.querySelector('.favorite-icon');
   fav.addEventListener('click', e => {
     e.stopPropagation();
@@ -224,6 +230,7 @@ function createMountainCard(m, w, editMode = false) {
     fav.textContent = isFavorite(m.id) ? '★' : '☆';
     fav.title      = isFavorite(m.id) ? 'Unfavorite' : 'Favorite';
   });
+
   return card;
 }
 
@@ -235,10 +242,10 @@ async function renderFavorites() {
     favoriteContainer.textContent = 'No favorites yet.';
     return;
   }
-  favs.forEach(async id => {
+  for (let id of favs) {
     const m = mountainData.find(x => x.id === id);
-    if (!m) return;
+    if (!m) continue;
     const w = await fetchWeather(m.lat, m.lon);
     favoriteContainer.appendChild(createMountainCard(m, w, true));
-  });
+  }
 }

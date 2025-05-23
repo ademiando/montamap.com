@@ -277,7 +277,15 @@ html.dark body {
 
 .tab.active {
   background-color: transparent;
-  font-weight: none;
+  font-weight: bold;
+}
+
+.light-theme .tab.active {
+  color: #333; /* hitam abu*/
+}
+
+.dark-theme .tab.active {
+  color: #e0e0e0; /* putih keabu */
 }
 
 .tab-content.active {

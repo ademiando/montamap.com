@@ -18,6 +18,39 @@ function initMap() {
 
   map.addControl(new mapboxgl.NavigationControl());
 
+  // setelah peta siap, load GeoJSON titik-titik gunung
+  map.on('load', () => {
+    map.addSource('mountains', {
+      type: 'geojson',
+      data: 'data/mountains_indonesia.geojson'
+    });
+    map.addLayer({
+      id: 'mountain-points',
+      type: 'circle',
+      source: 'mountains',
+      paint: {
+        'circle-radius': 6,
+        'circle-color': '#e91e63'
+      }
+    });
+
+    // popup saat klik titik
+    map.on('click', 'mountain-points', e => {
+      const props = e.features[0].properties;
+      new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(`<strong>${props.name || 'Unknown'}</strong>`)
+        .addTo(map);
+    });
+
+    map.on('mouseenter', 'mountain-points', () => {
+      map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'mountain-points', () => {
+      map.getCanvas().style.cursor = '';
+    });
+  });
+
   const styleSelector = document.getElementById('styleSelector');
   if (styleSelector) {
     styleSelector.addEventListener('change', () => {
@@ -29,6 +62,8 @@ function initMap() {
         dark:         'mapbox://styles/mapbox/dark-v11'
       };
       map.setStyle(styles[styleSelector.value]);
+      // setelah style berubah, panggil resize dan reload source
+      map.once('styledata', () => map.resize());
     });
   }
 
@@ -106,16 +141,12 @@ function openTab(event, tabName) {
     renderFavorites();
   }
   if (tabName === 'Maps') {
-  // Delay agar <div id="map"> sudah terlihat
-  setTimeout(() => {
-    if (typeof initMap === 'function') {
-      initMap();
-    }
-    if (typeof map !== 'undefined') {
-      map.resize();
-    }
-  }, 100);
-}
+    // Delay agar <div id="map"> sudah terlihat
+    setTimeout(() => {
+      if (typeof initMap === 'function') initMap();
+      if (map) map.resize();
+    }, 100);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -165,6 +165,7 @@ select {
   display: flex;
   gap: 0px;
   background-color: #e0e0e0;
+  border-radius: 20px
 }
 
 .theme-btn {
@@ -174,7 +175,7 @@ select {
   text-align: center;
   cursor: pointer;
   font-weight: bold;
-  border: 1px solid #ccc;
+  border: 0px; /* 1px solid #ccc; */
   background-color: #e0e0e0;
   color: #333;
   transition: background 0.3s, color 0.3s;

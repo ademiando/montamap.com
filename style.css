@@ -163,13 +163,13 @@ select {
 
 .theme-switch {
   display: flex;
-  gap: 10px;
+  gap: 0px;
 }
 
 .theme-btn {
   flex: 1;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 20px;
   text-align: center;
   cursor: pointer;
   font-weight: bold;

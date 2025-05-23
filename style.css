@@ -257,7 +257,7 @@ html.dark body {
 /* Gaya untuk Tab */
 .tab {
   display: inline-block; /* Pastikan tab tetap sejajar horizontal */
-  background-color: none;
+  background-color: #e0e0e0;
   padding: 10px 20px;
   border: none;
   font-size: 16px;

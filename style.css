@@ -311,11 +311,12 @@ html.dark body {
   padding-right: 80px; /* beri ruang untuk tombol kanan */
   margin-left: 15px;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .wishlist-header h2 {
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 .wishlist-actions {
@@ -330,6 +331,7 @@ html.dark body {
   font-size: 1.2em;
   font-weight: bold;
   cursor: pointer;
+  color: #95ae98;
   background: none;
   border: none;
   padding: 4px 8px;

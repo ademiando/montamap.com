@@ -164,6 +164,7 @@ select {
 .theme-switch {
   display: flex;
   gap: 0px;
+  background-color: #e0e0e0;
 }
 
 .theme-btn {

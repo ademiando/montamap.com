@@ -1,64 +1,44 @@
-let isEditMode = false;
+/* ====================================================================== MontaMap: Combined script.js + map.js ====================================================================== */
 
-// Elements\const menuToggle        = document.getElementById('hamburger'); const dropdownMenu      = document.getElementById('menu'); const loginButton       = document.getElementById('loginButton'); const loginDropdown     = document.getElementById('loginDropdown'); const languageSelect    = document.getElementById('language'); const currencySelect    = document.getElementById('currency'); const lightBtn          = document.getElementById('lightBtn'); const darkBtn           = document.getElementById('darkBtn'); const searchInput       = document.getElementById('searchInput'); const mountainContainer = document.getElementById('mountainContainer'); const loadMoreBtn       = document.getElementById('loadMoreBtn'); const favoriteContainer = document.getElementById('favorite-container');
+// Global state let isEditMode = false; let map;                // Mapbox GL map instance let mapInitialized = false;
 
-// Mapbox variables let map; let mapInitialized = false;
+// Elements const menuToggle        = document.getElementById('hamburger'); const dropdownMenu      = document.getElementById('menu'); const loginButton       = document.getElementById('loginButton'); const loginDropdown     = document.getElementById('loginDropdown'); const languageSelect    = document.getElementById('language'); const currencySelect    = document.getElementById('currency'); const lightBtn          = document.getElementById('lightBtn'); const darkBtn           = document.getElementById('darkBtn'); const searchInput       = document.getElementById('searchInput'); const mountainContainer = document.getElementById('mountainContainer'); const loadMoreBtn       = document.getElementById('loadMoreBtn'); const favoriteContainer = document.getElementById('favorite-container');
 
-// Function to initialize Mapbox map function initMap() { if (mapInitialized) return;
+// 1) Menu Toggle if (menuToggle && dropdownMenu) { menuToggle.addEventListener('click', () => dropdownMenu.classList.toggle('menu-visible')); document.addEventListener('click', e => { if (!menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) dropdownMenu.classList.remove('menu-visible'); }); }
 
-const mapEl = document.getElementById('map'); if (!mapEl) return;
+// 2) Login Dropdown if (loginButton && loginDropdown) { loginButton.addEventListener('click', () => { loginDropdown.style.display = (loginDropdown.style.display === 'block' ? 'none' : 'block'); }); document.addEventListener('click', e => { if (!loginButton.contains(e.target) && !loginDropdown.contains(e.target)) loginDropdown.style.display = 'none'; }); }
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibW9udGFtYXBwIiwiYSI6ImNsamM0aGNkZDAxM3Mza3FuZzhid2plcHAifQ.nZ_xTAcBW0sNHi0Utyh9Kg'; map = new mapboxgl.Map({ container: 'map', style: 'mapbox://styles/mapbox/outdoors-v12', center: [116.4575, -8.4111], zoom: 9 });
+// 3) Language & Currency Persistence languageSelect.value = localStorage.getItem('language') || 'en'; currencySelect.value = localStorage.getItem('currency') || 'usd'; languageSelect.addEventListener('change', () => localStorage.setItem('language', languageSelect.value)); currencySelect.addEventListener('change', () => localStorage.setItem('currency', currencySelect.value));
 
-map.addControl(new mapboxgl.NavigationControl());
+// 4) Theme Toggle function setTheme(mode) { document.documentElement.classList.toggle('dark', mode === 'dark'); localStorage.setItem('theme', mode); lightBtn.classList.toggle('active', mode === 'light'); darkBtn.classList.toggle('active', mode === 'dark'); } lightBtn.addEventListener('click', () => setTheme('light')); darkBtn.addEventListener('click', () => setTheme('dark'));
 
-const styleSelector = document.getElementById('styleSelector'); if (styleSelector) { styleSelector.addEventListener('change', () => { const styles = { outdoors: 'mapbox://styles/mapbox/outdoors-v12', satellite: 'mapbox://styles/mapbox/satellite-v9', outdoors3d: 'mapbox://styles/mapbox/outdoors-v12', satellite3d: 'mapbox://styles/mapbox/satellite-streets-v12', dark: 'mapbox://styles/mapbox/dark-v11' }; map.setStyle(styles[styleSelector.value]); }); }
-
-mapInitialized = true; }
-
-// Menu Toggle if (menuToggle && dropdownMenu) { menuToggle.addEventListener('click', () => dropdownMenu.classList.toggle('menu-visible') ); document.addEventListener('click', e => { if (!menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) { dropdownMenu.classList.remove('menu-visible'); } }); }
-
-// Login Dropdown if (loginButton && loginDropdown) { loginButton.addEventListener('click', () => { loginDropdown.style.display = loginDropdown.style.display === 'block' ? 'none' : 'block'; }); document.addEventListener('click', e => { if (!loginButton.contains(e.target) && !loginDropdown.contains(e.target)) { loginDropdown.style.display = 'none'; } }); }
-
-// Language & Currency Persistence languageSelect.value = localStorage.getItem('language') || 'en'; currencySelect.value = localStorage.getItem('currency') || 'usd'; languageSelect.addEventListener('change', () => localStorage.setItem('language', languageSelect.value) ); currencySelect.addEventListener('change', () => localStorage.setItem('currency', currencySelect.value) );
-
-// Theme Toggle function setTheme(mode) { document.documentElement.classList.toggle('dark', mode === 'dark'); localStorage.setItem('theme', mode); lightBtn.classList.toggle('active', mode === 'light'); darkBtn.classList.toggle('active', mode === 'dark'); }
-
-lightBtn.addEventListener('click', () => setTheme('light')); darkBtn.addEventListener('click', () => setTheme('dark'));
-
-// Tab Navigation function openTab(event, tabName) { document.querySelectorAll('.tab-content').forEach(c => { c.style.display = 'none'; }); document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); });
+// 5) Tab Navigation + Map init function openTab(event, tabName) { document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none'); document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
 
 const sel = document.getElementById(tabName); if (sel) sel.style.display = 'block'; event.currentTarget.classList.add('active');
 
-if (tabName === 'Favorite') { renderFavorites(); } if (tabName === 'Maps') { setTimeout(initMap, 100); } }
+if (tabName === 'Favorite') { renderFavorites(); } if (tabName === 'Maps') { // Delay to ensure #map is visible setTimeout(initMap, 100); } } document.addEventListener('DOMContentLoaded', () => { // Apply stored theme setTheme(localStorage.getItem('theme') || 'light'); // Trigger default tab const def = document.querySelector('.tab.active'); if (def) def.click(); // Initialize mountain list initMountainRendering(); });
 
-document.addEventListener('DOMContentLoaded', () => { setTheme(localStorage.getItem('theme') || 'light');
+/* ---------------------------------------------------------------------- Mapbox initialization ---------------------------------------------------------------------- */ function initMap() { if (mapInitialized) return;
 
-const defaultTab = document.querySelector('.tab.active'); if (defaultTab) defaultTab.click();
+mapboxgl.accessToken = 'pk.eyJ1IjoibW9udGFtYXBwIiwiYSI6ImNsamM0aGNkZDAxM3Mza3FuZzhid2plcHAifQ.nZ_xTAcBW0sNHi0Utyh9Kg'; map = new mapboxgl.Map({ container: 'map', style: 'mapbox://styles/mapbox/outdoors-v12', center: [116.4575, -8.4111], zoom: 9 }); map.addControl(new mapboxgl.NavigationControl());
 
-initMountainRendering(); });
+// Style switcher const styleSelector = document.getElementById('styleSelector'); styleSelector.addEventListener('change', () => { const styles = { outdoors:    'mapbox://styles/mapbox/outdoors-v12', satellite:   'mapbox://styles/mapbox/satellite-v9', outdoors3d:  'mapbox://styles/mapbox/outdoors-v12', satellite3d: 'mapbox://styles/mapbox/satellite-streets-v12', dark:        'mapbox://styles/mapbox/dark-v11' }; const val = styleSelector.value; if (styles[val]) map.setStyle(styles[val]); });
 
-// --- MOUNTAIN SECTION --- const mountainData = [ // ... your mountain objects here ]; let loaded = 0; const batch = 6; const apiKey = '3187c49861f858e524980ea8dd0d43c6';
+mapInitialized = true; }
+
+/* ---------------------------------------------------------------------- Mountain & Favorites logic ---------------------------------------------------------------------- / const mountainData = [ / ... (isi data gunung seperti di script awal) ... */ ]; let loaded = 0; const batch = 6; const apiKey = '3187c49861f858e524980ea8dd0d43c6';
 
 function initMountainRendering() { renderMountains(); loadMoreBtn.addEventListener('click', renderMountains); }
 
-async function fetchWeather(lat, lon) { try { const res = await fetch( https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric ); const data = await res.json(); if (data.main) { return { temperature: ${Math.round(data.main.temp)}°C, weather: data.weather[0].main, icon: data.weather[0].icon }; } } catch (e) { console.error(e); } return { temperature: 'N/A', weather: 'N/A', icon: '' }; }
+async function fetchWeather(lat, lon) { try { const res = await fetch( https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric ); const d = await res.json(); return d.main ? { temperature: ${Math.round(d.main.temp)}°C, weather: d.weather[0].main, icon: d.weather[0].icon } : { temperature: 'N/A', weather: 'N/A', icon: '' }; } catch { return { temperature: 'N/A', weather: 'N/A', icon: '' }; } }
 
-function getFavorites() { return JSON.parse(localStorage.getItem('favorites')) || []; }
+function getFavorites() { return JSON.parse(localStorage.getItem('favorites')) || []; } function saveFavorites(f) { localStorage.setItem('favorites', JSON.stringify(f)); } function isFavorite(id) { return getFavorites().includes(id); }
 
-function saveFavorites(favorites) { localStorage.setItem('favorites', JSON.stringify(favorites)); }
+function toggleFavorite(id) { let f = getFavorites(); f.includes(id) ? f = f.filter(x => x !== id) : f.push(id); saveFavorites(f); // re-render loaded = 0; mountainContainer.innerHTML = ''; renderMountains(); }
 
-function isFavorite(id) { return getFavorites().includes(id); }
+async function renderMountains() { const slice = mountainData.slice(loaded, loaded + batch); for (let m of slice) { const w = await fetchWeather(m.lat, m.lon); const card = createMountainCard(m, w); mountainContainer.appendChild(card); } loaded += batch; if (loaded >= mountainData.length) loadMoreBtn.style.display = 'none'; }
 
-function toggleFavorite(id) { let favorites = getFavorites(); if (favorites.includes(id)) { favorites = favorites.filter(x => x !== id); } else { favorites.push(id); } saveFavorites(favorites);
+function createMountainCard(m, w, edit = false) { const card = document.createElement('div'); card.className = 'mountain-card'; if (!edit) card.onclick = () => window.location.href = https://montamap.com/${m.link}; card.innerHTML = <img src="${m.image}" alt="${m.name}" class="mountain-image" /> <div class="favorite-icon" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}"> ${isFavorite(m.id) ? '★' : '☆'} </div> <div class="gradient-overlay"></div> <div class="mountain-info"> <div class="mountain-name">${m.name}</div> <div class="mountain-details"> ${m.city}<br /> <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">Status: ${m.status}</span><br /> Elevation: ${m.elevation}<br /> <img src="https://openweathermap.org/img/wn/${w.icon}.png" alt="${w.weather}" class="weather-icon" /> ${w.temperature} | ${w.weather} </div> </div>; const icon = card.querySelector('.favorite-icon'); icon.addEventListener('click', e => { e.stopPropagation(); toggleFavorite(m.id); icon.innerHTML = isFavorite(m.id) ? '★' : '☆'; icon.title = isFavorite(m.id) ? 'Unfavorite' : 'Favorite'; if (edit) renderFavorites(); }); return card; }
 
-loaded = 0; mountainContainer.innerHTML = ''; renderMountains(); }
-
-async function renderMountains() { const slice = mountainData.slice(loaded, loaded + batch); for (const m of slice) { const w = await fetchWeather(m.lat, m.lon); const card = createMountainCard(m, w); mountainContainer.appendChild(card); } loaded += batch; if (loaded >= mountainData.length) { loadMoreBtn.style.display = 'none'; } }
-
-function createMountainCard(m, w, isEditMode = false) { const card = document.createElement('div'); card.className = 'mountain-card';
-
-if (!isEditMode) { card.onclick = () => { window.location.href = https://montamap.com/${m.link}; }; }
-
-card.innerHTML = ` <img src="${m.image}" alt="${m.name}" class="mountain-image" /> <div class="favorite-icon" data-id="${m.id}" title="${
+async function renderFavorites() { favoriteContainer.innerHTML = ''; const favs = getFavorites(); if (!favs.length) { favoriteContainer.innerHTML = '<p>No favorites yet.</p>'; return; } const grid = document.createElement('div'); grid.className = 'favorite-grid'; for (let id of favs) { const m = mountainData.find(x => x.id === id); if (!m) continue; const w = await fetchWeather(m.lat, m.lon); grid.appendChild(createMountainCard(m, w, true)); } favoriteContainer.appendChild(grid); }
 

@@ -12,7 +12,7 @@ function initMap() {
 
   map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v12',
+    style: 'mapbox://styles/mapbox/outdoors-v12',
     center: [116.4575, -8.4111],
     zoom: 9,
     pitch: 45,

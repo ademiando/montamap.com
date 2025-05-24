@@ -572,39 +572,6 @@ footer {
   border-radius: 8px;
 }
 
-#styleDropdown {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 2;
-  padding: 6px 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background: #fff;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.map-btn {
-  position: absolute;
-  z-index: 2;
-  padding: 6px 12px;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.map-btn.reset {
-  top: 10px;
-  left: 10px;
-}
-
-.map-btn.download {
-  top: 50px;
-  left: 10px;
-}
 
 
 

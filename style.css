@@ -552,10 +552,10 @@ footer {
 
 
 #map {
+  height: 100vh;
   width: 100%;
-  height: 400px;    /* atau 100% tinggi parent */
+  position: relative;
 }
-
 
 
 

@@ -24,8 +24,8 @@ function initMap() {
   });
 
   // Controls
-  map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-  map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+  map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+  map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
   map.addControl(new mapboxgl.GeolocateControl({
     positionOptions: { enableHighAccuracy: true },
     trackUserLocation: true,

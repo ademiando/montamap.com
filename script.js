@@ -124,6 +124,25 @@ function initMap() {
       }
     });
 
+
+
+
+  // Zoom ke semua titik
+  fetch('data/mountains_indonesia.geojson')
+    .then(res => res.json())
+    .then(data => {
+      const bounds = new mapboxgl.LngLatBounds();
+      data.features.forEach(feature => {
+        const coords = feature.geometry.coordinates;
+        if (feature.geometry.type === 'Point') bounds.extend(coords);
+      });
+      map.fitBounds(bounds, { padding: 50, duration: 1000 });
+    });
+
+
+
+
+
     // Interaktif
     map.on('click', 'mountain-points', e => {
       const props = e.features[0].properties;

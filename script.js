@@ -148,26 +148,6 @@ function initMap() {
 
 
 
-function openTab(evt, tabName) {
-  const tabContents = document.querySelectorAll(".tab-content");
-  const tabButtons = document.querySelectorAll(".tab");
-
-  tabContents.forEach(content => content.style.display = "none");
-  tabButtons.forEach(tab => tab.classList.remove("active"));
-
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.classList.add("active");
-
-  if (tabName === "Maps") {
-    initMap();
-    setTimeout(() => {
-      if (map) map.resize();
-    }, 300);
-  }
-}
-
-
-
 // =================================================================
 // MAIN SCRIPT.JS
 // =================================================================

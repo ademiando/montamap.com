@@ -35,7 +35,15 @@
 <title>Montamap | Mountain Guide: Trails, Fees, Info & Offline Maps</title>
 
 <link rel="stylesheet" href="style.css">
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet" />
+
+
+<!-- CSS Mapbox & Style Switcher -->
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+<link href="https://unpkg.com/mapbox-gl-style-switcher@latest/styles.css" rel="stylesheet" />
+
+
+
+
 </head>
 
 <body>
@@ -212,19 +220,11 @@
 
 
 
-<div id="Maps" class="tab-content" style="display: none; padding: 1rem;">
-  <h2>Maps</h2>
-  <label for="styleSelector">Map Style:</label>
-  <select id="styleSelector">
-    <option value="outdoors">Outdoors</option>
-    <option value="satellite">Satellite</option>
-    <option value="outdoors3d">Outdoors 3D</option>
-    <option value="satellite3d">Satellite 3D</option>
-    <option value="dark">Dark</option>
-  </select>
-  <div id="map" style="width: 100%; height: 500px; margin-top: 1rem;"></div>
-</div>
 
+
+<div id="Maps" class="tab-content" style="display: none; padding: 1rem;">
+  <div id="map" style="width: 100%; height: 500px; border-radius: 8px;"></div>
+</div>
 
 
 
@@ -407,7 +407,10 @@
 
 
 
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js" defer></script>
+<!-- JS Mapbox & Style Switcher -->
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+<script src="https://unpkg.com/mapbox-gl-style-switcher@latest/dist/index.umd.js"></script>
+
 <script src="script.js" defer></script>
 
 </body>

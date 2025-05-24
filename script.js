@@ -103,13 +103,24 @@ let loaded = 0; const batch  = 6; const apiKey = '3187c49861f858e524980ea8dd0d43
 
 function initMountainRendering() { renderMountains(); loadMoreBtn.addEventListener('click', renderMountains); }
 
-async function fetchWeather(lat, lon) { try { const res = await fetch( https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon} + &appid=${apiKey}&units=metric ); const d = await res.json(); return d.main ? { temperature: ${Math.round(d.main.temp)}°C, weather: d.weather[0].main, icon: d.weather[0].icon } : { temperature: 'N/A', weather: 'N/A', icon: '' }; } catch { return { temperature: 'N/A', weather: 'N/A', icon: '' }; } }
+async function fetchWeather(lat, lon) { 
+try { 
+const res = await fetch( 
+https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon} + 
+&appid=${apiKey}&units=metric 
+); 
+const d = await res.json(); 
+return d.main ? { temperature: ${Math.round(d.main.temp)}°C, weather: d.weather[0].main, icon: d.weather[0].icon } : { temperature: 'N/A', weather: 'N/A', icon: '' }; } catch { return { temperature: 'N/A', weather: 'N/A', icon: '' }; } }
 
 function getFavorites() { return JSON.parse(localStorage.getItem('favorites')) || []; } function saveFavorites(f) { localStorage.setItem('favorites', JSON.stringify(f)); } function isFavorite(id) { return getFavorites().includes(id); } function toggleFavorite(id) { let f = getFavorites(); f.includes(id) ? f = f.filter(x => x !== id) : f.push(id); saveFavorites(f); loaded = 0; mountainContainer.innerHTML = ''; renderMountains(); }
 
 async function renderMountains() { const slice = mountainData.slice(loaded, loaded + batch); for (let m of slice) { const w = await fetchWeather(m.lat, m.lon); mountainContainer.appendChild(createMountainCard(m, w)); } loaded += batch; if (loaded >= mountainData.length) loadMoreBtn.style.display = 'none'; }
 
-function createMountainCard(m, w, editMode = false) { /* unchanged */ }
+function createMountainCard(m, w, editMode = false) { 
+/* unchanged */
+}
 
-async function renderFavorites() { /* unchanged */ }
+async function renderFavorites() { 
+/* unchanged */
+}
 

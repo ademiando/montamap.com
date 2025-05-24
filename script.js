@@ -35,25 +35,8 @@ function initMap() {
 
 
 
-
-
-
-import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
-import { Map as MapboxMap } from "mapbox-gl";
-
-import "mapbox-gl-style-switcher/styles.css";
-
-const map = new MapboxMap();
-map.addControl(new MapboxStyleSwitcherControl());
-
-({
-
-
-
-
-
-
-
+  map.addControl(new MapboxStyleSwitcherControl({
+  
   defaultStyle: 'Mapbox Outdoors',
     styles: [
       { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },

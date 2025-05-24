@@ -274,7 +274,18 @@ html.dark body {
   background-color: #ccc;
 }
 
+
+
+
+html, body {
+height: auto;
+margin: 0;
+}
+
+
+
 .tab-content {
+  height: auto;
   display: none; /* Sembunyikan semua tab secara default */
 }
 
@@ -295,16 +306,6 @@ html.dark body {
 .tab-content.active {
   display: block; /* Tampilkan hanya konten tab yang aktif */
 }
-
-
-
-
-
-
-
-
-
-
 
 .wishlist-header {
   position: relative;

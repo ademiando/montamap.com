@@ -148,6 +148,23 @@ function initMap() {
 
 
 
+// Zoom otomatis ke semua titik gunung
+map.on('sourcedata', (e) => {
+  if (e.sourceId === 'mountains' && e.isSourceLoaded) {
+    const features = map.querySourceFeatures('mountains');
+
+    if (features.length > 0) {
+      const bounds = new mapboxgl.LngLatBounds();
+      features.forEach(f => bounds.extend(f.geometry.coordinates));
+      map.fitBounds(bounds, { padding: 50, duration: 1000 });
+    }
+  }
+});
+
+
+
+
+
 // =================================================================
 // MAIN SCRIPT.JS
 // =================================================================

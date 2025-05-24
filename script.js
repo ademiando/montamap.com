@@ -1,4 +1,5 @@
-// ================================================================= // GLOBAL MAPBOX SETTINGS // ================================================================= let map; let mapInitialized = false;
+// ================================================================= // GLOBAL MAPBOX SETTINGS // ================================================================= 
+let map; let mapInitialized = false;
 
 function initMap() { if (mapInitialized) return;
 
@@ -31,7 +32,9 @@ const styleSelector = document.getElementById('styleSelector'); if (styleSelecto
 
 mapInitialized = true; }
 
-// ================================================================= // MAIN SCRIPT.JS // ================================================================= let isEditMode = false;
+// ================================================================= // MAIN SCRIPT.JS // ================================================================= 
+
+let isEditMode = false;
 
 const menuToggle        = document.getElementById('hamburger'); const dropdownMenu      = document.getElementById('menu'); const loginButton       = document.getElementById('loginButton'); const loginDropdown     = document.getElementById('loginDropdown'); const languageSelect    = document.getElementById('language'); const currencySelect    = document.getElementById('currency'); const lightBtn          = document.getElementById('lightBtn'); const darkBtn           = document.getElementById('darkBtn'); const searchInput       = document.getElementById('searchInput'); const mountainContainer = document.getElementById('mountainContainer'); const loadMoreBtn       = document.getElementById('loadMoreBtn'); const favoriteContainer = document.getElementById('favorite-container');
 

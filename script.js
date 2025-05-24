@@ -8,7 +8,7 @@ let mapInitialized = false;
 function initMap() {
   if (mapInitialized) return;
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoibW9udGFtYXBwIiwiYSI6ImNsamM0aGNkZDAxM3Mza3FuZzhid2plcHAifQ.nZ_xTAcBW0sNHi0Utyh9Kg';
+  mapboxgl.accessToken = 'sk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXJ0NXh2djA5NXEybHMyZmhkN3J5eDAifQ.WIHOfh7VpnMSq4vIb290Xg';
 
   map = new mapboxgl.Map({
     container: 'map',

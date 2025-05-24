@@ -158,16 +158,15 @@ document.querySelectorAll('.tab').forEach(tab => {
 
     document.getElementById(targetId).classList.add('active');
 
-    // Saat buka tab Maps, inisialisasi dan resize
+    // Saat buka tab Maps, inisialisasi dan resize setelah terlihat
     if (targetId === 'Maps') {
-      initMap();
-      setTimeout(() => {
+      requestAnimationFrame(() => {
+        initMap();
         if (map) map.resize();
-      }, 300);
+      });
     }
   });
 });
-
 
 
 

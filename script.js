@@ -46,21 +46,36 @@ languageSelect.value = localStorage.getItem('language') || 'en'; currencySelect.
 
 function setTheme(mode) { document.documentElement.classList.toggle('dark', mode === 'dark'); localStorage.setItem('theme', mode); lightBtn.classList.toggle('active', mode === 'light'); darkBtn.classList.toggle('active', mode === 'dark'); } lightBtn.addEventListener('click', () => setTheme('light')); darkBtn.addEventListener('click', () => setTheme('dark'));
 
-// TAB NAVIGATION function openTab(event, tabName) { // Hide all document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none'); document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+// TAB NAVIGATION 
+function openTab(event, tabName) { 
+// Hide all
 
-// Show selected const sel = document.getElementById(tabName); if (sel) sel.style.display = 'block'; event.currentTarget.classList.add('active');
+document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none'); document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
 
-// Special: init Favorites if (tabName === 'Favorite') renderFavorites();
+// Show selected 
+const sel = document.getElementById(tabName); if (sel) sel.style.display = 'block'; event.currentTarget.classList.add('active');
 
-// Special: init Map if (tabName === 'Maps') { setTimeout(() => { if (typeof initMap === 'function') initMap(); if (map) map.resize(); }, 100); } }
+// Special: init Favorites 
+if (tabName === 'Favorite') renderFavorites();
 
-// Attach listeners purely on .tab buttons (inline onclick remains) document.addEventListener('DOMContentLoaded', () => { // Apply theme setTheme(localStorage.getItem('theme') || 'light');
+// Special: init Map 
+if (tabName === 'Maps') { setTimeout(() => { if (typeof initMap === 'function') initMap(); if (map) map.resize(); }, 100); } }
 
-// Attach click to each tab button document.querySelectorAll('.tab').forEach(btn => { btn.addEventListener('click', e => { // Find tabName from button text or onclick param const tabName = btn.getAttribute('onclick') ?.match(/openTab/)?.[1]; if (tabName) openTab(e, tabName); }); });
+// Attach listeners purely on .tab buttons (inline onclick remains) 
+document.addEventListener('DOMContentLoaded', () => { 
+// Apply theme 
+setTheme(localStorage.getItem('theme') || 'light');
 
-// Trigger default active tab const def = document.querySelector('.tab.active'); if (def) def.click();
+// Attach click to each tab button 
+document.querySelectorAll('.tab').forEach(btn => { btn.addEventListener('click', e => { 
+// Find tabName from button text or onclick param 
+const tabName = btn.getAttribute('onclick') ?.match(/openTab/)?.[1]; if (tabName) openTab(e, tabName); }); });
 
-// Init mountain initMountainRendering(); });
+// Trigger default active 
+tab const def = document.querySelector('.tab.active'); if (def) def.click();
+
+// Init mountain 
+initMountainRendering(); });
 
 // ================================================================= // MOUNTAIN SECTION // ================================================================= 
 

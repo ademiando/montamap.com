@@ -552,9 +552,8 @@ footer {
 
 
 #map {
-  height: 100vh;
   width: 100%;
-  position: relative;
+  height: 500px;
 }
 
 

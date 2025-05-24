@@ -145,6 +145,33 @@ function initMap() {
   mapInitialized = true;
 }
 
+
+
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const targetId = tab.dataset.tab;
+
+    document.querySelectorAll('.tab-content').forEach(content => {
+      content.classList.remove('active');
+    });
+
+    document.getElementById(targetId).classList.add('active');
+
+    // Saat buka tab Maps, inisialisasi dan resize
+    if (targetId === 'Maps') {
+      initMap();
+      setTimeout(() => {
+        if (map) map.resize();
+      }, 300);
+    }
+  });
+});
+
+
+
+
+
 // =================================================================
 // MAIN SCRIPT.JS
 // =================================================================

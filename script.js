@@ -8,32 +8,123 @@ let mapInitialized = false;
 function initMap() {
   if (mapInitialized) return;
 
-  mapboxgl.accessToken =
-    'pk.eyJ1IjoibW9udGFtYXBwIiwiYSI6ImNsamM0aGNkZDAxM3Mza3FuZzhid2plcHAifQ.nZ_xTAcBW0sNHi0Utyh9Kg';
+  mapboxgl.accessToken = 'pk.eyJ1IjoibW9udGFtYXBwIiwiYSI6ImNsamM0aGNkZDAxM3Mza3FuZzhid2plcHAifQ.nZ_xTAcBW0sNHi0Utyh9Kg';
 
   map = new mapboxgl.Map({
     container: 'map',
-    style:     'mapbox://styles/mapbox/outdoors-v12',
-    center:    [116.4575, -8.4111],
-    zoom:      9
+    style: 'mapbox://styles/mapbox/outdoors-v12',
+    center: [116.4575, -8.4111],
+    zoom: 9,
+    pitch: 45,
+    bearing: -17.6,
+    antialias: true
   });
-  map.addControl(new mapboxgl.NavigationControl());
 
+  // Navigasi
+  map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+  // Fullscreen
+  map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+
+  // Lokasi saya
+  map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+    trackUserLocation: true,
+    showUserHeading: true
+  }), 'top-right');
+
+  // Skala
+  map.addControl(new mapboxgl.ScaleControl({
+    maxWidth: 100,
+    unit: 'metric'
+  }), 'bottom-left');
+
+  // Style switcher
+  map.addControl(new MapboxStyleSwitcherControl({
+    defaultStyle: 'Mapbox Outdoors',
+    styles: [
+      { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
+      { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
+      { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
+      { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
+      { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
+      { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
+    ]
+  }), 'top-right');
+
+  // Tombol reset view
+  const resetBtn = document.createElement('button');
+  resetBtn.textContent = 'Reset View';
+  Object.assign(resetBtn.style, {
+    position: 'absolute',
+    top: '10px',
+    left: '10px',
+    zIndex: 1,
+    padding: '6px 12px',
+    background: '#fff',
+    border: '1px solid #ccc',
+    cursor: 'pointer'
+  });
+  resetBtn.onclick = () => {
+    map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
+  };
+  document.getElementById('map').appendChild(resetBtn);
+
+  // Tombol download peta (PNG)
+  const downloadBtn = document.createElement('button');
+  downloadBtn.textContent = 'Download Map';
+  Object.assign(downloadBtn.style, {
+    position: 'absolute',
+    top: '50px',
+    left: '10px',
+    zIndex: 1,
+    padding: '6px 12px',
+    background: '#fff',
+    border: '1px solid #ccc',
+    cursor: 'pointer'
+  });
+  downloadBtn.onclick = () => {
+    map.getCanvas().toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'map.png';
+      a.click();
+    });
+  };
+  document.getElementById('map').appendChild(downloadBtn);
+
+  // Saat peta selesai dimuat
   map.on('load', () => {
+    // Terrain 3D
+    map.addSource('mapbox-dem', {
+      type: 'raster-dem',
+      url: 'mapbox://mapbox.terrain-rgb',
+      tileSize: 512,
+      maxzoom: 14
+    });
+    map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
+
+    // Sumber data gunung
     map.addSource('mountains', {
       type: 'geojson',
       data: 'data/mountains_indonesia.geojson'
     });
+
+    // Layer gunung
     map.addLayer({
-      id:    'mountain-points',
-      type:  'circle',
-      source:'mountains',
+      id: 'mountain-points',
+      type: 'circle',
+      source: 'mountains',
       paint: {
         'circle-radius': 6,
-        'circle-color':  '#e91e63'
+        'circle-color': '#e91e63'
       }
     });
 
+    // Interaktif
     map.on('click', 'mountain-points', e => {
       const props = e.features[0].properties;
       new mapboxgl.Popup()
@@ -41,25 +132,15 @@ function initMap() {
         .setHTML(`<strong>${props.name || 'Unknown'}</strong>`)
         .addTo(map);
     });
-    map.on('mouseenter', 'mountain-points', () => map.getCanvas().style.cursor = 'pointer');
-    map.on('mouseleave', 'mountain-points', () => map.getCanvas().style.cursor = '');
 
-  });
-
-  const styleSelector = document.getElementById('styleSelector');
-  if (styleSelector) {
-    styleSelector.addEventListener('change', () => {
-      const styles = {
-        outdoors:    'mapbox://styles/mapbox/outdoors-v12',
-        satellite:   'mapbox://styles/mapbox/satellite-v9',
-        outdoors3d:  'mapbox://styles/mapbox/outdoors-v12',
-        satellite3d: 'mapbox://styles/mapbox/satellite-streets-v12',
-        dark:        'mapbox://styles/mapbox/dark-v11'
-      };
-      map.setStyle(styles[styleSelector.value]);
-      map.once('styledata', () => map.resize());
+    map.on('mouseenter', 'mountain-points', () => {
+      map.getCanvas().style.cursor = 'pointer';
     });
-  }
+
+    map.on('mouseleave', 'mountain-points', () => {
+      map.getCanvas().style.cursor = '';
+    });
+  });
 
   mapInitialized = true;
 }

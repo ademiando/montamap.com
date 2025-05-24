@@ -148,26 +148,23 @@ function initMap() {
 
 
 
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    const targetId = tab.dataset.tab;
+function openTab(evt, tabName) {
+  const tabContents = document.querySelectorAll(".tab-content");
+  const tabButtons = document.querySelectorAll(".tab");
 
-    document.querySelectorAll('.tab-content').forEach(content => {
-      content.classList.remove('active');
-    });
+  tabContents.forEach(content => content.style.display = "none");
+  tabButtons.forEach(tab => tab.classList.remove("active"));
 
-    document.getElementById(targetId).classList.add('active');
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.classList.add("active");
 
-    // Saat buka tab Maps, inisialisasi dan resize setelah terlihat
-    if (targetId === 'Maps') {
-      requestAnimationFrame(() => {
-        initMap();
-        if (map) map.resize();
-      });
-    }
-  });
-});
-
+  if (tabName === "Maps") {
+    initMap();
+    setTimeout(() => {
+      if (map) map.resize();
+    }, 300);
+  }
+}
 
 
 

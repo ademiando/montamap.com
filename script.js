@@ -147,6 +147,12 @@ function openTab(event, tabName) {
       if (map) map.resize();
     }, 100);
   }
+
+// Tambahan agar konten muncul di tab Community, Gear, dan News
+if (['Community', 'Gear', 'News'].includes(tabName)) {
+  const el = document.getElementById(tabName);
+  if (el) el.style.display = 'block';
+}
 }
 
 document.addEventListener('DOMContentLoaded', () => {

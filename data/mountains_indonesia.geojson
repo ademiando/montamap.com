@@ -1,0 +1,246 @@
+{
+  "type": "FeatureCollection",
+  "name": "mountains_hiking_indonesia_full",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "everest",
+        "name": "Everest",
+        "city": "Namche Bazaar, Nepal",
+        "elevation": "8,848 m",
+        "status": "Open",
+        "weather": "-35°C Windy",
+        "link": "everest"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [86.9250, 27.9881]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "k2",
+        "name": "K2",
+        "city": "Skardu, Pakistan",
+        "elevation": "8,611 m",
+        "status": "Closed",
+        "weather": "-40°C Snow",
+        "link": "k2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [76.5151, 35.8800]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kangchenjunga",
+        "name": "Kangchenjunga",
+        "city": "Taplejung, Nepal",
+        "elevation": "8,586 m",
+        "status": "Open",
+        "weather": "-30°C Cloudy",
+        "link": "kangchenjunga"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [88.2000, 27.7000]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "lhotse",
+        "name": "Lhotse",
+        "city": "Namche Bazaar, Nepal",
+        "elevation": "8,516 m",
+        "status": "Open",
+        "weather": "-28°C Sunny",
+        "link": "lhotse"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [86.9333, 27.9617]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "rinjani",
+        "name": "Rinjani",
+        "city": "West Nusa Tenggara, Indonesia",
+        "elevation": "3,726 m",
+        "status": "Open",
+        "weather": "-6°C Cloudy",
+        "link": "rinjani"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.4577, -8.4115]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cartenz",
+        "name": "Cartenz Pyramid",
+        "city": "Papua, Indonesia",
+        "elevation": "4,884 m",
+        "status": "Open",
+        "weather": "-10°C Snow",
+        "link": "cartenz"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [137.1833, -4.0833]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "semeru",
+        "name": "Semeru",
+        "city": "East Java, Indonesia",
+        "elevation": "3,676 m",
+        "status": "Open",
+        "weather": "-4°C Smoke",
+        "link": "semeru"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.9220, -8.1080]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bromo",
+        "name": "Bromo",
+        "city": "East Java, Indonesia",
+        "elevation": "2,329 m",
+        "status": "Open",
+        "weather": "2°C Clear",
+        "link": "bromo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.9530, -7.9425]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "agung",
+        "name": "Agung",
+        "city": "Bali, Indonesia",
+        "elevation": "3,031 m",
+        "status": "Open",
+        "weather": "3°C Partly Cloudy",
+        "link": "agung"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [115.5085, -8.3421]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "batur",
+        "name": "Batur",
+        "city": "Bali, Indonesia",
+        "elevation": "1,717 m",
+        "status": "Open",
+        "weather": "7°C Cloudy",
+        "link": "batur"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [115.3761, -8.2395]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "prau",
+        "name": "Prau",
+        "city": "Central Java, Indonesia",
+        "elevation": "2,590 m",
+        "status": "Open",
+        "weather": "1°C Fog",
+        "link": "prau"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [109.9181, -7.2079]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "raung",
+        "name": "Raung",
+        "city": "East Java, Indonesia",
+        "elevation": "3,344 m",
+        "status": "Open",
+        "weather": "-2°C Cloudy",
+        "link": "raung"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [114.0428, -8.1255]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sindoro",
+        "name": "Sindoro",
+        "city": "Central Java, Indonesia",
+        "elevation": "3,150 m",
+        "status": "Open",
+        "weather": "-1°C Clear",
+        "link": "sindoro"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.0571, -7.3006]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sumbing",
+        "name": "Sumbing",
+        "city": "Central Java, Indonesia",
+        "elevation": "3,371 m",
+        "status": "Open",
+        "weather": "-1°C Partly Cloudy",
+        "link": "sumbing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.0722, -7.3844]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "merapi",
+        "name": "Merapi",
+        "city": "Yogyakarta, Indonesia",
+        "elevation": "2,930 m",
+        "status": "Closed",
+        "weather": "0°C Smoke",
+        "link": "merapi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4462, -7.5407]
+      }
+    }
+  ]
+}

@@ -46,7 +46,7 @@ function initMap() {
   const resetBtn = document.createElement('button');
   resetBtn.textContent = 'Reset View';
   Object.assign(resetBtn.style, {
-    position: 'absolute', top: '10px', left: '10px', zIndex: 1,
+    position: 'absolute', top: '10px', left: '10px', zIndex: 9999,
     padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
   });
   resetBtn.onclick = () => {
@@ -58,7 +58,7 @@ function initMap() {
   const downloadBtn = document.createElement('button');
   downloadBtn.textContent = 'Download Map';
   Object.assign(downloadBtn.style, {
-    position: 'absolute', top: '50px', left: '10px', zIndex: 1,
+    position: 'absolute', top: '50px', left: '10px', zIndex: 9999,
     padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
   });
   downloadBtn.onclick = () => {

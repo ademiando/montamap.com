@@ -3,11 +3,11 @@
 // =================================================================
 
 
-let map;
-let mapInitialized = false;
+
 
 function initMap() {
   if (mapInitialized) return;
+  console.log('initMap running...');
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
@@ -21,6 +21,10 @@ function initMap() {
     antialias: true
   });
 
+  // Pastikan #map punya position relative
+  const mapDiv = document.getElementById('map');
+  mapDiv.style.position = 'relative';
+
   // Controls
   map.addControl(new mapboxgl.NavigationControl(), 'top-right');
   map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
@@ -30,36 +34,58 @@ function initMap() {
     showUserHeading: true
   }), 'top-right');
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
-  map.addControl(new MapboxStyleSwitcherControl({
-    defaultStyle: 'Mapbox Outdoors',
-    styles: [
-      { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
-      { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
-      { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
-      { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
-      { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
-      { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
-    ]
-  }), 'top-right');
+  
+  // Pastikan MapboxStyleSwitcherControl script dan CSS sudah ada dan benar
+  if (typeof MapboxStyleSwitcherControl === 'function') {
+    map.addControl(new MapboxStyleSwitcherControl({
+      defaultStyle: 'Mapbox Outdoors',
+      styles: [
+        { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
+        { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
+        { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
+        { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
+        { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
+        { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
+      ]
+    }), 'top-right');
+  } else {
+    console.warn('MapboxStyleSwitcherControl not loaded!');
+  }
 
   // Reset View button
   const resetBtn = document.createElement('button');
   resetBtn.textContent = 'Reset View';
   Object.assign(resetBtn.style, {
-    position: 'absolute', top: '10px', left: '10px', zIndex: 9999,
-    padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
+    position: 'absolute',
+    top: '10px',
+    left: '10px',
+    zIndex: 9999,
+    padding: '6px 12px',
+    background: '#fff',
+    border: '1px solid #ccc',
+    cursor: 'pointer',
+    fontSize: '14px',
+    borderRadius: '4px',
   });
   resetBtn.onclick = () => {
     map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
   };
-  document.getElementById('map').appendChild(resetBtn);
+  mapDiv.appendChild(resetBtn);
 
   // Download button
   const downloadBtn = document.createElement('button');
   downloadBtn.textContent = 'Download Map';
   Object.assign(downloadBtn.style, {
-    position: 'absolute', top: '50px', left: '10px', zIndex: 9999,
-    padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
+    position: 'absolute',
+    top: '50px',
+    left: '10px',
+    zIndex: 9999,
+    padding: '6px 12px',
+    background: '#fff',
+    border: '1px solid #ccc',
+    cursor: 'pointer',
+    fontSize: '14px',
+    borderRadius: '4px',
   });
   downloadBtn.onclick = () => {
     map.getCanvas().toBlob(blob => {
@@ -70,11 +96,10 @@ function initMap() {
       a.click();
     });
   };
-  document.getElementById('map').appendChild(downloadBtn);
+  mapDiv.appendChild(downloadBtn);
 
   // Load terrain + data
   map.on('load', () => {
-    // DEM Terrain
     if (!map.getSource('mapbox-dem')) {
       map.addSource('mapbox-dem', {
         type: 'raster-dem',
@@ -85,7 +110,6 @@ function initMap() {
       map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
     }
 
-    // Mountain data
     if (!map.getSource('mountains')) {
       map.addSource('mountains', {
         type: 'geojson',
@@ -93,7 +117,6 @@ function initMap() {
       });
     }
 
-    // Layer gunung
     if (!map.getLayer('mountain-points')) {
       map.addLayer({
         id: 'mountain-points',
@@ -106,7 +129,6 @@ function initMap() {
       });
     }
 
-    // Fit bounds to all points
     fetch('data/mountains_indonesia.geojson')
       .then(res => res.json())
       .then(data => {
@@ -118,7 +140,6 @@ function initMap() {
         map.fitBounds(bounds, { padding: 50, duration: 1000 });
       });
 
-    // Interaktif
     map.on('click', 'mountain-points', e => {
       const props = e.features[0].properties;
       new mapboxgl.Popup()
@@ -138,6 +159,11 @@ function initMap() {
 
   mapInitialized = true;
 }
+
+
+
+
+
 
 // =================================================================
 // MAIN SCRIPT.JS

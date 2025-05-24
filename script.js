@@ -4,7 +4,6 @@
 
 
 
-
 let map;
 let mapInitialized = false;
 
@@ -145,12 +144,6 @@ function initMap() {
 
   mapInitialized = true;
 }
-
-
-
-window.addEventListener('load', () => {
-  initMap();
-});
 
 
 

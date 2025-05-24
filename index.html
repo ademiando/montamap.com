@@ -221,11 +221,21 @@
 
 
 
-
-<div id="Maps" class="tab-content" style="display: none; padding: 1rem;">
-  <div id="map" style="width: 100%; height: 500px; border-radius: 8px;"></div>
+<div id="Maps" class="tab-content">
+  <div class="map-container">
+    <select id="styleDropdown" class="style-dropdown">
+      <option value="mapbox://styles/mapbox/outdoors-v12">Outdoors</option>
+      <option value="mapbox://styles/mapbox/satellite-v9">Satellite</option>
+      <option value="mapbox://styles/mapbox/satellite-streets-v12">Satellite 3D</option>
+      <option value="mapbox://styles/mapbox/dark-v11">Dark</option>
+      <option value="mapbox://styles/mapbox/streets-v12">Streets</option>
+      <option value="mapbox://styles/mapbox/light-v11">Light</option>
+    </select>
+    <div id="map"></div>
+    <button id="resetBtn" class="map-btn reset">Reset View</button>
+    <button id="downloadBtn" class="map-btn download">Download Map</button>
+  </div>
 </div>
-
 
 
 

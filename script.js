@@ -32,8 +32,29 @@ function initMap() {
     showUserHeading: true
   }), 'top-right');
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
-  map.addControl(new MapboxStyleSwitcherControl({
-    defaultStyle: 'Mapbox Outdoors',
+
+
+
+
+
+
+import { MapboxStyleSwitcherControl } from "mapbox-gl-style-switcher";
+import { Map as MapboxMap } from "mapbox-gl";
+
+import "mapbox-gl-style-switcher/styles.css";
+
+const map = new MapboxMap();
+map.addControl(new MapboxStyleSwitcherControl());
+
+({
+
+
+
+
+
+
+
+  defaultStyle: 'Mapbox Outdoors',
     styles: [
       { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
       { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },

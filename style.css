@@ -209,12 +209,18 @@ html.dark body {
 
 /* Banner Ads Styling */
 .ads-wrapper {
+  max-height: 60px;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 12px auto;
-  max-width: 100%;
-  overflow: hidden;
+  padding: 8px 0;
+}
+
+.adsbygoogle {
+  width: 100%;
+  max-width: 320px;
+  height: 50px;
 }
 
 /* Tagline Section Styling */
@@ -596,16 +602,27 @@ footer {
 }
 
 
-@media (min-width: 768px) {
+@media (max-width: 480px) {
+  .ads-wrapper {
+    max-height: 60px;
+    padding: 4px 0;
+  }
+
   .adsbygoogle {
-    width: 728px !important;
-    height: 90px !important;
+    width: 100%;
+    max-width: 320px;
+    height: 50px !important;
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 481px) {
+  .ads-wrapper {
+    max-height: 90px;
+  }
+
   .adsbygoogle {
-    width: 320px !important;
-    height: 50px !important;
+    width: 100%;
+    max-width: 468px;
+    height: 60px !important;
   }
 }

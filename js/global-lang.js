@@ -1,19 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
   const lang = localStorage.getItem('lang') || 'en';
 
-  fetch(`/lang/${lang}.json`)
+  fetch('/lang/about-multilanguage.json')
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       return response.json();
     })
-    .then(translations => {
-      // Loop semua key dari JSON
+    .then(data => {
+      const translations = data[lang]; // Ambil bagian sesuai bahasa
+
       Object.keys(translations).forEach(key => {
-        const el = document.getElementById(key);
+        const el = document.querySelector(`[data-i18n="${key}"]`);
         if (el) {
-          el.textContent = translations[key];
+          const value = translations[key];
+          if (Array.isArray(value)) {
+            el.innerHTML = value.join('<br>'); // Boleh juga pakai <p> per elemen
+          } else {
+            el.innerHTML = value;
+          }
         }
       });
     })

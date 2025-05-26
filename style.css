@@ -597,19 +597,29 @@ footer {
 
 .horizontal-tab-container {
         display: flex;
-        gap: 5px; /* jarak antar anak elemen */
-
+        gap: 5px; /* jarak antar anak elemen */ 
+}
 }
 
 
+/* Tablet & layar kecil sampai 720px */
+@media (max-width: 720px) {
   .banner-ads-montamap {
     max-width: 100%;
-    height: 30px; /* lebih kecil lagi */
+    height: 40px;
   }
+  .adsbygoogle {
+    height: 40px !important;
+  }
+}
 
+/* HP sampai 480px */
+@media (max-width: 480px) {
+  .banner-ads-montamap {
+    max-width: 100%;
+    height: 30px;
+  }
   .adsbygoogle {
     height: 30px !important;
   }
 }
-
-

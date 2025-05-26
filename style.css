@@ -217,6 +217,10 @@ html.dark body {
   padding: 8px 0;
 }
 
+.adsbygoogle {
+  margin: 16px 0;
+}
+
 
 /* Tagline Section Styling */
 .tagline-section {
@@ -594,14 +598,6 @@ footer {
         display: flex;
         gap: 5px; /* jarak antar anak elemen */ 
 }
-}
-
-
-@media (max-width: 480px) {
-  .ads-wrapper {
-    max-height: 50px;
-    padding: 4px 0;
-  }
 }
 
 

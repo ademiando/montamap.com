@@ -602,3 +602,13 @@ footer {
 }
 
 
+  .banner-ads-montamap {
+    max-width: 100%;
+    height: 30px; /* lebih kecil lagi */
+  }
+
+  .adsbygoogle {
+    height: 30px !important;
+  }
+
+

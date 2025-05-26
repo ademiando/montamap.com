@@ -208,19 +208,20 @@ html.dark body {
 }
 
 /* Banner Ads Styling */
-.banner-ads {
-  background-color: #89ae95;
-  color: #333;
-  text-align: center;
-  padding: 15px 0; /* Spasi vertikal */
-  font-size: 12px;
-  font-weight: bold;
-  margin: 10px 0; /* Jarak antara banner dan elemen di atas/bawahnya */
-  width: 100%; /* Membentang dari kiri ke kanan */
-  margin: 0 auto; /* Posisi horizontal di tengah */
-  border-radius: none; /* Sudut melengkung dengan radius 10px */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk tampilan lebih profesional */
+.banner-ads-montamap {
+  width: 100%;
+  max-width: 728px;
+  height: 50px;
+  margin: 0 auto;
 }
+
+.adsbygoogle {
+  display: block;
+  width: 100% !important;
+  height: 50px !important;
+  max-width: 728px;
+}
+
 
 /* Tagline Section Styling */
 .tagline-section {

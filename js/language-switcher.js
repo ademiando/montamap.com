@@ -1,50 +1,53 @@
 // File: /js/language-switcher.js
 let translations = null;
 
-// 1) Load JSON
 fetch('/lang/translations.json')
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) throw new Error('HTTP error ' + res.status);
+    return res.json();
+  })
   .then(data => {
     translations = data;
     initLanguage();
   })
   .catch(err => console.error('Load translation failed:', err));
 
-// 2) Apply translations by matching original English text
 function applyLanguage(lang) {
-  if (!translations || !translations[lang]) return;
+  if (!translations || !translations[lang]) {
+    console.warn('Language not found:', lang);
+    return;
+  }
+
   const dict = translations[lang];
+
+  const allowedTags = ['P', 'SPAN', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'BUTTON', 'LABEL', 'A', 'LI', 'DIV', 'OPTION'];
+
   document.querySelectorAll('body *').forEach(el => {
-    // only text nodes
+    if (!allowedTags.includes(el.tagName)) return;
+
+    // Replace text content
     if (el.childNodes.length === 1 && el.childNodes[0].nodeType === Node.TEXT_NODE) {
-      const text = el.textContent.trim();
-      if (dict[text]) el.textContent = dict[text];
+      const original = el.textContent.trim();
+      if (dict[original]) el.textContent = dict[original];
     }
-    // inputs placeholders
+
+    // Replace placeholder (for inputs)
     if (el.placeholder && dict[el.placeholder]) {
       el.placeholder = dict[el.placeholder];
     }
   });
 }
 
-// 3) Initialize language selector
 function initLanguage() {
   const select = document.getElementById('language');
-  const saved = localStorage.getItem('montamap_lang') || select.value;
-  select.value = saved;
-  applyLanguage(saved);
+  const savedLang = localStorage.getItem('montamap_lang') || select?.value || 'en';
 
-  select.addEventListener('change', () => {
+  if (select) select.value = savedLang;
+  applyLanguage(savedLang);
+
+  select?.addEventListener('change', () => {
     const lang = select.value;
     localStorage.setItem('montamap_lang', lang);
     applyLanguage(lang);
   });
 }
-
-// 4) Fallback: if selector not found, default en
-function init() {
-  document.addEventListener('DOMContentLoaded', () => {
-    if (translations) initLanguage();
-  });
-}
-init();

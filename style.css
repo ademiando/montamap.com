@@ -217,10 +217,9 @@ html.dark body {
   padding: 8px 0;
 }
 
-.adsbygoogle {
-  margin: 16px 0;
+.ads-container {
+  width: 100%; /* atau min-width: 300px; */
 }
-
 
 /* Tagline Section Styling */
 .tagline-section {

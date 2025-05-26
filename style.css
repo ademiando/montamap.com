@@ -208,20 +208,14 @@ html.dark body {
 }
 
 /* Banner Ads Styling */
-.banner-ads-montamap {
-  width: 100%;
-  max-width: 728px;
-  height: 50px;
-  margin: 0 auto;
+.ads-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px auto;
+  max-width: 100%;
+  overflow: hidden;
 }
-
-.adsbygoogle {
-  display: block;
-  width: 100% !important;
-  height: 50px !important;
-  max-width: 728px;
-}
-
 
 /* Tagline Section Styling */
 .tagline-section {
@@ -602,24 +596,16 @@ footer {
 }
 
 
-/* Tablet & layar kecil sampai 720px */
-@media (max-width: 720px) {
-  .banner-ads-montamap {
-    max-width: 100%;
-    height: 40px;
-  }
+@media (min-width: 768px) {
   .adsbygoogle {
-    height: 40px !important;
+    width: 728px !important;
+    height: 90px !important;
   }
 }
 
-/* HP sampai 480px */
-@media (max-width: 480px) {
-  .banner-ads-montamap {
-    max-width: 100%;
-    height: 30px;
-  }
+@media (max-width: 767px) {
   .adsbygoogle {
-    height: 30px !important;
+    width: 320px !important;
+    height: 50px !important;
   }
 }

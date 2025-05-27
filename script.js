@@ -10,8 +10,10 @@ let mapInitialized = false;
 function initMap() {
   if (mapInitialized) return;
 
+  // 1) Access token
   mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
+  // 2) Inisialisasi peta
   map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v12',
@@ -22,7 +24,7 @@ function initMap() {
     antialias: true
   });
 
-  // MAP CONTROLS
+  // 3) Built-in controls
   map.addControl(new mapboxgl.NavigationControl(), 'top-right');
   map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
   map.addControl(new mapboxgl.GeolocateControl({
@@ -32,7 +34,7 @@ function initMap() {
   }), 'bottom-right');
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
 
-  // STYLE SWITCHER (Ensure mapbox-gl-style-switcher is loaded in HTML)
+  // 4) Style switcher (pastikan plugin sudah di-load)
   map.addControl(new MapboxStyleSwitcherControl({
     defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
     styles: [
@@ -45,53 +47,62 @@ function initMap() {
     ]
   }), 'top-right');
 
-  // RESET VIEW BUTTON
+  // 5) Container untuk tombol custom
+  const ui = document.querySelector('.map-ui');
+
+  // — Reset View
   const resetBtn = document.createElement('button');
   resetBtn.textContent = 'Reset View';
   Object.assign(resetBtn.style, {
-    position: 'absolute', top: '10px', left: '10px', zIndex: 9999,
     padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
   });
   resetBtn.onclick = () => {
-    map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
+    map.flyTo({
+      center: [116.4575, -8.4111],
+      zoom: 9,
+      pitch: 45,
+      bearing: -17.6
+    });
   };
-  document.getElementById('map').appendChild(resetBtn);
+  ui.appendChild(resetBtn);
 
-  // DOWNLOAD MAP BUTTON
+  // — Download Map
   const downloadBtn = document.createElement('button');
   downloadBtn.textContent = 'Download Map';
   Object.assign(downloadBtn.style, {
-    position: 'absolute', top: '50px', left: '10px', zIndex: 9999,
     padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
   });
   downloadBtn.onclick = () => {
     map.getCanvas().toBlob(blob => {
+      if (!blob) return alert('Map belum siap, coba lagi sebentar.');
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = 'map.png';
       a.click();
+      URL.revokeObjectURL(url);
     });
   };
-  document.getElementById('map').appendChild(downloadBtn);
+  ui.appendChild(downloadBtn);
 
-  // LOAD MAP DATA
+  // 6) Load terrain + GeoJSON data
   map.on('load', () => {
-    // TERRAIN SOURCE
-    map.addSource('mapbox-dem', {
-      type: 'raster-dem',
-      url: 'mapbox://mapbox.terrain-rgb',
-      tileSize: 512,
-      maxzoom: 14
-    });
-    map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
+    // a) Terrain
+    if (!map.getSource('mapbox-dem')) {
+      map.addSource('mapbox-dem', {
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.terrain-rgb',
+        tileSize: 512,
+        maxzoom: 14
+      });
+      map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
+    }
 
-    // GEOJSON MOUNTAINS
+    // b) Mountains GeoJSON
     map.addSource('mountains', {
       type: 'geojson',
       data: 'data/mountains_indonesia.geojson'
     });
-
     map.addLayer({
       id: 'mountain-points',
       type: 'circle',
@@ -102,38 +113,34 @@ function initMap() {
       }
     });
 
-    // FIT BOUNDS TO MOUNTAIN POINTS
+    // c) Fit bounds
     fetch('data/mountains_indonesia.geojson')
-      .then(res => res.json())
-      .then(data => {
-        const bounds = new mapboxgl.LngLatBounds();
-        data.features.forEach(f => {
-          if (f.geometry.type === 'Point') bounds.extend(f.geometry.coordinates);
+      .then(r => r.json())
+      .then(d => {
+        const b = new mapboxgl.LngLatBounds();
+        d.features.forEach(f => {
+          if (f.geometry.type === 'Point') b.extend(f.geometry.coordinates);
         });
-        map.fitBounds(bounds, { padding: 50, duration: 1000 });
+        map.fitBounds(b, { padding: 50, duration: 1000 });
       });
 
-    // INTERACTIVE POPUP
+    // d) Popup & cursor
     map.on('click', 'mountain-points', e => {
-      const props = e.features[0].properties;
+      const name = e.features[0].properties.name || 'Unknown';
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
-        .setHTML(`<strong>${props.name || 'Unknown'}</strong>`)
+        .setHTML(`<strong>${name}</strong>`)
         .addTo(map);
     });
-
-    map.on('mouseenter', 'mountain-points', () => {
-      map.getCanvas().style.cursor = 'pointer';
-    });
-    map.on('mouseleave', 'mountain-points', () => {
-      map.getCanvas().style.cursor = '';
-    });
+    map.on('mouseenter', 'mountain-points', () => map.getCanvas().style.cursor = 'pointer');
+    map.on('mouseleave', 'mountain-points', () => map.getCanvas().style.cursor = '');
   });
 
   mapInitialized = true;
 }
 
-
+// Panggil initMap() setelah DOM ready
+document.addEventListener('DOMContentLoaded', initMap);
 
 
 

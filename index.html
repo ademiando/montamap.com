@@ -363,19 +363,23 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js" defer></script>
 
 <!-- Style Switcher UMD (no defer) -->
-<script src="https://unpkg.com/mapbox-gl-style-switcher@1.1.3/dist/mapbox-gl-style-switcher.umd.js"></script>
+<script id="switcher-script" src="https://unpkg.com/mapbox-gl-style-switcher@1.1.3/dist/mapbox-gl-style-switcher.umd.js"></script>
 
-<!-- Export ke global (no defer) -->
+<!-- Export ke global setelah switcher selesai load -->
 <script>
-  if (typeof MapboxStyleSwitcherControl === 'undefined' && window.mapboxglStyleSwitcher) {
-    window.MapboxStyleSwitcherControl = window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl;
-  }
+  document.getElementById('switcher-script').addEventListener('load', () => {
+    if (typeof MapboxStyleSwitcherControl === 'undefined' && window.mapboxglStyleSwitcher) {
+      window.MapboxStyleSwitcherControl = window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl;
+      console.log('Style Switcher loaded successfully');
+    } else {
+      console.warn('mapboxglStyleSwitcher is not available');
+    }
+  });
 </script>
 
 <!-- Custom Scripts -->
 <script src="/js/language-switcher.js" defer></script>
 <script src="script.js" defer></script>
-
  
 </body>
 </html>

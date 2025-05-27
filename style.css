@@ -243,11 +243,6 @@ html.dark body {
   line-height: 1.5; /* Spasi antar baris yang nyaman */
 }
 
-
-
-
-
-
 /* Container untuk Tab Horizontal */
 .horizontal-tab-container {
   display: flex;
@@ -277,15 +272,10 @@ html.dark body {
   background-color: #ccc;
 }
 
-
-
-
 html, body {
 height: auto;
 margin: 0;
 }
-
-
 
 .tab-content {
   height: auto;
@@ -525,14 +515,10 @@ footer {
   transition: all 0.2s ease;
 }
 
-
-
 .pre-footer-links a {
   line-height: 1.2;
   margin: 0.2rem 0;
 }
-
-
 
 .pre-footer-links a:hover {
   text-decoration: underline;
@@ -551,6 +537,9 @@ footer {
   color: #6f947c;
   text-decoration: underline;
 }
+
+
+
 
 
 
@@ -575,17 +564,9 @@ footer {
 }
 
 .mapboxgl-ctrl-top-right {
-  top: 60px !important;
-  right: 10px;
-  z-index: 9999;
-}
-
-.mapboxgl-ctrl-group > button {
-  border-radius: 0; /* Reset dulu */
-}
-
-.mapboxgl-ctrl-group > button:not(:last-child) {
-  border-bottom: 1px solid #ddd; /* Opsional, biar rapi */
+  top: 100px !important;     /* Geser turun supaya gak ketutup header/tab */
+  right: 20px !important;    /* Jarak dari kanan */
+  z-index: 99999 !important; /* Pastikan muncul paling atas */
 }
 
 .mapboxgl-ctrl-group > button {
@@ -602,6 +583,16 @@ footer {
 #map button:hover {
   background: #f0f0f0;
 }
+
+/* Tambahan styling tombol style switcher (biar gak kaku) */
+.mapboxgl-style-switcher {
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 99999 !important;
+}
+
+
 
 
 

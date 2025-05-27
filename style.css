@@ -570,6 +570,12 @@ footer {
 }
 
 
+.mapboxgl-ctrl-top-right {
+  top: 50px !important; /* Naikin dikit kalau ketutup header */
+  right: 10px;
+  z-index: 9999;
+}
+
 
 
 /* Media Query untuk Responsif */

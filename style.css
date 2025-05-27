@@ -562,19 +562,37 @@ footer {
   height: 100vh;
   margin-top: 20px;
   border-radius: 16px;
+  overflow: hidden;
 }
 
+/* Tombol kontrol Mapbox (navigasi, fullscreen, geolocate, dll) */
 .mapboxgl-ctrl.mapboxgl-ctrl-group {
   z-index: 9999;
-  margin-top: 50px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-
+/* Posisikan kontrol kanan atas */
 .mapboxgl-ctrl-top-right {
-  top: 50px !important; /* Naikin dikit kalau ketutup header */
+  top: 60px !important;
   right: 10px;
   z-index: 9999;
 }
+
+/* Tombol individual di dalam grup */
+.mapboxgl-ctrl-group > button {
+  border-radius: 0; /* Reset radius per tombol */
+}
+
+/* Tombol bulet geolokasi */
+.mapboxgl-ctrl-group > button.mapboxgl-ctrl-geolocate {
+  border-radius: 50%;
+}
+
+
+
+
 
 
 

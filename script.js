@@ -28,20 +28,6 @@ function initMap() {
   }), 'bottom-right');
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // RESET VIEW BUTTON
   const resetBtn = document.createElement('button');
   resetBtn.textContent = 'Reset View';
@@ -74,7 +60,7 @@ function initMap() {
 
   // LOAD MAP DATA
   map.on('load', () => {
-    // TERRAIN SOURCE
+    // Terrain
     map.addSource('mapbox-dem', {
       type: 'raster-dem',
       url: 'mapbox://mapbox.terrain-rgb',
@@ -83,7 +69,7 @@ function initMap() {
     });
     map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 
-    // GEOJSON MOUNTAINS
+    // GeoJSON Mountains
     map.addSource('mountains', {
       type: 'geojson',
       data: 'data/mountains_indonesia.geojson'
@@ -99,7 +85,7 @@ function initMap() {
       }
     });
 
-    // FIT BOUNDS TO MOUNTAIN POINTS
+    // Fit Bounds
     fetch('data/mountains_indonesia.geojson')
       .then(res => res.json())
       .then(data => {
@@ -110,7 +96,7 @@ function initMap() {
         map.fitBounds(bounds, { padding: 50, duration: 1000 });
       });
 
-    // INTERACTIVE POPUP
+    // Interaktif Popup
     map.on('click', 'mountain-points', e => {
       const props = e.features[0].properties;
       new mapboxgl.Popup()
@@ -125,7 +111,25 @@ function initMap() {
     map.on('mouseleave', 'mountain-points', () => {
       map.getCanvas().style.cursor = '';
     });
-  });
+
+    // STYLE SWITCHER aman di dalam on('load')
+    if (typeof MapboxStyleSwitcherControl !== 'undefined') {
+      map.addControl(new MapboxStyleSwitcherControl({
+        defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
+        styles: [
+          { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
+          { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
+          { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
+          { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
+          { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
+          { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
+        ]
+      }), 'top-right');
+    } else {
+      console.warn('Style Switcher not available when map is loaded.');
+    }
+
+  }); // end of map.on('load')
 
   mapInitialized = true;
 }
@@ -384,3 +388,21 @@ function createMountainCard(m, w) {
 
   return card;
 }
+
+
+
+
+
+
+
+
+
+
+// Auto-init map if all scripts loaded
+window.addEventListener('load', () => {
+  if (typeof MapboxStyleSwitcherControl === 'undefined' && window.mapboxglStyleSwitcher) {
+    window.MapboxStyleSwitcherControl = window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl;
+    console.log('Style Switcher loaded globally');
+  }
+  initMap();
+});

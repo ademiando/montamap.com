@@ -569,7 +569,7 @@ footer {
 
 .mapboxgl-ctrl-top-right {
   top: 100px !important;     /* Geser turun supaya gak ketutup header/tab */
-  right: 10px !important;    /* Jarak dari kanan */
+  right: 5px !important;    /* Jarak dari kanan */
   z-index: 99999 !important; /* Pastikan muncul paling atas */
 }
 

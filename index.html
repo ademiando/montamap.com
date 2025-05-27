@@ -365,7 +365,7 @@
 <!-- Style Switcher UMD (no defer) -->
 <script id="switcher-script" src="https://unpkg.com/mapbox-gl-style-switcher@1.1.3/dist/mapbox-gl-style-switcher.umd.js"></script>
 
-<!-- Custom Scripts (script.js duluan sebelum initMap dipanggil) -->
+<!-- Custom Scripts -->
 <script src="/js/language-switcher.js" defer></script>
 <script src="script.js" defer></script>
 
@@ -379,9 +379,27 @@
       console.warn('mapboxglStyleSwitcher is not available');
     }
 
-    // initMap harus sudah terdefinisi sebelum dipanggil
+    // Jalankan initMap
     if (typeof initMap === 'function') {
       initMap();
+
+      // Setelah map dibuat, tambahkan Style Switcher
+      if (typeof map !== 'undefined' && typeof MapboxStyleSwitcherControl !== 'undefined') {
+        map.addControl(new MapboxStyleSwitcherControl({
+          defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
+          styles: [
+            { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
+            { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
+            { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
+            { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
+            { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
+            { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
+          ]
+        }), 'top-right');
+      } else {
+        console.warn('Map or Style Switcher is not ready.');
+      }
+
     } else {
       console.error('initMap function is not defined yet.');
     }

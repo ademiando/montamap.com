@@ -557,22 +557,12 @@ footer {
 
 
 /* BAGIAN TAB MAPS */
-
-
-
-.map-ui {
-  position: absolute;
-  top: 0; left: 0;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  pointer-events: none;
+#map {
+  position: relative;
+  width: 100%;
+  height: 100vh;
   margin-top: 20px;
   border-radius: 15px;
-}
-.map-ui button {
-  pointer-events: auto;
-  margin: 10px;
 }
 
 

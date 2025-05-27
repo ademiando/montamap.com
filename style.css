@@ -594,7 +594,7 @@ footer {
 
 /* TOMBOL CUSTOM: Reset dan Download */
 #map button {
-  border-radius: 12px !important;
+  border-radius: 8px !important;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: background 0.2s ease;
 }

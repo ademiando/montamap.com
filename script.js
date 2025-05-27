@@ -47,7 +47,7 @@ function initMap() {
   resetBtn.textContent = 'Reset View';
   Object.assign(resetBtn.style, {
     position: 'absolute', top: '10px', left: '10px', zIndex: 9999,
-    padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
+    padding: '6px 12px', background: '#fff', border: '1px solid #ccc', border-radius: '10px', cursor: 'pointer'
   });
   resetBtn.onclick = () => {
     map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
@@ -59,7 +59,7 @@ function initMap() {
   downloadBtn.textContent = 'Download Map';
   Object.assign(downloadBtn.style, {
     position: 'absolute', top: '50px', left: '10px', zIndex: 9999,
-    padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
+    padding: '6px 12px', background: '#fff', border: '1px solid #ccc', border-radius: '10px', cursor: 'pointer'
   });
   downloadBtn.onclick = () => {
     map.getCanvas().toBlob(blob => {

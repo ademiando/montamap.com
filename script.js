@@ -29,6 +29,16 @@ function initMap() {
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
 
   // STYLE SWITCHER (Ensure mapbox-gl-style-switcher is loaded in HTML)
+
+
+
+
+  if (typeof MapboxStyleSwitcherControl === 'undefined') {
+  console.warn('MapboxStyleSwitcherControl is not loaded.');
+} else {
+
+
+
   map.addControl(new MapboxStyleSwitcherControl({
     defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
     styles: [
@@ -40,6 +50,15 @@ function initMap() {
       { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
     ]
   }), 'top-right');
+
+
+
+
+}
+
+
+
+
 
   // RESET VIEW BUTTON
   const resetBtn = document.createElement('button');

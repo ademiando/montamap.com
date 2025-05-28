@@ -228,21 +228,49 @@ html.dark body {
 
 /* Tagline Section Styling */
 .tagline-section {
-  text-align: center; /* Pusatkan teks */
-  margin: 20px 0; /* Jarak atas dan bawah */
+  text-align: center;
+  margin: 20px 0;
   padding: 10px;
+  overflow: hidden;
 }
 
+/* Base state sebelum animasi */
+.tagline, .sub-tagline {
+  opacity: 0;
+  transform: translateY(20px);
+  animation-fill-mode: forwards;
+}
+
+/* Animasi */
 .tagline {
-  font-size: 27px; /* Ukuran font besar untuk tagline */
-  font-weight: bold; /* Tebalkan tulisan */
-  margin-bottom: 10px; /* Jarak antara tagline dan sub-tagline */
+  font-size: 27px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  animation: fadeSlideUp 0.8s ease-out 0.2s forwards;
 }
 
 .sub-tagline {
-  font-size: 14px; /* Ukuran font lebih kecil untuk sub-tagline */
-  line-height: 1.5; /* Spasi antar baris yang nyaman */
+  font-size: 14px;
+  line-height: 1.5;
+  animation: fadeSlideUp 0.8s ease-out 0.6s forwards;
 }
+
+/* Keyframes */
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
 
 /* Container untuk Tab Horizontal */
 .horizontal-tab-container {

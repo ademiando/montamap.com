@@ -272,7 +272,7 @@ html.dark body {
 
 
 
-/* Gaya untuk Tab */
+/* Gaya untuk Semua Tab */
 .tab {
   display: inline-block;
   background-color: rgba(230, 230, 230, 0.9);
@@ -280,7 +280,7 @@ html.dark body {
   font-size: 16px;
   cursor: pointer;
   border: 1px solid transparent;
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px; /* Tab biasa bulat semua */
   margin: 0 6px;
   transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -294,25 +294,26 @@ html.dark body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Tab Aktif */
+/* Tab Aktif - Menyatu dengan Konten */
 .tab.active {
   background-color: #f5f5f5;
   color: #222;
   font-weight: bold;
   border: 1px solid #ccc;
   border-bottom: none;
-  border-radius: 16px 16px 0 0;
-  margin-bottom: -1px;
+  border-radius: 16px 16px 0 0; /* Tidak ada lengkung bawah */
+  margin-bottom: -1px; /* Menyatu dengan konten */
   z-index: 3;
-  box-shadow: 
-    0 -2px 8px rgba(0, 0, 0, 0.05), /* floating effect */
-    0 4px 12px rgba(0, 0, 0, 0.05); /* glow connect ke konten */
+  box-shadow:
+    0 -2px 8px rgba(0, 0, 0, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* DARK MODE */
 html.dark .tab {
   background-color: rgba(60, 60, 60, 0.85);
   color: #ccc;
+  border-radius: 16px;
   border: 1px solid transparent;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
@@ -328,10 +329,10 @@ html.dark .tab.active {
   font-weight: bold;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: none;
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px 16px 0 0; /* Hanya atas */
   margin-bottom: -1px;
   z-index: 3;
-  box-shadow: 
+  box-shadow:
     0 -2px 10px rgba(255, 255, 255, 0.05),
     0 4px 16px rgba(0, 0, 0, 0.6);
 }

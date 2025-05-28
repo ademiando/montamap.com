@@ -118,7 +118,7 @@ header {
   right: 0;
   top: 48px;
   width: 260px;
-  background: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);

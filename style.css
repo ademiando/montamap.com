@@ -567,10 +567,10 @@ footer {
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
+
 .mapboxgl-ctrl-top-right {
-  top: 100px !important;     /* Geser turun supaya gak ketutup header/tab */
-  right: 5px !important;    /* Jarak dari kanan */
-  z-index: 99999 !important; /* Pastikan muncul paling atas */
+  top: 80px !important;
+  z-index: 9999 !important;
 }
 
 .mapboxgl-ctrl-group > button {
@@ -582,7 +582,7 @@ footer {
 }
 
 .mapboxgl-ctrl-group > button {
-  border-radius: 6px; /* Sudut tidak runcing */
+  border-radius: 6px;
 }
 
 /* TOMBOL CUSTOM: Reset dan Download */
@@ -596,7 +596,7 @@ footer {
   background: #f0f0f0;
 }
 
-/* Tambahan styling tombol style switcher (biar gak kaku) */
+/* Tambahan styling tombol style switcher */
 .mapboxgl-style-switcher {
   border-radius: 8px !important;
   overflow: hidden;

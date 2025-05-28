@@ -272,95 +272,63 @@ html.dark body {
 
 
 
-/* Container Tab Horizontal (dipertahankan!) */
-.horizontal-tab-container {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  justify-content: flex-start;
-  padding: 0 10px;
-  background-color: transparent;
-  border-bottom: 1px solid #ccc;
-  position: relative;
-  z-index: 1;
-}
-
-/* Tab umum */
+/* Gaya untuk Tab */
 .tab {
   display: inline-block;
   background-color: #e0e0e0;
   padding: 10px 20px;
-  font-size: 15px;
+  border: none;
+  font-size: 16px;
   cursor: pointer;
-  margin: 0 6px;
-  border-radius: 12px;
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
+  border-radius: 12px 12px 0 0; /* Hanya sudut atas melengkung */
+  margin: 0 10px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow ringan */
   position: relative;
-  top: 1px;
-  color: #333;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
 }
 
-/* Tab hover */
 .tab:hover {
-  background-color: #d0d0d0;
+  background-color: #ccc;
 }
 
-/* Tab Aktif - Chrome style */
+/* Tab Aktif - Gaya seperti tab Chrome */
 .tab.active {
-  background-color: #f5f5f5;
-  color: #222;
+  background-color: #f9f9f9;
   font-weight: bold;
+  color: #89ae95;
+  border-radius: 12px 12px 0 0;
   border: 1px solid #ccc;
-  border-bottom: none;
-  border-radius: 16px 16px 0 0;
-  margin-bottom: -1px;
-  z-index: 5;
-  box-shadow:
-    0 -2px 6px rgba(0, 0, 0, 0.04),
-    0 2px 12px rgba(0, 0, 0, 0.08);
+  border-bottom: none; /* Hilangkan border bawah agar seolah menyatu dengan konten */
+  z-index: 2;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Shadow dari atas agar kesan menyatu */
 }
 
-/* Konten tab tetap tampil di bawah */
-.tab-content {
-  display: none;
-  padding: 16px;
-  background: #f9f9f9;
-  border-top: 1px solid #ccc;
-  border-radius: 0 0 8px 8px;
+/* Untuk Light Mode */
+.light-theme .tab {
+  background-color: #e0e0e0;
+  color: #333;
 }
 
-/* Tampilkan konten aktif */
-.tab-content.active {
-  display: block;
+.light-theme .tab.active {
+  background-color: #ffffff;
+  color: #333;
+  border-color: #ccc;
 }
 
-/* DARK MODE */
+/* Untuk Dark Mode */
 .dark-theme .tab {
-  background-color: #3a3a3a;
-  color: #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-.dark-theme .tab:hover {
-  background-color: #555;
-}
-.dark-theme .tab.active {
-  background-color: #2a2a2a;
-  color: #fff;
-  border: 1px solid #555;
-  border-bottom: none;
-  border-radius: 16px 16px 0 0;
-  box-shadow:
-    0 -2px 6px rgba(255, 255, 255, 0.05),
-    0 2px 12px rgba(0, 0, 0, 0.4);
-}
-.dark-theme .tab-content {
-  background-color: #1e1e1e;
-  border-top: 1px solid #555;
-  color: #eee;
+  background-color: #2e2e2e;
+  color: #aaa;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
 }
 
+.dark-theme .tab.active {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border-color: #444;
+  box-shadow: 0 -2px 6px rgba(255, 255, 255, 0.1);
+}
 
 
 

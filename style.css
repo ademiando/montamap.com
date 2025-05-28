@@ -272,23 +272,23 @@ html.dark body {
 
 
 
-/* Container Tab */
+/* ==================== TAB CONTAINER ==================== */
 .horizontal-tab-container {
   display: flex;
-  overflow-x: auto;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: 8px;
+  padding: 12px 16px 0;
   background: transparent;
-  position: relative;
-  z-index: 10;
   border-bottom: none;
+  position: relative;
+  z-index: 2;
+  overflow-x: auto;
 }
 
-/* Tab Umum - Semua Bulat */
+/* ==================== TAB ==================== */
 .tab {
-  background-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 20px;
   padding: 10px 20px;
   font-size: 15px;
@@ -297,11 +297,13 @@ html.dark body {
   color: #444;
   position: relative;
   z-index: 1;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* ringan untuk tab idle */
 }
 
 /* Hover */
 .tab:hover {
   background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* shadow saat hover */
 }
 
 /* Tab Aktif */
@@ -311,38 +313,40 @@ html.dark body {
   color: #222;
   z-index: 3;
   border-radius: 20px 20px 0 0;
-  margin-bottom: -1px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: -5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-bottom: none;
+  box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.08); /* shadow ke atas, biar nempel */
 }
 
-/* Konten Tab - Menyatu Sempurna dengan Tab Aktif */
+/* ==================== TAB CONTENT ==================== */
 .tab-content {
   display: none;
   background-color: #f5f5f5;
   padding: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0 0 20px 20px;
+  margin-top: -5px;
   position: relative;
   z-index: 2;
-  margin-top: -1px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* soft shadow bawah */
 }
 
-/* Konten Aktif */
 .tab-content.active {
   display: block;
 }
 
-/* ===================== DARK MODE ===================== */
-
+/* ==================== DARK MODE ==================== */
 html.dark .tab {
   background-color: rgba(50, 50, 50, 0.6);
   color: #ccc;
   border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
 
 html.dark .tab:hover {
   background-color: rgba(80, 80, 80, 0.7);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
 }
 
 html.dark .tab.active {
@@ -350,20 +354,21 @@ html.dark .tab.active {
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: none;
-  border-radius: 20px 20px 0 0;
+  margin-bottom: -5px;
+  box-shadow: 0 -1px 8px rgba(255, 255, 255, 0.03); /* ringan tapi elegan */
 }
 
 html.dark .tab-content {
   background-color: #2a2a2a;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 0 0 20px 20px;
-  margin-top: -1px;
+  margin-top: -5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* lebih dalam untuk dark */
 }
 
-/* Optional: Hilangkan scrollbar horizontal */
-.horizontal-tab-container::-webkit-scrollbar {
-  display: none;
-}
+
+
+
 
 
 

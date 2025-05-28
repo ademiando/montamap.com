@@ -272,98 +272,68 @@ html.dark body {
 
 
 
-/* ==================== TAB CONTAINER ==================== */
-.horizontal-tab-container {
-  display: flex;
-  gap: 8px;
-  padding: 12px 16px 0;
-  background: transparent;
-  border-bottom: none;
-  position: relative;
-  z-index: 2;
-  overflow-x: auto;
-}
-
-/* ==================== TAB ==================== */
+/* Gaya untuk Tab */
 .tab {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-size: 15px;
+  display: inline-block;
+  background-color: rgba(230, 230, 230, 0.9);
+  padding: 10px 24px;
+  font-size: 16px;
   cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 16px 16px 0 0;
+  margin: 0 6px;
   transition: all 0.3s ease;
-  color: #444;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #333;
   position: relative;
   z-index: 1;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* ringan untuk tab idle */
 }
 
-/* Hover */
 .tab:hover {
-  background-color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* shadow saat hover */
+  background-color: rgba(210, 210, 210, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Tab Aktif */
 .tab.active {
   background-color: #f5f5f5;
-  font-weight: bold;
   color: #222;
-  z-index: 3;
-  border-radius: 20px 20px 0 0;
-  margin-bottom: -5px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+  border: 1px solid #ccc;
   border-bottom: none;
-  box-shadow: 0 -1px 8px rgba(0, 0, 0, 0.08); /* shadow ke atas, biar nempel */
+  border-radius: 16px 16px 0 0;
+  margin-bottom: -1px;
+  z-index: 3;
+  box-shadow: 
+    0 -2px 8px rgba(0, 0, 0, 0.05), /* floating effect */
+    0 4px 12px rgba(0, 0, 0, 0.05); /* glow connect ke konten */
 }
 
-/* ==================== TAB CONTENT ==================== */
-.tab-content {
-  display: none;
-  background-color: #f5f5f5;
-  padding: 24px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0 0 20px 20px;
-  margin-top: -5px;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* soft shadow bawah */
-}
-
-.tab-content.active {
-  display: block;
-}
-
-/* ==================== DARK MODE ==================== */
+/* DARK MODE */
 html.dark .tab {
-  background-color: rgba(50, 50, 50, 0.6);
+  background-color: rgba(60, 60, 60, 0.85);
   color: #ccc;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  border: 1px solid transparent;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 html.dark .tab:hover {
-  background-color: rgba(80, 80, 80, 0.7);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  background-color: rgba(80, 80, 80, 0.9);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 html.dark .tab.active {
-  background-color: #2a2a2a;
+  background-color: #2b2b2b;
   color: #fff;
+  font-weight: bold;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: none;
-  margin-bottom: -5px;
-  box-shadow: 0 -1px 8px rgba(255, 255, 255, 0.03); /* ringan tapi elegan */
-}
-
-html.dark .tab-content {
-  background-color: #2a2a2a;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0 0 20px 20px;
-  margin-top: -5px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* lebih dalam untuk dark */
+  border-radius: 16px 16px 0 0;
+  margin-bottom: -1px;
+  z-index: 3;
+  box-shadow: 
+    0 -2px 10px rgba(255, 255, 255, 0.05),
+    0 4px 16px rgba(0, 0, 0, 0.6);
 }
 
 

@@ -280,7 +280,7 @@ html.dark body {
   display: flex;
   overflow-x: auto; /* Aktifkan scroll horizontal */
   white-space: nowrap; /* Hindari tab berpindah ke baris baru */
-  border-top: 1px solid #ccc; /* Tambahkan garis atas untuk estetika */
+  border-top: 1px solid #ccc; /* Tambahkan garis bawah untuk estetika */
   justify-content: space-around; /* Tab tersebar merata */
   background-color: none;
   padding: 10px;
@@ -292,30 +292,17 @@ html.dark body {
   display: inline-block; /* Pastikan tab tetap sejajar horizontal */
   background-color: #e0e0e0;
   padding: 10px 20px;
-  border: 1px solid transparent;
+  border: none;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 10px 10px 0 0; /* Hanya bagian atas yang melengkung */
+  border-radius: 10px; /* Sudut melengkung dengan radius 10px */
   margin: 0 10px;
   transition: background-color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Efek mengambang */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek mengambang */
 }
 
 .tab:hover {
   background-color: #ccc;
-}
-
-.tab.active {
-  background-color: transparent;
-  font-weight: bold;
-  color: #89ae95;
-  border: 1px solid #ccc;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  position: relative;
-  top: 1px; /* Naik sedikit agar menyatu */
-  z-index: 2;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.08); /* Ilusi timbul */
 }
 
 html, body {
@@ -328,36 +315,23 @@ html, body {
   display: none; /* Sembunyikan semua tab secara default */
 }
 
-.tab-content.active {
-  display: block; /* Tampilkan hanya konten tab yang aktif */
+.tab.active {
+  background-color: transparent;
+  font-weight: bold;
+  color: #89ae95;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Tambah efek mengambang */
 }
 
-/* Light Theme - Tab Aktif */
 .light-theme .tab.active {
-  color: #333;
-}
-
-/* Dark Theme */
-.dark-theme .tab {
-  background-color: #555;
-  color: #eee;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-
-.dark-theme .tab:hover {
-  background-color: #666;
+  color: #000; /* teks hitam bold untuk light mode */
 }
 
 .dark-theme .tab.active {
-  background-color: transparent;
-  color: #e0e0e0;
-  border: 1px solid #666;
-  border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 -2px 10px rgba(255,255,255,0.08);
-  position: relative;
-  top: 1px;
-  z-index: 2;
+  color: #fff; /* teks putih bold untuk dark mode */
+}
+
+.tab-content.active {
+  display: block; /* Tampilkan hanya konten tab yang aktif */
 }
 
 

@@ -30,7 +30,7 @@ function initMap() {
 
   // RESET VIEW BUTTON
   const resetBtn = document.createElement('button');
-  resetBtn.textContent = 'Reset View';
+  resetBtn.textContent = '↻';
   Object.assign(resetBtn.style, {
     position: 'absolute', top: '10px', left: '10px', zIndex: 9999,
     padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
@@ -42,7 +42,7 @@ function initMap() {
 
   // DOWNLOAD MAP BUTTON
   const downloadBtn = document.createElement('button');
-  downloadBtn.textContent = 'Download Map';
+  downloadBtn.textContent = '⬇︎';
   Object.assign(downloadBtn.style, {
     position: 'absolute', top: '50px', left: '10px', zIndex: 9999,
     padding: '6px 12px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'

@@ -210,6 +210,7 @@ html.dark body {
   background-color: #89ae95;
   color: #333;
   border-color: #4a90e2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Banner Ads Styling */

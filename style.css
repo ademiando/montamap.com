@@ -654,26 +654,30 @@ footer {
 .tab-content {
   max-width: 700px;
   margin: 2rem auto;
-  padding: 1.5rem;
+  padding: 1.5rem 1.25rem;
   font-family: sans-serif;
-  background: #fafafa;
+  font-size: 0.95rem;
+  background: #f9f9f9;
   border-radius: 8px;
   border: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
 .tab-content h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-bottom: 1rem;
+  color: #222;
 }
 
 .tab-content p,
 .tab-content li {
   margin-bottom: 0.75rem;
   line-height: 1.5;
+  color: #333;
 }
 
 .tab-content ul {
-  padding-left: 1.2rem;
+  padding-left: 1.25rem;
 }
 
 .tab-content form {
@@ -683,7 +687,7 @@ footer {
 .tab-content input[type="email"] {
   padding: 0.5rem;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
   margin-bottom: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -696,12 +700,12 @@ footer {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 0.95rem;
 }
 
 .footer-note {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #666;
   margin-top: 1rem;
+  text-align: center;
 }
-
-

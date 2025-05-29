@@ -577,7 +577,7 @@ footer {
 
 /* TOMBOL MAPBOX (zoom, fullscreen, geolocate) */
 .mapboxgl-ctrl.mapboxgl-ctrl-group {
-  z-index: 9999;
+  z-index: 99;
   border-radius: 6px; /* Sudut lembut */
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -585,7 +585,7 @@ footer {
 
 
 .mapboxgl-ctrl-top-right {
-  top: 80px !important;
+  top: 60px !important;
   z-index: 9999 !important;
 }
 
@@ -603,8 +603,8 @@ footer {
 
 /* TOMBOL CUSTOM: Reset dan Download */
 #map button {
-  border-radius: 8px !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 6px !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
   transition: background 0.2s ease;
 }
 

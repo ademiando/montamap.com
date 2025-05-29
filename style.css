@@ -26,37 +26,23 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Optional, biar keliatan "nempel" */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 
 /* Gaya untuk logo */
 .left-logo {
-  width: 55px; /* Atur ukuran logo */
-  height: auto; /* Jaga proporsi logo */
-  margin-right: 10px; /* Jarak antara logo dan teks */
-  vertical-align: middle; /* Sejajarkan logo dengan teks */
-  animation: slideIn 1s ease-out forwards;
-  opacity: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  width: 55px;
+  height: auto;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 .logo {
   display: flex;
-  align-items: center; /* Sejajarkan logo dan teks secara vertikal */
+  align-items: center;
   text-decoration: none;
-  color: #e3ddcd; /* Warna teks */
+  color: #e3ddcd;
   font-size: 24px;
   font-weight: bold;
 }
@@ -66,7 +52,7 @@ header {
   font-size: 26px;
   font-weight: bold;
   color: #e3ddcd; /* Putih gelap */
-  text-shadow: 2px 2px 4px #000; /* Bayangan teks */
+  text-shadow: 2px 2px 4px #000;
   cursor: pointer;
 }
 
@@ -365,7 +351,7 @@ html, body {
     scrollbar-width: none;              /* Sembunyikan scrollbar (Firefox) */
     gap: 8px;
     padding: 8px;
-    margin-left: 0;
+    margin-left: 10px;
 }
 
 .sort-options-container::-webkit-scrollbar {
@@ -401,12 +387,6 @@ html, body {
   max-width: 700px;
 }
 
-
-
-
-
-
-
 .mountain-card {
   position: relative;
   border-radius: 16px;
@@ -416,13 +396,6 @@ html, body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 200px;
 }
-
-
-
-
-
-
-
 
 .mountain-card:hover {
   transform: scale(1.02);

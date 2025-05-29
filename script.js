@@ -86,7 +86,7 @@ map.addLayer({
   type: 'circle',
   source: 'mountains',
   paint: {
-    'circle-radius': 2,
+    'circle-radius': 3,
     'circle-color': '#333',
     'circle-stroke-color': '#fff',
     'circle-stroke-width': 1.5

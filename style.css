@@ -594,7 +594,7 @@ footer {
 }
 
 .mapboxgl-ctrl-group > button:not(:last-child) {
-  border-bottom: 1px solid #ddd; /* Opsional, biar rapi */
+  border-bottom: none; /* 1px solid #ddd; Opsional, biar rapi */
 }
 
 .mapboxgl-ctrl-group > button {

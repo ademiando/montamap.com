@@ -25,7 +25,7 @@ header {
   color: #e3ddcd;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 1000 !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
@@ -111,7 +111,7 @@ header {
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
-  z-index: 99999;
+  z-index: 9999 !important;
   right: 10px;
   opacity: 0;
   transform: translateX(30px);
@@ -585,7 +585,7 @@ footer {
 
 .mapboxgl-ctrl-top-right {
   top: 60px !important;
-  z-index: 9999 !important;
+  z-index: 99 !important;
 }
 
 .mapboxgl-ctrl-group > button {
@@ -616,7 +616,7 @@ footer {
   border-radius: 8px !important;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  z-index: 99999 !important;
+  z-index: 99 !important;
 }
 
 

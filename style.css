@@ -262,6 +262,7 @@ html.dark body {
   background-color: none;
   padding: 10px;
   margin-left: 0px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Gaya untuk Tab */
@@ -275,7 +276,7 @@ html.dark body {
   border-radius: 10px; /* Sudut melengkung dengan radius 10px */
   margin: 0 10px;
   transition: background-color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek mengambang */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Efek mengambang */
 }
 
 .tab:hover {
@@ -364,10 +365,12 @@ html, body {
     height: 25px;
     font-size: 10px;
     padding: 5px 8px;
-    border: 1px solid #ccc;
+    border: none;
+    background-color: eee;
     border-radius: 7px;
     cursor: pointer;
     flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .mountain-wrapper {

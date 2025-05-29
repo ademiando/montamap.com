@@ -38,6 +38,7 @@ header {
   vertical-align: middle; /* Sejajarkan logo dengan teks */
   animation: slideIn 1s ease-out forwards;
   opacity: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes slideIn {
@@ -123,7 +124,7 @@ header {
   -webkit-backdrop-filter: blur(6px);
   border-radius: 12px;
   padding: 16px;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
   z-index: 99999;
   right: 10px;
   opacity: 0;
@@ -150,6 +151,7 @@ header {
   cursor: pointer;
   font-size: 16px;
   transition: background 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .menu-button:hover {
@@ -210,7 +212,7 @@ html.dark body {
   background-color: #89ae95;
   color: #333;
   border-color: #4a90e2;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Banner Ads Styling */

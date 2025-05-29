@@ -295,7 +295,8 @@ html, body {
 .tab.active {
   background-color: transparent;
   font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Tambah efek mengambang */
+  color: #89ae95;
+  box-shadow: 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .light-theme .tab.active {

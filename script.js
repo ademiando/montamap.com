@@ -75,75 +75,53 @@ function initMap() {
 
 
 
-    // Load custom logo image
-map.loadImage('assets/logo-white.png', (error, image) => {
-  if (error) throw error;
+    // GeoJSON Mountains
+map.addSource('mountains', {
+  type: 'geojson',
+  data: 'data/mountains_indonesia.geojson'
+});
 
-  if (!map.hasImage('mountain-icon')) {
-    map.addImage('mountain-icon', image);
+map.addLayer({
+  id: 'mountain-points',
+  type: 'circle',
+  source: 'mountains',
+  paint: {
+    'circle-radius': 2,
+    'circle-color': '#333',
+    'circle-stroke-color': '#fff',
+    'circle-stroke-width': 1.5
   }
+});
 
-  // GeoJSON Source
-  map.addSource('mountains', {
-    type: 'geojson',
-    data: 'data/mountains_indonesia.geojson'
-  });
-
-  // Background Circle (layer 1)
-  map.addLayer({
-    id: 'mountain-circle-bg',
-    type: 'circle',
-    source: 'mountains',
-    paint: {
-      'circle-radius': 8,
-      'circle-color': '#333333',
-      'circle-stroke-color': '#ffffff',
-      'circle-stroke-width': 1.5
-    }
-  });
-
-  // Symbol Image (layer 2, di atas lingkaran)
-  map.addLayer({
-    id: 'mountain-points',
-    type: 'symbol',
-    source: 'mountains',
-    layout: {
-      'icon-image': 'mountain-icon',
-      'icon-size': 0.2, // Ubah sesuai ukuran logo
-      'icon-allow-overlap': true
-    }
-  });
-
-  // Fit Bounds
-  fetch('data/mountains_indonesia.geojson')
-    .then(res => res.json())
-    .then(data => {
-      const bounds = new mapboxgl.LngLatBounds();
-      data.features.forEach(f => {
-        if (f.geometry.type === 'Point') bounds.extend(f.geometry.coordinates);
-      });
-      map.fitBounds(bounds, { padding: 50, duration: 1000 });
+// Fit Bounds
+fetch('data/mountains_indonesia.geojson')
+  .then(res => res.json())
+  .then(data => {
+    const bounds = new mapboxgl.LngLatBounds();
+    data.features.forEach(f => {
+      if (f.geometry.type === 'Point') bounds.extend(f.geometry.coordinates);
     });
-
-  // Interaktif Popup
-  map.on('click', 'mountain-points', e => {
-    const props = e.features[0].properties;
-    const name = props.name || 'Unknown';
-    const slug = name.toLowerCase().replace(/\s+/g, '-');
-    const url = `https://montamap.com/${slug}`;
-
-    new mapboxgl.Popup()
-      .setLngLat(e.lngLat)
-      .setHTML(`<strong><a href="${url}" target="_blank" style="text-decoration:none;color:#95ae98;">${name}</a></strong>`)
-      .addTo(map);
+    map.fitBounds(bounds, { padding: 50, duration: 1000 });
   });
 
-  map.on('mouseenter', 'mountain-points', () => {
-    map.getCanvas().style.cursor = 'pointer';
-  });
-  map.on('mouseleave', 'mountain-points', () => {
-    map.getCanvas().style.cursor = '';
-  });
+// Interaktif Popup dengan Link ke Halaman Gunung
+map.on('click', 'mountain-points', e => {
+  const props = e.features[0].properties;
+  const name = props.name || 'Unknown';
+  const slug = name.toLowerCase().replace(/\s+/g, '-'); // Buat URL slug
+  const url = `https://montamap.com/${slug}`;
+
+  new mapboxgl.Popup()
+    .setLngLat(e.lngLat)
+    .setHTML(`<strong><a href="${url}" target="_blank" style="text-decoration:none;color:#95ae98;">${name}</a></strong>`)
+    .addTo(map);
+});
+
+map.on('mouseenter', 'mountain-points', () => {
+  map.getCanvas().style.cursor = 'pointer';
+});
+map.on('mouseleave', 'mountain-points', () => {
+  map.getCanvas().style.cursor = '';
 });
 
 

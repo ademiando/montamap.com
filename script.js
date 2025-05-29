@@ -69,48 +69,71 @@ function initMap() {
     });
     map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 
+
+
+
+
+
+
     // GeoJSON Mountains
-    map.addSource('mountains', {
-      type: 'geojson',
-      data: 'data/mountains_indonesia.geojson'
-    });
+map.addSource('mountains', {
+  type: 'geojson',
+  data: 'data/mountains_indonesia.geojson'
+});
 
-    map.addLayer({
-      id: 'mountain-points',
-      type: 'circle',
-      source: 'mountains',
-      paint: {
-        'circle-radius': 6,
-        'circle-color': '#e91e63'
-      }
-    });
+map.addLayer({
+  id: 'mountain-points',
+  type: 'circle',
+  source: 'mountains',
+  paint: {
+    'circle-radius': 4,
+    'circle-color': '#FFD700',
+    'circle-stroke-color': '#8B8000',
+    'circle-stroke-width': 1.5
+  }
+});
 
-    // Fit Bounds
-    fetch('data/mountains_indonesia.geojson')
-      .then(res => res.json())
-      .then(data => {
-        const bounds = new mapboxgl.LngLatBounds();
-        data.features.forEach(f => {
-          if (f.geometry.type === 'Point') bounds.extend(f.geometry.coordinates);
-        });
-        map.fitBounds(bounds, { padding: 50, duration: 1000 });
-      });
+// Fit Bounds
+fetch('data/mountains_indonesia.geojson')
+  .then(res => res.json())
+  .then(data => {
+    const bounds = new mapboxgl.LngLatBounds();
+    data.features.forEach(f => {
+      if (f.geometry.type === 'Point') bounds.extend(f.geometry.coordinates);
+    });
+    map.fitBounds(bounds, { padding: 50, duration: 1000 });
+  });
 
-    // Interaktif Popup
-    map.on('click', 'mountain-points', e => {
-      const props = e.features[0].properties;
-      new mapboxgl.Popup()
-        .setLngLat(e.lngLat)
-        .setHTML(`<strong>${props.name || 'Unknown'}</strong>`)
-        .addTo(map);
-    });
+// Interaktif Popup dengan Link ke Halaman Gunung
+map.on('click', 'mountain-points', e => {
+  const props = e.features[0].properties;
+  const name = props.name || 'Unknown';
+  const slug = name.toLowerCase().replace(/\s+/g, '-'); // Buat URL slug
+  const url = `https://montamap.com/${slug}`;
 
-    map.on('mouseenter', 'mountain-points', () => {
-      map.getCanvas().style.cursor = 'pointer';
-    });
-    map.on('mouseleave', 'mountain-points', () => {
-      map.getCanvas().style.cursor = '';
-    });
+  new mapboxgl.Popup()
+    .setLngLat(e.lngLat)
+    .setHTML(`<strong><a href="${url}" target="_blank" style="text-decoration:none;color:#FFD700;">${name}</a></strong>`)
+    .addTo(map);
+});
+
+map.on('mouseenter', 'mountain-points', () => {
+  map.getCanvas().style.cursor = 'pointer';
+});
+map.on('mouseleave', 'mountain-points', () => {
+  map.getCanvas().style.cursor = '';
+});
+
+
+
+
+
+
+
+
+
+
+
 
     // STYLE SWITCHER aman di dalam on('load')
     if (typeof MapboxStyleSwitcherControl !== 'undefined') {

@@ -417,10 +417,6 @@ function createMountainCard(m, w) {
 
 
 
-
-
-
-
 // Auto-init map if all scripts loaded
 window.addEventListener('load', () => {
   if (typeof MapboxStyleSwitcherControl === 'undefined' && window.mapboxglStyleSwitcher) {
@@ -429,3 +425,80 @@ window.addEventListener('load', () => {
   }
   initMap();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+//SUPABASE SUPABASE SUPABASE SUPABASE
+// === SUPABASE CONFIG ===
+const supabaseUrl = 'https://ademiando.supabase.co';
+const supabaseKey = '1011121314151617181920';
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+// === FETCH DAN FILTER MOUNTAINS ===
+async function fetchFilteredMountains() {
+  const type = document.getElementById("type-sort").value;
+  const country = document.getElementById("country-sort").value;
+  const destination = document.getElementById("destination-sort").value;
+  const difficulty = document.getElementById("difficulty-sort").value;
+  const season = document.getElementById("season-sort").value;
+
+  let query = supabase.from("mountains").select("*").eq("is_active", true);
+
+  if (type !== "type") query = query.eq("type", type);
+  if (country !== "global") query = query.eq("country", country);
+  if (destination !== "trending") query = query.eq("destination", destination);
+  if (difficulty !== "level") query = query.eq("difficulty", difficulty);
+  if (season !== "any") query = query.contains("season", [season]);
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error("Supabase error:", error.message);
+    document.getElementById("mountainContainer").innerHTML = "<p>Error loading data.</p>";
+    return;
+  }
+
+  renderMountains(data);
+}
+
+// === RENDER MOUNTAINS KE DOM ===
+function renderMountains(mountains) {
+  const container = document.getElementById("mountainContainer");
+  container.innerHTML = "";
+
+  if (!mountains || mountains.length === 0) {
+    container.innerHTML = "<p>No mountains found.</p>";
+    return;
+  }
+
+  mountains.forEach((m) => {
+    const div = document.createElement("div");
+    div.className = "mountain-card";
+    div.innerHTML = `
+      <img src="${m.image_url}" alt="${m.name}" class="mountain-img">
+      <h3>${m.name}</h3>
+      <p><strong>Country:</strong> ${m.country}</p>
+      <p><strong>Height:</strong> ${m.height} m</p>
+      <p><strong>Difficulty:</strong> ${m.difficulty}</p>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// === LISTENER DROPDOWN ===
+document.querySelectorAll(".sort-options-container select").forEach(select => {
+  select.addEventListener("change", fetchFilteredMountains);
+});
+
+// === LOAD DATA SAAT PAGE PERTAMA KALI MUNCUL ===
+window.addEventListener("DOMContentLoaded", fetchFilteredMountains);

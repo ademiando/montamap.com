@@ -377,3 +377,20 @@ function createMountainCard(m, w) {
 
 
 
+
+
+
+// Auto-init map if all scripts loaded
+window.addEventListener('load', () => {
+  if (typeof MapboxStyleSwitcherControl === 'undefined' && window.mapboxglStyleSwitcher) {
+    window.MapboxStyleSwitcherControl = window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl;
+    console.log('Style Switcher loaded globally');
+  }
+  initMap();
+});
+
+
+
+
+
+

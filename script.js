@@ -259,7 +259,7 @@ function getCurrentFilters() {
 // Weather fetch
 async function fetchWeather(lat, lon) {
   try {
-    const apiKey = 'YOUR_OPENWEATHER_KEY';
+    const apiKey = '3187c49861f858e524980ea8dd0d43c6';
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`);
     const data = await res.json();
     return data?.main?.temp ? `${Math.round(data.main.temp)}°C` : '-';

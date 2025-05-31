@@ -1,6 +1,6 @@
 // =================================================================
 // 1) MAPBOX INITIALIZATION
-//    (hanya dipanggil saat tab “Maps” dibuka)
+//    (hanya dipanggil saat tab "Maps" dibuka)
 // =================================================================
 let map;
 let mapInitialized = false;
@@ -20,22 +20,31 @@ function initMap() {
     antialias: true
   });
 
-  // Kontrol Map
+  // Kontrol map
   map.addControl(new mapboxgl.NavigationControl(), 'top-right');
   map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
-  map.addControl(new mapboxgl.GeolocateControl({
-    positionOptions: { enableHighAccuracy: true },
-    trackUserLocation: true,
-    showUserHeading: true
-  }), 'bottom-right');
+  map.addControl(
+    new mapboxgl.GeolocateControl({
+      positionOptions: { enableHighAccuracy: true },
+      trackUserLocation: true,
+      showUserHeading: true
+    }),
+    'bottom-right'
+  );
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
 
   // Tombol Reset View
   const resetBtn = document.createElement('button');
   resetBtn.textContent = '↻';
   Object.assign(resetBtn.style, {
-    position: 'absolute', top: '10px', left: '10px', zIndex: 9999,
-    padding: '5px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
+    position: 'absolute',
+    top: '10px',
+    left: '10px',
+    zIndex: 9999,
+    padding: '5px',
+    background: '#fff',
+    border: '1px solid #ccc',
+    cursor: 'pointer'
   });
   resetBtn.onclick = () => {
     map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
@@ -46,8 +55,14 @@ function initMap() {
   const downloadBtn = document.createElement('button');
   downloadBtn.textContent = '⬇︎';
   Object.assign(downloadBtn.style, {
-    position: 'absolute', top: '50px', left: '10px', zIndex: 9999,
-    padding: '5px', background: '#fff', border: '1px solid #ccc', cursor: 'pointer'
+    position: 'absolute',
+    top: '50px',
+    left: '10px',
+    zIndex: 9999,
+    padding: '5px',
+    background: '#fff',
+    border: '1px solid #ccc',
+    cursor: 'pointer'
   });
   downloadBtn.onclick = () => {
     map.getCanvas().toBlob(blob => {
@@ -60,9 +75,9 @@ function initMap() {
   };
   document.getElementById('map').appendChild(downloadBtn);
 
-  // Saat Map Selesai Load, tambahkan Data GeoJSON Gunung
+  // Saat map selesai load, tambahkan data GeoJSON gunung
   map.on('load', () => {
-    // 1) Terrain
+    // 1) Terrain DEM
     map.addSource('mapbox-dem', {
       type: 'raster-dem',
       url: 'mapbox://mapbox.terrain-rgb',
@@ -71,13 +86,13 @@ function initMap() {
     });
     map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 
-    // 2) Sumber GeoJSON Gunung
+    // 2) Sumber GeoJSON gunung
     map.addSource('mountains', {
       type: 'geojson',
       data: 'data/mountains_indonesia.geojson'
     });
 
-    // 3) Layer Point
+    // 3) Layer circle untuk titik gunung
     map.addLayer({
       id: 'mountain-points',
       type: 'circle',
@@ -90,12 +105,12 @@ function initMap() {
       }
     });
 
-    // 4) Fit Bounds ke Semua Titik
+    // 4) Fit bounds sesuai seluruh titik di GeoJSON
     fetch('data/mountains_indonesia.geojson')
       .then(res => res.json())
-      .then(geojson => {
+      .then(geojsonData => {
         const bounds = new mapboxgl.LngLatBounds();
-        geojson.features.forEach(f => {
+        geojsonData.features.forEach(f => {
           if (f.geometry.type === 'Point') {
             bounds.extend(f.geometry.coordinates);
           }
@@ -103,7 +118,7 @@ function initMap() {
         map.fitBounds(bounds, { padding: 50, duration: 1000 });
       });
 
-    // 5) Popup Interaktif
+    // 5) Popup interaktif dengan link ke detail gunung
     map.on('click', 'mountain-points', e => {
       const props = e.features[0].properties;
       const name = props.name || 'Unknown';
@@ -127,10 +142,10 @@ function initMap() {
 
 
 // =================================================================
-// 2) TAB NAVIGATION, MENU, LOGIN DROPDOWN, THEME SWITCH
+// 2) TAB NAVIGATION, MENU & LOGIN DROPDOWN, THEME SWITCH
 // =================================================================
 
-// Grab elemen yang diperlukan
+// Ambil elemen-elemen yang dibutuhkan:
 const menuToggle        = document.getElementById('hamburger');
 const dropdownMenu      = document.getElementById('menu');
 const loginButton       = document.getElementById('loginButton');
@@ -143,28 +158,23 @@ const favoriteContainer = document.getElementById('favorite-container');
 
 // 2.1) MENU TOGGLE
 if (menuToggle && dropdownMenu) {
-  menuToggle.addEventListener('click', () =>
-    dropdownMenu.classList.toggle('menu-visible')
-  );
+  menuToggle.addEventListener('click', () => dropdownMenu.classList.toggle('menu-visible'));
   document.addEventListener('click', e => {
-    if (
-      !menuToggle.contains(e.target) &&
-      !dropdownMenu.contains(e.target)
-    ) dropdownMenu.classList.remove('menu-visible');
+    if (!menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+      dropdownMenu.classList.remove('menu-visible');
+    }
   });
 }
 
 // 2.2) LOGIN DROPDOWN
 if (loginButton && loginDropdown) {
   loginButton.addEventListener('click', () => {
-    loginDropdown.style.display =
-      loginDropdown.style.display === 'block' ? 'none' : 'block';
+    loginDropdown.style.display = loginDropdown.style.display === 'block' ? 'none' : 'block';
   });
   document.addEventListener('click', e => {
-    if (
-      !loginButton.contains(e.target) &&
-      !loginDropdown.contains(e.target)
-    ) loginDropdown.style.display = 'none';
+    if (!loginButton.contains(e.target) && !loginDropdown.contains(e.target)) {
+      loginDropdown.style.display = 'none';
+    }
   });
 }
 
@@ -172,36 +182,32 @@ if (loginButton && loginDropdown) {
 if (languageSelect && currencySelect) {
   languageSelect.value = localStorage.getItem('language') || 'en';
   currencySelect.value = localStorage.getItem('currency') || 'usd';
-  languageSelect.addEventListener('change', () =>
-    localStorage.setItem('language', languageSelect.value)
-  );
-  currencySelect.addEventListener('change', () =>
-    localStorage.setItem('currency', currencySelect.value)
-  );
+  languageSelect.addEventListener('change', () => localStorage.setItem('language', languageSelect.value));
+  currencySelect.addEventListener('change', () => localStorage.setItem('currency', currencySelect.value));
 }
 
 // 2.4) THEME SWITCH
 function setTheme(mode) {
   document.documentElement.classList.toggle('dark', mode === 'dark');
   localStorage.setItem('theme', mode);
-  lightBtn.classList.toggle('active', mode === 'light');
-  darkBtn.classList.toggle('active', mode === 'dark');
+  lightBtn?.classList.toggle('active', mode === 'light');
+  darkBtn?.classList.toggle('active', mode === 'dark');
 }
-lightBtn.addEventListener('click', () => setTheme('light'));
-darkBtn.addEventListener('click', () => setTheme('dark'));
+lightBtn?.addEventListener('click', () => setTheme('light'));
+darkBtn?.addEventListener('click', () => setTheme('dark'));
 
 // 2.5) TAB NAVIGATION
 function openTab(event, tabName) {
   // Sembunyikan semua tab-content
   document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
-  // Hapus class active dari semua tab
+  // Hapus class active pada semua tab button
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
 
-  // Tampilkan tab yang ditekan
+  // Tampilkan tab-content sesuai tabName
   const pane = document.getElementById(tabName);
   if (pane) pane.style.display = 'block';
 
-  // Tambahkan class active ke tombol tab
+  // Tambahkan class active pada tombol yang sedang dipilih
   let btn;
   if (event && event.currentTarget) {
     btn = event.currentTarget;
@@ -211,7 +217,7 @@ function openTab(event, tabName) {
   }
   if (btn) btn.classList.add('active');
 
-  // Perilaku khusus:
+  // Perilaku khusus tiap tab
   if (tabName === 'Favorite') renderFavorites();
   if (tabName === 'Maps') {
     setTimeout(() => {
@@ -221,13 +227,15 @@ function openTab(event, tabName) {
   }
 }
 
-// Saat DOM siap
+// Saat DOM sudah siap, jalankan inisialisasi
 document.addEventListener('DOMContentLoaded', () => {
-  // Terapkan tema terakhir
+  // Terapkan tema terakhir (light/dark)
   setTheme(localStorage.getItem('theme') || 'light');
-  // Inisialisasi mountain (tab “Mountain”) + favorites
+
+  // Inisialisasi tab Mountain + event favorites
   initMountainRendering();
-  // Tampilkan tab “Mountain” secara default
+
+  // Tampilkan tab Mountain secara default
   openTab(null, 'Mountain');
 });
 
@@ -236,17 +244,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // 3) MOUNTAIN & FAVORITES SECTION (Supabase + Filter + Search + Paging)
 // =================================================================
 
-// Supabase sudah diinisialisasi di atas (window.supabase)
+// Supabase sudah tersedia via window.supabase (UMD)  
+const supabaseUrl = 'https://bntqvdqkaikkhlmfxovj.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJudHF2ZHFrYWlra2hsbWZ4b3ZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg2MjU1NTIsImV4cCI6MjA2NDIwMTU1Mn0.jG_Mt1-3861ItE2WzpYKKg7So_WKI506c8F9RTPIl44';
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-// Elemen yang diperlukan
+// Elemen-elemen yang dibutuhkan
 const mountainContainer = document.getElementById("mountainContainer");
 const loadMoreBtn       = document.getElementById("loadMoreBtn");
+const searchInput       = document.getElementById("searchInput");
 
 // Pagination & batch size
 let loaded = 0;
 const batch = 12;
 
-// Ambil nilai dropdown filter
+// Ambil nilai dari dropdown filter
 function getCurrentFilters() {
   return {
     type:        document.getElementById("type-sort")?.value || '',
@@ -273,9 +285,11 @@ async function fetchWeather(lat, lon) {
 function createMountainCard(m, weather) {
   const card = document.createElement("div");
   card.className = "mountain-card";
+
   card.addEventListener('click', () => {
     window.location.href = `https://montamap.com/${m.link}`;
   });
+
   card.innerHTML = `
     <img src="${m.image_url}" alt="${m.name}" class="mountain-image"/>
     <div class="favorite-icon" title="${isFavorite(m.id) ? 'Unfavorite' : 'Favorite'}">
@@ -293,7 +307,7 @@ function createMountainCard(m, weather) {
     </div>
   `;
 
-  // Toggle favorite
+  // Toggle favorite icon
   const favEl = card.querySelector('.favorite-icon');
   favEl.addEventListener('click', e => {
     e.stopPropagation();
@@ -304,13 +318,13 @@ function createMountainCard(m, weather) {
       favs.push(m.id);
     }
     saveFavorites(favs);
-    renderFavorites();
+    renderFavorites(); // update tab Favorite
   });
 
   return card;
 }
 
-// Render daftar gunung (filter + search + paging)
+// Render daftar gunung dengan filter, search, pagination
 async function renderMountains() {
   if (loaded === 0) {
     mountainContainer.innerHTML = "";
@@ -318,7 +332,7 @@ async function renderMountains() {
   }
 
   const filters = getCurrentFilters();
-  const searchQuery = document.getElementById('searchInput')?.value.trim().toLowerCase() || '';
+  const searchQuery = searchInput?.value.trim().toLowerCase() || '';
 
   let query = supabase.from('mountains').select('*').eq('is_active', true);
 
@@ -349,16 +363,18 @@ async function renderMountains() {
   }
 }
 
-// Inisialisasi Mountain tab (filter/event/search/paging)
+// Inisialisasi Mountain tab (filter, search, paging)
 function initMountainRendering() {
   renderMountains();
 
+  // Tombol Load More
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => {
       renderMountains();
     });
   }
 
+  // Event change untuk setiap dropdown filter
   document.querySelectorAll(".sort-options-container select").forEach(select => {
     select.addEventListener("change", () => {
       loaded = 0;
@@ -366,7 +382,8 @@ function initMountainRendering() {
     });
   });
 
-  document.getElementById("searchInput")?.addEventListener("input", () => {
+  // Event search input (real-time)
+  searchInput?.addEventListener("input", () => {
     loaded = 0;
     renderMountains();
   });
@@ -393,7 +410,7 @@ async function renderFavorites() {
     return;
   }
 
-  // Ambil data favorit dari Supabase berdasarkan id
+  // Ambil data favorit dari Supabase berdasar ID
   const { data, error } = await supabase.from('mountains').select('*').in('id', favs);
   if (error) {
     console.error("Supabase error:", error.message);

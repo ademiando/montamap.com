@@ -123,7 +123,7 @@ function initMap() {
       const props = e.features[0].properties;
       const name = props.name || 'Unknown';
       const slug = name.toLowerCase().replace(/\s+/g, '-');
-      const url = `https://montamap.com/${slug}`;
+      const url = `https://montamap.com/mount/${slug}`;
 
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
@@ -275,19 +275,23 @@ async function fetchWeather(lat, lon) {
     const apiKey = '3187c49861f858e524980ea8dd0d43c6';
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`);
     const d = await res.json();
-    return d?.main?.temp ? `${Math.round(d.main.temp)}°C` : '-';
+    return {
+      temperature: d?.main?.temp ? `${Math.round(d.main.temp)}°C` : '-',
+      weather:     d?.weather?.[0]?.main || 'N/A',
+      icon:        d?.weather?.[0]?.icon || ''
+    };
   } catch {
-    return '-';
+    return { temperature: '-', weather: 'N/A', icon: '' };
   }
 }
 
-// Buat elemen mountain card
-function createMountainCard(m, weather) {
+// Buat elemen mountain card sesuai permintaan
+function createMountainCard(m, w) {
   const card = document.createElement("div");
   card.className = "mountain-card";
 
   card.addEventListener('click', () => {
-    window.location.href = `https://montamap.com/${m.link}`;
+    window.location.href = `https://montamap.com/mount/${m.link}`;
   });
 
   card.innerHTML = `
@@ -299,10 +303,13 @@ function createMountainCard(m, weather) {
     <div class="mountain-info">
       <div class="mountain-name">${m.name}</div>
       <div class="mountain-details">
-        ${m.country} • ${m.elevation}m<br/>
-        <strong>Temp:</strong> ${weather}<br/>
-        <strong>Type:</strong> ${m.type}<br/>
-        <strong>Season:</strong> ${m.season.join(', ')}
+        ${m.city || ''}<br/>
+        <span class="${m.status === 'Open' ? 'status-open' : 'status-closed'}">
+          Status: ${m.status}
+        </span><br/>
+        Elevation: ${m.elevation}m<br/>
+        <img src="https://openweathermap.org/img/wn/${w.icon}.png"
+          alt="${w.weather}" class="weather-icon"/> ${w.temperature} | ${w.weather}
       </div>
     </div>
   `;
@@ -364,7 +371,7 @@ async function renderMountains() {
 }
 
 // Inisialisasi Mountain tab (filter, search, paging)
-function initMountainRendering() {
+function initMountainRendering() {  
   renderMountains();
 
   // Tombol Load More
@@ -403,6 +410,7 @@ function isFavorite(id) {
 }
 
 async function renderFavorites() {
+  // Bersihkan kontainer favorite
   favoriteContainer.innerHTML = '';
   const favs = getFavorites();
   if (!favs.length) {
@@ -411,13 +419,18 @@ async function renderFavorites() {
   }
 
   // Ambil data favorit dari Supabase berdasar ID
-  const { data, error } = await supabase.from('mountains').select('*').in('id', favs);
+  const { data, error } = await supabase
+    .from('mountains')
+    .select('*')
+    .in('id', favs);
+
   if (error) {
     console.error("Supabase error:", error.message);
     favoriteContainer.innerHTML = "<p>Error loading favorites.</p>";
     return;
   }
 
+  // Render tiap favorit
   for (const m of data) {
     const w = await fetchWeather(m.lat, m.lon);
     favoriteContainer.appendChild(createMountainCard(m, w));

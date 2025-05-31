@@ -125,44 +125,6 @@ map.on('mouseleave', 'mountain-points', () => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-    // STYLE SWITCHER aman di dalam on('load')
-    if (typeof MapboxStyleSwitcherControl !== 'undefined') {
-      map.addControl(new MapboxStyleSwitcherControl({
-        defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
-        styles: [
-          { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
-          { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
-          { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
-          { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
-          { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
-          { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
-        ]
-      }), 'top-right');
-    } else {
-      console.warn('Style Switcher not available when map is loaded.');
-    }
-
-  }); // end of map.on('load')
-
-  mapInitialized = true;
-}
-
-
-
-
-
-
-
 // =================================================================
 // MAIN SCRIPT.JS
 // =================================================================
@@ -411,22 +373,6 @@ function createMountainCard(m, w) {
 
   return card;
 }
-
-
-
-
-
-
-// Auto-init map if all scripts loaded
-window.addEventListener('load', () => {
-  if (typeof MapboxStyleSwitcherControl === 'undefined' && window.mapboxglStyleSwitcher) {
-    window.MapboxStyleSwitcherControl = window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl;
-    console.log('Style Switcher loaded globally');
-  }
-  initMap();
-});
-
-
 
 
 

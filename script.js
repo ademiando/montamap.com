@@ -73,18 +73,6 @@ function initMap() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     // GeoJSON Mountains
 map.addSource('mountains', {
   type: 'geojson',
@@ -133,45 +121,6 @@ map.on('mouseenter', 'mountain-points', () => {
 map.on('mouseleave', 'mountain-points', () => {
   map.getCanvas().style.cursor = '';
 });
-
-
-
-
-
-
-
-
-
-
-    // STYLE SWITCHER aman di dalam on('load')
-    if (typeof MapboxStyleSwitcherControl !== 'undefined') {
-      map.addControl(new MapboxStyleSwitcherControl({
-        defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
-        styles: [
-          { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
-          { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
-          { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
-          { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
-          { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
-          { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
-        ]
-      }), 'top-right');
-    } else {
-      console.warn('Style Switcher not available when map is loaded.');
-    }
-
-  }); // end of map.on('load')
-
-  mapInitialized = true;
-}
-
-
-
-
-
-
-
-
 
 
 // =================================================================
@@ -285,18 +234,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-
-// (A) Supabase Setup (gunakan UMD build yang sudah dipanggil di <head>)
+// Supabase Setup
 const supabaseUrl = 'https://bntqvdqkaikkhlmfxovj.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJudHF2ZHFrYWlra2hsbWZ4b3ZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg2MjU1NTIsImV4cCI6MjA2NDIwMTU1Mn0.jG_Mt1-3861ItE2WzpYKKg7So_WKI506c8F9RTPIl44';
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
+// Pagination
+let loaded = 0;
+const batch = 12;
+const mountainContainer = document.getElementById("mountain-container");
+const loadMoreBtn = document.getElementById("load-more");
 
+// Get filter values
+function getCurrentFilters() {
+  return {
+    type: document.getElementById("filter-type")?.value || '',
+    country: document.getElementById("filter-country")?.value || '',
+    destination: document.getElementById("filter-destination")?.value || '',
+    difficulty: document.getElementById("filter-difficulty")?.value || '',
+    season: document.getElementById("filter-season")?.value || ''
+  };
+}
+
+// Weather fetch
+async function fetchWeather(lat, lon) {
+  try {
+    const apiKey = 'YOUR_OPENWEATHER_KEY';
+    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`);
+    const data = await res.json();
+    return data?.main?.temp ? `${Math.round(data.main.temp)}°C` : '-';
+  } catch (e) {
+    return '-';
+  }
+}
+
+// Render card gunung
+function createMountainCard(m, weather) {
+  const card = document.createElement("div");
+  card.className = "mountain-card";
+  card.innerHTML = `
+    <img src="${m.image_url}" alt="${m.name}">
+    <div class="mountain-info">
+      <h3>${m.name}</h3>
+      <p>${m.country} • ${m.elevation}m</p>
+      <p><strong>Temp:</strong> ${weather}</p>
+      <p><strong>Type:</strong> ${m.type}</p>
+      <p><strong>Season:</strong> ${m.season.join(', ')}</p>
+    </div>
+  `;
+  return card;
+}
+
+// Render gunung
+async function renderMountains() {
+  if (loaded === 0) mountainContainer.innerHTML = "";
 
   const filters = getCurrentFilters();
+  const searchQuery = document.getElementById('search-input')?.value.trim().toLowerCase() || '';
+
   let query = supabase.from('mountains').select('*').eq('is_active', true);
 
   if (filters.type && filters.type !== 'type') query = query.eq('type', filters.type);
@@ -304,8 +299,8 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
   if (filters.destination && filters.destination !== 'trending') query = query.eq('destination', filters.destination);
   if (filters.difficulty && filters.difficulty !== 'level') query = query.eq('difficulty', filters.difficulty);
   if (filters.season && filters.season !== 'any') query = query.contains('season', [filters.season]);
+  if (searchQuery) query = query.ilike('name', `%${searchQuery}%`);
 
-  // Panggil Supabase dengan range untuk pagination
   const { data, error } = await query.range(loaded, loaded + batch - 1);
 
   if (error) {
@@ -314,7 +309,6 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
     return;
   }
 
-  // Render tiap gunung
   for (const m of data) {
     const w = await fetchWeather(m.lat, m.lon);
     mountainContainer.appendChild(createMountainCard(m, w));
@@ -322,83 +316,36 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
   loaded += data.length;
   if (data.length < batch) {
-    // Kalau data hasil < batch, sembunyikan tombol Load More
     loadMoreBtn.style.display = 'none';
+  } else {
+    loadMoreBtn.style.display = 'block';
   }
 }
 
-// (11) Init Mountain & Filter Event
+// Inisialisasi halaman
 function initMountainRendering() {
-  // Panggil pertama kali
   renderMountains();
 
-  // Pagination: tombol Load More
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', renderMountains);
   }
 
-  // Event change untuk dropdown filter
   document.querySelectorAll(".sort-options-container select").forEach(select => {
     select.addEventListener("change", () => {
       loaded = 0;
       renderMountains();
     });
   });
+
+  document.getElementById("search-input")?.addEventListener("input", () => {
+    loaded = 0;
+    renderMountains();
+  });
 }
 
+// Jalankan saat halaman siap
+document.addEventListener("DOMContentLoaded", initMountainRendering);
 
-
-
-
-
-
-
-
-
-
-
-
-let loaded = 0;
-const batch = 6;
-const apiKey = '3187c49861f858e524980ea8dd0d43c6';
-
-// render mountain list
-async function renderMountains() {
-  const slice = mountainData.slice(loaded, loaded + batch);
-  for (const m of slice) {
-    const w = await fetchWeather(m.lat, m.lon);
-    mountainContainer.appendChild(createMountainCard(m, w));
-  }
-  loaded += batch;
-  if (loaded >= mountainData.length) loadMoreBtn.style.display = 'none';
-}
-
-// initial mountain
-function initMountainRendering() {
-  renderMountains();
-  loadMoreBtn.addEventListener('click', renderMountains);
-}
-
-// weather fetcher
-async function fetchWeather(lat, lon) {
-  try {
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}` +
-      `&appid=${apiKey}&units=metric`
-    );
-    const d = await res.json();
-    if (d.main) {
-      return {
-        temperature: `${Math.round(d.main.temp)}°C`,
-        weather:     d.weather[0].main,
-        icon:        d.weather[0].icon
-      };
-    }
-    return { temperature: 'N/A', weather: 'N/A', icon: '' };
-  } catch {
-    return { temperature: 'N/A', weather: 'N/A', icon: '' };
-  }
-}
 
 // favorites storage
 function getFavorites() {
@@ -470,23 +417,6 @@ function createMountainCard(m, w) {
 
   return card;
 }
-
-
-
-
-
-
-
-// Auto-init map if all scripts loaded
-window.addEventListener('load', () => {
-  if (typeof MapboxStyleSwitcherControl === 'undefined' && window.mapboxglStyleSwitcher) {
-    window.MapboxStyleSwitcherControl = window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl;
-    console.log('Style Switcher loaded globally');
-  }
-  initMap();
-});
-
-
 
 
 

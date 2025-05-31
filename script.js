@@ -286,23 +286,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-const mountainData = [
-  { id:"everest",       name:"Everest",        city:"Namche Bazaar, Nepal",         lat:27.9881,  lon:86.9250,  status:"Open",   elevation:"8,848 m",  weather:"-35°C Windy",        icon:"01d", image:"mountain-image/everest.jpg",       link:"everest" },
-  { id:"k2",            name:"K2",             city:"Skardu, Pakistan",             lat:35.8800,  lon:76.5151,  status:"Closed", elevation:"8,611 m",  weather:"-40°C Snow",         icon:"13d", image:"mountain-image/k2.jpg",            link:"k2" },
-  { id:"kangchenjunga", name:"Kangchenjunga",  city:"Taplejung, Nepal",             lat:27.7000,  lon:88.2000,  status:"Open",   elevation:"8,586 m",  weather:"-30°C Cloudy",      icon:"04d", image:"mountain-image/kangchenjunga.jpg", link:"kangchenjunga" },
-  { id:"lhotse",        name:"Lhotse",         city:"Namche Bazaar, Nepal",         lat:27.9617,  lon:86.9333,  status:"Open",   elevation:"8,516 m",  weather:"-28°C Sunny",       icon:"01d", image:"mountain-image/lhotse.jpg",        link:"lhotse" },
-  { id:"rinjani",       name:"Rinjani",        city:"West Nusa Tenggara, Indonesia", lat:-8.4115, lon:116.4577, status:"Open",   elevation:"3,726 m",  weather:"-6°C Cloudy",       icon:"04d", image:"mountain-image/rinjani.jpg",       link:"rinjani" },
-  { id:"cartenz",       name:"Cartenz Pyramid",city:"Papua, Indonesia",             lat:-4.0833,  lon:137.1833, status:"Open",   elevation:"4,884 m",  weather:"-10°C Snow",       icon:"13d", image:"mountain-image/cartenz.jpg",       link:"cartenz" },
-  { id:"semeru",        name:"Semeru",         city:"East Java, Indonesia",         lat:-8.1080,  lon:112.9220, status:"Open",   elevation:"3,676 m",  weather:"-4°C Smoke",        icon:"50d", image:"mountain-image/semeru.jpg",        link:"semeru" },
-  { id:"bromo",         name:"Bromo",          city:"East Java, Indonesia",         lat:-7.9425,  lon:112.9530, status:"Open",   elevation:"2,329 m",  weather:"2°C Clear",        icon:"01d", image:"mountain-image/bromo.jpg",         link:"bromo" },
-  { id:"agung",         name:"Agung",          city:"Bali, Indonesia",               lat:-8.3421, lon:115.5085, status:"Open",   elevation:"3,031 m",  weather:"3°C Partly Cloudy",icon:"03d", image:"mountain-image/agung.jpg",         link:"agung" },
-  { id:"batur",         name:"Batur",          city:"Bali, Indonesia",               lat:-8.2395, lon:115.3761, status:"Open",   elevation:"1,717 m",  weather:"7°C Cloudy",       icon:"04d", image:"mountain-image/batur.jpg",         link:"batur" },
-  { id:"prau",          name:"Prau",           city:"Central Java, Indonesia",      lat:-7.2079, lon:109.9181, status:"Open",   elevation:"2,590 m",  weather:"1°C Fog",          icon:"50d", image:"mountain-image/prau.jpg",          link:"prau" },
-  { id:"raung",         name:"Raung",          city:"East Java, Indonesia",         lat:-8.1255, lon:114.0428, status:"Open",   elevation:"3,344 m",  weather:"-2°C Cloudy",      icon:"04d", image:"mountain-image/raung.jpg",         link:"raung" },
-  { id:"sindoro",       name:"Sindoro",        city:"Central Java, Indonesia",      lat:-7.3006, lon:110.0571, status:"Open",   elevation:"3,150 m",  weather:"-1°C Clear",       icon:"01d", image:"mountain-image/sindoro.jpg",       link:"sindoro" },
-  { id:"sumbing",       name:"Sumbing",        city:"Central Java, Indonesia",      lat:-7.3844, lon:110.0722, status:"Open",   elevation:"3,371 m",  weather:"-1°C Partly Cloudy",icon:"03d", image:"mountain-image/sumbing.jpg",       link:"sumbing" },
-  { id:"merapi",        name:"Merapi",         city:"Yogyakarta, Indonesia",        lat:-7.5407, lon:110.4462, status:"Closed", elevation:"2,930 m",  weather:"0°C Smoke",        icon:"50d", image:"mountain-image/merapi.jpg",        link:"merapi" }
-];
+
+
+
+
+
+
+
+
+  const filters = getCurrentFilters();
+  let query = supabase.from('mountains').select('*').eq('is_active', true);
+
+  if (filters.type && filters.type !== 'type') query = query.eq('type', filters.type);
+  if (filters.country && filters.country !== 'global') query = query.eq('country', filters.country);
+  if (filters.destination && filters.destination !== 'trending') query = query.eq('destination', filters.destination);
+  if (filters.difficulty && filters.difficulty !== 'level') query = query.eq('difficulty', filters.difficulty);
+  if (filters.season && filters.season !== 'any') query = query.contains('season', [filters.season]);
+
+  // Panggil Supabase dengan range untuk pagination
+  const { data, error } = await query.range(loaded, loaded + batch - 1);
+
+  if (error) {
+    console.error("Supabase error:", error.message);
+    mountainContainer.innerHTML = "<p>Error loading data.</p>";
+    return;
+  }
+
+  // Render tiap gunung
+  for (const m of data) {
+    const w = await fetchWeather(m.lat, m.lon);
+    mountainContainer.appendChild(createMountainCard(m, w));
+  }
+
+  loaded += data.length;
+  if (data.length < batch) {
+    // Kalau data hasil < batch, sembunyikan tombol Load More
+    loadMoreBtn.style.display = 'none';
+  }
+}
+
+// (11) Init Mountain & Filter Event
+function initMountainRendering() {
+  // Panggil pertama kali
+  renderMountains();
+
+  // Pagination: tombol Load More
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', renderMountains);
+  }
+
+  // Event change untuk dropdown filter
+  document.querySelectorAll(".sort-options-container select").forEach(select => {
+    select.addEventListener("change", () => {
+      loaded = 0;
+      renderMountains();
+    });
+  });
+}
+
+
+
+
+
+
 
 
 

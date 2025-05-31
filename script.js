@@ -75,6 +75,40 @@ function initMap() {
 
 
 
+
+
+    // STYLE SWITCHER aman di dalam on('load')
+    if (typeof MapboxStyleSwitcherControl !== 'undefined') {
+      map.addControl(new MapboxStyleSwitcherControl({
+        defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
+        styles: [
+          { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
+          { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
+          { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
+          { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
+          { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
+          { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
+        ]
+      }), 'top-right');
+    } else {
+      console.warn('Style Switcher not available when map is loaded.');
+    }
+
+  }); // end of map.on('load')
+
+  mapInitialized = true;
+}
+
+
+
+
+
+
+
+
+
+
+
     // GeoJSON Mountains
 map.addSource('mountains', {
   type: 'geojson',

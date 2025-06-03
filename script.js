@@ -37,7 +37,7 @@ function initMap() {
 
   // ─────────────────────────────────────────────────────────────────
   // 1.1) Style Switcher (Outdoors, Satellite, Dark, dst.)
-  //     Pastikan plugin sudah ter-load ke window.mapboxglStyleSwitcher
+  //     Diasumsikan <script id="switcher-script"> sudah ada di HTML tanpa defer
   // ─────────────────────────────────────────────────────────────────
   map.on('load', () => {
     if (
@@ -204,7 +204,7 @@ const searchInput       = document.getElementById("searchInput");
 let loaded = 0;
 const batch = 6; // 6 per halaman
 
-// Ambil nilai dropdown filter (tanpa toLowerCase—gunakan nilai persis sesuai kolom DB)
+// Ambil nilai dropdown filter (gunakan persis sesuai DB, kecualikan default)
 function getCurrentFilters() {
   return {
     type:        document.getElementById("type-sort")?.value || '',
@@ -240,7 +240,9 @@ function createMountainCard(m, w) {
   card.className = "mountain-card";
 
   // Klik pada card (kecuali icon favorite) navigasi ke detail
-  card.addEventListener('click', () => {
+  card.addEventListener('click', (evt) => {
+    // Jika klik tepat pada ikon favorite, abaikan navigasi
+    if (evt.target.classList.contains('favorite-icon')) return;
     if (m.slug) {
       window.location.href = `https://montamap.com/mount/${m.slug}`;
     }
@@ -248,7 +250,7 @@ function createMountainCard(m, w) {
 
   // Tentukan gambar, fallback pakai nama slug tanpa prefix "mount-"
   const fallbackName = m.slug.replace(/^mount-/, '').toLowerCase();
-  const imgUrl = m.image_url
+  const imgUrl = (m.image_url && m.image_url.trim() !== '')
     ? m.image_url
     : `https://montamap.com/mountain-image/${fallbackName}.jpg`;
 
@@ -286,10 +288,10 @@ function createMountainCard(m, w) {
     </div>
   `;
 
-  // Toggle favorite icon (klik icon)
+  // Toggle favorite icon (klik tepat ikon)
   const favEl = card.querySelector('.favorite-icon');
-  favEl.addEventListener('click', e => {
-    e.stopPropagation(); // Hindari klik card
+  favEl.addEventListener('click', (e) => {
+    e.stopPropagation(); // Hindari navigasi pada card
 
     let favs = getFavorites();
     if (favs.includes(m.id)) {
@@ -303,7 +305,7 @@ function createMountainCard(m, w) {
     }
     saveFavorites(favs);
 
-    // Jika tab Favorite aktif, re-render
+    // Jika tab Favorite aktif, re-render daftar
     const currentTab = document.querySelector('.tab.active')?.textContent.trim();
     if (currentTab === 'Favorite') {
       renderFavorites();
@@ -328,21 +330,21 @@ async function renderMountains() {
   // Build query Supabase
   let query = supabase.from('mountains').select('*');
 
-  // 1) Filter type (ilike for case-insensitive)
+  // 1) Filter type (gunakan ilike '%value%' agar case-insensitive & partial match)
   if (filters.type && filters.type !== 'type') {
-    query = query.ilike('type', filters.type);
+    query = query.ilike('type', `%${filters.type}%`);
   }
   // 2) Filter country
   if (filters.country && filters.country !== 'global') {
-    query = query.ilike('country', filters.country);
+    query = query.ilike('country', `%${filters.country}%`);
   }
   // 3) Filter destination (skip default kosong)
   if (filters.destination && filters.destination !== '') {
-    query = query.ilike('destination', filters.destination);
+    query = query.ilike('destination', `%${filters.destination}%`);
   }
   // 4) Filter difficulty
   if (filters.difficulty && filters.difficulty !== 'level') {
-    query = query.ilike('difficulty', filters.difficulty);
+    query = query.ilike('difficulty', `%${filters.difficulty}%`);
   }
   // 5) Filter season (TEXT array)
   if (filters.season && filters.season !== 'any') {

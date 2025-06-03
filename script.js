@@ -37,7 +37,7 @@ function initMap() {
 
   // ─────────────────────────────────────────────────────────────────
   // 1.1) Style Switcher (Outdoors, Satellite, Dark, dst.)
-  //     Pastikan plugin sudah ter‐load ke window.mapboxglStyleSwitcher
+  //     Pastikan plugin sudah ter-load ke window.mapboxglStyleSwitcher
   // ─────────────────────────────────────────────────────────────────
   map.on('load', () => {
     if (
@@ -58,7 +58,7 @@ function initMap() {
       });
       map.addControl(styleSwitcher, 'top-right');
     } else {
-      console.warn('MapboxStyleSwitcherControl belum tersedia—periksa urutan <script> Anda.');
+      console.warn('MapboxStyleSwitcherControl belum tersedia — periksa urutan <script> Anda.');
     }
   });
 
@@ -204,18 +204,18 @@ const searchInput       = document.getElementById("searchInput");
 let loaded = 0;
 const batch = 6; // 6 per halaman
 
-// Ambil nilai dropdown filter (semua lowercase agar ilike dapat match)
+// Ambil nilai dropdown filter (tanpa toLowerCase—gunakan nilai persis sesuai kolom DB)
 function getCurrentFilters() {
   return {
-    type:        document.getElementById("type-sort")?.value.toLowerCase() || '',
-    country:     document.getElementById("country-sort")?.value.toLowerCase() || '',
-    destination: document.getElementById("destination-sort")?.value.toLowerCase() || '',
-    difficulty:  document.getElementById("difficulty-sort")?.value.toLowerCase() || '',
-    season:      document.getElementById("season-sort")?.value.toLowerCase() || ''
+    type:        document.getElementById("type-sort")?.value || '',
+    country:     document.getElementById("country-sort")?.value || '',
+    destination: document.getElementById("destination-sort")?.value || '',
+    difficulty:  document.getElementById("difficulty-sort")?.value || '',
+    season:      document.getElementById("season-sort")?.value || ''
   };
 }
 
-// Fetch cuaca via OpenWeatherMap (pakai latitude/longitude)
+// Fetch cuaca via OpenWeatherMap
 async function fetchWeather(lat, lon) {
   try {
     const apiKey = '3187c49861f858e524980ea8dd0d43c6';
@@ -303,8 +303,8 @@ function createMountainCard(m, w) {
     }
     saveFavorites(favs);
 
-    // Jika tab Favorite aktif, re‐render
-    const currentTab = docum ent.querySelector('.tab.active')?.textContent.trim();
+    // Jika tab Favorite aktif, re-render
+    const currentTab = document.querySelector('.tab.active')?.textContent.trim();
     if (currentTab === 'Favorite') {
       renderFavorites();
     }
@@ -328,7 +328,7 @@ async function renderMountains() {
   // Build query Supabase
   let query = supabase.from('mountains').select('*');
 
-  // 1) Filter type (ilike for case‐insensitive)
+  // 1) Filter type (ilike for case-insensitive)
   if (filters.type && filters.type !== 'type') {
     query = query.ilike('type', filters.type);
   }
@@ -349,7 +349,7 @@ async function renderMountains() {
     query = query.contains('season', [filters.season]);
   }
 
-  // 6) Full‐text search across beberapa kolom
+  // 6) Full-text search across beberapa kolom
   if (rawSearch) {
     const pattern = `%${rawSearch}%`;
     const orFilter =
@@ -418,7 +418,7 @@ function initMountainRendering() {
 
 
 // =================================================================
-// 4) FAVORITES SECTION (LocalStorage‐based)
+// 4) FAVORITES SECTION (LocalStorage-based)
 // =================================================================
 function getFavorites() {
   return JSON.parse(localStorage.getItem('favorites')) || [];

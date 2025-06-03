@@ -9,7 +9,7 @@ function initMap() {
   if (mapInitialized) return;
   mapInitialized = true;
 
-  // Access Token Mapbox Anda
+  // Masukkan Access Token Mapbox Anda
   mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
   map = new mapboxgl.Map({
@@ -39,7 +39,7 @@ function initMap() {
   // 1.1) Style Switcher (Outdoors, Satellite, Dark, dst.)
   //     Pastikan plugin sudah ter‐load ke window.mapboxglStyleSwitcher
   // ─────────────────────────────────────────────────────────────────
-  const tryAddStyleSwitcher = () => {
+  map.on('load', () => {
     if (
       window.mapboxglStyleSwitcher &&
       typeof window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl !== 'undefined'
@@ -58,13 +58,8 @@ function initMap() {
       });
       map.addControl(styleSwitcher, 'top-right');
     } else {
-      console.warn('MapboxStyleSwitcherControl belum tersedia. Coba sesaat lagi.');
+      console.warn('MapboxStyleSwitcherControl belum tersedia—periksa urutan <script> Anda.');
     }
-  };
-
-  // Tunggu hingga map ready lalu pasang style switcher
-  map.on('load', () => {
-    tryAddStyleSwitcher();
   });
 
   // ─────────────────────────────────────────────────────────────────
@@ -207,20 +202,20 @@ const searchInput       = document.getElementById("searchInput");
 
 // Pagination & batch size
 let loaded = 0;
-const batch = 6; // 6 per page
+const batch = 6; // 6 per halaman
 
-// Ambil nilai dropdown filter
+// Ambil nilai dropdown filter (semua lowercase agar ilike dapat match)
 function getCurrentFilters() {
   return {
-    type:        document.getElementById("type-sort")?.value || '',
-    country:     document.getElementById("country-sort")?.value || '',
-    destination: document.getElementById("destination-sort")?.value || '',
-    difficulty:  document.getElementById("difficulty-sort")?.value || '',
-    season:      document.getElementById("season-sort")?.value || ''
+    type:        document.getElementById("type-sort")?.value.toLowerCase() || '',
+    country:     document.getElementById("country-sort")?.value.toLowerCase() || '',
+    destination: document.getElementById("destination-sort")?.value.toLowerCase() || '',
+    difficulty:  document.getElementById("difficulty-sort")?.value.toLowerCase() || '',
+    season:      document.getElementById("season-sort")?.value.toLowerCase() || ''
   };
 }
 
-// Fetch cuaca via OpenWeatherMap
+// Fetch cuaca via OpenWeatherMap (pakai latitude/longitude)
 async function fetchWeather(lat, lon) {
   try {
     const apiKey = '3187c49861f858e524980ea8dd0d43c6';
@@ -239,7 +234,7 @@ async function fetchWeather(lat, lon) {
   }
 }
 
-// Buat elemen mountain card (desain dengan ikon cuaca)
+// Buat elemen mountain card (desain dengan ikon cuaca & fallback image)
 function createMountainCard(m, w) {
   const card = document.createElement("div");
   card.className = "mountain-card";
@@ -251,16 +246,17 @@ function createMountainCard(m, w) {
     }
   });
 
-  // Tentukan gambar (fallback pakai slug lowercase)
+  // Tentukan gambar, fallback pakai nama slug tanpa prefix "mount-"
+  const fallbackName = m.slug.replace(/^mount-/, '').toLowerCase();
   const imgUrl = m.image_url
     ? m.image_url
-    : `https://montamap.com/mountain-image/${m.slug.toLowerCase()}.jpg`;
+    : `https://montamap.com/mountain-image/${fallbackName}.jpg`;
 
   // Fallback jika nilai null/undefined
-  const nameText      = m.name                      || '-';
+  const nameText      = m.name                         || '-';
   const locationText  = m.location_description
                          ? `${m.location_description}, ${m.country}`
-                         : m.country                 || '-';
+                         : m.country                  || '-';
   const elevationText = m.elevation_meters
                          ? `${m.elevation_meters}m`
                          : '-';
@@ -308,7 +304,7 @@ function createMountainCard(m, w) {
     saveFavorites(favs);
 
     // Jika tab Favorite aktif, re‐render
-    const currentTab = document.querySelector('.tab.active')?.textContent.trim();
+    const currentTab = docum ent.querySelector('.tab.active')?.textContent.trim();
     if (currentTab === 'Favorite') {
       renderFavorites();
     }
@@ -340,7 +336,7 @@ async function renderMountains() {
   if (filters.country && filters.country !== 'global') {
     query = query.ilike('country', filters.country);
   }
-  // 3) Filter destination
+  // 3) Filter destination (skip default kosong)
   if (filters.destination && filters.destination !== '') {
     query = query.ilike('destination', filters.destination);
   }
@@ -353,7 +349,7 @@ async function renderMountains() {
     query = query.contains('season', [filters.season]);
   }
 
-  // 6) Full‐text search di beberapa kolom
+  // 6) Full‐text search across beberapa kolom
   if (rawSearch) {
     const pattern = `%${rawSearch}%`;
     const orFilter =
@@ -365,7 +361,7 @@ async function renderMountains() {
     query = query.or(orFilter);
   }
 
-  // Pagination: ambil data range dari loaded..loaded+batch-1
+  // Pagination: ambil data range loaded..loaded+batch-1
   const { data, error } = await query.range(loaded, loaded + batch - 1);
   if (error) {
     console.error("Supabase error di renderMountains:", error);

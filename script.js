@@ -9,19 +9,19 @@ function initMap() {
   if (mapInitialized) return;
   mapInitialized = true;
 
-  // Ganti dengan Access Token yang valid untuk project Montamap
+  // Access Token Montamap (pastikan sudah benar)
   mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
   map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v12',
-    center: [116.4575, -8.4111], // Koordinat default (contoh: Lombok)
+    center: [116.4575, -8.4111], // Lombok sebagai default
     zoom: 9,
     pitch: 45,
     bearing: -17.6,
     antialias: true
   });
 
-  // Kontrol dasar peta
+  // Kontrol peta dasar
   map.addControl(new mapboxgl.NavigationControl(), 'top-right');
   map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
   map.addControl(
@@ -34,7 +34,26 @@ function initMap() {
   );
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
 
-  // Tombol Reset View (FlyTo)
+  // ─────────────────────────────────────────────────────────────────
+  // 1.1) Style Switcher (Outdoors, Satellite, Dark, etc.)
+  //   Di‐embed langsung agar tombol selalu muncul setelah map load
+  // ─────────────────────────────────────────────────────────────────
+  const styleSwitcher = new MapboxStyleSwitcherControl({
+    defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
+    styles: [
+      { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
+      { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
+      { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
+      { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
+      { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
+      { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
+    ]
+  });
+  map.addControl(styleSwitcher, 'top-right');
+
+  // ─────────────────────────────────────────────────────────────────
+  // 1.2) Tombol Reset View (FlyTo)
+  // ─────────────────────────────────────────────────────────────────
   const resetBtn = document.createElement('button');
   resetBtn.textContent = '↻';
   Object.assign(resetBtn.style, {
@@ -52,7 +71,9 @@ function initMap() {
   };
   document.getElementById('map').appendChild(resetBtn);
 
-  // Tombol Download Map
+  // ─────────────────────────────────────────────────────────────────
+  // 1.3) Tombol Download Map (Screenshot)
+  // ─────────────────────────────────────────────────────────────────
   const downloadBtn = document.createElement('button');
   downloadBtn.textContent = '⬇︎';
   Object.assign(downloadBtn.style, {
@@ -76,7 +97,9 @@ function initMap() {
   };
   document.getElementById('map').appendChild(downloadBtn);
 
-  // Setelah peta selesai load, tambahkan terrain dan data GeoJSON
+  // ─────────────────────────────────────────────────────────────────
+  // Setelah map load: tambahkan terrain DEM & GeoJSON mountains
+  // ─────────────────────────────────────────────────────────────────
   map.on('load', () => {
     // 1) Terrain DEM
     map.addSource('mapbox-dem', {
@@ -90,7 +113,7 @@ function initMap() {
     // 2) Sumber GeoJSON gunung
     map.addSource('mountains', {
       type: 'geojson',
-      data: 'data/mountains_indonesia.geojson' // Pastikan path benar
+      data: 'data/mountains_indonesia.geojson' // Pastikan path valid
     });
 
     // 3) Layer circle untuk titik gunung
@@ -146,10 +169,10 @@ function initMap() {
 
 
 // =================================================================
-// 2) TAB NAVIGATION, MENU & LOGIN DROPDOWN, THEME SWITCH
+// 2) TAB NAVIGATION, MENU & THEME SWITCH
 // =================================================================
 
-// Ambil elemen-elemen yang dibutuhkan:
+// Ambil elemen‐elemen yang dibutuhkan:
 const menuToggle        = document.getElementById('hamburger');
 const dropdownMenu      = document.getElementById('menu');
 const languageSelect    = document.getElementById('language');
@@ -231,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 3) MOUNTAIN & FAVORITES SECTION (Supabase + Filter + Search + Paging)
 // =================================================================
 
-// Supabase sudah tersedia via window.supabase (UMD)  
+// Supabase (UMD)  
 const supabaseUrl = 'https://bntqvdqkaikkhlmfxovj.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJudHF2ZHFrYWlra2hsbWZ4b3ZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg2MjU1NTIsImV4cCI6MjA2NDIwMTU1Mn0.jG_Mt1-3861ItE2WzpYKKg7So_WKI506c8F9RTPIl44';
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -273,17 +296,17 @@ async function fetchWeather(lat, lon) {
   }
 }
 
-// Buat elemen mountain card sesuai permintaan
+// Buat elemen mountain card (**struktur tidak diubah**)
 function createMountainCard(m, w) {
   const card = document.createElement("div");
   card.className = "mountain-card";
 
-  // Klik pada card (kecuali icon favorite) akan redirect ke halaman detail
+  // Klik pada card (kecuali icon favorite) navigasi ke detail
   card.addEventListener('click', () => {
     window.location.href = `https://montamap.com/mount/${m.link}`;
   });
 
-  // Pastikan m.city, m.elevation, dll. tersedia
+  // Fallback agar tidak tampil “undefined”
   const cityText      = m.city       ? m.city : '';
   const elevationText = m.elevation  ? `${m.elevation}m` : '-';
   const weatherIcon   = w.icon       ? `<img src="https://openweathermap.org/img/wn/${w.icon}.png" alt="${w.weather}" class="weather-icon"/>` : '';
@@ -311,25 +334,28 @@ function createMountainCard(m, w) {
     </div>
   `;
 
-  // Toggle favorite icon (klik icon)
+  // ─────────────────────────────────────────────────────────────────
+  // Toggle favorite icon (klik icon saja)
+  // ─────────────────────────────────────────────────────────────────
   const favEl = card.querySelector('.favorite-icon');
   favEl.addEventListener('click', e => {
-    e.stopPropagation(); // Jangan trigger klik card
+    e.stopPropagation(); // Hindari klik card properti
 
     let favs = getFavorites();
     if (favs.includes(m.id)) {
-      // Hapus dari favorites
+      // Hapus favorite
       favs = favs.filter(x => x !== m.id);
       favEl.innerHTML = '☆';
       favEl.title = 'Favorite';
     } else {
-      // Tambah ke favorites
+      // Tambah favorite
       favs.push(m.id);
       favEl.innerHTML = '★';
       favEl.title = 'Unfavorite';
     }
     saveFavorites(favs);
-    // Update tab Favorite (jika sedang terbuka)
+
+    // Jika tab Favorite terbuka, update daftar
     const currentTab = document.querySelector('.tab.active')?.textContent.trim();
     if (currentTab === 'Favorite') {
       renderFavorites();
@@ -343,41 +369,54 @@ function createMountainCard(m, w) {
 async function renderMountains() {
   if (!mountainContainer) return;
 
-  // Jika render pertama kali atau ada perubahan filter/search
+  // Reset container/pagination jika new render (loaded=0)
   if (loaded === 0) {
     mountainContainer.innerHTML = "";
     loadMoreBtn && (loadMoreBtn.style.display = 'block');
   }
 
   const filters = getCurrentFilters();
-  const searchQuery = searchInput?.value.trim().toLowerCase() || '';
+  const rawSearch = searchInput?.value.trim().toLowerCase() || '';
 
-  // Mulai building query Supabase
-  let query = supabase.from('mountains').select('*').eq('is_active', true);
+  // Mulai building query Supabase: hanya gunung aktif
+  let query = supabase.from('mountains')
+                      .select('*')
+                      .eq('is_active', true);
 
-  // Terapkan filter hanya jika user memilih (bukan default)
+  // 1) Filter Type
   if (filters.type && filters.type !== 'type') {
     query = query.eq('type', filters.type);
   }
+  // 2) Filter Country
   if (filters.country && filters.country !== 'global') {
     query = query.eq('country', filters.country);
   }
-  // Untuk destination, defaultnya kita anggap '' (kosong), bukan "trending"
+  // 3) Filter Destination (skip default “trending”)
   if (filters.destination && filters.destination !== 'trending') {
     query = query.eq('destination', filters.destination);
   }
+  // 4) Filter Difficulty
   if (filters.difficulty && filters.difficulty !== 'level') {
     query = query.eq('difficulty', filters.difficulty);
   }
+  // 5) Filter Season (kolom season disimpan sebagai array)
   if (filters.season && filters.season !== 'any') {
-    // Kolom season di Supabase diasumsikan sebagai array/tags
     query = query.contains('season', [filters.season]);
   }
-  if (searchQuery) {
-    query = query.ilike('name', `%${searchQuery}%`);
+
+  // 6) Search Full‐Text (nama, kota, negara, type)
+  if (rawSearch) {
+    // Supabase .or() format: 'field1.ilike.%term%,field2.ilike.%term%,...'
+    const pattern = `%${rawSearch}%`;
+    const orFilter = 
+      `name.ilike.${pattern},` +
+      `city.ilike.${pattern},` +
+      `country.ilike.${pattern},` +
+      `type.ilike.${pattern}`;
+    query = query.or(orFilter);
   }
 
-  // Pagination: range berdasar offset loaded dan batch size
+  // Pagination: ambil data berdasarkan range loaded .. loaded+batch-1
   const { data, error } = await query.range(loaded, loaded + batch - 1);
   if (error) {
     console.error("Supabase error:", error.message);
@@ -385,23 +424,23 @@ async function renderMountains() {
     return;
   }
 
-  // Jika tidak ada data (kosong), sembunyikan load more
+  // Jika data kosong
   if (!data || data.length === 0) {
-    loadMoreBtn && (loadMoreBtn.style.display = 'none');
     if (loaded === 0) {
       mountainContainer.innerHTML = "<p>No mountains found matching your criteria.</p>";
     }
+    loadMoreBtn && (loadMoreBtn.style.display = 'none');
     return;
   }
 
-  // Buat card satu per satu (dengan fetch cuaca)
+  // Iterasi setiap gunung: fetch cuaca + append card
   for (const m of data) {
     const w = await fetchWeather(m.lat, m.lon);
     mountainContainer.appendChild(createMountainCard(m, w));
   }
 
   loaded += data.length;
-  // Jika jumlah data kurang dari batch, berarti sisa data tinggal sedikit: sembunyikan Load More
+  // Tampilkan/hide tombol Load More
   if (data.length < batch) {
     loadMoreBtn && (loadMoreBtn.style.display = 'none');
   } else {
@@ -413,17 +452,17 @@ async function renderMountains() {
 function initMountainRendering() {
   if (!mountainContainer) return;
 
-  // Render daftar pertama kali
+  // Render initial batch
   renderMountains();
 
-  // Event listener Load More
+  // 1) Event listener Load More
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => {
       renderMountains();
     });
   }
 
-  // Event change untuk setiap dropdown filter
+  // 2) Event change filter dropdown
   document.querySelectorAll(".sort-options-container select").forEach(select => {
     select.addEventListener("change", () => {
       loaded = 0;
@@ -431,7 +470,7 @@ function initMountainRendering() {
     });
   });
 
-  // Event search input (real-time)
+  // 3) Event search input (real-time)
   searchInput?.addEventListener("input", () => {
     loaded = 0;
     renderMountains();
@@ -440,7 +479,7 @@ function initMountainRendering() {
 
 
 // =================================================================
-// 4) FAVORITES SECTION (LocalStorage-based)
+// 4) FAVORITES SECTION (LocalStorage‐based)
 // =================================================================
 function getFavorites() {
   return JSON.parse(localStorage.getItem('favorites')) || [];
@@ -474,7 +513,6 @@ async function renderFavorites() {
     return;
   }
 
-  // Jika tidak ada catatan favorit (data kosong), beri pesan
   if (!data || data.length === 0) {
     favoriteContainer.innerHTML = "<p>No favorites found in database.</p>";
     return;

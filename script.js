@@ -203,7 +203,7 @@ function getCurrentFilters() {
     country:     document.getElementById("country-sort")?.value || '',
     destination: document.getElementById("destination-sort")?.value || '',
     difficulty:  document.getElementById("difficulty-sort")?.value || '',
-    season:      document.getElementById("season-sort")?.alue || ''
+    season:      document.getElementById("season-sort")?.value || ''
   };
 }
 
@@ -261,7 +261,7 @@ function createMountainCard(m, w) {
                          ? `${w.temperature} | ${w.weather}`
                          : 'N/A';
 
-  // Cek favorite (simpan ID = UUID dalam localStorage)
+  // Cek favorite (simpan ID integer dalam localStorage)
   const isFav = isFavorite(m.id);
 
   card.innerHTML = `
@@ -284,7 +284,7 @@ function createMountainCard(m, w) {
   // Toggle favorite icon
   const favEl = card.querySelector('.favorite-icon');
   favEl.addEventListener('click', (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     let favs = getFavorites();
     if (favs.includes(m.id)) {
       favs = favs.filter(x => x !== m.id);
@@ -420,12 +420,14 @@ function initMountainRendering() {
 // 4) FAVORITES SECTION (LocalStorage-based)
 // =================================================================
 function getFavorites() {
+  // Simpan sebagai array integer
   return JSON.parse(localStorage.getItem('favorites')) || [];
 }
 function saveFavorites(favs) {
   localStorage.setItem('favorites', JSON.stringify(favs));
 }
 function isFavorite(id) {
+  // id dari Supabase diasumsikan integer
   return getFavorites().includes(id);
 }
 
@@ -439,6 +441,7 @@ async function renderFavorites() {
     return;
   }
 
+  // Query Supabase menggunakan array integer IDs
   const { data, error } = await supabase
     .from('mountains')
     .select('*')

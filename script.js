@@ -56,7 +56,6 @@ function initMap() {
     });
     map.addControl(styleSwitcher, 'top-right');
   } else {
-    // Kalau script style-switcher belum di-load, tampilkan peringatan ke console
     console.warn('MapboxStyleSwitcherControl belum tersedia — periksa urutan <script> Anda.');
   }
 
@@ -171,7 +170,6 @@ function openTab(event, tabName) {
     renderFavorites();
   }
   if (tabName === 'Maps') {
-    // Beri jeda singkat agar elemen <div id="map"> benar-benar tampil sebelum initMap()
     setTimeout(() => {
       initMap();
       map && map.resize();
@@ -223,7 +221,7 @@ async function fetchWeather(lat, lon) {
     );
     const d = await res.json();
     return {
-      temperature: d?.main?.temp ? `${Math.round(d.main.temp)}°C` : '-',
+      temperature: d?.main?.temp != null ? `${Math.round(d.main.temp)}°C` : '-',
       weather:     d?.weather?.[0]?.main || 'N/A',
       icon:        d?.weather?.[0]?.icon || ''
     };
@@ -350,7 +348,7 @@ async function renderMountains() {
     query = query.contains('season', [filters.season]);
   }
 
-  // 6) Full‐Text Search across beberapa kolom
+  // 6) Full-Text Search across beberapa kolom
   if (rawSearch) {
     const pattern = `%${rawSearch}%`;
     const orFilter =

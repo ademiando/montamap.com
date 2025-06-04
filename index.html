@@ -1,441 +1,366 @@
-// =================================================================
-// 1) MAPBOX INITIALIZATION
-//    (hanya dipanggil saat tab "Maps" dibuka)
-// =================================================================
-let map;
-let mapInitialized = false;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-function initMap() {
-  if (mapInitialized) return;
-  mapInitialized = true;
+  <!-- SEO Meta Description -->
+  <meta name="description" content="Explore detailed mountain information with Montamap – including hiking trails, entrance fees, essential info, offline maps, and SOS features." />
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="Montamap | Mountain Guide: Trails, Fees, Info, Maps & SOS" />
+  <meta property="og:description" content="Explore detailed mountain information with Montamap – including hiking trails, entrance fees, essential info, offline maps, and SOS features." />
+  <meta property="og:image" content="https://montamap.com/assets/logo.png" />
+  <meta property="og:url" content="https://montamap.com" />
+  <meta property="og:type" content="website" />
 
-  map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/outdoors-v12',
-    center: [116.4575, -8.4111],
-    zoom: 9,
-    pitch: 45,
-    bearing: -17.6,
-    antialias: true
-  });
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Montamap | Mountain Guide: Trails, Fees, Info, Maps & SOS" />
+  <meta name="twitter:description" content="Explore detailed mountain information including hiking trails, fees, offline maps, and SOS features." />
+  <meta name="twitter:image" content="https://montamap.com/assets/logo.png" />
 
-  map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-  map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: { enableHighAccuracy: true },
-      trackUserLocation: true,
-      showUserHeading: true
-    }),
-    'bottom-right'
-  );
-  map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
-
-  // Style Switcher
-  map.on('load', () => {
-    if (
-      window.mapboxglStyleSwitcher &&
-      typeof window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl !== 'undefined'
-    ) {
-      const StyleSwitcherControl = window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl;
-      const styleSwitcher = new StyleSwitcherControl({
-        defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
-        styles: [
-          { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
-          { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
-          { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
-          { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
-          { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
-          { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
-        ]
-      });
-      map.addControl(styleSwitcher, 'top-right');
-    } else {
-      console.warn('MapboxStyleSwitcherControl belum tersedia — periksa urutan <script> Anda.');
-    }
-  });
-
-  // Tombol Reset View
-  const resetBtn = document.createElement('button');
-  resetBtn.textContent = '↻';
-  Object.assign(resetBtn.style, {
-    position: 'absolute',
-    top: '10px',
-    left: '10px',
-    zIndex: 9999,
-    padding: '5px',
-    background: '#fff',
-    border: '1px solid #ccc',
-    cursor: 'pointer'
-  });
-  resetBtn.onclick = () => {
-    map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
-  };
-  document.getElementById('map').appendChild(resetBtn);
-
-  // Tombol Download Map
-  const downloadBtn = document.createElement('button');
-  downloadBtn.textContent = '⬇︎';
-  Object.assign(downloadBtn.style, {
-    position: 'absolute',
-    top: '50px',
-    left: '10px',
-    zIndex: 9999,
-    padding: '5px',
-    background: '#fff',
-    border: '1px solid #ccc',
-    cursor: 'pointer'
-  });
-  downloadBtn.onclick = () => {
-    map.getCanvas().toBlob(blob => {
-      if (!blob) {
-        console.error('Gagal mengambil canvas peta.');
-        return;
-      }
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'montamap-map.png';
-      a.click();
-    });
-  };
-  document.getElementById('map').appendChild(downloadBtn);
-}
-
-
-// =================================================================
-// 2) TAB NAVIGATION, MENU & THEME SWITCH
-// =================================================================
-const menuToggle        = document.getElementById('hamburger');
-const dropdownMenu      = document.getElementById('menu');
-const languageSelect    = document.getElementById('language');
-const currencySelect    = document.getElementById('currency');
-const lightBtn          = document.getElementById('lightBtn');
-const darkBtn           = document.getElementById('darkBtn');
-const favoriteContainer = document.getElementById('favorite-container');
-
-// MENU TOGGLE
-if (menuToggle && dropdownMenu) {
-  menuToggle.addEventListener('click', () => dropdownMenu.classList.toggle('menu-visible'));
-  document.addEventListener('click', e => {
-    if (!menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
-      dropdownMenu.classList.remove('menu-visible');
-    }
-  });
-}
-
-// LANGUAGE & CURRENCY SELECTOR
-if (languageSelect && currencySelect) {
-  languageSelect.value = localStorage.getItem('language') || 'en';
-  currencySelect.value = localStorage.getItem('currency') || 'usd';
-  languageSelect.addEventListener('change', () => localStorage.setItem('language', languageSelect.value));
-  currencySelect.addEventListener('change', () => localStorage.setItem('currency', currencySelect.value));
-}
-
-// THEME SWITCH
-function setTheme(mode) {
-  document.documentElement.classList.toggle('dark', mode === 'dark');
-  localStorage.setItem('theme', mode);
-  lightBtn?.classList.toggle('active', mode === 'light');
-  darkBtn?.classList.toggle('active', mode === 'dark');
-}
-lightBtn?.addEventListener('click', () => setTheme('light'));
-darkBtn?.addEventListener('click', () => setTheme('dark'));
-
-// TAB NAVIGATION
-function openTab(event, tabName) {
-  document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-
-  const pane = document.getElementById(tabName);
-  if (pane) pane.style.display = 'block';
-
-  let btn;
-  if (event && event.currentTarget) {
-    btn = event.currentTarget;
-  } else {
-    btn = Array.from(document.querySelectorAll('.tab')).find(x => x.textContent.trim() === tabName);
+  <!-- Structured Data: Logo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Montamap",
+    "url": "https://montamap.com",
+    "logo": "https://montamap.com/assets/logo.png"
   }
-  if (btn) btn.classList.add('active');
+  </script>
 
-  if (tabName === 'Favorite') {
-    renderFavorites();
-  }
-  if (tabName === 'Maps') {
-    setTimeout(() => {
-      initMap();
-      map && map.resize();
-    }, 100);
-  }
-}
+<link rel="icon" href="/assets/favicon.png" type="image/png" />
+<title>Montamap | Mountain Guide: Trails, Fees, Info & Offline Maps</title>
+<link rel="stylesheet" href="style.css">
 
-document.addEventListener('DOMContentLoaded', () => {
-  setTheme(localStorage.getItem('theme') || 'light');
-  initMountainRendering();
-  openTab(null, 'Mountain');
-});
+<!-- CSS Mapbox & Style Switcher -->
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+
+<link href="https://unpkg.com/mapbox-gl-style-switcher@1.1.3/dist/mapbox-gl-style-switcher.css" rel="stylesheet" />
+
+<meta name="google-adsense-account" content="ca-pub-7098374806738263">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.5/dist/umd/supabase.min.js"></script>
 
 
-// =================================================================
-// 3) MOUNTAIN & FAVORITES SECTION (Supabase + Filter + Search + Paging)
-// =================================================================
+</head>
 
-// Supabase URL & Key
-const supabaseUrl = 'https://wmutwaurieyuujbwvzav.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndtdXR3YXVyaWV5dXVqYnd2emF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5NDk1MTcsImV4cCI6MjA2NDUyNTUxN30.hjdpU8Vo7b5x-0VKUMdoe9Qbm189mw7PMvyVnACD7eY';
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+<body>
+<main>
 
-const mountainContainer = document.getElementById("mountainContainer");
-const loadMoreBtn       = document.getElementById("loadMoreBtn");
-const searchInput       = document.getElementById("searchInput");
+<header class="sticky-header">
 
-// Pagination & batch size
-let loaded = 0;
-const batch = 6;
+<!-- Tambahkan logo -->
+    <a href="/" class="logo">
+      <img src="logo.jpg" alt="Logo" class="left-logo"> <!-- Pastikan path sesuai lokasi file -->
+      Montamap
+    </a>
 
-// Ambil nilai dropdown filter
-function getCurrentFilters() {
-  return {
-    type:        document.getElementById("type-sort")?.value || '',
-    country:     document.getElementById("country-sort")?.value || '',
-    destination: document.getElementById("destination-sort")?.value || '',
-    difficulty:  document.getElementById("difficulty-sort")?.value || '',
-    season:      document.getElementById("season-sort")?.value || ''
-  };
-}
-
-// Fetch cuaca via OpenWeatherMap
-async function fetchWeather(lat, lon) {
-  try {
-    const apiKey = '3187c49861f858e524980ea8dd0d43c6';
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
-    );
-    const d = await res.json();
-    return {
-      temperature: d?.main?.temp ? `${Math.round(d.main.temp)}°C` : '-',
-      weather:     d?.weather?.[0]?.main || 'N/A',
-      icon:        d?.weather?.[0]?.icon || ''
-    };
-  } catch (err) {
-    console.error('Error fetchWeather:', err);
-    return { temperature: '-', weather: 'N/A', icon: '' };
-  }
-}
-
-// Buat elemen mountain card sesuai desain final
-function createMountainCard(m, w) {
-  const card = document.createElement("div");
-  card.className = "mountain-card";
-
-  card.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('favorite-icon')) return;
-    if (m.slug) {
-      window.location.href = `https://montamap.com/mount/${m.slug}`;
-    }
-  });
-
-  const imgUrl = (m.image_url && m.image_url.trim() !== '')
-    ? m.image_url
-    : `https://montamap.com/mountain-image/${m.slug}.jpg`;
-
-  const nameText      = m.name                           || '-';
-  const locationText  = m.region
-                         ? `${m.region}, ${m.country}`
-                         : m.country                     || '-';
-  const elevationText = (m.elevation_m && !isNaN(m.elevation_m))
-                         ? `${m.elevation_m}m`
-                         : '-';
-  const statusText    = m.status || '-';
-  const statusClass   = (statusText.toLowerCase() === 'open') ? 'status-open' : 'status-closed';
-  const weatherIcon   = w.icon
-                         ? `<img src="https://openweathermap.org/img/wn/${w.icon}.png" alt="${w.weather}" class="weather-icon"/>`
-                         : '';
-  const weatherText   = (w.temperature && w.weather && w.weather !== 'N/A')
-                         ? `${w.temperature} | ${w.weather}`
-                         : 'N/A';
-
-  const isFav = isFavorite(m.id);
-
-  card.innerHTML = `
-    <img src="${imgUrl}" alt="${nameText}" class="mountain-image" />
-    <div class="favorite-icon" title="${isFav ? 'Unfavorite' : 'Favorite'}">
-      ${isFav ? '★' : '☆'}
+        <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search..." id="searchInput">
     </div>
-    <div class="gradient-overlay"></div>
-    <div class="mountain-info">
-      <div class="mountain-name">${nameText}</div>
-      <div class="mountain-details">
-        <span class="${statusClass}">Status: ${statusText}</span><br/>
-        ${locationText}<br/>
-        Elevation: ${elevationText}<br/>
-        ${weatherIcon} ${weatherText}
-      </div>
+
+<!-- ini menu hamburger -->
+    <div class="menu-container" id="menuContainer">
+      <button id="hamburger">&#9776;</button>
+
+  <div id="menu" class="menu">
+    <!-- Menu Button -->
+ <button type="button" class="menu-button" onclick="location.href='https://montamap.com/login'">Login</button>
+
+    <!-- Language Selector -->
+    <select id="language">
+      <option value="en">English (US)</option>
+      <option value="id">Bahasa (Indonesia)</option>
+      <option value="zh">中文 (Chinese)</option>
+      <option value="hi">हिन्दी (Hindi)</option>
+      <option value="ru">Русский (Russian)</option>
+      <option value="ja">日本語 (Japanese)</option>
+    </select>
+
+    <!-- Currency Selector -->
+    <select id="currency">
+      <option value="usd">USD ($)</option>
+      <option value="btc">BTC (₿)</option>
+      <option value="idr">IDR (Rp)</option>
+      <option value="rub">RUB (₽)</option>
+      <option value="cny">CNY (¥)</option>
+      <option value="inr">INR (₹)</option>
+      <option value="npr">NPR (रू)</option>
+      <option value="aud">AUD (A$)</option>
+      <option value="global">others</option>
+    </select>
+
+    <!-- Theme Switch -->
+    <div class="theme-switch">
+      <div class="theme-btn active" id="lightBtn">Light</div>
+      <div class="theme-btn" id="darkBtn">Dark</div>
     </div>
-  `;
-
-  const favEl = card.querySelector('.favorite-icon');
-  favEl.addEventListener('click', (e) => {
-    e.stopPropagation();
-    let favs = getFavorites();
-    if (favs.includes(m.id)) {
-      favs = favs.filter(x => x !== m.id);
-      favEl.innerHTML = '☆';
-      favEl.title = 'Favorite';
-    } else {
-      favs.push(m.id);
-      favEl.innerHTML = '★';
-      favEl.title = 'Unfavorite';
-    }
-    saveFavorites(favs);
-    const currentTab = document.querySelector('.tab.active')?.textContent.trim();
-    if (currentTab === 'Favorite') {
-      renderFavorites();
-    }
-  });
-
-  return card;
-}
-
-// Render daftar gunung dengan filter, search, pagination
-async function renderMountains() {
-  if (!mountainContainer) return;
-
-  if (loaded === 0) {
-    mountainContainer.innerHTML = "";
-    loadMoreBtn && (loadMoreBtn.style.display = 'block');
-  }
-
-  const filters = getCurrentFilters();
-  const rawSearch = searchInput?.value.trim().toLowerCase() || '';
-
-  let query = supabase.from('mountains').select('*');
-
-  if (filters.type && filters.type !== 'type') {
-    query = query.ilike('type', `%${filters.type}%`);
-  }
-  if (filters.country && filters.country !== 'global') {
-    query = query.ilike('country', `%${filters.country}%`);
-  }
-  if (filters.destination && filters.destination !== '') {
-    query = query.ilike('destination', `%${filters.destination}%`);
-  }
-  if (filters.difficulty && filters.difficulty !== 'level') {
-    query = query.ilike('difficulty', `%${filters.difficulty}%`);
-  }
-  if (filters.season && filters.season !== 'any') {
-    query = query.contains('season', [filters.season]);
-  }
-
-  if (rawSearch) {
-    const pattern = `%${rawSearch}%`;
-    const orFilter =
-      `name.ilike.${pattern},` +
-      `region.ilike.${pattern},` +
-      `country.ilike.${pattern},` +
-      `type.ilike.${pattern},` +
-      `destination.ilike.${pattern}`;
-    query = query.or(orFilter);
-  }
-
-  const { data, error } = await query.range(loaded, loaded + batch - 1);
-  if (error) {
-    console.error("Supabase error di renderMountains:", error);
-    mountainContainer.innerHTML = "<p>Error loading data.</p>";
-    loadMoreBtn && (loadMoreBtn.style.display = 'none');
-    return;
-  }
-
-  if (!data || data.length === 0) {
-    if (loaded === 0) {
-      mountainContainer.innerHTML = "<p>No mountains found matching your criteria.</p>";
-    }
-    loadMoreBtn && (loadMoreBtn.style.display = 'none');
-    return;
-  }
-
-  for (const m of data) {
-    const w = await fetchWeather(m.latitude, m.longitude);
-    mountainContainer.appendChild(createMountainCard(m, w));
-  }
-
-  loaded += data.length;
-  if (data.length < batch) {
-    loadMoreBtn && (loadMoreBtn.style.display = 'none');
-  } else {
-    loadMoreBtn && (loadMoreBtn.style.display = 'block');
-  }
-}
-
-// Inisialisasi Mountain tab (filter, search, paging)
-function initMountainRendering() {
-  if (!mountainContainer) return;
-
-  renderMountains();
-
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', () => {
-      renderMountains();
-    });
-  }
-
-  document.querySelectorAll(".sort-options-container select").forEach(select => {
-    select.addEventListener("change", () => {
-      loaded = 0;
-      renderMountains();
-    });
-  });
-
-  searchInput?.addEventListener("input", () => {
-    loaded = 0;
-    renderMountains();
-  });
-}
+  </div>
+</header>
 
 
-// =================================================================
-// 4) FAVORITES SECTION (LocalStorage-based)
-// =================================================================
-function getFavorites() {
-  return JSON.parse(localStorage.getItem('favorites')) || [];
-}
-function saveFavorites(favs) {
-  localStorage.setItem('favorites', JSON.stringify(favs));
-}
-function isFavorite(id) {
-  return getFavorites().includes(id);
-}
+<!-- Banner Ads (Responsive) -->
+<div class="ads-wrapper">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7098374806738263"
+     crossorigin="anonymous"></script>
+<div class="ads-container">
+  <ins class="adsbygoogle"
+       style="display:block; width:100%; min-height:100px"
+       data-ad-client="ca-pub-7098374806738263"
+       data-ad-slot="7989911869"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+</div>
+</div>
 
-async function renderFavorites() {
-  if (!favoriteContainer) return;
 
-  favoriteContainer.innerHTML = '';
-  const favs = getFavorites();
-  if (!favs.length) {
-    favoriteContainer.textContent = 'No favorites yet.';
-    return;
-  }
+<!-- Tagline Section -->
+<div class="tagline-section">
+  <h1 class="tagline">Your Gateway to Global Mountain Trails</h1>
+  <p class="sub-tagline">
+    Discover, Connect, Conquer Hiking Trails Worldwide –  Powered by Smart Maps, Live Weather Alert, One-Touch SOS, and Real-Time Support.
+  </p>
+</div>
 
-  const { data, error } = await supabase
-    .from('mountains')
-    .select('*')
-    .in('id', favs);
+  <!-- Tab Navigation Horizontal -->
+  <div class="horizontal-tab-container">
+   <button class="tab" onclick="openTab(event, 'Favorite')">Favorite</button>
+    <button class="tab active" onclick="openTab(event, 'Mountain')">Mountain</button>
+    <button class="tab" onclick="openTab(event, 'Maps')">Maps</button>
+    <button class="tab" onclick="openTab(event, 'Community')">Community</button>
+    <button class="tab" onclick="openTab(event, 'Gear')">Gear</button>
+    <button class="tab" onclick="openTab(event, 'News')">News</button>
+ </div>
 
-  if (error) {
-    console.error("Supabase error di renderFavorites:", error);
-    favoriteContainer.innerHTML = "<p>Error loading favorites.</p>";
-    return;
-  }
 
-  if (!data || data.length === 0) {
-    favoriteContainer.innerHTML = "<p>No favorites found in database.</p>";
-    return;
-  }
+<!-- Wishlist Tab -->
+<div id="Favorite" class="tab-content" style="display: none;">
+  <div class="wishlist-header">
+    <h2>My Wishlist</h2>
+    <div class="wishlist-actions">
+      <button id="addToWishlistBtn" title="Add Mountain">＋</button>
+      <button id="editWishlistBtn" title="Edit Wishlist">⋯</button>
+    </div>
+  </div>
+  <div class="mountain-wrapper">
+    <div class="mountain-container" id="favorite-container"></div>
+  </div>
+</div>
 
-  for (const m of data) {
-    const w = await fetchWeather(m.latitude, m.longitude);
-    favoriteContainer.appendChild(createMountainCard(m, w));
-  }
-}
+
+<!-- Tab Konten Gunung -->
+<div id="Mountain" class="tab-content active">
+  <!-- Filter Options -->
+  <div class="sort-options-container">
+    <select id="type-sort">
+      <option value="type">All Type</option>
+      <option value="volcano">Volcano</option>
+      <option value="snowpeak">Snow Peak</option>
+      <option value="jungle/forest">Jungle/Forest</option>
+      <option value="sacred/mystical">Sacred/Mystical</option>
+      <option value="coastal">Coastal Mountain</option>
+      <option value="karst">Karst/Limestone</option>
+      <option value="plateau">Plateau/Mesa</option>
+      <option value="himalaya's">Himalaya's</option>
+    </select>
+
+    <select id="country-sort">
+      <option value="global">All Countries</option>
+      <option value="indonesia">Indonesia</option>
+      <option value="india">India</option>
+      <option value="uk">United Kingdom</option>
+      <option value="usa">United States</option>
+      <option value="australia">Australia</option>
+      <option value="nepal">Nepal</option>
+      <option value="peru">Peru</option>
+    </select>
+
+    <select id="destination-sort">
+      <option value="">Destination</option>
+      <option value="top-7-summit">Top Seven Summit</option>
+      <option value="most-visited">Most Visited</option>
+      <option value="hidden-gems">Hidden Gems</option>
+      <option value="unesco">UNESCO Heritage Sites</option>
+<option value="national">National Park</option>
+      <option value="bucket">Bucket List Mountain</option>
+    </select>
+
+    <select id="difficulty-sort">
+      <option value="level">All Levels</option>
+      <option value="beginner">Beginner (&lt;1D1N, &lt;2.000m)</option>
+      <option value="moderate">Moderate (&lt;3D2N, &lt;3.000m)</option>
+      <option value="hard">Hard (3D2N+, &lt;4.000m)</option>
+      <option value="expedition">Expedition (5D+, &gt;4.000m)</option>
+    </select>
+
+    <select id="season-sort">
+      <option value="any">All Seasons</option>
+      <option value="spring">Spring (Mar–May)</option>
+      <option value="summer">Summer (Jun–Aug)</option>
+      <option value="fall">Fall (Sep–Nov)</option>
+      <option value="winter">Winter (Dec–Feb)</option>
+    </select>
+  </div>
+
+  <div class="mountain-wrapper">
+    <div class="mountain-container" id="mountainContainer"></div>
+    <button id="loadMoreBtn">Load More Mountains</button>
+  </div>
+</div>
+
+
+<!-- Tab Maps -->
+<div id="Maps" class="tab-content" style="display: none; padding: 1rem;">
+  <div id="map" style="width: 100%; height: 500px; position: relative;"></div>
+</div>
+
+
+
+<!-- Community Tab -->
+<div id="Community" class="tab-content" style="display: none; max-width: 700px; margin: 0 auto; padding: 1.5rem 1rem; font-size: 0.92rem; line-height: 1.6; color: none;">
+  <h2 style="text-align: center; font-size: 1.3rem; margin-bottom: 1rem;">Still on the Trail…</h2>
+  <p>We’re building something exciting for adventurers around the world.</p>
+  <p>Montamap is designed to help you explore nature’s most breathtaking places — with clarity, confidence, and connection.</p>
+  <p><strong>Soon, you’ll be able to:</strong></p>
+  <ul>
+    <li>Join and contribute to adventure forums</li>
+    <li>Share expedition stories and travel journals</li>
+    <li>Follow explorers and local guides</li>
+    <li>Verify trail conditions in real time</li>
+  </ul>
+  <p><strong>Want early access?</strong></p>
+  <form action="https://formspree.io/f/xovdpjez" method="POST" style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.6rem;">
+    <input type="email" name="email" placeholder="Enter your email" required style="padding: 0.5rem 0.75rem; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem;" />
+    <input type="hidden" name="_redirect" value="https://montamap.com/thankyou.html">
+    <button type="submit" style="background-color: #356859; color: white; border: none; padding: 0.6rem 1rem; border-radius: 6px; font-size: 0.9rem; cursor: pointer;">Notify Me</button>
+  </form>
+  <p class="footer-note" style="font-size: 0.8rem; text-align: center; color: #666;">We respect your journey — and your inbox.</p>
+</div>
+
+
+
+
+<!-- Gear Tab -->
+<div id="Gear" class="tab-content" style="display: none; max-width: 700px; margin: 0 auto; padding: 1.5rem 1rem; font-size: 0.92rem; line-height: 1.6; color: none;">
+  <h2 style="text-align: center; font-size: 1.3rem; margin-bottom: 1rem;">Gear Up with Confidence</h2>
+  <p>We’re curating the best tools to elevate your expeditions.</p>
+  <p><strong>Soon, you’ll be able to:</strong></p>
+  <ul>
+    <li>Compare gear with expert and community reviews</li>
+    <li>Get trail-specific gear recommendations</li>
+    <li>Track your inventory, weight, and performance</li>
+    <li>Access smart packing lists</li>
+  </ul>
+  <p><strong>Want early access to gear tools?</strong></p>
+  <form action="https://formspree.io/f/xovdpjez" method="POST" style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.6rem;">
+    <input type="email" name="email" placeholder="Enter your email" required style="padding: 0.5rem 0.75rem; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem;" />
+    <input type="hidden" name="_redirect" value="https://montamap.com/thankyou.html">
+    <button type="submit" style="background-color: #356859; color: white; border: none; padding: 0.6rem 1rem; border-radius: 6px; font-size: 0.9rem; cursor: pointer;">Notify Me</button>
+  </form>
+  <p class="footer-note" style="font-size: 0.8rem; text-align: center; color: #666;">Only the essentials. No spam, ever.</p>
+</div>
+
+
+
+
+
+<!-- News Tab -->
+<div id="News" class="tab-content" style="display: none; max-width: 700px; margin: 0 auto; padding: 1.5rem 1rem; font-size: 0.92rem; line-height: 1.6; color: none;">
+  <h2 style="text-align: center; font-size: 1.3rem; margin-bottom: 1rem;">What’s New at Montamap</h2>
+  <p>We’re constantly evolving to support your next great adventure.</p>
+  <p><strong>Recent updates include:</strong></p>
+  <ul>
+    <li>Global trail mapping engine in beta</li>
+    <li>Partnerships with local guides worldwide</li>
+    <li>Real-time weather overlays and hazard alerts</li>
+    <li>Redesigned UI for smoother exploration</li>
+  </ul>
+  <p><strong>Want the latest updates?</strong></p>
+  <form action="https://formspree.io/f/xovdpjez" method="POST" style="margin: 1rem 0; display: flex; flex-direction: column; gap: 0.6rem;">
+    <input type="email" name="email" placeholder="Enter your email" required style="padding: 0.5rem 0.75rem; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem;" />
+    <input type="hidden" name="_redirect" value="https://montamap.com/thankyou.html">
+    <button type="submit" style="background-color: #356859; color: white; border: none; padding: 0.6rem 1rem; border-radius: 6px; font-size: 0.9rem; cursor: pointer;">Subscribe</button>
+  </form>
+  <p class="footer-note" style="font-size: 0.8rem; text-align: center; color: #666;">We send only meaningful updates. No fluff, no spam.</p>
+</div>
+
+
+
+
+</main>
+<div class="pre-footer-links">
+  <a href="/montamap/about">About Us</a>
+  &nbsp;|&nbsp;
+  <a href="mailto:hello@montamap.com">Contact</a>
+  &nbsp;|&nbsp;
+  <a href="/montamap/privacy">Privacy Policy</a>
+  &nbsp;|&nbsp;
+  <a href="/montamap/terms">Terms of Service</a>
+  &nbsp;|&nbsp;
+  <a href="/montamap/faq">FAQ</a>
+  &nbsp;|&nbsp;
+  <a href="/montamap/careers">Careers</a>
+  &nbsp;|&nbsp;
+  <a href="/montamap/blog">Blog</a>
+  &nbsp;|&nbsp;
+  <a href="/montamap/download">Download App</a>
+  </a>
+</div>
+  
+<footer>
+  <div class="footer-content">   
+
+<p style="display: flex; align-items: center; justify-content: center;">
+  <a href="https://montamap.com" style="display: inline-block;">
+    <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo" style="height: 35px;" />
+  </a>
+</p>
+
+ <p>© 2025 Montamap. All rights reserved.</p>
+
+    <p>
+      <a href="https://instagram.com/montamap" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;">
+          <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1.1.5 1.6 1 .5.5.8 1 1 1.6.2.5.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.5 1.1-1 1.6-.5.5-1 .8-1.6 1-.5.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1.1-.5-1.6-1-.5-.5-.8-1-.9-1.6-.2-.5-.3-1.2-.4-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.5-1.1 1-1.6.5-.5 1-.8 1.6-1 .5-.2 1.2-.3 2.4-.4 1.3-.1 1.7-.1 4.9-.1m0-2.2c-3.3 0-3.7 0-5 .1-1.3.1-2.2.3-3 .6-.8.3-1.5.7-2.1 1.3-.6.6-1 1.3-1.3 2.1-.3.8-.5 1.7-.6 3-.1 1.3-.1 1.7-.1 5s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.3 2.1.6.6 1.3 1 2.1 1.3.8.3 1.7.5 3 .6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.1-1.3.6-.6 1-1.3 1.3-2.1.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.3-2.1-.6-.6-1.3-1-2.1-1.3-.8-.3-1.7-.5-3-.6-1.3-.1-1.7-.1-5-.1z"/>
+          <path d="M12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/>
+        </svg>
+        Instagram
+      </a>
+&nbsp;|&nbsp;
+<a href="https://x.com/montamap" target="_blank" rel="noopener noreferrer">
+  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 1200 1227" style="vertical-align: middle;">
+    <path d="M714.07 558.06L1154.18 0h-263.8L611.83 395.89 326.61 0H0l470.69 679.52L45.82 1227h263.8l299.29-402.27L873.39 1227H1200L714.07 558.06zM349.93 138.13l543.17 766.9h-109.2L240.72 138.13h109.21z"/>
+  </svg>
+  X
+</a>
+     &nbsp;|&nbsp;
+      <a href="mailto:hello@montamap.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 24 24" style="vertical-align: middle;">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        Email
+      </a>
+    </p>
+  </div>
+</footer>
+
+
+<!-- Mapbox Core -->
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js" defer></script>
+
+<!-- Style Switcher UMD (no defer) -->
+<script id="switcher-script" src="https://unpkg.com/mapbox-gl-style-switcher@1.1.3/dist/mapbox-gl-style-switcher.umd.js"></script>
+
+<!-- Custom Scripts -->
+<script src="/js/language-switcher.js" defer></script>
+<script src="script.js" defer></script>
+
+
+</body>
+</html>

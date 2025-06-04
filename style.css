@@ -1,232 +1,574 @@
-/* ================== RESET & BASE ================== */
-* {
+/* ======== GENERAL RESET ======== */
+body, h1, p, button {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ======== BODY STYLING ======== */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
   color: #333;
-  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-/* ================== HEADER ================== */
+/* ======== HEADER STYLING ======== */
 header {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  padding: 10px 20px;
+  background-color: #2c2c2c;
+  color: #e3ddcd;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 9999 !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 /* Logo */
+.left-logo {
+  width: 55px;
+  height: auto;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
 .logo {
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #e3ddcd;
+  font-size: 26px;
   font-weight: bold;
-  color: #2c3e50;
-}
-
-/* Nav Menu */
-nav ul {
-  display: flex;
-  gap: 1.5rem;
-}
-
-/* Nav Links */
-nav li a {
-  padding: 0.5rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-nav li a:hover {
-  color: #0077cc;
-}
-
-/* ================== HAMBURGER MENU ================== */
-.hamburger {
-  display: none;
-  flex-direction: column;
+  text-shadow: 2px 2px 4px #000;
   cursor: pointer;
-  gap: 5px;
-  z-index: 20;
-  backdrop-filter: blur(6px);
-  background: rgba(255, 255, 255, 0.3);
-  padding: 8px;
-  border-radius: 8px;
 }
 
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-}
-
-/* ================== SEARCH BAR ================== */
+/* ======== SEARCH BAR ======== */
 .search-bar {
-  margin: 1rem auto;
-  max-width: 600px;
-  display: flex;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
+  flex: 1;
+  max-width: 350px;
+  margin-right: 10px;
 }
 
 .search-bar input {
-  flex: 1;
-  padding: 0.75rem;
-  border: none;
-  outline: none;
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  font-size: 14px;
 }
 
-.search-bar button {
-  padding: 0 1rem;
-  background-color: #0077cc;
-  color: white;
+/* ======== HAMBURGER MENU ======== */
+.menu-container {
+  position: relative;
+}
+
+#hamburger {
+  font-size: 26px;
+  background: none;
   border: none;
   cursor: pointer;
+  color: white;
 }
 
-/* ================== FILTER DROPDOWN ================== */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin: 1rem auto;
-  max-width: 900px;
-}
-
-.filters select {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-/* ================== MOUNTAIN CARDS ================== */
-.mountain-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-}
-
-.mountain-card {
-  background: #fff;
+/* Glass effect on dropdown */
+.menu {
+  position: absolute;
+  right: 10px;
+  top: 48px;
+  width: 260px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  z-index: 9999 !important;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.menu.menu-visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.menu-button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #89ae98;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.menu-button:hover {
+  background-color: #eee;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  font-size: 14px;
+}
+
+/* ======== THEME SWITCH ======== */
+.theme-switch {
+  display: flex;
+  gap: 2px;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+}
+
+.theme-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  border: 0;
+  background-color: #e0e0e0;
+  color: #333;
+  margin: 3px;
+  transition: background 0.1s, color 0.1s;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+html.dark {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
+html.dark body {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
+.theme-btn.active {
+  background-color: #89ae95;
+  color: #333;
+  border-color: #4a90e2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ======== BANNER ADS ======== */
+.ads-wrapper {
+  max-height: 60px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.ads-container {
+  width: 100%;
+}
+
+/* ======== TAGLINE SECTION ======== */
+.tagline-section {
+  text-align: center;
+  margin: 20px 0;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.tagline, .sub-tagline {
+  opacity: 0;
+  transform: translateY(20px);
+  animation-fill-mode: forwards;
+}
+
+.tagline {
+  font-size: 27px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  animation: fadeSlideUp 0.8s ease-out 0.2s forwards;
+}
+
+.sub-tagline {
+  font-size: 14px;
+  line-height: 1.5;
+  animation: fadeSlideUp 0.8s ease-out 0.6s forwards;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======== HORIZONTAL TABS ======== */
+.horizontal-tab-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-top: 1px solid #ccc;
+  justify-content: space-around;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: none;
+}
+
+.tab {
+  display: inline-block;
+  background-color: #e0e0e0;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 0 10px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tab:hover {
+  background-color: #ccc;
+}
+
+html, body {
+  height: auto;
+  margin: 0;
+}
+
+.tab-content {
+  height: auto;
+  display: none;
+}
+
+.tab.active {
+  background-color: transparent;
+  font-weight: bold;
+  color: #89ae95;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.light-theme .tab.active {
+  color: #000;
+}
+
+.dark-theme .tab.active {
+  color: #fff;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ======== WISHLIST HEADER ======== */
+.wishlist-header {
+  position: relative;
+  padding-right: 80px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.wishlist-header h2 {
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.wishlist-actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.wishlist-actions button {
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  color: #95ae98;
+  background: none;
+  border: none;
+  padding: 4px 8px;
+}
+
+/* ======== SORT OPTIONS ======== */
+.sort-options-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 8px;
+  padding: 8px;
+  margin-left: 10px;
+}
+
+.sort-options-container::-webkit-scrollbar {
+  display: none;
+}
+
+.sort-options-container select {
+  width: 110px;
+  height: 25px;
+  font-size: 10px;
+  padding: 5px 8px;
+  border: none;
+  background-color: #eee;
+  border-radius: 7px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ======== MOUNTAIN WRAPPER & CONTAINER ======== */
+.mountain-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.mountain-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 700px;
+}
+
+/* ======== MOUNTAIN CARD ======== */
+.mountain-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2), 0 8px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 200px;
 }
 
 .mountain-card:hover {
-  transform: translateY(-4px);
+  transform: scale(1.02);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
 }
 
-.mountain-card img {
+.mountain-image {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
-}
-
-.mountain-card .card-body {
-  padding: 1rem;
-}
-
-.mountain-card h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-}
-
-.mountain-card p {
-  font-size: 0.95rem;
-  color: #555;
-}
-
-/* ================== LOAD MORE BUTTON ================== */
-.load-more {
   display: block;
-  margin: 2rem auto;
-  padding: 0.75rem 2rem;
-  background-color: #0077cc;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+  transition: filter 0.3s ease;
+}
+
+.mountain-card:hover .mountain-image {
+  filter: brightness(0.85);
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+  color: white;
+  z-index: 20;
   cursor: pointer;
+  transition: color 0.3s;
+}
+
+.favorite-icon.active {
+  color: #28a745;
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent 100%);
+}
+
+.mountain-info {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  color: white;
+  z-index: 2;
+}
+
+.mountain-name {
+  font-size: 1.6rem;
   font-weight: bold;
-  transition: background-color 0.2s ease;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-.load-more:hover {
-  background-color: #005fa3;
+.mountain-details {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* ================== FOOTER ================== */
+.status-open {
+  color: #8cffb3;
+}
+
+.status-closed {
+  color: #ff7f7f;
+}
+
+.weather-icon {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+/* ======== LOAD MORE BUTTON ======== */
+#loadMoreBtn {
+  margin-top: 24px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #89ae95;
+  color: #333;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+#loadMoreBtn:hover {
+  background-color: #bcd5c4;
+}
+
+/* ======== FOOTER & PRE-FOOTER LINKS ======== */
 footer {
-  background-color: #2c3e50;
-  color: white;
+  width: 100%;
   text-align: center;
-  padding: 2rem 1rem;
-  margin-top: 3rem;
+  padding: 30px 5vw;
+  font-size: 0.75rem;
+  border-top: 1px solid #ccc;
+  background-color: #f5f5f5;
+  color: #333;
+  box-sizing: border-box;
 }
 
-footer .social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+.pre-footer-links {
+  font-size: 0.625rem;
+  text-align: center;
+  margin: 60px 0 20px;
+  color: #89ae95;
 }
 
-footer .social-icons a {
-  color: white;
-  font-size: 1.5rem;
-  transition: opacity 0.2s ease;
+.pre-footer-links a {
+  color: #89ae95;
+  text-decoration: none;
+  margin: 0 4px;
+  transition: all 0.2s ease;
 }
 
-footer .social-icons a:hover {
-  opacity: 0.7;
+.pre-footer-links a {
+  line-height: 1.2;
+  margin: 0.2rem 0;
 }
 
-footer p {
-  font-size: 0.9rem;
+.pre-footer-links a:hover {
+  text-decoration: underline;
 }
 
-/* ================== RESPONSIVE ================== */
-@media (max-width: 768px) {
-  nav ul {
-    display: none;
-    flex-direction: column;
-    background-color: #fff;
-    position: absolute;
-    top: 65px;
-    right: 20px;
-    padding: 1rem;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    z-index: 15;
+.footer-content a {
+  color: #89ae95;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.footer-content a:hover {
+  color: #6f947c;
+  text-decoration: underline;
+}
+
+/* ======== TAB MAPS ======== */
+#map {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin-top: 20px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-group {
+  z-index: 99;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.mapboxgl-ctrl-top-right {
+  top: 60px !important;
+  z-index: 99 !important;
+}
+
+.mapboxgl-ctrl-group > button {
+  border-radius: 6px;
+}
+
+#map button {
+  border-radius: 6px !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+  transition: background 0.2s ease;
+}
+
+#map button:hover {
+  background: #f0f0f0;
+}
+
+/* ======== MEDIA QUERY RESPONSIVE ======== */
+@media (max-width: 720px) {
+  .left-logo {
+    width: 40px;
+    height: auto;
+    margin-right: 5px;
+    vertical-align: middle;
   }
-
-  nav ul.show {
-    display: flex;
+  .logo {
+    font-size: 18px;
+    margin-right: 5px;
   }
-
-  .hamburger {
+  .search-bar {
+    flex: 1;
+    max-width: 130px;
+    margin-right: 10px;
+  }
+  .horizontal-tab-container {
     display: flex;
+    gap: 5px;
   }
 }

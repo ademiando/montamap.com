@@ -9,20 +9,18 @@ function initMap() {
   if (mapInitialized) return;
   mapInitialized = true;
 
-  // Masukkan Access Token Mapbox Anda
   mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
 
   map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v12',
-    center: [116.4575, -8.4111], // Lombok
+    center: [116.4575, -8.4111],
     zoom: 9,
     pitch: 45,
     bearing: -17.6,
     antialias: true
   });
 
-  // Kontrol peta dasar
   map.addControl(new mapboxgl.NavigationControl(), 'top-right');
   map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
   map.addControl(
@@ -35,10 +33,7 @@ function initMap() {
   );
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
 
-  // ─────────────────────────────────────────────────────────────────
-  // 1.1) Style Switcher (Outdoors, Satellite, Dark, dst.)
-  //     Diasumsikan <script id="switcher-script"> sudah ada di HTML tanpa defer
-  // ─────────────────────────────────────────────────────────────────
+  // Style Switcher
   map.on('load', () => {
     if (
       window.mapboxglStyleSwitcher &&
@@ -62,9 +57,7 @@ function initMap() {
     }
   });
 
-  // ─────────────────────────────────────────────────────────────────
-  // 1.2) Tombol Reset View (FlyTo)
-  // ─────────────────────────────────────────────────────────────────
+  // Tombol Reset View
   const resetBtn = document.createElement('button');
   resetBtn.textContent = '↻';
   Object.assign(resetBtn.style, {
@@ -82,9 +75,7 @@ function initMap() {
   };
   document.getElementById('map').appendChild(resetBtn);
 
-  // ─────────────────────────────────────────────────────────────────
-  // 1.3) Tombol Download Map (Screenshot)
-  // ─────────────────────────────────────────────────────────────────
+  // Tombol Download Map
   const downloadBtn = document.createElement('button');
   downloadBtn.textContent = '⬇︎';
   Object.assign(downloadBtn.style, {
@@ -125,7 +116,7 @@ const lightBtn          = document.getElementById('lightBtn');
 const darkBtn           = document.getElementById('darkBtn');
 const favoriteContainer = document.getElementById('favorite-container');
 
-// 2.1) MENU TOGGLE
+// MENU TOGGLE
 if (menuToggle && dropdownMenu) {
   menuToggle.addEventListener('click', () => dropdownMenu.classList.toggle('menu-visible'));
   document.addEventListener('click', e => {
@@ -135,7 +126,7 @@ if (menuToggle && dropdownMenu) {
   });
 }
 
-// 2.2) LANGUAGE & CURRENCY SELECTOR
+// LANGUAGE & CURRENCY SELECTOR
 if (languageSelect && currencySelect) {
   languageSelect.value = localStorage.getItem('language') || 'en';
   currencySelect.value = localStorage.getItem('currency') || 'usd';
@@ -143,7 +134,7 @@ if (languageSelect && currencySelect) {
   currencySelect.addEventListener('change', () => localStorage.setItem('currency', currencySelect.value));
 }
 
-// 2.3) THEME SWITCH
+// THEME SWITCH
 function setTheme(mode) {
   document.documentElement.classList.toggle('dark', mode === 'dark');
   localStorage.setItem('theme', mode);
@@ -153,7 +144,7 @@ function setTheme(mode) {
 lightBtn?.addEventListener('click', () => setTheme('light'));
 darkBtn?.addEventListener('click', () => setTheme('dark'));
 
-// 2.4) TAB NAVIGATION
+// TAB NAVIGATION
 function openTab(event, tabName) {
   document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -191,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 3) MOUNTAIN & FAVORITES SECTION (Supabase + Filter + Search + Paging)
 // =================================================================
 
-// Ganti dengan Supabase URL & Key Anda
+// Supabase URL & Key
 const supabaseUrl = 'https://wmutwaurieyuujbwvzav.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndtdXR3YXVyaWV5dXVqYnd2emF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5NDk1MTcsImV4cCI6MjA2NDUyNTUxN30.hjdpU8Vo7b5x-0VKUMdoe9Qbm189mw7PMvyVnACD7eY';
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -202,9 +193,9 @@ const searchInput       = document.getElementById("searchInput");
 
 // Pagination & batch size
 let loaded = 0;
-const batch = 6; // 6 per halaman
+const batch = 6;
 
-// Ambil nilai dropdown filter (gunakan persis sesuai DB, kecualikan default)
+// Ambil nilai dropdown filter
 function getCurrentFilters() {
   return {
     type:        document.getElementById("type-sort")?.value || '',
@@ -234,46 +225,42 @@ async function fetchWeather(lat, lon) {
   }
 }
 
-// Buat elemen mountain card (desain dengan ikon cuaca & fallback image)
+// Buat elemen mountain card sesuai desain final
 function createMountainCard(m, w) {
   const card = document.createElement("div");
   card.className = "mountain-card";
 
-  // Klik pada card (kecuali icon favorite) navigasi ke detail
   card.addEventListener('click', (evt) => {
-    // Jika klik tepat pada ikon favorite, abaikan navigasi
     if (evt.target.classList.contains('favorite-icon')) return;
     if (m.slug) {
       window.location.href = `https://montamap.com/mount/${m.slug}`;
     }
   });
 
-  // Tentukan gambar, fallback pakai nama slug tanpa prefix "mount-"
-  const fallbackName = m.slug.replace(/^mount-/, '').toLowerCase();
   const imgUrl = (m.image_url && m.image_url.trim() !== '')
     ? m.image_url
-    : `https://montamap.com/mountain-image/${fallbackName}.jpg`;
+    : `https://montamap.com/mountain-image/${m.slug}.jpg`;
 
-  // Fallback jika nilai null/undefined
-  const nameText      = m.name                         || '-';
-  const locationText  = m.location_description
-                         ? `${m.location_description}, ${m.country}`
-                         : m.country                  || '-';
-  const elevationText = m.elevation_meters
-                         ? `${m.elevation_meters}m`
+  const nameText      = m.name                           || '-';
+  const locationText  = m.region
+                         ? `${m.region}, ${m.country}`
+                         : m.country                     || '-';
+  const elevationText = (m.elevation_m && !isNaN(m.elevation_m))
+                         ? `${m.elevation_m}m`
                          : '-';
+  const statusText    = m.status || '-';
+  const statusClass   = (statusText.toLowerCase() === 'open') ? 'status-open' : 'status-closed';
   const weatherIcon   = w.icon
                          ? `<img src="https://openweathermap.org/img/wn/${w.icon}.png" alt="${w.weather}" class="weather-icon"/>`
                          : '';
-  const weatherText   = (w.temperature && w.weather)
+  const weatherText   = (w.temperature && w.weather && w.weather !== 'N/A')
                          ? `${w.temperature} | ${w.weather}`
-                         : '';
+                         : 'N/A';
 
-  // Cek apakah sudah favorite (ID disimpan sebagai string)
   const isFav = isFavorite(m.id);
 
   card.innerHTML = `
-    <img src="${imgUrl}" alt="${nameText}" class="mountain-image"/>
+    <img src="${imgUrl}" alt="${nameText}" class="mountain-image" />
     <div class="favorite-icon" title="${isFav ? 'Unfavorite' : 'Favorite'}">
       ${isFav ? '★' : '☆'}
     </div>
@@ -281,6 +268,7 @@ function createMountainCard(m, w) {
     <div class="mountain-info">
       <div class="mountain-name">${nameText}</div>
       <div class="mountain-details">
+        <span class="${statusClass}">Status: ${statusText}</span><br/>
         ${locationText}<br/>
         Elevation: ${elevationText}<br/>
         ${weatherIcon} ${weatherText}
@@ -288,11 +276,9 @@ function createMountainCard(m, w) {
     </div>
   `;
 
-  // Toggle favorite icon (klik tepat ikon)
   const favEl = card.querySelector('.favorite-icon');
   favEl.addEventListener('click', (e) => {
-    e.stopPropagation(); // Hindari navigasi pada card
-
+    e.stopPropagation();
     let favs = getFavorites();
     if (favs.includes(m.id)) {
       favs = favs.filter(x => x !== m.id);
@@ -304,8 +290,6 @@ function createMountainCard(m, w) {
       favEl.title = 'Unfavorite';
     }
     saveFavorites(favs);
-
-    // Jika tab Favorite aktif, re-render daftar
     const currentTab = document.querySelector('.tab.active')?.textContent.trim();
     if (currentTab === 'Favorite') {
       renderFavorites();
@@ -327,43 +311,35 @@ async function renderMountains() {
   const filters = getCurrentFilters();
   const rawSearch = searchInput?.value.trim().toLowerCase() || '';
 
-  // Build query Supabase
   let query = supabase.from('mountains').select('*');
 
-  // 1) Filter type (gunakan ilike '%value%' agar case-insensitive & partial match)
   if (filters.type && filters.type !== 'type') {
     query = query.ilike('type', `%${filters.type}%`);
   }
-  // 2) Filter country
   if (filters.country && filters.country !== 'global') {
     query = query.ilike('country', `%${filters.country}%`);
   }
-  // 3) Filter destination (skip default kosong)
   if (filters.destination && filters.destination !== '') {
     query = query.ilike('destination', `%${filters.destination}%`);
   }
-  // 4) Filter difficulty
   if (filters.difficulty && filters.difficulty !== 'level') {
     query = query.ilike('difficulty', `%${filters.difficulty}%`);
   }
-  // 5) Filter season (TEXT array)
   if (filters.season && filters.season !== 'any') {
     query = query.contains('season', [filters.season]);
   }
 
-  // 6) Full-text search across beberapa kolom
   if (rawSearch) {
     const pattern = `%${rawSearch}%`;
     const orFilter =
       `name.ilike.${pattern},` +
-      `location_description.ilike.${pattern},` +
+      `region.ilike.${pattern},` +
       `country.ilike.${pattern},` +
       `type.ilike.${pattern},` +
       `destination.ilike.${pattern}`;
     query = query.or(orFilter);
   }
 
-  // Pagination: ambil data range loaded..loaded+batch-1
   const { data, error } = await query.range(loaded, loaded + batch - 1);
   if (error) {
     console.error("Supabase error di renderMountains:", error);

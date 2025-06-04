@@ -9,8 +9,8 @@ function initMap() {
   if (mapInitialized) return;
   mapInitialized = true;
 
-  // 1.1) Inisialisasi Mapbox
-  mapboxgl.accessToken = 'pk.eyJ1IjoiYWRlbWlhbmRvIiwiYSI6ImNtYXF1YWx6NjAzdncya3B0MDc5cjhnOTkifQ.RhVpan3rfXY0fiix3HMszg';
+  // 1.1) Inisialisasi Mapbox (pakai token dari config.js)
+  mapboxgl.accessToken = CONFIG.MAPBOX_TOKEN;
   map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v12',
@@ -183,10 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
 //    (Supabase + Filter + Search + Paging + Favorite)
 // =================================================================
 
-// Supabase UMD sudah tersedia via window.supabase
-const supabaseUrl = 'https://wmutwaurieyuujbwvzav.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndtdXR3YXVyaWV5dXVqYnd2emF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5NDk1MTcsImV4cCI6MjA2NDUyNTUxN30.hjdpU8Vo7b5x-0VKUMdoe9Qbm189mw7PMvyVnACD7eY';
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+// Inisialisasi Supabase (pakai URL & KEY dari config.js)
+const supabase = window.supabase.createClient(
+  CONFIG.SUPABASE_URL,
+  CONFIG.SUPABASE_KEY
+);
 
 const mountainContainer = document.getElementById("mountainContainer");
 const loadMoreBtn       = document.getElementById("loadMoreBtn");
@@ -207,10 +208,10 @@ function getCurrentFilters() {
   };
 }
 
-// Fetch cuaca via OpenWeatherMap
+// Fetch cuaca via OpenWeatherMap (pakai API key dari config.js)
 async function fetchWeather(lat, lon) {
   try {
-    const apiKey = '3187c49861f858e524980ea8dd0d43c6';
+    const apiKey = CONFIG.OPENWEATHER_API_KEY;
     const res = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
     );
@@ -239,7 +240,7 @@ function createMountainCard(m, w) {
     }
   });
 
-  // Pilih gambar: pakai m.image_url jika ada, kalau tidak fallback
+  // Pilih gambar: pakai m.image_url jika ada, kalau tidak fallback berdasarkan slug
   const imgUrl = (m.image_url && m.image_url.trim() !== '')
     ? m.image_url
     : `https://montamap.com/mountain-image/${m.slug}.jpg`;
@@ -261,7 +262,7 @@ function createMountainCard(m, w) {
                          ? `${w.temperature} | ${w.weather}`
                          : 'N/A';
 
-  // Cek favorite (simpan ID integer dalam localStorage)
+  // Cek favorite (simpan ID integer atau UUID berdasarkan kolom id Supabase)
   const isFav = isFavorite(m.id);
 
   card.innerHTML = `
@@ -420,14 +421,12 @@ function initMountainRendering() {
 // 4) FAVORITES SECTION (LocalStorage-based)
 // =================================================================
 function getFavorites() {
-  // Simpan sebagai array integer
   return JSON.parse(localStorage.getItem('favorites')) || [];
 }
 function saveFavorites(favs) {
   localStorage.setItem('favorites', JSON.stringify(favs));
 }
 function isFavorite(id) {
-  // id dari Supabase diasumsikan integer
   return getFavorites().includes(id);
 }
 
@@ -441,7 +440,7 @@ async function renderFavorites() {
     return;
   }
 
-  // Query Supabase menggunakan array integer IDs
+  // Query Supabase menggunakan array integer/UUID IDs
   const { data, error } = await supabase
     .from('mountains')
     .select('*')

@@ -45,7 +45,7 @@ Montamap saat ini:
 
 ```bash
 # 1. Clone repository ini
-git clone https://github.com/namamu/montamap.git
+git clone https://github.com/ademiando/montamap.git
 cd montamap
 
 # 2. Install dependencies (jika menggunakan Node.js)

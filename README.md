@@ -59,9 +59,9 @@ cd montamap
 ## 🤝 Kontribusi
 
 Kami menyambut kontribusi dari siapa pun — baik itu perbaikan bug kecil, penambahan fitur, maupun masukan dokumentasi.  
-Silakan buka issue atau pull request jika ingin membantu.
+Silakan ajukan issue atau pull request untuk berpartisipasi dalam pengembangan proyek ini.
 
-**Catatan:** Karena proyek ini sedang berkembang dan dibuat oleh tim kecil (dan pemula juga), harap bersabar dan bantu saling belajar. 💪
+Harap diingat, proyek ini masih dalam tahap pengembangan awal oleh tim kecil. Kami menghargai kesabaran dan semangat kolaborasi dari semua kontributor.
 
 ---
 

@@ -41,19 +41,18 @@ Montamap saat ini:
 
 ---
 
-## 🔧 Cara Menjalankan (Local Development)
+## 💻 Cara Menjalankan (Local Development)
 
 ```bash
 # 1. Clone repository ini
 git clone https://github.com/ademiando/montamap.git
 cd montamap
 
-# 2. Install dependencies (jika menggunakan Node.js)
-npm install
-
-# 3. Jalankan proyek lokal
-npm run dev
+# 2. Jalankan langsung file index.html di browser
 ```
+
+> Tidak membutuhkan install apapun. Tidak menggunakan Node.js atau build tools.  
+> Semua berbasis HTML, CSS, JS murni, API eksternal, dan Supabase sebagai backend.
 
 ---
 
@@ -68,7 +67,8 @@ Silakan buka issue atau pull request jika ingin membantu.
 
 ## 🔐 Lisensi
 
-Proyek ini dirilis di bawah lisensi [MIT](LICENSE).
+Proyek ini dirilis di bawah lisensi MIT.  
+Silakan digunakan dan dimodifikasi selama tetap mencantumkan atribusi.
 
 ---
 

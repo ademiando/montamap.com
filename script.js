@@ -35,22 +35,8 @@ function initMap() {
   );
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
 
-  // PASANG STYLE SWITCHER SETELAH MAP LOAD
-  map.on('load', function() {
-    if (typeof MapboxStyleSwitcherControl !== 'undefined') {
-      const styleSwitcher = new MapboxStyleSwitcherControl([
-        { label: 'Outdoors', styleName: 'outdoors', styleUrl: 'mapbox://styles/mapbox/outdoors-v12' },
-        { label: 'Satellite', styleName: 'satellite', styleUrl: 'mapbox://styles/mapbox/satellite-v9' },
-        { label: 'Satellite 3D', styleName: 'satellite-3d', styleUrl: 'mapbox://styles/mapbox/satellite-streets-v12' },
-        { label: 'Dark', styleName: 'dark', styleUrl: 'mapbox://styles/mapbox/dark-v11' },
-        { label: 'Streets', styleName: 'streets', styleUrl: 'mapbox://styles/mapbox/streets-v12' },
-        { label: 'Terrain 3D', styleName: 'terrain-3d', styleUrl: 'mapbox://styles/mapbox/outdoors-v12' }
-      ], {
-        defaultStyle: 'mapbox://styles/mapbox/outdoors-v12'
-      });
-      map.addControl(styleSwitcher, 'top-right');
-    }
-  });
+  // PASANG STYLE SWITCHER SETELAH MAP LOAD (js pisah)
+ 
 
 
 

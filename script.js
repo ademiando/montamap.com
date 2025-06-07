@@ -53,8 +53,8 @@ function initMap() {
         top: 18px;
         left: 18px;
         z-index: 30;
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         background: #fff;
         border: 1.5px solid #e0e0e0;
         border-radius: 8px;
@@ -73,8 +73,8 @@ function initMap() {
         box-shadow: 0 4px 18px rgba(53,104,89,0.13);
       }
       .custom-map-btn-download svg {
-        width: 22px;
-        height: 22px;
+        width: 18px;
+        height: 18px;
         color: #356859;
         pointer-events: none;
       }
@@ -229,7 +229,7 @@ function initMap() {
       }
 
       @media (max-width:600px) {
-        .custom-map-btn-download, .switcher-fab { width: 34px; height: 34px; }
+        .custom-map-btn-download, .switcher-fab { width: 28px; height: 28px; }
         .switcher-fab { top: 7px; right: 7px; }
         .custom-map-btn-download { top: 7px; left: 7px; }
         .custom-map-btn-stack { right: 7px; bottom: 7px; gap: 5px; }

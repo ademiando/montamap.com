@@ -53,7 +53,6 @@ function initMap() {
       console.warn('MapboxStyleSwitcherControl belum tersedia—periksa urutan <script> Anda.');
     }
   });
-}
 
 
 

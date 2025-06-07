@@ -246,7 +246,7 @@ function initMap() {
   const downloadBtn = document.createElement('button');
   downloadBtn.className = 'custom-map-btn-download';
   downloadBtn.type = 'button';
-  downloadBtn.title = 'Download gambar map';
+  downloadBtn.title = 'Download Map';
   downloadBtn.innerHTML = `
     <svg viewBox="0 0 22 22" fill="none">
       <path d="M11 4v10" stroke="#356859" stroke-width="2" stroke-linecap="round"/>
@@ -270,7 +270,7 @@ function initMap() {
   const fab = document.createElement('button');
   fab.className = 'switcher-fab';
   fab.type = 'button';
-  fab.title = 'Ganti tampilan peta';
+  fab.title = 'Switch Map Style';
   fab.innerHTML = `
     <svg viewBox="0 0 24 24" fill="none">
       <rect x="2" y="7" width="20" height="4" rx="2" fill="#356859"/>
@@ -384,7 +384,7 @@ function initMap() {
   const compassBtn = document.createElement('button');
   compassBtn.className = 'custom-map-btn';
   compassBtn.type = 'button';
-  compassBtn.title = 'Reset arah utara';
+  compassBtn.title = 'Reset to North';
   compassBtn.innerHTML = `
     <svg viewBox="0 0 22 22" fill="none">
       <circle cx="11" cy="11" r="9" stroke="#356859" stroke-width="2" fill="none"/>
@@ -398,7 +398,7 @@ function initMap() {
   // 1.5) Zoom MapboxGL (tanpa kompas)
   const navCtrl = new mapboxgl.NavigationControl({ showCompass: false });
 
-  // Masukin urutan: geoCtrl (paling bawah), fullscreen, reset, compass, navCtrl (paling atas)
+  // Masuk Urutan: geoCtrl (paling bawah), fullscreen, reset, compass, navCtrl (paling atas)
   stack.appendChild(mapboxgl.GeolocateControl.prototype._createButton ? geoCtrl.onAdd(map) : geoCtrl.onAdd(map));
   stack.appendChild(fullscreenCtrl.onAdd(map));
   stack.appendChild(resetBtn);

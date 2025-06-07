@@ -50,12 +50,12 @@ function initMap() {
       /* KIRI ATAS */
       .custom-map-btn-download {
         position: absolute;
-        top: 18px;
-        left: 18px;
+        top: 12px;
+        left: 12px;
         z-index: 15;
-        width: 30px;
-        height: 30px;
-        background: #fff;
+        width: 25px;
+        height: 25px;
+        background: transparent;
         border: 1.5px solid #e0e0e0;
         border-radius: 8px;
         box-shadow: 0 2px 12px rgba(53,104,89,0.08);
@@ -229,7 +229,7 @@ function initMap() {
       }
 
       @media (max-width:600px) {
-        .custom-map-btn-download, .switcher-fab { width: 28px; height: 28px; }
+        .custom-map-btn-download, .switcher-fab { width: 32px; height: 32px; }
         .switcher-fab { top: 7px; right: 7px; }
         .custom-map-btn-download { top: 7px; left: 7px; }
         .custom-map-btn-stack { right: 7px; bottom: 7px; gap: 5px; }

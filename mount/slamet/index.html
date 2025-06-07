@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Montamap - Slamet</title>  <link rel="stylesheet" href="styles.css" />  <!-- Mapbox CSS -->  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="sticky-header">
+    <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo" class="logo" />
+    <h1 class="title">Slamet</h1>
+  </header>  <nav class="tab-container">
+    <button class="tab active" data-tab="overview">Overview</button>
+    <button class="tab" data-tab="community">Community</button>
+    <button class="tab" data-tab="services">Services</button>
+    <button class="tab" data-tab="news">News</button>
+  </nav>  <main><section id="overview" class="tab-content active">
+  <div class="overview-hero">
+    <!-- Mapbox Map for Mount Slamet -->
+    <div id="slamet-overview-map" class="overview-map fullscreen-map"></div>
+    <div class="overview-title">
+      <h2>Slamet National Park</h2>
+      <p>Cilacap/Banyumas, Central Java, Indonesia | Stratovolcano | 3,428 m</p>
+    </div>
+  </div>
+  <div class="info-flex">
+    <div class="info-box">
+      <h3>Quick Facts</h3>
+      <p><strong>Elevation:</strong> 3,428 m (11,245 ft)</p>
+      <p><strong>Type:</strong> Stratovolcano</p>
+      <p><strong>Location:</strong> Central Java, Indonesia</p>
+      <p><strong>Difficulty:</strong> Hard</p>
+      <p><strong>Estimated Duration:</strong> 2–3 days</p>
+      <p><strong>Best Season:</strong> April – October</p>
+    </div>
+    <div class="info-box">
+      <h3>Current Weather</h3>
+      <p><strong>Temperature:</strong> <span id="temp">--</span></p>
+      <p><strong>Condition:</strong> <span id="weather">Loading...</span></p>
+      <p><strong>Wind:</strong> <span id="wind">--</span></p>
+      <p><strong>Humidity:</strong> <span id="humidity">--</span></p>
+    </div>
+    <div class="info-box">
+      <h3>Official & Contact</h3>
+      <p><a href="https://tnpslamet.id" target="_blank">Official Website</a></p>
+      <p><a href="https://instagram.com/tnpslamet" target="_blank">@tnpslamet</a></p>
+      <p>Email: info@tnpslamet.id</p>
+      <p>Phone: +62 281 123456</p>
+    </div>
+  </div>
+  <div class="info-box">
+    <h3>Trekking Routes</h3>
+    <p><strong>Kledung Route:</strong> Approx. 20 km round trip. Mixed forest, gradual ascent, suitable for first-timers.</p>
+    <p><strong>Petak 9 Route:</strong> Approx. 18 km round trip. Steep climb, scenic ridge, best for experienced hikers.</p>
+    <p><strong>Baturaden Route:</strong> Approx. 22 km. Through rainforest and waterfall points, moderate difficulty.</p>
+    <p><strong>Timang Route:</strong> Access via Banyumas side, approx. 24 km, rugged terrain, requires local guide.</p>
+  </div>
+  <div class="description">
+    <h3>About Slamet</h3>
+    <p>Mount Slamet is the highest volcano in the province of Central Java and a prominent stratovolcano in Indonesia. Offering challenging trekking routes, rich biodiversity, and panoramic summit views, Slamet is a favorite among seasoned hikers seeking solitude and adventure.</p>
+    <p>The mountain and its surrounding area form the Slamet National Park, spanning over 80,000 hectares. The park is home to diverse flora and fauna and features numerous waterfalls and hot springs along the trekking paths.</p>
+  </div>
+</section>
+
+<section id="community" class="tab-content">
+  <h2>Community</h2>
+  <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
+</section>
+
+<section id="services" class="tab-content">
+  <h2>Services</h2>
+  <p>Book tickets, porters, guides, gear rentals, and more.</p>
+</section>
+
+<section id="news" class="tab-content">
+  <h2>News</h2>
+  <p>Latest updates, weather alerts, route closures, and official announcements.</p>
+</section>
+
+  </main>  <!-- Config & Mapbox JS -->  <script src="https://montamap.com/config.js"></script>  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>  <script src="script.js"></script></body>
+</html>

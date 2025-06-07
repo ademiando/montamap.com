@@ -49,8 +49,6 @@ function initMap() {
         defaultStyle: 'mapbox://styles/mapbox/outdoors-v12'
       });
       map.addControl(styleSwitcher, 'top-right');
-    } else {
-      console.warn('MapboxStyleSwitcherControl belum tersedia—periksa urutan <script> Anda.');
     }
   });
 

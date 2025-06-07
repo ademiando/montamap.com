@@ -2,7 +2,6 @@ let map;
 let mapInitialized = false;
 
 function enableMapboxTerrain3D(map) {
-  // Cek apakah 3D sudah aktif, kalau belum, aktifkan.
   if (!map.getSource('mapbox-dem')) {
     map.addSource('mapbox-dem', {
       'type': 'raster-dem',
@@ -11,7 +10,6 @@ function enableMapboxTerrain3D(map) {
       'maxzoom': 14
     });
     map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.4 });
-    // Optionally, tambah efek bayangan gunung
     map.addLayer({
       'id': 'hillshading',
       'source': 'mapbox-dem',
@@ -21,7 +19,6 @@ function enableMapboxTerrain3D(map) {
 }
 
 function disableMapboxTerrain3D(map) {
-  // Hilangkan terrain dan layer hillshading jika ada
   if (map.getLayer('hillshading')) map.removeLayer('hillshading');
   if (map.getSource('mapbox-dem')) map.removeSource('mapbox-dem');
   map.setTerrain(null);
@@ -42,105 +39,80 @@ function initMap() {
     antialias: true
   });
 
-  map.addControl(new mapboxgl.NavigationControl(), 'top-right');
-  map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
+  map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
   map.addControl(
     new mapboxgl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true },
       trackUserLocation: true,
       showUserHeading: true
     }),
-    'bottom-right'
+    'top-right'
   );
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
-
-  // Tombol Reset View
-  const resetBtn = document.createElement('button');
-  resetBtn.textContent = '↻';
-  Object.assign(resetBtn.style, {
-    position: 'absolute',
-    top: '10px',
-    left: '10px',
-    zIndex: 9999,
-    padding: '5px',
-    background: '#fff',
-    border: '1px solid #ccc',
-    cursor: 'pointer'
-  });
-  resetBtn.onclick = () => {
-    map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
-  };
-  document.getElementById('map').appendChild(resetBtn);
-
-  // Tombol Download Map (Screenshot)
-  const downloadBtn = document.createElement('button');
-  downloadBtn.textContent = '⬇︎';
-  Object.assign(downloadBtn.style, {
-    position: 'absolute',
-    top: '50px',
-    left: '10px',
-    zIndex: 9999,
-    padding: '5px',
-    background: '#fff',
-    border: '1px solid #ccc',
-    cursor: 'pointer'
-  });
-  downloadBtn.onclick = () => {
-    map.getCanvas().toBlob(blob => {
-      if (!blob) return;
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'montamap-map.png';
-      a.click();
-    });
-  };
-  document.getElementById('map').appendChild(downloadBtn);
+  map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
 
   window.map = map;
 
-  // ========== STYLE SWITCHER UI ==========
-  // Inject style untuk dropdown switcher
-  if (!document.getElementById('style-switcher-css')) {
+  // ========== STYLING ==========
+
+  if (!document.getElementById('custom-map-btn-css')) {
     const style = document.createElement('style');
-    style.id = 'style-switcher-css';
+    style.id = 'custom-map-btn-css';
     style.textContent = `
-      .switcher-fab {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        z-index: 20;
-        width: 42px;
-        height: 42px;
+      .mapboxgl-ctrl-top-right {
+        top: 18px !important;
+        right: 18px !important;
+        display: flex;
+        flex-direction: row;
+        gap: 10px !important;
+        z-index: 30;
+      }
+      .custom-map-btn-group {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        margin-right: 4px;
+      }
+      .custom-map-btn {
+        width: 40px;
+        height: 40px;
         background: #fff;
-        border-radius: 50%;
         border: 1.5px solid #e0e0e0;
-        box-shadow: 0 1.5px 12px rgba(0,0,0,0.08);
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(53,104,89,0.08);
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: box-shadow .18s;
+        transition: box-shadow 0.18s, border-color 0.15s, background 0.15s;
+        padding: 0;
+        outline: none;
+        position: relative;
       }
-      .switcher-fab:hover {
-        box-shadow: 0 2.5px 18px rgba(53,104,89,0.13);
+      .custom-map-btn:hover, .custom-map-btn:focus-visible {
+        border-color: #356859;
+        background: #f0faf6;
+        box-shadow: 0 4px 18px rgba(53,104,89,0.13);
       }
-      .switcher-fab svg {
+      .custom-map-btn svg {
         width: 22px;
         height: 22px;
         color: #356859;
+        pointer-events: none;
       }
+      /* Dropdown style */
       .switcher-dropdown {
         display: none;
         position: absolute;
-        top: 54px;
+        top: 48px;
         right: 0;
         background: #fff;
-        border-radius: 9px;
+        border-radius: 10px;
         box-shadow: 0 2.5px 16px rgba(53,104,89,0.13);
-        min-width: 160px;
+        min-width: 155px;
         padding: 8px 0;
-        z-index: 30;
+        z-index: 200;
         border: 1.5px solid #e0e0e0;
         font-family: inherit;
       }
@@ -149,7 +121,7 @@ function initMap() {
         animation: fadeIn .19s;
       }
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px);}
+        from { opacity: 0; transform: translateY(-8px);}
         to { opacity: 1; transform: none;}
       }
       .switcher-dropdown button {
@@ -157,7 +129,7 @@ function initMap() {
         border: none;
         width: 100%;
         text-align: left;
-        padding: 9px 18px 9px 36px;
+        padding: 9px 18px 9px 35px;
         color: #356859;
         font-size: 15px;
         cursor: pointer;
@@ -165,6 +137,9 @@ function initMap() {
         position: relative;
         transition: background .13s;
         outline: none;
+        display: flex;
+        align-items: center;
+        gap: 7px;
       }
       .switcher-dropdown button.active {
         background: #f0faf6;
@@ -175,65 +150,79 @@ function initMap() {
         background: #e3f4ee;
       }
       .switcher-dropdown .switcher-icon {
-        position: absolute;
-        left: 14px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 16px;
-        height: 16px;
-        opacity: .75;
+        width: 18px;
+        height: 18px;
+        opacity: .8;
+      }
+      @media (max-width:600px) {
+        .mapboxgl-ctrl-top-right { top: 7px !important; right: 7px !important; gap: 5px !important; }
+        .custom-map-btn-group { gap: 5px; }
+        .custom-map-btn { width: 34px; height: 34px; }
+        .switcher-dropdown { min-width: 120px; }
+        .switcher-dropdown button { font-size: 12px; padding: 7px 10px 7px 28px; gap: 3px;}
+        .switcher-dropdown .switcher-icon { width: 13px; height: 13px;}
       }
     `;
     document.head.appendChild(style);
   }
 
-  // Pilihan style
+  // ========== CUSTOM BUTTON GROUP ==========
+
+  const btnGroup = document.createElement('div');
+  btnGroup.className = 'custom-map-btn-group';
+
+  // Style Switcher FAB (pakai ikon "layers" kotak bertumpuk)
+  const fab = document.createElement('button');
+  fab.className = 'custom-map-btn';
+  fab.type = 'button';
+  fab.title = 'Ganti tampilan peta';
+  fab.innerHTML = `
+    <svg viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="7" width="20" height="4" rx="2" fill="#356859"/>
+      <rect x="4" y="13" width="16" height="4" rx="2" fill="#B5CDA3"/>
+    </svg>
+  `;
+
+  // Dropdown isi
   const mapStyles = [
     {
       label: "Terrain 3D",
       value: "mapbox://styles/mapbox/outdoors-v12",
-      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M3 15l4-4 3 3 7-7 1 1-8 8-3-3-4 4z"/></svg>`,
+      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><rect x="2" y="13" width="16" height="5" rx="2"/><rect x="4" y="7" width="12" height="5" rx="2"/></svg>`,
       isTerrain: true
     },
     {
       label: "Satellite",
       value: "mapbox://styles/mapbox/satellite-v9",
-      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="8"/><circle cx="10" cy="10" r="5" fill="#fff"/></svg>`,
+      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="10" rx="8" ry="6"/><ellipse cx="10" cy="10" rx="5" ry="3" fill="#fff"/></svg>`,
       isTerrain: false
     },
     {
       label: "Satellite 3D",
       value: "mapbox://styles/mapbox/satellite-streets-v12",
-      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="8"/><rect x="7" y="7" width="6" height="6" fill="#fff"/></svg>`,
+      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><ellipse cx="10" cy="10" rx="8" ry="6"/><rect x="7" y="7" width="6" height="6" fill="#fff"/></svg>`,
       isTerrain: true
     },
     {
       label: "Outdoors",
       value: "mapbox://styles/mapbox/outdoors-v12",
-      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M4 16L10 4l6 12z"/></svg>`,
+      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><rect x="3" y="15" width="14" height="3" rx="1.5"/><rect x="5" y="11" width="10" height="3" rx="1.5"/></svg>`,
       isTerrain: false
     },
     {
       label: "Streets",
       value: "mapbox://styles/mapbox/streets-v12",
-      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><rect x="3" y="9" width="14" height="2"/></svg>`,
+      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><rect x="4" y="9" width="12" height="2" rx="1"/><rect x="6" y="13" width="8" height="2" rx="1"/></svg>`,
       isTerrain: false
     },
     {
       label: "Dark",
       value: "mapbox://styles/mapbox/dark-v11",
-      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="8" fill="#222"/><circle cx="13" cy="7" r="4" fill="#fff" opacity="0.22"/></svg>`,
+      icon: `<svg class="switcher-icon" viewBox="0 0 20 20" fill="#222"><circle cx="10" cy="10" r="8"/><circle cx="13" cy="7" r="4" fill="#fff" opacity="0.22"/></svg>`,
       isTerrain: false
     }
   ];
 
-  // FAB Layer Switcher
-  const fab = document.createElement('button');
-  fab.className = 'switcher-fab';
-  fab.innerHTML = `<svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="8" stroke="#356859" stroke-width="2" fill="#fff"/><path d="M7 10h6M10 7v6" stroke="#356859" stroke-width="1.3" stroke-linecap="round"/></svg>`;
-  fab.type = 'button';
-
-  // Dropdown
   const dropdown = document.createElement('div');
   dropdown.className = 'switcher-dropdown';
   mapStyles.forEach((style, idx) => {
@@ -242,9 +231,7 @@ function initMap() {
     btn.setAttribute('data-style', style.value);
     if (idx === 0) btn.classList.add('active');
     btn.onclick = function() {
-      // Ganti style peta
       map.setStyle(style.value);
-      // Tahan pitch & bearing biar tetap 3D
       map.once('style.load', function() {
         map.jumpTo({ pitch: 45, bearing: -17.6 });
         if (style.isTerrain) enableMapboxTerrain3D(map);
@@ -257,41 +244,71 @@ function initMap() {
     dropdown.appendChild(btn);
   });
 
-  // FAB click: toggle dropdown
   fab.onclick = function(e) {
     e.stopPropagation();
     dropdown.classList.toggle('open');
   };
-  // Klik luar: tutup dropdown
   document.addEventListener('click', function() {
     dropdown.classList.remove('open');
   });
 
-  // Insert ke map
-  const mapboxMapDiv = document.getElementById('map');
-  fab.style.right = '16px';
-  fab.style.top = '16px';
-  fab.style.position = 'absolute';
-  fab.style.zIndex = '30';
-  mapboxMapDiv.appendChild(fab);
-  dropdown.style.right = '0';
-  dropdown.style.top = '54px';
-  mapboxMapDiv.appendChild(dropdown);
+  btnGroup.appendChild(fab);
+  btnGroup.appendChild(dropdown);
 
-  // Saat style load, aktifkan terrain jika perlu
+  // Tombol RESET (ikon refresh)
+  const resetBtn = document.createElement('button');
+  resetBtn.className = 'custom-map-btn';
+  resetBtn.type = 'button';
+  resetBtn.title = 'Reset view';
+  resetBtn.innerHTML = `
+    <svg viewBox="0 0 22 22" fill="none">
+      <path d="M4 11a7 7 0 1 1 2 5.2" stroke="#356859" stroke-width="2" fill="none"/>
+      <path d="M4 16v-5h5" stroke="#356859" stroke-width="2" fill="none"/>
+    </svg>
+  `;
+  resetBtn.onclick = () => {
+    map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
+  };
+  btnGroup.appendChild(resetBtn);
+
+  // Tombol Download (ikon download)
+  const downloadBtn = document.createElement('button');
+  downloadBtn.className = 'custom-map-btn';
+  downloadBtn.type = 'button';
+  downloadBtn.title = 'Download gambar map';
+  downloadBtn.innerHTML = `
+    <svg viewBox="0 0 22 22" fill="none">
+      <path d="M11 4v10" stroke="#356859" stroke-width="2" stroke-linecap="round"/>
+      <path d="M7 11l4 4 4-4" stroke="#356859" stroke-width="2" stroke-linecap="round"/>
+      <rect x="4" y="18" width="14" height="2" rx="1" fill="#356859"/>
+    </svg>
+  `;
+  downloadBtn.onclick = () => {
+    map.getCanvas().toBlob(blob => {
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'montamap-map.png';
+      a.click();
+    });
+  };
+  btnGroup.appendChild(downloadBtn);
+
+  // Masukkan group tombol ke map
+  document.getElementById('map').appendChild(btnGroup);
+
+  // Style & terrain 3D active
   map.on('style.load', function() {
     const activeBtn = [...dropdown.querySelectorAll('button')].find(btn => btn.classList.contains('active'));
     const styleObj = mapStyles.find(s => s.value === (activeBtn?.getAttribute('data-style')));
     if (styleObj?.isTerrain) enableMapboxTerrain3D(map);
     else disableMapboxTerrain3D(map);
   });
-
-  // Default aktifkan terrain 3d
   map.on('load', function() {
     enableMapboxTerrain3D(map);
   });
 }
-
 
 
 

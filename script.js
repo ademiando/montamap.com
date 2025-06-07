@@ -5,23 +5,24 @@
 let map;
 let mapInitialized = false;
 
+
+
 function initMap() {
   if (mapInitialized) return;
   mapInitialized = true;
 
-  // 1.1) Inisialisasi Mapbox (pakai token dari config.js)
   mapboxgl.accessToken = CONFIG.MAPBOX_TOKEN;
   map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/outdoors-v12',
-    center: [116.4575, -8.4111], // Lombok
+    center: [116.4575, -8.4111],
     zoom: 9,
     pitch: 45,
     bearing: -17.6,
     antialias: true
   });
 
-  // 1.2) Kontrol peta dasar
+  // Kontrol peta dasar
   map.addControl(new mapboxgl.NavigationControl(), 'top-right');
   map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
   map.addControl(
@@ -34,27 +35,28 @@ function initMap() {
   );
   map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
 
-  // 1.3) Style Switcher: pasang segera setelah peta dibuat
-  if (
-    window.mapboxglStyleSwitcher &&
-    typeof window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl !== 'undefined'
-  ) {
-    const StyleSwitcherControl = window.mapboxglStyleSwitcher.MapboxStyleSwitcherControl;
-    const styleSwitcher = new StyleSwitcherControl({
-      defaultStyle: 'mapbox://styles/mapbox/outdoors-v12',
-      styles: [
-        { title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
-        { title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
-        { title: 'Satellite 3D', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
-        { title: 'Dark', uri: 'mapbox://styles/mapbox/dark-v11' },
-        { title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
-        { title: 'Terrain 3D', uri: 'mapbox://styles/mapbox/outdoors-v12' }
-      ]
-    });
-    map.addControl(styleSwitcher, 'top-right');
-  } else {
-    console.warn('MapboxStyleSwitcherControl belum tersedia—periksa urutan <script> Anda.');
-  }
+  // PASANG STYLE SWITCHER SETELAH MAP LOAD
+  map.on('load', function() {
+    if (typeof MapboxStyleSwitcherControl !== 'undefined') {
+      const styleSwitcher = new MapboxStyleSwitcherControl([
+        { label: 'Outdoors', styleName: 'outdoors', styleUrl: 'mapbox://styles/mapbox/outdoors-v12' },
+        { label: 'Satellite', styleName: 'satellite', styleUrl: 'mapbox://styles/mapbox/satellite-v9' },
+        { label: 'Satellite 3D', styleName: 'satellite-3d', styleUrl: 'mapbox://styles/mapbox/satellite-streets-v12' },
+        { label: 'Dark', styleName: 'dark', styleUrl: 'mapbox://styles/mapbox/dark-v11' },
+        { label: 'Streets', styleName: 'streets', styleUrl: 'mapbox://styles/mapbox/streets-v12' },
+        { label: 'Terrain 3D', styleName: 'terrain-3d', styleUrl: 'mapbox://styles/mapbox/outdoors-v12' }
+      ], {
+        defaultStyle: 'mapbox://styles/mapbox/outdoors-v12'
+      });
+      map.addControl(styleSwitcher, 'top-right');
+    } else {
+      console.warn('MapboxStyleSwitcherControl belum tersedia—periksa urutan <script> Anda.');
+    }
+  });
+}
+
+
+
 
   // 1.4) Tombol Reset View
   const resetBtn = document.createElement('button');

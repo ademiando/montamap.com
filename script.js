@@ -1,3 +1,4 @@
+// 1. Initiation MapboxGL
 let map;
 let mapInitialized = false;
 
@@ -354,17 +355,17 @@ function initMap() {
   const stack = document.createElement('div');
   stack.className = 'custom-map-btn-stack';
 
-  // 1. Geolocate (lokasi) MapboxGL
+  // 1.1) Geolocate (lokasi) MapboxGL
   const geoCtrl = new mapboxgl.GeolocateControl({
     positionOptions: { enableHighAccuracy: true },
     trackUserLocation: true,
     showUserHeading: true
   });
 
-  // 2. Fullscreen MapboxGL
+  // 1.2) Fullscreen MapboxGL
   const fullscreenCtrl = new mapboxgl.FullscreenControl();
 
-  // 3. Reset View (custom)
+  // 1.3) Reset View (custom)
   const resetBtn = document.createElement('button');
   resetBtn.className = 'custom-map-btn';
   resetBtn.type = 'button';
@@ -379,7 +380,7 @@ function initMap() {
     map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
   };
 
-  // 4. Kompas (custom, trigger compass reset)
+  // 1.4) Kompas (custom, trigger compass reset)
   const compassBtn = document.createElement('button');
   compassBtn.className = 'custom-map-btn';
   compassBtn.type = 'button';
@@ -394,7 +395,7 @@ function initMap() {
     map.resetNorth({ animate: true });
   };
 
-  // 5. Zoom MapboxGL (tanpa kompas)
+  // 1.5) Zoom MapboxGL (tanpa kompas)
   const navCtrl = new mapboxgl.NavigationControl({ showCompass: false });
 
   // Masukin urutan: geoCtrl (paling bawah), fullscreen, reset, compass, navCtrl (paling atas)

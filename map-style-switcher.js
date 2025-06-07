@@ -1,9 +1,4 @@
-// ===== AUTO MAP STYLE SWITCHER =====
-// Buat tombol map style otomatis di pojok kanan atas #map
-// Tidak perlu otak-atik HTML, cukup include file ini setelah script.js
-
 (function() {
-  // Daftar style
   const mapStyles = [
     { label: "Outdoors",   value: "mapbox://styles/mapbox/outdoors-v12" },
     { label: "Satellite",  value: "mapbox://styles/mapbox/satellite-v9" },
@@ -13,7 +8,6 @@
     { label: "Terrain 3D", value: "mapbox://styles/mapbox/outdoors-v12" }
   ];
 
-  // Style tombol & container
   const style = document.createElement('style');
   style.textContent = `
     .map-style-switcher-box {
@@ -59,18 +53,14 @@
   `;
   document.head.appendChild(style);
 
-  // Fungsi untuk membuat & inject tombol
   function injectSwitcher() {
-    // Pastikan map ada & hanya inject sekali
     if (!window.map || document.querySelector('.map-style-switcher-box')) return;
     const mapboxMapDiv = document.getElementById('map');
     if (!mapboxMapDiv) return;
 
-    // Buat container switcher
     const box = document.createElement('div');
     box.className = 'map-style-switcher-box';
 
-    // Buat tombol2 style
     mapStyles.forEach(({label, value}, i) => {
       const btn = document.createElement('button');
       btn.textContent = label;
@@ -78,42 +68,24 @@
       if (i === 0) btn.classList.add('active');
       btn.onclick = function() {
         window.map.setStyle(value);
-        // Highlight yang aktif
         box.querySelectorAll('button').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       };
       box.appendChild(btn);
     });
 
-    // Inject ke map container
     mapboxMapDiv.appendChild(box);
 
-    // Sync tombol aktif jika ganti style lewat cara lain
     window.map.on('style.load', function() {
-      const current = window.map.getStyle().sprite?.replace(/\/sprite$/, '');
-      let found = false;
+      const cur = window.map.getStyle().sprite;
       box.querySelectorAll('button').forEach(btn => {
-        if (btn.getAttribute('data-style') === window.map.getStyle().sprite?.replace(/\/sprite$/, '')) {
-          btn.classList.add('active'); found = true;
-        } else {
-          btn.classList.remove('active');
-        }
+        btn.classList.toggle('active', btn.getAttribute('data-style') === window.map.getStyle().sprite?.replace(/\/sprite$/, ''));
       });
-      // Atau fallback ke style URL
-      if (!found) {
-        const styleUrl = window.map.getStyle().sprite?.replace(/\/sprite$/, '') ||
-                         window.map.getStyle().metadata?.['mapbox:origin'] ||
-                         '';
-        box.querySelectorAll('button').forEach(btn => {
-          if (btn.getAttribute('data-style') === styleUrl) btn.classList.add('active');
-        });
-      }
     });
   }
 
-  // Tunggu MAP siap, lalu inject tombol
   function waitForMapbox() {
-    if (window.map && window.map.loaded()) {
+    if (window.map && window.map.isStyleLoaded && window.map.isStyleLoaded()) {
       injectSwitcher();
     } else if (window.map) {
       window.map.once('load', injectSwitcher);

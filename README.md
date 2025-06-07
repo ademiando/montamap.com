@@ -10,7 +10,7 @@ _Discover, Connect, Conquer Hiking Trails Worldwide – Powered by Smart Maps, L
 Montamap is a web-based mountain exploration platform designed to help hikers explore hiking trails safely, informatively, and efficiently.
 
 We combine:
-- 🗺 Interactive mountain trail maps (Mapbox-powered)
+- ⚑ Interactive mountain trail maps (Mapbox-powered)
 - ☁ Real-time weather (OpenWeather API)
 - ☎ One-touch SOS button
 - ✏ Global mountain search, filters, and favorites

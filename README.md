@@ -1,78 +1,78 @@
 # 🏔️ Montamap
 
 **Your Gateway to Global Mountain Trails**  
-_Discover, Connect, Conquer Hiking Trails Worldwide – Powered by Smart Maps, Live Weather Alert, One-Touch SOS, and Real-Time Support._
+_Discover, Connect, Conquer Hiking Trails Worldwide – Powered by Smart Maps, Live Weather Alerts, One-Touch SOS, and Real-Time Support._
 
 ---
 
-## 🌍 Tentang Montamap
+## 🌍 About Montamap
 
-Montamap adalah platform eksplorasi gunung berbasis web yang dirancang untuk membantu para pendaki menjelajah jalur pendakian secara aman, informatif, dan efisien.
+Montamap is a web-based mountain exploration platform designed to help hikers explore hiking trails safely, informatively, and efficiently.
 
-Kami menggabungkan:
-- 🗺️ Peta interaktif jalur gunung (Mapbox-powered)
-- 🌦️ Cuaca real-time (OpenWeather API)
-- 🚨 Tombol SOS sekali sentuh
-- 🔍 Filter, favorit, dan fitur pencarian gunung global
-- 🧭 Dukungan multi-bahasa dan tema gelap/terang
-- 🧳 Info porter, guide, perlengkapan, dan logistik lokal
-- 📰 Update berita & status jalur gunung
-- 🧵 Komunitas & rencana trip bareng (segera)
+We combine:
+- 🗺️ Interactive mountain trail maps (Mapbox-powered)
+- 🌦️ Real-time weather (OpenWeather API)
+- 🚨 One-touch SOS button
+- 🔍 Global mountain search, filters, and favorites
+- 🧭 Multi-language and dark/light theme support
+- 🧳 Information on porters, guides, equipment, and local logistics
+- 📰 Mountain news & trail status updates
+- 🧵 Community & group trip planning (coming soon)
 
-Montamap cocok untuk pemula hingga pendaki berpengalaman. Proyek ini masih dalam pengembangan aktif dan terbuka untuk kontribusi siapa pun yang tertarik dengan petualangan, geografi, pemetaan, atau open source. 🙌
-
----
-
-## 🚧 Status Proyek
-
-Montamap saat ini:
-- [x] Halaman detail gunung lengkap (foto, cuaca, peta, jalur)
-- [x] Peta interaktif (Mapbox + GeoJSON)
-- [x] Cuaca real-time (OpenWeather API)
-- [x] Filter, pencarian, favorit gunung
-- [x] Tema gelap/terang & multi-bahasa
-- [x] Tombol SOS & peta offline (experimental)
-- [x] Integrasi database (Supabase)
-- [ ] Rute offline & pelacakan GPS  
-- [ ] Sistem trip planning & komunitas  
-- [ ] Modul logistik (porter, guide, alat, dll)
-
-> 🚀 Kami masih belajar dan terus berkembang. Semua feedback dan kontribusi sangat kami hargai.
+Montamap is suitable for beginners to experienced hikers. This project is under active development and open to contributions from anyone interested in adventure, geography, mapping, or open-source collaboration.
 
 ---
 
-## 💻 Cara Menjalankan (Local Development)
+## 🚧 Project Status
+
+Montamap currently:
+- [x] Complete mountain detail pages (photos, weather, maps, trails)
+- [x] Interactive map (Mapbox + GeoJSON)
+- [x] Real-time weather (OpenWeather API)
+- [x] Mountain filters, search, and favorites
+- [x] Dark/light theme & multi-language support
+- [x] SOS button & offline map (experimental)
+- [x] Database integration (Supabase)
+- [ ] Offline routes & GPS tracking  
+- [ ] Trip planning & community system  
+- [ ] Logistics module (porters, guides, equipment, etc.)
+
+> 🚀 We are still learning and continuously improving. All feedback and contributions are highly appreciated.
+
+---
+
+## 💻 How to Run (Local Development)
 
 ```bash
-# 1. Clone repository ini
+# 1. Clone this repository
 git clone https://github.com/ademiando/montamap.git
 cd montamap
 
-# 2. Jalankan langsung file index.html di browser
+# 2. Open the index.html file directly in your browser
 ```
 
-> Tidak membutuhkan install apapun. Tidak menggunakan Node.js atau build tools.  
-> Semua berbasis HTML, CSS, JS murni, API eksternal, dan Supabase sebagai backend.
+> No installation required. No Node.js or build tools needed.  
+> Everything is based on pure HTML, CSS, JavaScript, external APIs, and Supabase as the backend.
 
 ---
 
-## 🤝 Kontribusi
+## 🤝 Contributing
 
-Kami menyambut kontribusi dari siapa pun — baik itu perbaikan bug kecil, penambahan fitur, maupun masukan dokumentasi.  
-Silakan ajukan issue atau pull request untuk berpartisipasi dalam pengembangan proyek ini.
+We welcome contributions from anyone — from small bug fixes, feature additions, to documentation improvements.  
+Feel free to open an issue or pull request to participate in the development of this project.
 
-Harap diingat, proyek ini masih dalam tahap pengembangan awal oleh tim kecil. Kami menghargai kesabaran dan semangat kolaborasi dari semua kontributor.
-
----
-
-## 🔐 Lisensi
-
-Proyek ini dirilis di bawah lisensi MIT.  
-Silakan digunakan dan dimodifikasi selama tetap mencantumkan atribusi.
+Please note, this project is still in its early development stages by a small team. We appreciate the patience and collaborative spirit of all contributors.
 
 ---
 
-## 🙏 Terima Kasih
+## 🔐 License
 
-Terima kasih untuk semua kontributor, pembaca, pendaki, dan komunitas open-source yang menginspirasi lahirnya Montamap.  
-Dukung kami dengan ⭐ di GitHub jika kamu suka proyek ini!
+This project is released under the MIT license.  
+Feel free to use and modify it as long as attribution is given.
+
+---
+
+## 🙏 Thank You
+
+Thank you to all contributors, readers, hikers, and the open-source community who inspired the birth of Montamap.  
+Support us with a ⭐ on GitHub if you like this project!

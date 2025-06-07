@@ -5,7 +5,7 @@ _Discover, Connect, Conquer Hiking Trails Worldwide – Powered by Smart Maps, L
 
 ---
 
-## ☁ About Montamap
+## ⚠ About Montamap
 
 Montamap is a web-based mountain exploration platform designed to help hikers explore hiking trails safely, informatively, and efficiently.
 

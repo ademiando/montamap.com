@@ -39,42 +39,20 @@ function initMap() {
     antialias: true
   });
 
-  map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: { enableHighAccuracy: true },
-      trackUserLocation: true,
-      showUserHeading: true
-    }),
-    'top-right'
-  );
-  map.addControl(new mapboxgl.ScaleControl({ maxWidth: 100, unit: 'metric' }), 'bottom-left');
-  map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
-
   window.map = map;
 
-  // ========== STYLING ==========
+  // ========== CSS ==========
 
   if (!document.getElementById('custom-map-btn-css')) {
     const style = document.createElement('style');
     style.id = 'custom-map-btn-css';
     style.textContent = `
-      .mapboxgl-ctrl-top-right {
-        top: 18px !important;
-        right: 18px !important;
-        display: flex;
-        flex-direction: row;
-        gap: 10px !important;
+      /* KIRI ATAS */
+      .custom-map-btn-download {
+        position: absolute;
+        top: 18px;
+        left: 18px;
         z-index: 30;
-      }
-      .custom-map-btn-group {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        align-items: center;
-        margin-right: 4px;
-      }
-      .custom-map-btn {
         width: 40px;
         height: 40px;
         background: #fff;
@@ -88,24 +66,49 @@ function initMap() {
         transition: box-shadow 0.18s, border-color 0.15s, background 0.15s;
         padding: 0;
         outline: none;
-        position: relative;
       }
-      .custom-map-btn:hover, .custom-map-btn:focus-visible {
+      .custom-map-btn-download:hover, .custom-map-btn-download:focus-visible {
         border-color: #356859;
         background: #f0faf6;
         box-shadow: 0 4px 18px rgba(53,104,89,0.13);
       }
-      .custom-map-btn svg {
+      .custom-map-btn-download svg {
         width: 22px;
         height: 22px;
         color: #356859;
         pointer-events: none;
       }
-      /* Dropdown style */
+
+      /* KANAN ATAS */
+      .switcher-fab {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        z-index: 30;
+        width: 46px;
+        height: 46px;
+        background: #fff;
+        border-radius: 50%;
+        border: 1.5px solid #e0e0e0;
+        box-shadow: 0 2px 12px rgba(53,104,89,0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: box-shadow .18s;
+      }
+      .switcher-fab:hover {
+        box-shadow: 0 2.5px 18px rgba(53,104,89,0.13);
+      }
+      .switcher-fab svg {
+        width: 26px;
+        height: 26px;
+        color: #356859;
+      }
       .switcher-dropdown {
         display: none;
         position: absolute;
-        top: 48px;
+        top: 54px;
         right: 0;
         background: #fff;
         border-radius: 10px;
@@ -154,10 +157,82 @@ function initMap() {
         height: 18px;
         opacity: .8;
       }
+
+      /* KANAN BAWAH */
+      .custom-map-btn-stack {
+        position: absolute;
+        bottom: 18px;
+        right: 18px;
+        z-index: 30;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        align-items: flex-end;
+      }
+      .custom-map-btn-stack .custom-map-btn,
+      .custom-map-btn-stack .mapboxgl-ctrl {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+        border-radius: 8px !important;
+        margin: 0 !important;
+        box-shadow: 0 2px 12px rgba(53,104,89,0.08);
+        background: #fff !important;
+        border: 1.5px solid #e0e0e0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        cursor: pointer !important;
+      }
+      .custom-map-btn-stack .custom-map-btn svg,
+      .custom-map-btn-stack .mapboxgl-ctrl-icon,
+      .custom-map-btn-stack .mapboxgl-ctrl-compass-arrow {
+        width: 21px !important;
+        height: 21px !important;
+        color: #356859 !important;
+      }
+      .custom-map-btn-stack .mapboxgl-ctrl-group {
+        flex-direction: column !important;
+        gap: 0 !important;
+        border-radius: 8px !important;
+        margin: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: none !important;
+      }
+      .custom-map-btn-stack .mapboxgl-ctrl-group > button {
+        border-radius: 8px !important;
+        border: none !important;
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+      }
+
+      /* Tooltip custom */
+      .custom-map-btn[title]:hover::after, .custom-map-btn[title]:focus::after,
+      .custom-map-btn-download[title]:hover::after, .custom-map-btn-download[title]:focus::after {
+        content: attr(title);
+        position: absolute;
+        left: 50%;
+        top: -32px;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        background: #356859;
+        color: #fff;
+        font-size: 12px;
+        padding: 2px 10px;
+        border-radius: 5px;
+        z-index: 1001;
+        box-shadow: 0 2px 10px rgba(53,104,89,0.12);
+        pointer-events: none;
+      }
+
       @media (max-width:600px) {
-        .mapboxgl-ctrl-top-right { top: 7px !important; right: 7px !important; gap: 5px !important; }
-        .custom-map-btn-group { gap: 5px; }
-        .custom-map-btn { width: 34px; height: 34px; }
+        .custom-map-btn-download, .switcher-fab { width: 34px; height: 34px; }
+        .switcher-fab { top: 7px; right: 7px; }
+        .custom-map-btn-download { top: 7px; left: 7px; }
+        .custom-map-btn-stack { right: 7px; bottom: 7px; gap: 5px; }
         .switcher-dropdown { min-width: 120px; }
         .switcher-dropdown button { font-size: 12px; padding: 7px 10px 7px 28px; gap: 3px;}
         .switcher-dropdown .switcher-icon { width: 13px; height: 13px;}
@@ -166,14 +241,33 @@ function initMap() {
     document.head.appendChild(style);
   }
 
-  // ========== CUSTOM BUTTON GROUP ==========
+  // ========== TOMBOL DOWNLOAD (KIRI ATAS) ==========
+  const downloadBtn = document.createElement('button');
+  downloadBtn.className = 'custom-map-btn-download';
+  downloadBtn.type = 'button';
+  downloadBtn.title = 'Download gambar map';
+  downloadBtn.innerHTML = `
+    <svg viewBox="0 0 22 22" fill="none">
+      <path d="M11 4v10" stroke="#356859" stroke-width="2" stroke-linecap="round"/>
+      <path d="M7 11l4 4 4-4" stroke="#356859" stroke-width="2" stroke-linecap="round"/>
+      <rect x="4" y="18" width="14" height="2" rx="1" fill="#356859"/>
+    </svg>
+  `;
+  downloadBtn.onclick = () => {
+    map.getCanvas().toBlob(blob => {
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'montamap-map.png';
+      a.click();
+    });
+  };
+  document.getElementById('map').appendChild(downloadBtn);
 
-  const btnGroup = document.createElement('div');
-  btnGroup.className = 'custom-map-btn-group';
-
-  // Style Switcher FAB (pakai ikon "layers" kotak bertumpuk)
+  // ========== TOMBOL MAP STYLE (KANAN ATAS) ==========
   const fab = document.createElement('button');
-  fab.className = 'custom-map-btn';
+  fab.className = 'switcher-fab';
   fab.type = 'button';
   fab.title = 'Ganti tampilan peta';
   fab.innerHTML = `
@@ -252,10 +346,25 @@ function initMap() {
     dropdown.classList.remove('open');
   });
 
-  btnGroup.appendChild(fab);
-  btnGroup.appendChild(dropdown);
+  document.getElementById('map').appendChild(fab);
+  document.getElementById('map').appendChild(dropdown);
 
-  // Tombol RESET (ikon refresh)
+  // ========== KANAN BAWAH: TOMBOL VERTICAL STACK ==========
+
+  const stack = document.createElement('div');
+  stack.className = 'custom-map-btn-stack';
+
+  // 1. Geolocate (lokasi) MapboxGL
+  const geoCtrl = new mapboxgl.GeolocateControl({
+    positionOptions: { enableHighAccuracy: true },
+    trackUserLocation: true,
+    showUserHeading: true
+  });
+
+  // 2. Fullscreen MapboxGL
+  const fullscreenCtrl = new mapboxgl.FullscreenControl();
+
+  // 3. Reset View (custom)
   const resetBtn = document.createElement('button');
   resetBtn.className = 'custom-map-btn';
   resetBtn.type = 'button';
@@ -269,36 +378,35 @@ function initMap() {
   resetBtn.onclick = () => {
     map.flyTo({ center: [116.4575, -8.4111], zoom: 9, pitch: 45, bearing: -17.6 });
   };
-  btnGroup.appendChild(resetBtn);
 
-  // Tombol Download (ikon download)
-  const downloadBtn = document.createElement('button');
-  downloadBtn.className = 'custom-map-btn';
-  downloadBtn.type = 'button';
-  downloadBtn.title = 'Download gambar map';
-  downloadBtn.innerHTML = `
+  // 4. Kompas (custom, trigger compass reset)
+  const compassBtn = document.createElement('button');
+  compassBtn.className = 'custom-map-btn';
+  compassBtn.type = 'button';
+  compassBtn.title = 'Reset arah utara';
+  compassBtn.innerHTML = `
     <svg viewBox="0 0 22 22" fill="none">
-      <path d="M11 4v10" stroke="#356859" stroke-width="2" stroke-linecap="round"/>
-      <path d="M7 11l4 4 4-4" stroke="#356859" stroke-width="2" stroke-linecap="round"/>
-      <rect x="4" y="18" width="14" height="2" rx="1" fill="#356859"/>
+      <circle cx="11" cy="11" r="9" stroke="#356859" stroke-width="2" fill="none"/>
+      <polygon points="11,4 13,13 11,11 9,13" fill="#356859"/>
     </svg>
   `;
-  downloadBtn.onclick = () => {
-    map.getCanvas().toBlob(blob => {
-      if (!blob) return;
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'montamap-map.png';
-      a.click();
-    });
+  compassBtn.onclick = () => {
+    map.resetNorth({ animate: true });
   };
-  btnGroup.appendChild(downloadBtn);
 
-  // Masukkan group tombol ke map
-  document.getElementById('map').appendChild(btnGroup);
+  // 5. Zoom MapboxGL (tanpa kompas)
+  const navCtrl = new mapboxgl.NavigationControl({ showCompass: false });
 
-  // Style & terrain 3D active
+  // Masukin urutan: geoCtrl (paling bawah), fullscreen, reset, compass, navCtrl (paling atas)
+  stack.appendChild(mapboxgl.GeolocateControl.prototype._createButton ? geoCtrl.onAdd(map) : geoCtrl.onAdd(map));
+  stack.appendChild(fullscreenCtrl.onAdd(map));
+  stack.appendChild(resetBtn);
+  stack.appendChild(compassBtn);
+  stack.appendChild(navCtrl.onAdd(map));
+
+  document.getElementById('map').appendChild(stack);
+
+  // ========== TERAIN AKTIF DEFAULT ==========
   map.on('style.load', function() {
     const activeBtn = [...dropdown.querySelectorAll('button')].find(btn => btn.classList.contains('active'));
     const styleObj = mapStyles.find(s => s.value === (activeBtn?.getAttribute('data-style')));
@@ -309,7 +417,6 @@ function initMap() {
     enableMapboxTerrain3D(map);
   });
 }
-
 
 
 

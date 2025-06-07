@@ -1,0 +1,64 @@
+/* Base Styles */ body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f9f9f9; }
+
+/* Header */ .sticky-header { position: sticky; top: 0; background: white; display: flex; align-items: center; padding: 12px 16px; border-bottom: 1px solid #e0e0e0; z-index: 100; }
+
+.logo { height: 42px; margin-right: 14px; }
+
+.title { font-size: 1.6rem; font-weight: bold; color: #2c3e50; }
+
+/* Tabs */ .tab-container { display: flex; overflow-x: auto; background: #fff; border-bottom: 1px solid #ccc; padding: 0 8px; }
+
+.tab { flex: 0 0 auto; padding: 14px 20px; border: none; background: none; cursor: pointer; font-size: 1rem; color: #555; white-space: nowrap; transition: all 0.3s ease; }
+
+.tab.active { color: #007bff; border-bottom: 3px solid #007bff; font-weight: 600; }
+
+.tab-content { display: none; padding: 20px; background: #fff; }
+
+.tab-content.active { display: block; }
+
+/* Overview Section */ #overview { padding: 20px; color: #333; max-width: 900px; margin: 0 auto; }
+
+.overview-hero { position: relative; margin-bottom: 20px; }
+
+/* Map Container */ .overview-map.fullscreen-map, .fullscreen-map { width: 100%; height: 80vh; min-height: 400px; margin-top: 10px; margin-bottom: 24px; border-radius: 12px; overflow: hidden; }
+
+.overview-title { margin-top: 10px; text-align: center; }
+
+overview-title h2 { margin: 0; font-size: 2rem; color: #93ae98; }
+
+overview-title p { margin: 4px 0 0; font-style: italic; color: #555; }
+
+/* Info Boxes */ .info-flex { display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-between; margin-bottom: 20px; }
+
+.info-box { background: #f7f9f7; padding: 15px 20px; border-radius: 8px; flex: 1 1 280px; box-shadow: 0 0 6px rgba(0,0,0,0.05); }
+
+.info-box h3 { margin-top: 0; color: #4c6b49; border-bottom: 2px solid #93ae98; padding-bottom: 6px; font-weight: 600; font-size: 1.2rem; }
+
+.info-box p { margin: 8px 0; line-height: 1.4; color: #3c3c3c; }
+
+.info-box a { color: #93ae98; text-decoration: none; }
+
+.info-box a:hover { text-decoration: underline; }
+
+/* Description */ .description { background: #e8f0e8; padding: 20px; border-radius: 8px; color: #2e4a2e; line-height: 1.6; font-size: 1rem; }
+
+.description h3 { margin-top: 0; border-bottom: 2px solid #93ae98; padding-bottom: 6px; }
+
+/* Style Selector */ .style-selector select { background-color: #93ae98; color: white; border: none; padding: 6px 10px; border-radius: 6px; font-size: 12px; margin-right: 10px; cursor: pointer; }
+
+.style-selector select:focus { outline: none; box-shadow: 0 0 0 2px rgba(147, 174, 152, 0.5); }
+
+/* Layer Toggle */ .layer-toggle { position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.85); padding: 10px; border-radius: 8px; font-size: 14px; z-index: 10; }
+
+/* Route Buttons */ .route-selector { position: absolute; bottom: 70px; left: 10px; background: rgba(255,255,255,0.85); padding: 8px 10px; border-radius: 8px; display: flex; gap: 6px; z-index: 10; }
+
+.route-selector button { background: #93ae98; border: none; padding: 6px 12px; border-radius: 6px; color: white; font-weight: bold; cursor: pointer; }
+
+/* Offline Map Button */ .offline-map-btn { position: absolute; bottom: 20px; right: 20px; z-index: 10; display: flex; align-items: center; gap: 6px; color: #93ae98; padding: 6px 10px; border-radius: 8px; text-decoration: none; transition: background-color 0.2s ease; font-weight: 500; font-size: 12px; line-height: 1; }
+
+.offline-map-btn img { width: 36px; height: 36px; }
+
+.offline-map-btn:hover { background-color: #f1f1f1; }
+
+/* Responsive Mobile */ @media (max-width: 720px) { .fullscreen-map { height: 100dvh !important; max-height: 60dvh !important; margin-bottom: 0 !important; } html, body { padding: 0; margin: 0; overflow-x: hidden; } .route-selector { bottom: 80px; left: 10px; } footer, .extra-space, .after-map { display: none !important; } }
+

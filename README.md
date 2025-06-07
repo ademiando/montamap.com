@@ -1,4 +1,4 @@
-# ☁ Montamap
+# ▲ Montamap
 
 **Your Gateway to Global Mountain Trails**  
 _Discover, Connect, Conquer Hiking Trails Worldwide – Powered by Smart Maps, Live Weather Alerts, One-Touch SOS, and Real-Time Support._
@@ -15,7 +15,7 @@ We combine:
 - ☎ One-touch SOS button
 - ✏ Global mountain search, filters, and favorites
 - ⚙ Multi-language and dark/light theme support
-- ⛺ Information on porters, guides, equipment, and local logistics
+- 👥 Information on porters, guides, equipment, and local logistics
 - ✉ Mountain news & trail status updates
 - ✈ Community & group trip planning (coming soon)
 
@@ -56,7 +56,7 @@ cd montamap
 
 ---
 
-## ⛺ Contributing
+## 👥 Contributing
 
 We welcome contributions from anyone — from small bug fixes, feature additions, to documentation improvements.  
 Feel free to open an issue or pull request to participate in the development of this project.

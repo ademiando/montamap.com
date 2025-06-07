@@ -52,7 +52,7 @@ function initMap() {
         position: absolute;
         top: 18px;
         left: 18px;
-        z-index: 30;
+        z-index: 15;
         width: 30px;
         height: 30px;
         background: #fff;

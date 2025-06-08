@@ -260,7 +260,7 @@ function initMap() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'montamap-map.png';
+      a.download = 'montamap-map.jpg';
       a.click();
     });
   };

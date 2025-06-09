@@ -288,12 +288,11 @@ body.dark .switcher-fab {
   }
 }
 
-@media (max-width: 600px) {
-  .custom-map-btn-stack {
-    /* bottom semula 18px + 15px = 33px */
-    bottom: 33px !important;
-  }
-}
+
+
+
+
+
 
     `;
     document.head.appendChild(style);

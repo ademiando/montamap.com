@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MontaMap - Gunung Agung</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="sticky-header">
+    <img src="https://montamap.com/assets/logo.png" alt="MontaMap Logo" class="logo" />
+    <h1 class="title">Gunung Agung</h1>
+  </header>
+
+  <nav class="tab-container">
+    <button class="tab active" data-tab="overview">Overview</button>
+    <button class="tab" data-tab="community">Community</button>
+    <button class="tab" data-tab="services">Services</button>
+    <button class="tab" data-tab="news">News</button>
+  </nav>
+
+  <main>
+    <section id="overview" class="tab-content active">
+      <div class="overview-hero">
+        <div id="agung-overview-map" class="overview-map fullscreen-map"></div>
+        <div class="overview-title">
+          <h2>Gunung Agung</h2>
+          <p>Karangasem, Bali, Indonesia | Stratovolcano | 3,031 m</p>
+        </div>
+
+        <div class="map-controls">
+          <button id="satellite-btn" title="Satellite View"><i class="fas fa-satellite"></i></button>
+          <button id="terrain-btn" title="Terrain View"><i class="fas fa-mountain"></i></button>
+          <button id="fullscreen-btn" title="Fullscreen"><i class="fas fa-expand"></i></button>
+          <button id="locate-btn" title="My Location"><i class="fas fa-location-arrow"></i></button>
+        </div>
+
+        <div class="route-controls">
+          <button class="route-btn" data-route="besakih">Besakih Route</button>
+          <button class="route-btn" data-route="pura-pasar">Pura Pasar Agung Route</button>
+          <button class="route-btn" data-route="selat">Selat Route</button>
+        </div>
+      </div>
+
+      <div class="info-flex">
+        <div class="info-box">
+          <h3>Quick Facts</h3>
+          <p><strong>Elevation:</strong> 3,031 m (9,944 ft)</p>
+          <p><strong>Type:</strong> Stratovolcano</p>
+          <p><strong>Location:</strong> Karangasem, Bali, Indonesia</p>
+          <p><strong>Difficulty:</strong> Hard</p>
+          <p><strong>Estimated Duration:</strong> 10-12 hours</p>
+          <p><strong>Best Season:</strong> April - October</p>
+          <p><strong>Last Eruption:</strong> 2019</p>
+        </div>
+
+        <div class="info-box">
+          <h3>Current Weather</h3>
+          <p><i class="fas fa-thermometer-half weather-icon"></i><strong>Temperature:</strong> <span id="temp">--</span></p>
+          <p><i class="fas fa-cloud weather-icon"></i><strong>Condition:</strong> <span id="weather">Loading...</span></p>
+          <p><i class="fas fa-wind weather-icon"></i><strong>Wind:</strong> <span id="wind">--</span></p>
+          <p><i class="fas fa-tint weather-icon"></i><strong>Humidity:</strong> <span id="humidity">--</span></p>
+        </div>
+
+        <div class="info-box">
+          <h3>Official & Contact</h3>
+          <p><a href="https://tnagung.id" target="_blank">Official Website</a></p>
+          <p><a href="https://instagram.com/tnagung" target="_blank">@tnagung</a></p>
+          <p>Email: info@tnagung.id</p>
+          <p>Phone: +62 361 987654</p>
+          <p>Emergency: +62 812 3456 7890</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h3>Trekking Routes</h3>
+        <p><strong>Besakih Route:</strong> The most popular route starting from Pura Besakih. Approx. 7-8 hours ascent, 5-6 hours descent. Challenging with steep sections.</p>
+        <p><strong>Pura Pasar Agung Route:</strong> Shorter but steeper route (4-5 hours ascent). Starts from Selat village, ends near the summit crater.</p>
+        <p><strong>Selat Route:</strong> Less crowded route through beautiful forests. Approx. 6-7 hours ascent. Requires a local guide.</p>
+        <p><strong>Duku Route:</strong> The longest route (8-9 hours ascent) but most scenic, passing through traditional villages.</p>
+      </div>
+
+      <div class="description">
+        <h3>About Gunung Agung</h3>
+        <p>Gunung Agung is an active volcano in Bali, Indonesia, and the highest point on the island. It dominates the surrounding area, influencing the climate and playing a significant role in Balinese culture and religion. The mountain is considered sacred in Balinese Hinduism, and many temples are located on its slopes, including the mother temple of Besakih.</p>
+        <p>The last major eruption occurred in 2017-2019, causing significant disruption to the island. Since then, the volcano has been closely monitored. The summit offers spectacular views of Bali, neighboring islands, and the crater lake. Sunrise hikes are particularly popular, though physically demanding.</p>
+        <p>Gunung Agung is part of the Mount Agung National Park, protecting unique ecosystems and endangered species. The trek passes through several vegetation zones, from tropical rainforest to alpine scrub near the summit.</p>
+      </div>
+    </section>
+
+    <section id="community" class="tab-content">
+      <h2>Community</h2>
+      <p>Gallery, reviews, stories, and tips from fellow hikers.</p>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1591801295258-ff9a0f4e5b1b?q=80&w=600" alt="Agung Summit">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1542662565-7e4b66bae529?q=80&w=600" alt="Crater View">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1588666309995-eda0d8a6d9a5?q=80&w=600" alt="Besakih Temple">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1564419434660-81a9b150d6a6?q=80&w=600" alt="Sunrise View">
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h3>Recent Reviews</h3>
+        <p><strong>Wayan S.</strong> - "Climbed via Besakih route - challenging but incredibly rewarding. The sunrise view was absolutely magical!"</p>
+        <p><strong>Sarah L.</strong> - "Hired a local guide through MontaMap. Made the experience so much better with cultural insights and safe passage."</p>
+        <p><strong>Ketut P.</strong> - "The Selat route is less crowded and very beautiful. Bring enough water as there are no sources after basecamp."</p>
+        <p><strong>Michael T.</strong> - "Started at 2AM to catch sunrise. The final ascent is steep but manageable with proper shoes. Views are worth every step!"</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Hiking Tips</h3>
+        <p><strong>Physical Preparation:</strong> Train with stair climbing or hill walking for at least 2 weeks before your hike.</p>
+        <p><strong>Essential Gear:</strong> Headlamp, trekking poles, warm layers (it gets cold at summit), rain jacket, and plenty of water.</p>
+        <p><strong>Cultural Respect:</strong> Dress modestly when visiting temples. Ask permission before photographing religious ceremonies.</p>
+        <p><strong>Safety First:</strong> Check volcanic activity status before climbing. Always hire a certified guide for your safety.</p>
+      </div>
+    </section>
+
+    <section id="services" class="tab-content">
+      <h2>Services</h2>
+      <p>Book tickets, porters, guides, gear rentals, and more.</p>
+
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-ticket-alt"></i>
+          </div>
+          <div class="service-content">
+            <h4>Permit & Entrance</h4>
+            <p>Book your hiking permit and national park entrance ticket online.</p>
+            <p><strong>Price:</strong> Rp 150,000 (weekdays) / Rp 200,000 (weekends)</p>
+            <a href="#" class="service-btn">Book Now</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-hiking"></i>
+          </div>
+          <div class="service-content">
+            <h4>Guides & Porters</h4>
+            <p>Experienced local guides and porters to assist your journey.</p>
+            <p><strong>Price:</strong> Rp 500,000 (guide) / Rp 300,000 (porter)</p>
+            <a href="#" class="service-btn">Hire Now</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-campground"></i>
+          </div>
+          <div class="service-content">
+            <h4>Gear Rental</h4>
+            <p>Tents, sleeping bags, trekking poles and other essential gear.</p>
+            <p><strong>Price:</strong> From Rp 75,000 per item</p>
+            <a href="#" class="service-btn">Rent Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top: 25px;">
+        <h3>Important Notes</h3>
+        <p><strong>Permit Requirements:</strong> All hikers must obtain a permit from the national park office. Foreigners require additional registration.</p>
+        <p><strong>Guide Mandatory:</strong> Solo hiking is not permitted. At least one certified guide is required per group of 4 hikers.</p>
+        <p><strong>Volcanic Activity:</strong> Closures may occur with increased volcanic activity. Check status 48 hours before your hike.</p>
+        <p><strong>Cultural Ceremony:</strong> Special ceremonies may affect access. Check the Balinese calendar for important religious days.</p>
+      </div>
+
+      <div class="info-box">
+        <h3>Transportation</h3>
+        <p>We offer transportation packages from main tourist areas to trailheads:</p>
+        <p><strong>From Ubud:</strong> Rp 400,000 (4-seater car)</p>
+        <p><strong>From Kuta/Seminyak:</strong> Rp 600,000 (4-seater car)</p>
+        <p><strong>From Canggu:</strong> Rp 650,000 (4-seater car)</p>
+        <a href="#" class="service-btn">Book Transportation</a>
+      </div>
+    </section>
+
+    <section id="news" class="tab-content">
+      <h2>News</h2>
+      <p>Latest updates, weather alerts, route closures, and official announcements.</p>
+
+      <div class="news-item">
+        <div class="news-date">June 10, 2025</div>
+        <h3 class="news-title">New Safety Regulations for Agung Climbers</h3>
+        <p class="news-content">Effective July 1, 2025, all climbers must carry a personal locator beacon (PLB) which can be rented at base camps. This is in response to recent incidents where hikers got lost in changing weather conditions.</p>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">June 5, 2025</div>
+        <h3 class="news-title">Besakih Route Fully Reopened</h3>
+        <p class="news-content">After 3 months of maintenance and trail improvements, the Besakih route is now fully open. New safety railings have been installed on steep sections between Pos 2 and Pos 3.</p>
+      </div>
+
+      <div class="news-item">
+        <div class="news-date">May 28, 2025</div>
+        <h3 class="news-title">Annual Temple Ceremony Affects Access</h3>
+        <p class="news-content">The Piodalan Agung ceremony at Besakih Temple will take place on June 15-17. During this period, the Besakih route will be closed. Alternative routes via Selat and Pura Pasar Agung remain open.</p>
+      </div>
+
+      <div class="info-box" style="margin-top: 25px;">
+        <h3>Weather Advisory</h3>
+        <p><strong>Current Alert:</strong> Increased fog and rain expected in mornings throughout June. Start times for sunrise hikes have been moved to 1:30 AM to ensure summit arrival before fog sets in.</p>
+        <p><strong>Volcanic Status:</strong> Level I (Normal). No signs of increased activity. The volcano remains safe for climbing with proper precautions.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <script src="maps.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -229,6 +229,19 @@ function initMap() {
         pointer-events: none;
       }
 
+
+
+.custom-map-btn-stack .custom-map-btn,
+.custom-map-btn-stack .mapboxgl-ctrl {
+  background: rgba(255, 255, 255, 0.2) !important; /* putih transparan */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* efek mengambang */
+}
+
+
+
       
 @media (max-width:600px) {
   .custom-map-btn-download {

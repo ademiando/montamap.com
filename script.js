@@ -230,7 +230,23 @@ function initMap() {
       }
 
 
-.custom-map-btn-download .switcher-fab
+/* Glassmorphism style */
+.custom-map-btn-download,
+.switcher-fab {
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Versi gelap untuk dark mode */
+body.dark .custom-map-btn-download,
+body.dark .switcher-fab {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
 .custom-map-btn-stack .custom-map-btn,
 .custom-map-btn-stack .mapboxgl-ctrl {
   background: rgba(255, 255, 255, 0.2) !important; /* putih transparan */

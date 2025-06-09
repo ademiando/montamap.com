@@ -440,7 +440,8 @@ body.dark .switcher-fab {
   const compassBtn = document.createElement('button');
   compassBtn.className = 'custom-map-btn';
   compassBtn.type = 'button';
-  compassBtn.title = 'North';
+  
+
   compassBtn.innerHTML = `
     <svg viewBox="0 0 22 22" fill="none">
       <circle cx="11" cy="11" r="9" stroke="#356859" stroke-width="2" fill="none"/>

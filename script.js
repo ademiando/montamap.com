@@ -288,12 +288,6 @@ body.dark .switcher-fab {
   }
 }
 
-
-
-
-
-
-
     `;
     document.head.appendChild(style);
   }
@@ -425,7 +419,6 @@ body.dark .switcher-fab {
   const resetBtn = document.createElement('button');
   resetBtn.className = 'custom-map-btn';
   resetBtn.type = 'button';
-  resetBtn.title = 'View';
   resetBtn.innerHTML = `
     <svg viewBox="0 0 22 22" fill="none">
       <path d="M4 11a7 7 0 1 1 2 5.2" stroke="#356859" stroke-width="2" fill="none"/>
@@ -440,8 +433,6 @@ body.dark .switcher-fab {
   const compassBtn = document.createElement('button');
   compassBtn.className = 'custom-map-btn';
   compassBtn.type = 'button';
-  
-
   compassBtn.innerHTML = `
     <svg viewBox="0 0 22 22" fill="none">
       <circle cx="11" cy="11" r="9" stroke="#356859" stroke-width="2" fill="none"/>

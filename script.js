@@ -229,15 +229,45 @@ function initMap() {
         pointer-events: none;
       }
 
-      @media (max-width:600px) {
-        .custom-map-btn-download, .switcher-fab { width: 32px; height: 32px; }
-        .switcher-fab { top: 7px; right: 7px; }
-        .custom-map-btn-download { top: 7px; left: 7px; }
-        .custom-map-btn-stack { right: 7px; bottom: 7px; gap: 5px; }
-        .switcher-dropdown { min-width: 120px; }
-        .switcher-dropdown button { font-size: 12px; padding: 7px 10px 7px 28px; gap: 3px;}
-        .switcher-dropdown .switcher-icon { width: 13px; height: 13px;}
-      }
+      
+
+
+
+
+
+@media (max-width:600px) {
+  .custom-map-btn-download {
+    width: 28px;
+    height: 28px;
+    top: 7px;
+    left: 7px;
+  }
+  .switcher-fab {
+    width: 36px;
+    height: 36px;
+    top: 7px;
+    right: 7px;
+  }
+  .custom-map-btn-stack {
+    right: 7px;
+    bottom: 7px;
+    gap: 5px;
+  }
+  .switcher-dropdown {
+    min-width: 120px;
+  }
+  .switcher-dropdown button {
+    font-size: 12px;
+    padding: 7px 10px 7px 28px;
+    gap: 3px;
+  }
+  .switcher-dropdown .switcher-icon {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+
     `;
     document.head.appendChild(style);
   }

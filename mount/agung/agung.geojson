@@ -1,0 +1,103 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Besakih Start",
+        "type": "trailhead"
+      },
+      "geometry": {
+        "coordinates": [
+          115.448,
+          -8.372
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pura Pasar Agung Start",
+        "type": "trailhead"
+      },
+      "geometry": {
+        "coordinates": [
+          115.535,
+          -8.325
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Selat Start",
+        "type": "trailhead"
+      },
+      "geometry": {
+        "coordinates": [
+          115.485,
+          -8.302
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 1",
+        "type": "checkpoint"
+      },
+      "geometry": {
+        "coordinates": [
+          115.455,
+          -8.365
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 2",
+        "type": "checkpoint"
+      },
+      "geometry": {
+        "coordinates": [
+          115.465,
+          -8.358
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pos 3",
+        "type": "checkpoint"
+      },
+      "geometry": {
+        "coordinates": [
+          115.475,
+          -8.352
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Summit",
+        "type": "summit"
+      },
+      "geometry": {
+        "coordinates": [
+          115.508,
+          -8.342
+        ],
+        "type": "Point"
+      }
+    }
+  ]
+}

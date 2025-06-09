@@ -230,7 +230,7 @@ function initMap() {
       }
 
 
-
+.custom-map-btn-download .switcher-fab
 .custom-map-btn-stack .custom-map-btn,
 .custom-map-btn-stack .mapboxgl-ctrl {
   background: rgba(255, 255, 255, 0.2) !important; /* putih transparan */
@@ -239,20 +239,17 @@ function initMap() {
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* efek mengambang */
 }
-
-
-
       
 @media (max-width:600px) {
   .custom-map-btn-download {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     top: 7px;
     left: 7px;
   }
   .switcher-fab {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     top: 7px;
     right: 7px;
   }
@@ -275,15 +272,12 @@ function initMap() {
   }
 }
 
-
 @media (max-width: 600px) {
   .custom-map-btn-stack {
     /* bottom semula 18px + 15px = 33px */
     bottom: 33px !important;
   }
 }
-
-
 
     `;
     document.head.appendChild(style);

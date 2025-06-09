@@ -143,6 +143,37 @@ function initMap() {
         background:rgba(255,255,255,0.2)!important; backdrop-filter:blur(6px)!important; border:1px solid rgba(255,255,255,0.3)!important; }
       body.dark .custom-map-btn-download, body.dark .switcher-fab {
         background:rgba(0,0,0,0.2)!important; border:1px solid rgba(255,255,255,0.2)!important; }
+        
+      /* PERBAIKAN: TOMBOL RUTE BARU */
+      .route-buttons-container {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 20;
+      }
+      .route-btn {
+        background: #fff;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 14px;
+        color: #356859;
+        cursor: pointer;
+        box-shadow: 0 2px 12px rgba(53,104,89,0.08);
+        transition: all 0.18s;
+      }
+      .route-btn:hover {
+        background: #f0faf6;
+        border-color: #356859;
+      }
+      .route-btn.active {
+        background: #e3f4ee;
+        border-color: #356859;
+        font-weight: bold;
+      }
     `;
     document.head.appendChild(style);
   }
@@ -304,8 +335,29 @@ function initMap() {
   });
 
   // ============================
-  // 5. DYNAMIC ROUTING LOGIC
+  // 5. DYNAMIC ROUTING LOGIC (DIPERBAIKI)
   // ============================
+  // Buat container baru untuk tombol rute
+  const routeButtonsContainer = document.createElement('div');
+  routeButtonsContainer.className = 'route-buttons-container';
+  document.getElementById('map').appendChild(routeButtonsContainer);
+
+  // Hanya dua rute yang tersisa (Besakih dan Pura Pasar)
+  const routes = [
+    { id: 'besakih', label: 'Rute Besakih' },
+    { id: 'pura-pasar', label: 'Rute Pura Pasar' }
+  ];
+
+  // Buat tombol untuk setiap rute
+  routes.forEach(route => {
+    const btn = document.createElement('button');
+    btn.className = 'route-btn';
+    btn.textContent = route.label;
+    btn.dataset.route = route.id;
+    routeButtonsContainer.appendChild(btn);
+  });
+
+  // Tambahkan event listener ke tombol rute
   const routeBtns = document.querySelectorAll('.route-btn');
   routeBtns.forEach(btn => {
     btn.addEventListener('click', function(){
@@ -319,9 +371,6 @@ function initMap() {
           break;
         case 'pura-pasar':
           coords = [[115.535,-8.325],[115.525,-8.330],[115.515,-8.335],[115.505,-8.338],[115.505,-8.343]];
-          break;
-        case 'selat':
-          coords = [[115.485,-8.302],[115.488,-8.312],[115.492,-8.322],[115.497,-8.332],[115.502,-8.338],[115.505,-8.343]];
           break;
       }
       map.getSource('route-line').setData({ type:'Feature', geometry:{ type:'LineString', coordinates:coords } });

@@ -1,245 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coming Soon | Montamap</title>
+  <title>Login Montamap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #fff;
-      color: #333;
+      height: 100vh;
+      background: url('/assets/bg-mountain.jpg') no-repeat center center/cover;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      width: 360px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h2 {
       text-align: center;
-      padding: 2rem;
-      animation: fadeIn 1.2s ease-out;
-    }
-
-    .logo {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 1rem;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-      100% { transform: translateY(0); }
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      color: #89ae95;
-    }
-
-    p, li {
-      font-size: 1.1rem;
-      margin: 0.5rem 0;
-      max-width: 600px;
-      line-height: 1.6;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 1rem 0;
-    }
-
-    ul li::before {
-      content: "▸";
-      color: #89ae95;
-      font-weight: bold;
-      display: inline-block;
-      width: 1em;
-      margin-left: -1em;
+      margin-bottom: 20px;
     }
 
     form {
-      margin-top: 2rem;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      transition: transform 0.5s ease, opacity 0.5s ease;
     }
 
-    input[type="email"] {
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      width: 300px;
-      margin-bottom: 1rem;
+    input, select {
+      margin: 8px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    input::placeholder {
+      color: rgba(255,255,255,0.7);
     }
 
     button {
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      background-color: #89ae95;
-      color: white;
+      margin-top: 15px;
+      padding: 12px;
+      background-color: #98AE98;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #6d8c77;
+      background-color: #88a288;
     }
 
-    .footer-note {
+    .toggle-link {
+      text-align: center;
+      margin-top: 15px;
       font-size: 0.9rem;
-      color: #888;
-      margin-top: 1rem;
+      color: #98AE98;
+      cursor: pointer;
     }
 
-.pre-footer-links {
-  font-size: 0.625rem; /* Ukuran font lebih kecil */
-  text-align: center; /* Rata tengah */
-  margin: 60px 0 20px; /* Atas 60px, bawah 20px, samping 0 */
-  color: #89ae95; /* Warna teks hijau pastel */
-}
+    .signup-form {
+      position: absolute;
+      top: 40px;
+      left: 30px;
+      right: 30px;
+      opacity: 0;
+      transform: translateY(30px);
+      pointer-events: none;
+    }
 
-.pre-footer-links a {
-  color: #89ae95; /* Warna link sama dengan teks */
-  text-decoration: none; /* Hilangkan garis bawah */
-  margin: 0 4px; /* Spasi antar link */
-  transition: all 0.2s ease; /* Animasi halus saat hover */
-}
+    .container.active .signup-form {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
 
-.pre-footer-links a:hover {
-  text-decoration: underline; /* Tambahkan garis bawah saat hover */
-}
-
-
-
-
-footer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px 5vw;
-  font-size: 0.625rem;
-  border-top: 1px solid #c8d6cc;
-  color: #333;
-  box-sizing: border-box;
-}
-
-.footer-content a {
-  color: #89ae95;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-}
-
-.footer-content a:hover {
-  color: #6f947c;
-  text-decoration: underline;
-}
-
-
-.footer-content, footer p {
-  line-height: 1.2;
-  margin: 0.2rem 0;
-}
-
-
+    .container.active .login-form {
+      opacity: 0;
+      transform: translateY(-30px);
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
+  <div class="container" id="auth-box">
+    <!-- Login Form -->
+    <form id="login-form" class="login-form">
+      <h2>Login Montamap</h2>
+      <input type="email" id="login-email" placeholder="Email" required />
+      <input type="password" id="login-password" placeholder="Password" required />
+      <button type="submit">Masuk</button>
+      <div class="toggle-link" onclick="toggleForm()">Belum punya akun? Daftar di sini</div>
+    </form>
 
-  <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo" class="logo" />
-
-  <h1>Still on the Trail…</h1>
-  <p>We’re building something exciting for adventurers around the world.</p>
-  <p>Montamap is designed to help you explore nature’s most breathtaking places — from the forests of Patagonia to the peaks of the Himalayas — with clarity, confidence, and connection.</p>
-
-  <p><strong>Soon, you’ll be able to:</strong></p>
-  <ul>
-    <li>Discover and compare expedition packages</li>
-    <li>Book directly with trusted local guides</li>
-    <li>Get destination insights tailored to your travel style</li>
-  </ul>
-
-  <p><strong>Your next adventure is on the horizon. Stay with us.</strong></p>
-  <p><strong>Want early access?</strong><br>Drop your email below, and we’ll notify you the moment new features go live.</p>
-
-  <form action="https://formspree.io/f/xovdpjez" method="POST">
-    <input type="email" name="email" placeholder="Enter your email" required />
-    <input type="hidden" name="_redirect" value="https://montamap.com/thankyou.html">
-    <button type="submit">Notify Me</button>
-  </form>
-
-  <p class="footer-note">We respect your journey — and your inbox.</p>
-
-<div class="pre-footer-links">
-  <a href="/about">About Us</a>
-  &nbsp;|&nbsp;
-  <a href="mailto:hello@montamap.com">Contact</a>
-  &nbsp;|&nbsp;
-  <a href="/privacy">Privacy Policy</a>
-  &nbsp;|&nbsp;
-  <a href="/terms">Terms of Service</a>
-  &nbsp;|&nbsp;
-  <a href="/faq">FAQ</a>
-  &nbsp;|&nbsp;
-  <a href="/careers">Careers</a>
-  &nbsp;|&nbsp;
-  <a href="/blog">Blog</a>
-  &nbsp;|&nbsp;
-  <a href="/download">Download App</a>
-  </a>
-</div>
-
-<footer>
-  <div class="footer-content">   
-
-<p style="display: flex; align-items: center; justify-content: center;">
-  <a href="https://montamap.com" style="display: inline-block;">
-    <img src="https://montamap.com/assets/logo.png" alt="Montamap Logo" style="height: 30px;" />
-  </a>
-</p>
-
- <p>© 2025 Montamap. All rights reserved.</p>
-
-    <p>
-      <a href="https://instagram.com/montamap" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 4px;">
-          <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1.1.5 1.6 1 .5.5.8 1 1 1.6.2.5.3 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.5 1.1-1 1.6-.5.5-1 .8-1.6 1-.5.2-1.2.3-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1.1-.5-1.6-1-.5-.5-.8-1-.9-1.6-.2-.5-.3-1.2-.4-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.5-1.1 1-1.6.5-.5 1-.8 1.6-1 .5-.2 1.2-.3 2.4-.4 1.3-.1 1.7-.1 4.9-.1m0-2.2c-3.3 0-3.7 0-5 .1-1.3.1-2.2.3-3 .6-.8.3-1.5.7-2.1 1.3-.6.6-1 1.3-1.3 2.1-.3.8-.5 1.7-.6 3-.1 1.3-.1 1.7-.1 5s0 3.7.1 5c.1 1.3.3 2.2.6 3 .3.8.7 1.5 1.3 2.1.6.6 1.3 1 2.1 1.3.8.3 1.7.5 3 .6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.2-.3 3-.6.8-.3 1.5-.7 2.1-1.3.6-.6 1-1.3 1.3-2.1.3-.8.5-1.7.6-3 .1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.2-.6-3-.3-.8-.7-1.5-1.3-2.1-.6-.6-1.3-1-2.1-1.3-.8-.3-1.7-.5-3-.6-1.3-.1-1.7-.1-5-.1z"/>
-          <path d="M12 5.8a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/>
-        </svg>
-        Instagram
-      </a>
-&nbsp;|&nbsp;
-<a href="https://x.com/montamap" target="_blank" rel="noopener noreferrer">
-  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 1200 1227" style="vertical-align: middle;">
-    <path d="M714.07 558.06L1154.18 0h-263.8L611.83 395.89 326.61 0H0l470.69 679.52L45.82 1227h263.8l299.29-402.27L873.39 1227H1200L714.07 558.06zM349.93 138.13l543.17 766.9h-109.2L240.72 138.13h109.21z"/>
-  </svg>
-  X
-</a>
-     &nbsp;|&nbsp;
-      <a href="mailto:hello@montamap.com">
-        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#89ae95" viewBox="0 0 24 24" style="vertical-align: middle;">
-          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-        Email
-      </a>
-    </p>
+    <!-- Signup Form -->
+    <form id="signup-form" class="signup-form">
+      <h2>Daftar Montamap</h2>
+      <input type="text" id="signup-name" placeholder="Nama Lengkap" required />
+      <input type="email" id="signup-email" placeholder="Email" required />
+      <input type="password" id="signup-password" placeholder="Password" required />
+      <select id="signup-role" required>
+        <option value="">Pilih Peran</option>
+        <option value="user">Pendaki</option>
+        <option value="basecamp">Basecamp</option>
+      </select>
+      <button type="submit">Daftar</button>
+      <div class="toggle-link" onclick="toggleForm()">Sudah punya akun? Masuk di sini</div>
+    </form>
   </div>
-</footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabase = supabase.createClient('https://YOUR-PROJECT-ID.supabase.co', 'YOUR-PUBLIC-ANON-KEY');
+
+    const authBox = document.getElementById('auth-box');
+
+    function toggleForm() {
+      authBox.classList.toggle('active');
+    }
+
+    // Login handler
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        alert('Login gagal: ' + error.message);
+      } else {
+        const { data: profile } = await supabase
+          .from('users')
+          .select('role')
+          .eq('id', data.user.id)
+          .single();
+
+        if (profile) {
+          const role = profile.role;
+          if (role === 'admin') window.location.href = '/dashboard/admin';
+          else if (role === 'basecamp') window.location.href = '/dashboard/basecamp';
+          else window.location.href = '/dashboard/user';
+        } else {
+          alert('User tidak ditemukan dalam database.');
+        }
+      }
+    });
+
+    // Signup handler
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('signup-name').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+      const role = document.getElementById('signup-role').value;
+
+      const { data, error } = await supabase.auth.signUp({ email, password });
+
+      if (error) {
+        alert('Gagal daftar: ' + error.message);
+      } else {
+        await supabase.from('users').insert([
+          { id: data.user.id, name, role }
+        ]);
+        alert('Pendaftaran berhasil! Silakan login.');
+        toggleForm();
+      }
+    });
+  </script>
 </body>
 </html>

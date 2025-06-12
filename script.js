@@ -557,6 +557,10 @@ const supabase = window.supabase.createClient(
 const mountainContainer = document.getElementById("mountainContainer");
 const loadMoreBtn       = document.getElementById("loadMoreBtn");
 const searchInput       = document.getElementById("searchInput");
+const clearSearch = document.getElementById('clearSearch');
+
+
+
 
 // Pagination & batch size
 let loaded = 0;
@@ -721,16 +725,15 @@ async function renderMountains() {
     query = query.or(orFilter);
   }
 
-document.getElementById('clearSearch').addEventListener('click', () => {
-  const input = document.getElementById('searchInput');
-  input.value = '';
-  input.dispatchEvent(new Event('input')); // biar event input tetap jalan (jika ada filter, dsb)
-  input.focus();
+searchInput.addEventListener('input', () => {
+  clearSearch.style.display = searchInput.value ? 'block' : 'none';
 });
 
-
-
-
+clearSearch.addEventListener('click', () => {
+  searchInput.value = '';
+  searchInput.dispatchEvent(new Event('input'));
+  searchInput.focus();
+});
 
 
   // Pagination: ambil dari range loaded..loaded+batch-1

@@ -67,7 +67,7 @@ header {
 .clear-icon {
   position: absolute;
   top: 50%;
-  right: 4px;
+  right: 2px;
   transform: translateY(-50%);
   width: 18px;
   height: 18px;

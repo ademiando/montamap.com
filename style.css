@@ -91,6 +91,7 @@ header {
   border: none;
   cursor: pointer;
   color: white;
+  right: 20px;
 }
 
 /* Glass effect on dropdown */

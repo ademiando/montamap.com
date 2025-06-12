@@ -67,34 +67,18 @@ header {
 .clear-icon {
   position: absolute;
   top: 50%;
-  right: 6px;
+  right: 4px;
   transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #5f6368;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 14px;
+  height: 14px;
   cursor: pointer;
   z-index: 10;
-  transition: all 0.2s ease;
-}
-
-.clear-icon::after {
-  content: "×";
-  color: rgba(255,255,255,0.8);
-  font-size: 12px;
-  line-height: 1;
+  opacity: 0.8;
   transition: all 0.2s ease;
 }
 
 .clear-icon:hover {
-  background-color: #70757a;
-}
-
-.clear-icon:hover::after {
-  color: white;
+  opacity: 1;
 }
 
 #hamburger {

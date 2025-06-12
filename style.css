@@ -91,14 +91,13 @@ header {
   border: none;
   cursor: pointer;
   color: white;
-  right: 10px;
 }
 
 /* Glass effect on dropdown */
 .menu {
   position: absolute;
   right: 10px;
-  top: 35px;
+  top: 55px;
   width: 250px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);

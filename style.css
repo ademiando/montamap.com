@@ -67,7 +67,8 @@ header {
 .clear-icon {
   position: absolute;
   top: 50%;
-  right: -5px;
+  right: -7px;
+  transform: translateY(-50%);
   width: 16px;
   height: 16px;
   cursor: pointer;
@@ -90,14 +91,15 @@ header {
   border: none;
   cursor: pointer;
   color: white;
+  right: 10px;
 }
 
 /* Glass effect on dropdown */
 .menu {
   position: absolute;
-  right: 18px;
+  right: 15px;
   top: 50px;
-  width: 200px;
+  width: 250px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);

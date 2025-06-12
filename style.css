@@ -58,7 +58,7 @@ header {
 
 .search-bar input {
   width: 100%;
-  padding: 5px 10px;
+  padding: 5px 28px 5px 10px; /* Right padding increased for icon space */
   border: 1px solid #ccc;
   border-radius: 15px;
   font-size: 14px;
@@ -69,16 +69,21 @@ header {
   top: 50%;
   right: 4px;
   transform: translateY(-50%);
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   cursor: pointer;
   z-index: 10;
   opacity: 0.8;
   transition: all 0.2s ease;
+  display: flex; /* Ensures SVG centers perfectly */
 }
 
 .clear-icon:hover {
   opacity: 1;
+}
+
+.clear-icon:hover path {
+  stroke: rgba(255,255,255,0.85);
 }
 
 #hamburger {

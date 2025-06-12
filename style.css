@@ -71,7 +71,7 @@ header {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px;
   color: white;
   z-index: 10;
   width: 20px;

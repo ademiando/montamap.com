@@ -58,7 +58,7 @@ header {
 
 .search-bar input {
   width: 100%;
-  padding: 5px 28px 5px 10px; /* Right padding increased for icon space */
+  padding: 5px 10px;
   border: 1px solid #ccc;
   border-radius: 15px;
   font-size: 14px;
@@ -67,7 +67,7 @@ header {
 .clear-icon {
   position: absolute;
   top: 50%;
-  right: 4px;
+  right: -5px;
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
@@ -75,7 +75,6 @@ header {
   z-index: 10;
   opacity: 0.8;
   transition: all 0.2s ease;
-  display: flex; /* Ensures SVG centers perfectly */
 }
 
 .clear-icon:hover {

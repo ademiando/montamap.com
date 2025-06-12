@@ -68,7 +68,6 @@ header {
   position: absolute;
   top: 50%;
   right: -5px;
-  transform: translateY(-50%);
   width: 16px;
   height: 16px;
   cursor: pointer;
@@ -97,8 +96,8 @@ header {
 .menu {
   position: absolute;
   right: 18px;
-  top: 40px;
-  width: 220px;
+  top: 50px;
+  width: 200px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);

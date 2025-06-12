@@ -67,34 +67,34 @@ header {
 .clear-icon {
   position: absolute;
   top: 50%;
-  right: 8px; /* Jarak dari tepi kanan searchbar */
+  right: 6px;
   transform: translateY(-50%);
-  width: 20px; /* Ukuran diperbesar agar x lebih mudah diklik */
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background-color: #333;
+  background-color: #5f6368;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px; /* Ukuran font disesuaikan */
-  color: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   z-index: 10;
-  transition: all 0.2s ease-in-out;
-  font-weight: normal; /* Ketebalan font diubah agar lebih premium */
-  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.clear-icon::after {
+  content: "×";
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+  line-height: 1;
+  transition: all 0.2s ease;
 }
 
 .clear-icon:hover {
-  background-color: #444;
-  color: rgba(255, 255, 255, 0.85);
+  background-color: #70757a;
 }
 
-/* Membuat ikon x lebih presisi di tengah */
-.clear-icon::after {
-  content: "✕"; /* Menggunakan karakter unicode untuk presisi */
-  display: block;
-  transform: translateY(-0.5px); /* Penyesuaian posisi vertikal halus */
+.clear-icon:hover::after {
+  color: white;
 }
 
 #hamburger {

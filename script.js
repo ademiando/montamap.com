@@ -721,6 +721,18 @@ async function renderMountains() {
     query = query.or(orFilter);
   }
 
+document.getElementById('clearSearch').addEventListener('click', () => {
+  const input = document.getElementById('searchInput');
+  input.value = '';
+  input.dispatchEvent(new Event('input')); // biar event input tetap jalan (jika ada filter, dsb)
+  input.focus();
+});
+
+
+
+
+
+
   // Pagination: ambil dari range loaded..loaded+batch-1
   const { data, error } = await query.range(loaded, loaded + batch - 1);
   if (error) {

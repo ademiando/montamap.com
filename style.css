@@ -96,7 +96,7 @@ header {
 /* Glass effect on dropdown */
 .menu {
   position: absolute;
-  right: 10px;
+  right: 20px;
   top: 55px;
   width: 250px;
   background-color: rgba(0, 0, 0, 0.5);

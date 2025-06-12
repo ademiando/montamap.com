@@ -70,13 +70,13 @@ function initMap() {
       }
       .custom-map-btn-download:hover, .custom-map-btn-download:focus-visible {
         border-color: #356859;
-        background: #f0faf6;
+        background: #fff;
         box-shadow: 0 4px 18px rgba(53,104,89,0.13);
       }
       .custom-map-btn-download svg {
         width: 18px;
         height: 18px;
-        color: #356859;
+        color: #333;
         pointer-events: none;
       }
 
@@ -119,6 +119,7 @@ function initMap() {
         z-index: 200;
         border: 1.5px solid #e0e0e0;
         font-family: inherit;
+        background: rgba(255, 255, 255, 0.2) !important;
       }
       .switcher-dropdown.open {
         display: block;
@@ -192,7 +193,7 @@ function initMap() {
       .custom-map-btn-stack .mapboxgl-ctrl-compass-arrow {
         width: 21px !important;
         height: 21px !important;
-        color: #356859 !important;
+        color: #333 !important;
       }
       .custom-map-btn-stack .mapboxgl-ctrl-group {
         flex-direction: column !important;

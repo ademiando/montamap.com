@@ -50,6 +50,7 @@ header {
 
 /* ======== SEARCH BAR ======== */
 .search-bar {
+  position: relative;
   flex: 1;
   max-width: 350px;
   margin-right: 10px;
@@ -57,7 +58,7 @@ header {
 
 .search-bar input {
   width: 100%;
-  padding: 5px 10px;
+  padding: 5px 30px 5px 10px;
   border: 1px solid #ccc;
   border-radius: 15px;
   font-size: 14px;

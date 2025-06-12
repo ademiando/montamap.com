@@ -67,7 +67,7 @@ header {
 .clear-icon {
   position: absolute;
   top: 50%;
-  right: 0px;
+  right: -5px;
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
@@ -81,9 +81,7 @@ header {
   opacity: 1;
 }
 
-.clear-icon:hover path {
-  stroke: rgba(255,255,255,0.85);
-}
+
 
 #hamburger {
   font-size: 26px;

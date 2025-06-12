@@ -111,7 +111,7 @@ function initMap() {
         position: absolute;
         top: 54px;
         right: 0;
-        background: #fff;
+        color: #fff;
         border-radius: 10px;
         box-shadow: 0 2.5px 16px rgba(53,104,89,0.13);
         min-width: 155px;
@@ -130,7 +130,7 @@ function initMap() {
         to { opacity: 1; transform: none;}
       }
       .switcher-dropdown button {
-        background: none;
+        background: fff;
         border: none;
         width: 100%;
         text-align: left;
@@ -146,6 +146,14 @@ function initMap() {
         align-items: center;
         gap: 7px;
       }
+
+
+
+
+
+
+
+
       .switcher-dropdown button.active {
         background: #f0faf6;
         color: #1d3d32;

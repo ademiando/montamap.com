@@ -608,196 +608,51 @@ footer {
 
 
 
-/* ======== PREMIUM BACKGROUND EFFECTS ======== */
-/* Milky Way Galaxy Animation for Dark Mode */
-.galaxy-bg {
+/* ======== ULTRA-PREMIUM 3D EFFECTS ======== */
+#particle-background, 
+#molecular-animation {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%),
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="space-noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23space-noise)" opacity="0.2"/></svg>');
-  z-index: -2;
-  opacity: 0;
-  transition: opacity 1.5s ease;
-}
-
-html.dark .galaxy-bg {
-  opacity: 1;
-  animation: galaxyRotate 240s linear infinite;
-}
-
-/* Animated Clouds for Light Mode */
-.clouds-animated {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="60" viewBox="0 0 120 60"><path fill="%23d1e0e5" d="M20,30 Q40,15 60,30 Q80,45 100,30 Q110,40 120,30 L120,60 L0,60 L0,30 Q10,40 20,30"/></svg>') repeat;
   z-index: -1;
   opacity: 0;
-  animation: cloudMove 120s linear infinite;
   transition: opacity 1.5s ease;
 }
 
-html:not(.dark) .clouds-animated {
-  opacity: 0.15;
+html.dark #particle-background {
+  opacity: 0.8;
 }
 
-/* ======== ANIMATIONS ======== */
-@keyframes galaxyRotate {
-  from { background-position: 0% 0%; }
-  to { background-position: 1000% 1000%; }
+html:not(.dark) #molecular-animation {
+  opacity: 0.6;
 }
 
-@keyframes cloudMove {
-  from { background-position: 0 0; }
-  to { background-position: 1000px 0; }
-}
-
-/* ======== PREMIUM LIGHTING EFFECTS ======== */
-/* Mountain Card Hover Glow */
-.mountain-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.mountain-card::before {
-  content: '';
+/* Lighting Effects */
+.header-3d-light {
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, 
-    rgba(53, 104, 89, 0.4) 0%, 
-    rgba(53, 104, 89, 0.2) 40%, 
-    transparent 70%);
-  transform: rotate(30deg);
-  opacity: 0;
-  transition: opacity 0.6s ease, transform 1.2s ease;
-  z-index: 1;
+  width: 100%;
+  height: 200px;
+  top: 0;
+  background: radial-gradient(ellipse at top, rgba(53, 104, 89, 0.4) 0%, transparent 70%);
   pointer-events: none;
 }
 
-.mountain-card:hover::before {
-  opacity: 1;
-  animation: shine 3s ease infinite;
-}
-
-@keyframes shine {
-  0% { transform: translateX(-100%) rotate(30deg); }
-  100% { transform: translateX(100%) rotate(30deg); }
-}
-
-/* Header Ambient Light */
-header::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  background: linear-gradient(to bottom, 
-    rgba(53, 104, 89, 0.2) 0%, 
-    transparent 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-header:hover::after {
-  opacity: 1;
-}
-
-/* ======== 3D TRANSFORM EFFECTS ======== */
-/* Card 3D Tilt Effect */
+/* Mountain Card 3D Enhancement */
 .mountain-card {
   transform-style: preserve-3d;
   perspective: 1000px;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.mountain-card:hover {
-  transform: 
-    translateY(-8px) 
-    rotateX(3deg) 
-    rotateY(1deg) 
-    scale(1.02);
-}
-
-/* ======== DYNAMIC SNOW EFFECT ======== */
-.snow-effect {
+.mountain-card::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 30%, rgba(53, 104, 89, 0.1) 100%);
   z-index: 2;
-}
-
-.snowflake {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.8;
-  filter: blur(0.5px);
-  animation: snowFall linear infinite;
-}
-
-@keyframes snowFall {
-  0% {
-    transform: translateY(-10px) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100px) translateX(20px);
-    opacity: 0;
-  }
-}
-
-/* ======== PREMIUM BUTTON EFFECTS ======== */
-#loadMoreBtn {
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-#loadMoreBtn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent);
-  transition: 0.5s;
-  z-index: -1;
-}
-
-#loadMoreBtn:hover::before {
-  left: 100%;
-}
-
-/* ======== RESPONSIVE ADJUSTMENTS ======== */
-@media (max-width: 768px) {
-  .mountain-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .mountain-card::before {
-    animation: none;
-  }
+  pointer-events: none;
 }

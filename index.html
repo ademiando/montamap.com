@@ -358,138 +358,241 @@
 
 
 
-<!-- 3D Particle Background Elements -->
-<div id="particle-background"></div>
-<div id="molecular-animation"></div>
-
-<script>
-/* ======== CINEMATIC 3D ANIMATIONS ======== */
-document.addEventListener('DOMContentLoaded', function() {
-  // 1. Cosmic Particle System (Dark Mode)
-  if (document.querySelector('#particle-background')) {
-    const particleScene = new THREE.Scene();
-    const particleCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    const particleRenderer = new THREE.WebGLRenderer({ 
-      alpha: true,
-      antialias: true 
+ <!-- Cinematic 3D Canvas -->
+  <canvas class="cinematic-canvas" id="bg-canvas"></canvas>
+  <div class="overlay-effect"></div>
+  <div class="light-overlay"></div>
+  
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <script>
+    // Cinematic 3D Animation
+    document.addEventListener('DOMContentLoaded', function() {
+      // Setup scene
+      const canvas = document.getElementById('bg-canvas');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+      
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        alpha: true
+      });
+      
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      
+      // Position camera
+      camera.position.z = 5;
+      
+      // Create cinematic particles
+      const particles = new THREE.Group();
+      scene.add(particles);
+      
+      // Particle geometry
+      const particleGeometry = new THREE.BufferGeometry();
+      const particleCount = 2000;
+      
+      const posArray = new Float32Array(particleCount * 3);
+      const colorArray = new Float32Array(particleCount * 3);
+      const sizeArray = new Float32Array(particleCount);
+      
+      for(let i = 0; i < particleCount * 3; i += 3) {
+        // Position
+        const radius = 10;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.random() * Math.PI;
+        
+        posArray[i] = radius * Math.sin(phi) * Math.cos(theta);
+        posArray[i+1] = radius * Math.cos(phi);
+        posArray[i+2] = radius * Math.sin(phi) * Math.sin(theta);
+        
+        // Color
+        if (document.documentElement.classList.contains('dark')) {
+          // Dark mode - cosmic colors
+          colorArray[i] = Math.random() * 0.5 + 0.5; // R
+          colorArray[i+1] = Math.random() * 0.3 + 0.2; // G
+          colorArray[i+2] = Math.random() * 0.8 + 0.2; // B
+        } else {
+          // Light mode - cloud colors
+          colorArray[i] = 0.9; // R
+          colorArray[i+1] = 0.9; // G
+          colorArray[i+2] = 0.95; // B
+        }
+        
+        // Size
+        sizeArray[i/3] = Math.random() * 0.8 + 0.2;
+      }
+      
+      particleGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      particleGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+      particleGeometry.setAttribute('size', new THREE.BufferAttribute(sizeArray, 1));
+      
+      // Particle material
+      const particleMaterial = new THREE.PointsMaterial({
+        size: 0.15,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending,
+        sizeAttenuation: true
+      });
+      
+      const particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+      particles.add(particleSystem);
+      
+      // Add glowing stars in dark mode
+      if (document.documentElement.classList.contains('dark')) {
+        const starGeometry = new THREE.BufferGeometry();
+        const starCount = 100;
+        const starPosArray = new Float32Array(starCount * 3);
+        
+        for(let i = 0; i < starCount * 3; i += 3) {
+          starPosArray[i] = (Math.random() - 0.5) * 20;
+          starPosArray[i+1] = (Math.random() - 0.5) * 20;
+          starPosArray[i+2] = (Math.random() - 0.5) * 20;
+        }
+        
+        starGeometry.setAttribute('position', new THREE.BufferAttribute(starPosArray, 3));
+        
+        const starMaterial = new THREE.PointsMaterial({
+          size: 1.5,
+          color: 0xffffff,
+          transparent: true,
+          opacity: 0.8,
+          blending: THREE.AdditiveBlending
+        });
+        
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        particles.add(stars);
+      }
+      
+      // Create nebula effect for dark mode
+      function createNebula() {
+        const nebulaGeometry = new THREE.SphereGeometry(8, 32, 32);
+        const nebulaMaterial = new THREE.MeshBasicMaterial({
+          color: 0x356859,
+          transparent: true,
+          opacity: 0.05,
+          wireframe: true
+        });
+        
+        const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
+        particles.add(nebula);
+        return nebula;
+      }
+      
+      const nebula = createNebula();
+      
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        // Rotate particles
+        particles.rotation.x += 0.0005;
+        particles.rotation.y += 0.001;
+        
+        // Pulsate nebula
+        if (nebula) {
+          nebula.scale.x = 1 + Math.sin(Date.now() * 0.001) * 0.05;
+          nebula.scale.y = 1 + Math.cos(Date.now() * 0.0007) * 0.03;
+        }
+        
+        // Update particles position
+        const positions = particleGeometry.attributes.position.array;
+        for(let i = 0; i < positions.length; i += 3) {
+          // Move particles in spiral motion
+          positions[i] += (Math.random() - 0.5) * 0.01;
+          positions[i+1] += (Math.random() - 0.5) * 0.01;
+          positions[i+2] += (Math.random() - 0.5) * 0.01;
+          
+          // Keep particles within bounds
+          const dist = Math.sqrt(
+            positions[i] * positions[i] + 
+            positions[i+1] * positions[i+1] + 
+            positions[i+2] * positions[i+2]
+          );
+          
+          if (dist > 12) {
+            positions[i] *= 0.95;
+            positions[i+1] *= 0.95;
+            positions[i+2] *= 0.95;
+          }
+        }
+        particleGeometry.attributes.position.needsUpdate = true;
+        
+        renderer.render(scene, camera);
+      }
+      
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+      
+      // Start animation
+      animate();
+      
+      // Update colors when theme changes
+      const themeObserver = new MutationObserver(() => {
+        const colors = particleGeometry.attributes.color.array;
+        
+        for(let i = 0; i < colors.length; i += 3) {
+          if (document.documentElement.classList.contains('dark')) {
+            // Cosmic colors
+            colors[i] = Math.random() * 0.5 + 0.5; // R
+            colors[i+1] = Math.random() * 0.3 + 0.2; // G
+            colors[i+2] = Math.random() * 0.8 + 0.2; // B
+          } else {
+            // Cloud colors
+            colors[i] = 0.9; // R
+            colors[i+1] = 0.9; // G
+            colors[i+2] = 0.95; // B
+          }
+        }
+        particleGeometry.attributes.color.needsUpdate = true;
+        
+        // Add/remove stars based on theme
+        while(particles.children.length > 1) {
+          if (particles.children[1].type === "Points") {
+            particles.remove(particles.children[1]);
+          }
+        }
+        
+        if (document.documentElement.classList.contains('dark')) {
+          const starGeometry = new THREE.BufferGeometry();
+          const starCount = 100;
+          const starPosArray = new Float32Array(starCount * 3);
+          
+          for(let i = 0; i < starCount * 3; i += 3) {
+            starPosArray[i] = (Math.random() - 0.5) * 20;
+            starPosArray[i+1] = (Math.random() - 0.5) * 20;
+            starPosArray[i+2] = (Math.random() - 0.5) * 20;
+          }
+          
+          starGeometry.setAttribute('position', new THREE.BufferAttribute(starPosArray, 3));
+          
+          const starMaterial = new THREE.PointsMaterial({
+            size: 1.5,
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+          });
+          
+          const stars = new THREE.Points(starGeometry, starMaterial);
+          particles.add(stars);
+        }
+      });
+      
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
     });
-    
-    particleRenderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('particle-background').appendChild(particleRenderer.domElement);
-    
-    // Nebula-like particles
-    const particles = new THREE.BufferGeometry();
-    const particleCount = 5000;
-    
-    const posArray = new Float32Array(particleCount * 3);
-    const colorArray = new Float32Array(particleCount * 3);
-    
-    for(let i = 0; i < particleCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 100;
-      colorArray[i] = Math.random() * 0.5 + 0.5;
-    }
-    
-    particles.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    particles.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-    
-    const particleMaterial = new THREE.PointsMaterial({
-      size: 0.1,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending
-    });
-    
-    const particleSystem = new THREE.Points(particles, particleMaterial);
-    particleScene.add(particleSystem);
-    
-    // Animate
-    function animateParticles() {
-      requestAnimationFrame(animateParticles);
-      particleSystem.rotation.x += 0.0001;
-      particleSystem.rotation.y += 0.0001;
-      particleRenderer.render(particleScene, particleCamera);
-    }
-    
-    animateParticles();
-  }
-
-  // 2. Molecular Animation (Light Mode)
-  if (document.querySelector('#molecular-animation')) {
-    const moleculeScene = new THREE.Scene();
-    const moleculeCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    const moleculeRenderer = new THREE.WebGLRenderer({ 
-      alpha: true,
-      antialias: true 
-    });
-    
-    moleculeRenderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('molecular-animation').appendChild(moleculeRenderer.domElement);
-    
-    // Create molecular structure
-    const molecules = new THREE.Group();
-    
-    // Atomic bonds
-    const bondGeometry = new THREE.CylinderGeometry(0.05, 0.05, 1, 8);
-    const bondMaterial = new THREE.MeshBasicMaterial({ 
-      color: 0x89ae95,
-      transparent: true,
-      opacity: 0.6
-    });
-    
-    for(let i = 0; i < 50; i++) {
-      const bond = new THREE.Mesh(bondGeometry, bondMaterial);
-      bond.position.set(
-        Math.random() * 10 - 5,
-        Math.random() * 10 - 5,
-        Math.random() * 10 - 5
-      );
-      bond.rotation.set(
-        Math.random() * Math.PI,
-        Math.random() * Math.PI,
-        Math.random() * Math.PI
-      );
-      molecules.add(bond);
-    }
-    
-    // Atoms
-    const atomGeometry = new THREE.SphereGeometry(0.2, 16, 16);
-    const atomMaterial = new THREE.MeshBasicMaterial({ 
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.8
-    });
-    
-    for(let i = 0; i < 30; i++) {
-      const atom = new THREE.Mesh(atomGeometry, atomMaterial);
-      atom.position.set(
-        Math.random() * 10 - 5,
-        Math.random() * 10 - 5,
-        Math.random() * 10 - 5
-      );
-      molecules.add(atom);
-    }
-    
-    moleculeScene.add(molecules);
-    
-    // Animate
-    function animateMolecules() {
-      requestAnimationFrame(animateMolecules);
-      molecules.rotation.x += 0.002;
-      molecules.rotation.y += 0.003;
-      moleculeRenderer.render(moleculeScene, moleculeCamera);
-    }
-    
-    animateMolecules();
-  }
-});
-</script>
-
-<!-- Three.js Library for 3D Effects -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
-
+  </script>
 
 
 

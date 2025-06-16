@@ -358,42 +358,140 @@
 
 
 
-<div class="galaxy-bg"></div>
-<div class="clouds-animated"></div>
+<!-- 3D Particle Background Elements -->
+<div id="particle-background"></div>
+<div id="molecular-animation"></div>
+
 <script>
-  // Dynamic snow effect
-  document.addEventListener('DOMContentLoaded', function() {
-    const mountainCards = document.querySelectorAll('.mountain-card');
-    
-    mountainCards.forEach(card => {
-      if (card.querySelector('.snow-effect')) return;
-      
-      const snowEffect = document.createElement('div');
-      snowEffect.className = 'snow-effect';
-      card.appendChild(snowEffect);
-      
-      // Create snowflakes
-      for (let i = 0; i < 20; i++) {
-        const snowflake = document.createElement('div');
-        snowflake.className = 'snowflake';
-        
-        // Random properties
-        const size = Math.random() * 3 + 1;
-        const posX = Math.random() * 100;
-        const delay = Math.random() * 5;
-        const duration = Math.random() * 5 + 5;
-        
-        snowflake.style.width = `${size}px`;
-        snowflake.style.height = `${size}px`;
-        snowflake.style.left = `${posX}%`;
-        snowflake.style.animationDuration = `${duration}s`;
-        snowflake.style.animationDelay = `${delay}s`;
-        
-        snowEffect.appendChild(snowflake);
-      }
+/* ======== CINEMATIC 3D ANIMATIONS ======== */
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. Cosmic Particle System (Dark Mode)
+  if (document.querySelector('#particle-background')) {
+    const particleScene = new THREE.Scene();
+    const particleCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const particleRenderer = new THREE.WebGLRenderer({ 
+      alpha: true,
+      antialias: true 
     });
-  });
+    
+    particleRenderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('particle-background').appendChild(particleRenderer.domElement);
+    
+    // Nebula-like particles
+    const particles = new THREE.BufferGeometry();
+    const particleCount = 5000;
+    
+    const posArray = new Float32Array(particleCount * 3);
+    const colorArray = new Float32Array(particleCount * 3);
+    
+    for(let i = 0; i < particleCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 100;
+      colorArray[i] = Math.random() * 0.5 + 0.5;
+    }
+    
+    particles.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    particles.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+    
+    const particleMaterial = new THREE.PointsMaterial({
+      size: 0.1,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending
+    });
+    
+    const particleSystem = new THREE.Points(particles, particleMaterial);
+    particleScene.add(particleSystem);
+    
+    // Animate
+    function animateParticles() {
+      requestAnimationFrame(animateParticles);
+      particleSystem.rotation.x += 0.0001;
+      particleSystem.rotation.y += 0.0001;
+      particleRenderer.render(particleScene, particleCamera);
+    }
+    
+    animateParticles();
+  }
+
+  // 2. Molecular Animation (Light Mode)
+  if (document.querySelector('#molecular-animation')) {
+    const moleculeScene = new THREE.Scene();
+    const moleculeCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const moleculeRenderer = new THREE.WebGLRenderer({ 
+      alpha: true,
+      antialias: true 
+    });
+    
+    moleculeRenderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('molecular-animation').appendChild(moleculeRenderer.domElement);
+    
+    // Create molecular structure
+    const molecules = new THREE.Group();
+    
+    // Atomic bonds
+    const bondGeometry = new THREE.CylinderGeometry(0.05, 0.05, 1, 8);
+    const bondMaterial = new THREE.MeshBasicMaterial({ 
+      color: 0x89ae95,
+      transparent: true,
+      opacity: 0.6
+    });
+    
+    for(let i = 0; i < 50; i++) {
+      const bond = new THREE.Mesh(bondGeometry, bondMaterial);
+      bond.position.set(
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5
+      );
+      bond.rotation.set(
+        Math.random() * Math.PI,
+        Math.random() * Math.PI,
+        Math.random() * Math.PI
+      );
+      molecules.add(bond);
+    }
+    
+    // Atoms
+    const atomGeometry = new THREE.SphereGeometry(0.2, 16, 16);
+    const atomMaterial = new THREE.MeshBasicMaterial({ 
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.8
+    });
+    
+    for(let i = 0; i < 30; i++) {
+      const atom = new THREE.Mesh(atomGeometry, atomMaterial);
+      atom.position.set(
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5
+      );
+      molecules.add(atom);
+    }
+    
+    moleculeScene.add(molecules);
+    
+    // Animate
+    function animateMolecules() {
+      requestAnimationFrame(animateMolecules);
+      molecules.rotation.x += 0.002;
+      molecules.rotation.y += 0.003;
+      moleculeRenderer.render(moleculeScene, moleculeCamera);
+    }
+    
+    animateMolecules();
+  }
+});
 </script>
+
+<!-- Three.js Library for 3D Effects -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.min.js"></script>
+
+
+
 
 
 

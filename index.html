@@ -353,6 +353,56 @@
 </footer>
 
 
+
+
+
+
+
+<div class="galaxy-bg"></div>
+<div class="clouds-animated"></div>
+<script>
+  // Dynamic snow effect
+  document.addEventListener('DOMContentLoaded', function() {
+    const mountainCards = document.querySelectorAll('.mountain-card');
+    
+    mountainCards.forEach(card => {
+      if (card.querySelector('.snow-effect')) return;
+      
+      const snowEffect = document.createElement('div');
+      snowEffect.className = 'snow-effect';
+      card.appendChild(snowEffect);
+      
+      // Create snowflakes
+      for (let i = 0; i < 20; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        
+        // Random properties
+        const size = Math.random() * 3 + 1;
+        const posX = Math.random() * 100;
+        const delay = Math.random() * 5;
+        const duration = Math.random() * 5 + 5;
+        
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+        snowflake.style.left = `${posX}%`;
+        snowflake.style.animationDuration = `${duration}s`;
+        snowflake.style.animationDelay = `${delay}s`;
+        
+        snowEffect.appendChild(snowflake);
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
 <!-- Library Mapbox & Switcher -->
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.5/dist/umd/supabase.min.js"></script>

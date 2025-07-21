@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nailsbypwettyy | Premium Nail Art Home Service</title>
+    <meta name="description" content="Layanan nail art home service premium di Sakra Barat, Lombok Timur. Jam buka 09.00-20.00 WITA. Booking via WhatsApp sekarang!">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+
+    <!-- Sticky Social Buttons -->
+    <div class="sticky-social">
+        <a href="https://wa.me/6281234567890" target="_blank" class="social-btn whatsapp">
+            <img src="assets/icons/whatsapp.svg" alt="WhatsApp">
+        </a>
+        <a href="https://instagram.com/nailsbypwettyy" target="_blank" class="social-btn instagram">
+            <img src="assets/icons/instagram.svg" alt="Instagram">
+        </a>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">nailsbypwettyy</a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#gallery">Galeri</a></li>
+                    <li><a href="#pricing">Harga</a></li>
+                    <li><a href="#booking">Booking</a></li>
+                    <li><a href="#location">Lokasi</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">nailsbypwettyy</h1>
+                <p class="hero-subtitle">Layanan Nail Art Home Service Premium di Sakra Barat</p>
+                <a href="#booking" class="hero-cta">Booking Sekarang</a>
+            </div>
+            <div class="hero-animation">
+                <lottie-player 
+                    src="assets/hero-animation.json" 
+                    background="transparent" 
+                    speed="1" 
+                    loop 
+                    autoplay>
+                </lottie-player>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Saya</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="image-placeholder"></div>
+                </div>
+                <div class="about-text">
+                    <p>Halo! Saya Putri, seniman nail art profesional dengan pengalaman lebih dari 5 tahun. Saya memiliki passion untuk menciptakan desain kuku yang indah dan unik sesuai dengan kepribadian setiap klien.</p>
+                    <p>Saya menawarkan layanan home service di area Sakra Barat, Lombok Timur. Dengan peralatan premium dan bahan berkualitas tinggi, saya menjamin hasil nail art yang tahan lama dan memuaskan.</p>
+                    <div class="info-box">
+                        <h3>Jam Layanan</h3>
+                        <p><i class="icon clock"></i> Setiap Hari: 09.00 - 20.00 WITA</p>
+                        <p><i class="icon location"></i> Sakra Barat, Lombok Timur</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Galeri Karya</h2>
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="marble">Marble</button>
+                <button class="filter-btn" data-filter="simple">Simple</button>
+                <button class="filter-btn" data-filter="cute">Cute</button>
+                <button class="filter-btn" data-filter="premium">Premium</button>
+            </div>
+            <div class="gallery-grid">
+                <!-- Gallery items will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Paket & Harga</h2>
+            <p class="section-subtitle">Layanan nail art premium dengan harga terjangkau. Mulai dari Rp35.000</p>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Basic Care</h3>
+                    <div class="price">Rp35.000</div>
+                    <ul>
+                        <li>Pembersihan kuku</li>
+                        <li>Manicure dasar</li>
+                        <li>Warna solid</li>
+                        <li>Finishing</li>
+                    </ul>
+                    <a href="#booking" class="pricing-btn">Pilih Paket</a>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-badge">POPULER</div>
+                    <h3>Design Simple</h3>
+                    <div class="price">Rp75.000</div>
+                    <ul>
+                        <li>Semua dalam Basic Care</li>
+                        <li>1 desain nail art</li>
+                        <li>Pilihan warna premium</li>
+                        <li>Finishing glossy/matte</li>
+                        <li>Perawatan kutikula</li>
+                    </ul>
+                    <a href="#booking" class="pricing-btn">Pilih Paket</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Premium Design</h3>
+                    <div class="price">Rp150.000+</div>
+                    <ul>
+                        <li>Semua dalam Design Simple</li>
+                        <li>Desain kompleks</li>
+                        <li>Hiasan 3D</li>
+                        <li>Efek marble/gradient</li>
+                        <li>Produk premium</li>
+                        <li>Garansi 2 minggu</li>
+                    </ul>
+                    <a href="#booking" class="pricing-btn">Pilih Paket</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking">
+        <div class="container">
+            <h2 class="section-title">Booking Layanan Sekarang</h2>
+            <p class="section-subtitle">Pesan layanan nail art premium langsung ke rumah Anda di Sakra Barat</p>
+            
+            <a href="https://wa.me/6281234567890" class="booking-btn">
+                <i class="whatsapp-icon"></i> Booking via WhatsApp
+            </a>
+            
+            <p class="booking-note">Respon cepat dalam 1 jam pada jam operasional</p>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section class="instagram">
+        <div class="container">
+            <h2 class="section-title">Ikuti Kami di Instagram</h2>
+            <a href="https://instagram.com/nailsbypwettyy" target="_blank" class="instagram-link">
+                @nailsbypwettyy
+            </a>
+            
+            <div class="instagram-grid">
+                <div class="instagram-item"></div>
+                <div class="instagram-item"></div>
+                <div class="instagram-item"></div>
+                <div class="instagram-item"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="location">
+        <div class="container">
+            <h2 class="section-title">Lokasi Layanan</h2>
+            <p class="section-subtitle">Melayani home service di wilayah Sakra Barat, Lombok Timur dan sekitarnya</p>
+            
+            <div class="location-content">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d252721.62307465636!2d116.37653854999999!3d-8.6520714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdb7d23be25473%3A0x1c1b5f5d0b7c3d1e!2sSakra%20Barat%2C%20Lombok%20Timur%2C%20Nusa%20Tenggara%20Bar.!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <div class="location-info">
+                    <h3>Area Layanan</h3>
+                    
+                    <div class="location-area">
+                        <h4>Sakra Barat</h4>
+                        <p>Melayani seluruh area Kecamatan Sakra Barat, Lombok Timur</p>
+                    </div>
+                    
+                    <div class="location-area">
+                        <h4>Sakra Timur</h4>
+                        <p>Area terbatas di Sakra Timur dengan tambahan biaya transport</p>
+                    </div>
+                    
+                    <div class="location-area">
+                        <h4>Luar Kota</h4>
+                        <p>Layanan luar kota tersedia dengan minimal booking 5 orang</p>
+                    </div>
+                    
+                    <div class="location-notes">
+                        <h4>Catatan Penting</h4>
+                        <ul>
+                            <li>Booking minimal H-1</li>
+                            <li>Durasi layanan 1-2 jam tergantung desain</li>
+                            <li>Pembayaran cash atau transfer setelah layanan selesai</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>nailsbypwettyy</h3>
+                    <p>Layanan nail art home service premium di Sakra Barat, Lombok Timur. Jam buka 09.00-20.00 WITA.</p>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://wa.me/6281234567890" target="_blank" class="social-link">
+                        <i class="whatsapp-icon"></i>
+                    </a>
+                    <a href="https://instagram.com/nailsbypwettyy" target="_blank" class="social-link">
+                        <i class="instagram-icon"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 nailsbypwettyy. All rights reserved.</p>
+                <button id="scroll-top" class="scroll-top-btn">
+                    <i class="arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
